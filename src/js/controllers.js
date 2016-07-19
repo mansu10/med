@@ -1,5 +1,5 @@
-var hello = angular.module('helloModule', []);
-hello.controller('helloctrl', ['$scope'], function($scope){
+var SideNavModule = angular.module('SideNavModule', []);
+SideNavModule.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 	$scope.greeting = {
 		text: 'hello'
 	}

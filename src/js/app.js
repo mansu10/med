@@ -1,7 +1,7 @@
 var app = angular.module('app', [
 
 // 'ngRoute', 'filters', 'service', 'directives'
-	'ui.router'
+	'ui.router', 'SideNavModule'
 
 ])
 /**
@@ -47,7 +47,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 					templateUrl: paths.tpl + 'home.html'
 				},
 				'side@home': {
-					templateUrl: paths.tpl + 'sidenav.home.html'
+					templateUrl: paths.tpl + 'sidenav.home.html',
+					controller: 'SideNavCtrl'
 				},
 				'main@home': {
 					templateUrl: paths.tpl + 'content.home.html'

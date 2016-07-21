@@ -1,102 +1,106 @@
 //var SideNavModule = angular.module('SideNavModule', []);
 app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 
-		$scope.list = [{
-			parent: {
-				title: '主页',
-				url: '/home'
-			},{
-				parent: {
-					title: '商品管理',
-					url: 'javascript:;',
-					child: [{
-						title: '单一商品',
-						url: ''
-					},{
-						title: '组合商品',
-						url: ''
-					}]					
+		$scope.list = {
+			"parent": {
+						"title": "主页",
+						"url": "index.html"
+					},
+					
+			"items":[
+				{
+					"title": "商品管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-laptop",
+					"child": [{
+							"title": "单一商品",
+							"url": ""
+						},{
+							"title": "组合商品",
+							"url": ""
+					  }]					
+				},
+				{
+					"title": "店铺管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-book",
+					"child": [{
+							"title": "在售商品",
+							"url": ""
+						},{
+							"title": "商品陈列",
+							"url": ""
+					  }]					
+				},
+				{
+					"title": "订单管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-cogs",
+					"child": [{
+							"title": "订单输入",
+							"url": ""
+						},{
+							"title": "订单查询",
+							"url": ""
+					  },{
+							"title": "订单审核",
+							"url": ""
+						},{
+							"title": "退货处理",
+							"url": ""
+					  }]					
+				},{
+					"title": "仓库管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-envelope",
+					"child": [{
+							"title": "货位管理",
+							"url": "mail.html"
+						},{
+							"title": "库存管理",
+							"url": ""
+					  }]					
+				},{
+					"title": "配送管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-tasks",
+					"child": [{
+							"title": "配载管理",
+							"url": ""
+						},{
+							"title": "车辆管理",
+							"url": ""
+					  }]					
+				},{
+					"title": "统计分析",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-bar-chart-o",
+					"child": [{
+							"title": "订单统计",
+							"url": ""
+						}]					
+				},{
+					"title": "用户管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-th-list",
+					"child": [{
+							"title": "用户管理",
+							"url": ""
+						}]					
 				}
-			},{
-				parent: {
-					title: '店铺管理',
-					url: '',
-					child: [{
-						title: '在售商品',
-						url: ''
-					},{
-						title: '商品陈列',
-						url: ''
-					}]					
-				}
-			},{
-				parent: {
-					title: '订单管理',
-					url: '',
-					child: [{
-						title: '订单输入',
-						url: ''
-					},{
-						title: '订单查询',
-						url: ''
-					}，{
-						title: '订单审核',
-						url: ''
-					},{
-						title: '退货处理',
-						url: ''
-					}]					
-				}
-			},{
-				parent: {
-					title: '仓库管理',
-					url: '',
-					child: [{
-						title: '货位管理',
-						url: ''
-					},{
-						title: '库存管理',
-						url: ''
-					}]					
-				}
-			},{
-				parent: {
-					title: '配送管理',
-					url: '',
-					child: [{
-						title: '配载管理',
-						url: ''
-					},{
-						title: '车辆管理',
-						url: ''
-					}]					
-				}
-			},{
-				parent: {
-					title: '统计分析',
-					url: '',
-					child: [{
-						title: '订单统计',
-						url: ''
-					}]					
-				}
-			},{
-				parent: {
-					title: '用户管理',
-					url: '',
-					child: [{
-						title: '单一商品',
-						url: ''
-					},{
-						title: '组合商品',
-						url: ''
-					}]					
-				}
-			}
-		}];		
+		]
+}
 		$scope.isActive = false;
-		$scope.listToggle = function(){
-			$scope.isActive = !$scope.isActive;
+		$scope.listToggle = function(index){
+			$scope.list.items[index].isActive = !$scope.list.items[index].isActive;
+//			$scope.isActive = !$scope.isActive;
 		}
 	})
 	.controller('loginCtl', function($scope, http,$state) {

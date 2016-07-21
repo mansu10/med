@@ -30,7 +30,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('index', {
 			url: '/login',
-			templateUrl: paths.tpl + 'login.html'
+			templateUrl: paths.tpl + 'login.html',
+			controller:'loginCtl'
+			
 			// views: {
 			// 	'': {
 			// 		templateUrl: paths.tpl + 'home.html'

@@ -50,7 +50,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				},
 				'side@home': {
 					templateUrl: paths.tpl + 'sidenav.home.html',
-//					controller: 'SideNavCtrl'
+					controller: 'SideNavCtrl'
 				},
 				'main@home': {
 					templateUrl: paths.tpl + 'content.home.html'

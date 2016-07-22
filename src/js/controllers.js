@@ -41,7 +41,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-cogs",
 					"child": [{
 							"title": "订单输入",
-							"url": ""
+							"url": ".order"
 						},{
 							"title": "订单查询",
 							"url": ""

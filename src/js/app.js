@@ -18,7 +18,8 @@ app.run(function($rootScope, $state, $stateParams) {
 });
 
 var paths = {
-	tpl: './src/template/'
+	tpl: './src/template/',
+	part: './src/template/parts/'
 }
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -43,19 +44,31 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			// }
 		})
 		.state('home', {
-			url: '/home',
+			url: '',
 			views: {
 				'': {
-					templateUrl: paths.tpl + 'home.html'
+					templateUrl: paths.tpl + 'content.html',
+					controller: function($state){
+						$state.go('home.dashboard');
+					}
 				},
 				'side@home': {
-					templateUrl: paths.tpl + 'sidenav.home.html',
+					templateUrl: paths.tpl + 'sidenav.html',
 					controller: 'SideNavCtrl'
 				},
-				'main@home': {
-					templateUrl: paths.tpl + 'content.home.html'
+				'header@home': {
+					templateUrl: paths.tpl + 'header.html'
 				}
 			}
+		})
+		.state('home.dashboard',{
+			url: '/dashboard',
+			templateUrl: paths.part + 'dashboard.html'
+
+		})
+		.state('home.order',{
+			url: '/order/add',
+			templateUrl: paths.part + 'order.add.html'
 		})
 });
 

@@ -42,7 +42,7 @@
                   	</a>
                     <ul class="sub-menu-list">
                         <li ng-repeat="child in item.child">
-                        	<a href="blank_page.html">{{child.title}}</a>
+                        	<a ui-sref="{{child.url}}">{{child.title}}</a>
                         </li>
                     </ul>
                 </li>

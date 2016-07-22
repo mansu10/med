@@ -33,15 +33,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			templateUrl: paths.tpl + 'login.html',
 			controller:'loginCtl'
-			
-			// views: {
-			// 	'': {
-			// 		templateUrl: paths.tpl + 'home.html'
-			// 	},
-			// 	'main@index': {
-			// 		templateUrl: paths.tpl + 'login.html'
-			// 	}
-			// }
 		})
 		.state('home', {
 			url: '',
@@ -64,11 +55,56 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('home.dashboard',{
 			url: '/dashboard',
 			templateUrl: paths.part + 'dashboard.html'
-
 		})
-		.state('home.order',{
+		// 订单部分
+		.state('home.orderAdd',{
 			url: '/order/add',
 			templateUrl: paths.part + 'order.add.html'
+		})
+		.state('home.orderQuery', {
+			url: '/order/query'
+		})
+		.state('home.orderAudit', {
+			url: '/order/audit'
+		})
+		.state('home.orderRefund', {
+			url: '/order/refund'
+		})
+		// 商店部分
+		.state('home.storeSale', {
+			url: '/store/sale'
+		})
+		.state('home.storeDisplay', {
+			url: '/store/display'
+		})
+		// 商品管理
+		.state('home.goodsSingle', {
+			url: '/goods/single'
+		})
+		.state('home.goodsMulti', {
+			url: '/goods/multi'
+		})
+		// 仓库部分
+		.state('home.wareInventory', {
+			url: '/ware/inventory'
+		})
+		.state('home.wareStorage', {
+			url: '/ware/storage'
+		})
+		// 配送管理
+		.state('home.distrLoad', {
+			url: '/distr/load'
+		})
+		.state('home.distrVehicle', {
+			url: '/distr/vehicle'
+		})
+		// 统计分析
+		.state('home.statistics', {
+			url: '/statistics'
+		})
+		// 用户管理
+		.state('home.userManage', {
+			url: 'user/manage'
 		})
 });
 

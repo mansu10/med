@@ -15,10 +15,10 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-laptop",
 					"child": [{
 							"title": "单一商品",
-							"url": ""
+							"url": ".goodsSingle"
 						},{
 							"title": "组合商品",
-							"url": ""
+							"url": ".goodsMulti"
 					  }]					
 				},
 				{
@@ -28,10 +28,10 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-book",
 					"child": [{
 							"title": "在售商品",
-							"url": ""
+							"url": ".storeSale"
 						},{
 							"title": "商品陈列",
-							"url": ""
+							"url": ".storeDisplay"
 					  }]					
 				},
 				{
@@ -41,16 +41,16 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-cogs",
 					"child": [{
 							"title": "订单输入",
-							"url": ".order"
+							"url": ".orderAdd"
 						},{
 							"title": "订单查询",
-							"url": ""
+							"url": ".orderQuery"
 					  },{
 							"title": "订单审核",
-							"url": ""
+							"url": ".orderAudit"
 						},{
 							"title": "退货处理",
-							"url": ""
+							"url": ".orderRefund"
 					  }]					
 				},{
 					"title": "仓库管理",
@@ -59,10 +59,10 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-envelope",
 					"child": [{
 							"title": "货位管理",
-							"url": "mail.html"
+							"url": ".wareInventory"
 						},{
 							"title": "库存管理",
-							"url": ""
+							"url": ".wareStorage"
 					  }]					
 				},{
 					"title": "配送管理",
@@ -71,10 +71,10 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-tasks",
 					"child": [{
 							"title": "配载管理",
-							"url": ""
+							"url": ".distrLoad"
 						},{
 							"title": "车辆管理",
-							"url": ""
+							"url": ".distrVehicle"
 					  }]					
 				},{
 					"title": "统计分析",
@@ -83,7 +83,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-bar-chart-o",
 					"child": [{
 							"title": "订单统计",
-							"url": ""
+							"url": ".statistics"
 						}]					
 				},{
 					"title": "用户管理",
@@ -92,7 +92,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-th-list",
 					"child": [{
 							"title": "用户管理",
-							"url": ""
+							"url": ".userManage"
 						}]					
 				}
 		]

@@ -32,7 +32,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('index', {
 			url: '/login',
 			templateUrl: paths.tpl + 'login.html',
-			controller:'loginCtl'
+			controller:'LoginCtrl'
 		})
 		.state('home', {
 			url: '',
@@ -48,7 +48,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 					controller: 'SideNavCtrl'
 				},
 				'header@home': {
-					templateUrl: paths.tpl + 'header.html'
+					templateUrl: paths.tpl + 'header.html',
+					controller: 'HeaderCtrl'
 				}
 			}
 		})

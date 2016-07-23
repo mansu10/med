@@ -15,10 +15,12 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-laptop",
 					"child": [{
 							"title": "单一商品",
-							"url": ".goodsSingle"
+							"url": ".goodsSingle",
+							"isActive":true
 						},{
 							"title": "组合商品",
-							"url": ".goodsMulti"
+							"url": ".goodsMulti",
+							"isActive":false
 					  }]					
 				},
 				{
@@ -28,10 +30,12 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-book",
 					"child": [{
 							"title": "在售商品",
-							"url": ".storeSale"
+							"url": ".storeSale",
+							"isActive":false
 						},{
 							"title": "商品陈列",
-							"url": ".storeDisplay"
+							"url": ".storeDisplay",
+							"isActive":false
 					  }]					
 				},
 				{
@@ -41,16 +45,20 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-cogs",
 					"child": [{
 							"title": "订单输入",
-							"url": ".orderAdd"
+							"url": ".orderAdd",
+							"isActive":false
 						},{
 							"title": "订单查询",
-							"url": ".orderQuery"
+							"url": ".orderQuery",
+							"isActive":false
 					  },{
 							"title": "订单审核",
-							"url": ".orderAudit"
+							"url": ".orderAudit",
+							"isActive":false
 						},{
 							"title": "退货处理",
-							"url": ".orderRefund"
+							"url": ".orderRefund",
+							"isActive":false
 					  }]					
 				},{
 					"title": "仓库管理",
@@ -59,10 +67,12 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-envelope",
 					"child": [{
 							"title": "货位管理",
-							"url": ".wareInventory"
+							"url": ".wareInventory",
+							"isActive":false
 						},{
 							"title": "库存管理",
-							"url": ".wareStorage"
+							"url": ".wareStorage",
+							"isActive":false
 					  }]					
 				},{
 					"title": "配送管理",
@@ -71,10 +81,12 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-tasks",
 					"child": [{
 							"title": "配载管理",
-							"url": ".distrLoad"
+							"url": ".distrLoad",
+							"isActive":false
 						},{
 							"title": "车辆管理",
-							"url": ".distrVehicle"
+							"url": ".distrVehicle",
+							"isActive":false
 					  }]					
 				},{
 					"title": "统计分析",
@@ -83,7 +95,8 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-bar-chart-o",
 					"child": [{
 							"title": "订单统计",
-							"url": ".statistics"
+							"url": ".statistics",
+							"isActive":false
 						}]					
 				},{
 					"title": "用户管理",
@@ -92,7 +105,8 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"icon":"fa fa-th-list",
 					"child": [{
 							"title": "用户管理",
-							"url": ".userManage"
+							"url": ".userManage",
+							"isActive":false
 						}]					
 				}
 		]
@@ -100,7 +114,6 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 		$scope.isActive = false;
 		$scope.listToggle = function(index){
 			$scope.list.items[index].isActive = !$scope.list.items[index].isActive;
-//			$scope.isActive = !$scope.isActive;
 		}
 	})
 	.controller('loginCtl', function($scope, http,$state) {

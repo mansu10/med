@@ -2,16 +2,184 @@
   "code": 0,
   "user": [
     {
-      "name": "admin",
+      "name": "20160001",
       "password": "123456",
-      "sex": "男",
-      "ident": 1
+      "ident": "学员"
     },
     {
-      "name": "root",
-      "password": "root",
-      "sex": "女",
-      "ident": 0
-    }
+      "name": "20160002",
+      "password": "123456",
+      "ident": "学员"
+    },
+    {
+      "name": "20160003",
+      "password": "123456",
+      "ident": "学员"
+    },
+    {
+      "name": "20160004",
+      "password": "123456",
+      "ident": "学员"
+    },
+    {
+      "name": "20160005",
+      "password": "123456",
+      "ident": "学员"
+    },
+    {
+       "name": "20160006",
+       "password": "123456",
+       "ident": "学员"
+    },
+    {
+       "name": "20160007",
+       "password": "123456",
+       "ident": "学员"
+    },
+    {
+       "name": "20160008",
+       "password": "123456",
+       "ident": "学员"
+    },
+    {
+       "name": "20160009",
+       "password": "123456",
+       "ident": "学员"
+    },
+    {
+       "name": "201600010",
+       "password": "123456",
+       "ident": "学员"
+    },
+    {
+        "name": "201600011",
+        "password": "123456",
+        "ident": "学员"
+      },
+      {
+        "name": "201600012",
+        "password": "123456",
+        "ident": "学员"
+      },
+      {
+        "name": "201600013",
+        "password": "123456",
+        "ident": "学员"
+      },
+      {
+        "name": "201600014",
+        "password": "123456",
+        "ident": "学员"
+      },
+      {
+        "name": "201600015",
+        "password": "123456",
+        "ident": "学员"
+      },
+      {
+         "name": "201600016",
+         "password": "123456",
+         "ident": "学员"
+      },
+      {
+         "name": "201600017",
+         "password": "123456",
+         "ident": "学员"
+      },
+      {
+         "name": "201600018",
+         "password": "123456",
+         "ident": "学员"
+      },
+      {
+         "name": "201600019",
+         "password": "123456",
+         "ident": "学员"
+      },
+      {
+         "name": "201600020",
+         "password": "123456",
+         "ident": "学员"
+      },
+      {
+          "name": "201600021",
+          "password": "123456",
+          "ident": "学员"
+        },
+        {
+          "name": "201600022",
+          "password": "123456",
+          "ident": "学员"
+        },
+        {
+          "name": "201600023",
+          "password": "123456",
+          "ident": "学员"
+        },
+        {
+          "name": "201600024",
+          "password": "123456",
+          "ident": "学员"
+        },
+        {
+          "name": "201600025",
+          "password": "123456",
+          "ident": "学员"
+        },
+        {
+           "name": "201600026",
+           "password": "123456",
+           "ident": "学员"
+        },
+        {
+           "name": "201600027",
+           "password": "123456",
+           "ident": "学员"
+        },
+        {
+           "name": "201600028",
+           "password": "123456",
+           "ident": "学员"
+        },
+        {
+           "name": "201600029",
+           "password": "123456",
+           "ident": "学员"
+        },
+        {
+           "name": "101",
+           "password": "123456",
+           "ident": "教员"
+        },
+        {
+            "name": "102",
+            "password": "123456",
+            "ident": "教员"
+         },
+         {
+             "name": "103",
+             "password": "123456",
+             "ident": "教员"
+          },{
+              "name": "104",
+              "password": "123456",
+              "ident": "教员"
+           },
+           {
+               "name": "105",
+               "password": "123456",
+               "ident": "教员"
+            },
+            {
+                "name": "106",
+                "password": "123456",
+                "ident": "教员"
+             },
+             {
+            	 "name": "100",
+                 "password": "123456",
+                 "ident": "管理员"
+             }
+            
   ]
 }

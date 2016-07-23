@@ -35,13 +35,13 @@
                   <li ng-repeat="item in list.items" 
                   	  class="menu-list" 
                   	  ng-class="{'nav-active':item.isActive}" 
-                  	  ng-click="listToggle($index)">
-                  	<a href="">
+                  	  >
+                  	<a ng-click="listToggle($index)">
                   		<i class="{{item.icon}}"></i> 
                   		<span>{{item.title}}</span>
                   	</a>
                     <ul class="sub-menu-list">
-                        <li ng-repeat="child in item.child">
+                        <li ng-repeat="child in item.child" ng-class="{'active':child.isActive}">
                         	<a ui-sref="{{child.url}}">{{child.title}}</a>
                         </li>
                     </ul>

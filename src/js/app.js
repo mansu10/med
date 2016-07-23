@@ -62,7 +62,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'order.add.html'
 		})
 		.state('home.orderQuery', {
-			url: '/order/query'
+			url: '/order/query',
+			templateUrl: paths.part + 'order.query.html'
 		})
 		.state('home.orderAudit', {
 			url: '/order/audit'
@@ -89,14 +90,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/ware/inventory'
 		})
 		.state('home.wareStorage', {
-			url: '/ware/storage'
+			url: '/ware/storage',
+			templateUrl: paths.part + 'ware.storage.html'
 		})
 		// 配送管理
 		.state('home.distrLoad', {
 			url: '/distr/load'
 		})
 		.state('home.distrVehicle', {
-			url: '/distr/vehicle'
+			url: '/distr/vehicle',
+			templateUrl: paths.part +'distr.vehicle.html'
 		})
 		// 统计分析
 		.state('home.statistics', {

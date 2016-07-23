@@ -901,6 +901,7 @@ h5.left-nav-title {
 
 .page-heading {
     padding: 15px;
+    padding-bottom: 0;
     position: relative;
 }
 

@@ -66,10 +66,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'order.query.html'
 		})
 		.state('home.orderAudit', {
-			url: '/order/audit'
+			url: '/order/audit',
+			templateUrl: paths.part + 'order.audit.html'
 		})
 		.state('home.orderRefund', {
-			url: '/order/refund'
+			url: '/order/refund',
+			templateUrl: paths.part + 'order.refund.html'
 		})
 		// 商店部分
 		.state('home.storeSale', {

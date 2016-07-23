@@ -300,6 +300,7 @@ hr {
 }
 
 .custom-nav > li.menu-list > a {
+    cursor: pointer;
     background: transparent url(../images/plus-white.png) no-repeat 93% center;
 }
 
@@ -905,12 +906,12 @@ h5.left-nav-title {
     position: relative;
 }
 
-.page-heading h3 {
-    color: #49586e;
-    font-size: 25px;
-    font-weight: normal;
-    margin: 10px 0;
-}
+// .page-heading h3 {
+//     color: #49586e;
+//     font-size: 25px;
+//     font-weight: normal;
+//     margin: 10px 0;
+// }
 
 .page-heading .breadcrumb {
     padding: 0;

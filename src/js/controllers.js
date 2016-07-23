@@ -16,7 +16,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"child": [{
 							"title": "单一商品",
 							"url": ".goodsSingle",
-							"isActive":true
+							"isActive":false
 						},{
 							"title": "组合商品",
 							"url": ".goodsMulti",
@@ -78,7 +78,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"title": "配送管理",
 					"url": "javascript:;",
 					"isActive":false,
-					"icon":"fa fa-tasks",
+					"icon":"fa fa-truck",
 					"child": [{
 							"title": "配载管理",
 							"url": ".distrLoad",
@@ -102,7 +102,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 					"title": "用户管理",
 					"url": "javascript:;",
 					"isActive":false,
-					"icon":"fa fa-th-list",
+					"icon":"fa fa-user",
 					"child": [{
 							"title": "用户管理",
 							"url": ".userManage",

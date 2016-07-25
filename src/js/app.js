@@ -1,7 +1,8 @@
 var app = angular.module('app', [
 
 // 'ngRoute', 'filters', 'service', 'directives'
-	'ui.router'
+	'ui.router',
+	'angular-datepicker'
 
 ])
 /**
@@ -15,6 +16,12 @@ var app = angular.module('app', [
 app.run(function($rootScope, $state, $stateParams) {
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
+	$rootScope.dateOptions = {
+	  format: 'yyyy-mm-dd', // ISO formatted date
+	  onClose: function(e) {
+	    // do something when the picker closes   
+	  }
+	}
 });
 
 var paths = {

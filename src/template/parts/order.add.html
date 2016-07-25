@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="panel">
                     <div class="panel-heading clearfix">
-                        <button class="btn btn-info pull-right">保存</button>
+                        <button class="btn btn-primary btn-sm  pull-right">保存</button>
                     </div>                
                     <div class="panel-body">
                         <form role="form" class="form-horizontal"> 
@@ -23,7 +23,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">订单流水号</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" disabled="true" placeholder="201607201000">
                                         </div>
                                     </div>    
                                 </div>
@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">交货期限</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" >
                                         </div>
                                     </div>    
                                 </div>
@@ -76,16 +76,6 @@
                                         </div>
                                     </div>    
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-2 control-label">地址</label>
-                                        <div class="col-md-10">
-                                            <input type="text" class="form-control input-sm">
-                                        </div>
-                                    </div>    
-                                </div>                                
-                            </div>                            
-                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">联系方式</label>
@@ -101,7 +91,18 @@
                                             <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>    
-                                </div>
+                                </div>                               
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-2 control-label">地址</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control input-sm">
+                                        </div>
+                                    </div>    
+                                </div> 
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">配送方式</label>
@@ -109,9 +110,27 @@
                                             <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>    
-                                </div>                                
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-4 control-label">发票信息</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control input-sm">
+                                        </div>
+                                    </div>    
+                                </div> 
 
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-4 control-label">支付方式</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control input-sm">
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
 
                         </form>
                     </div>

@@ -15,24 +15,36 @@
                 <button class="btn btn-primary btn-sm pull-right">查询</button>
             </div>
             <div class="panel-body">
-                <form action="" role="form" class="form-horizontal">
+                <form action="" role="form" class="form-horizontal adminex-form">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="" class="col-md-4 control-label">订单编号</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm"></div>          
+                                <div class="col-md-6">
+                                    <label for="" class="col-md-2 control-label">订单编号</label>
+                                    <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="开始日期" pick-a-date="date" pick-a-date-options="dateOptions"></div>
+                                    <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="结束日期" pick-a-date="date" pick-a-date-options="dateOptions"></div>    
+                                </div>
+                                
+                                <label class="control-label col-md-4">
+                                    <a href="javascript:;">6小时</a>｜
+                                    <a href="javascript:;">12小时</a>｜
+                                    <a href="javascript:;">24小时</a>｜
+                                    <a href="javascript:;">48小时</a>｜
+                                    <a href="javascript:;">72小时</a>
+                                内订单</label>
                             </div>
-                        </div>
-                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="" class="col-md-4 control-label">交易单号</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="col-md-4 control-label">商品ID</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm"></div>
+                                <label for="" class="col-md-1 control-label">状态</label>
+                                <label class="control-label col-md-5">
+                                    <a href="javascript:;">全部</a>｜
+                                    <a href="javascript:;">未审核</a>｜
+                                    <a href="javascript:;">已审核</a>｜
+                                    <a href="javascript:;">有疑问</a>｜
+                                    <a href="javascript:;">在配货</a>｜
+                                    <a href="javascript:;">在集货</a>｜
+                                    <a href="javascript:;">在装载</a>｜
+                                    <a href="javascript:;">在运输</a>
+                                </label>
                             </div>
                         </div>
                     </div>

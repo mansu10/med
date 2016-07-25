@@ -115,6 +115,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 		$scope.listToggle = function(index){
 			$scope.list.items[index].isActive = !$scope.list.items[index].isActive;
 		}
+
 	})
 	.controller('LoginCtrl', function($scope, http, $state) {
 

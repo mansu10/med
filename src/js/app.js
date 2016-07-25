@@ -32,7 +32,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('index', {
 			url: '/login',
 			templateUrl: paths.tpl + 'login.html',
-			controller:'loginCtl'
+			controller:'LoginCtrl'
 		})
 		.state('home', {
 			url: '',
@@ -48,7 +48,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 					controller: 'SideNavCtrl'
 				},
 				'header@home': {
-					templateUrl: paths.tpl + 'header.html'
+					templateUrl: paths.tpl + 'header.html',
+					controller: 'HeaderCtrl'
 				}
 			}
 		})
@@ -66,10 +67,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'order.query.html'
 		})
 		.state('home.orderAudit', {
-			url: '/order/audit'
+			url: '/order/audit',
+			templateUrl: paths.part + 'order.audit.html'
 		})
 		.state('home.orderRefund', {
-			url: '/order/refund'
+			url: '/order/refund',
+			templateUrl: paths.part + 'order.refund.html'
 		})
 		// 商店部分
 		.state('home.storeSale', {

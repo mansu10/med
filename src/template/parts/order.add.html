@@ -14,36 +14,24 @@
             <div class="row">
                 <div class="panel">
                     <div class="panel-heading clearfix">
-                        <button class="btn btn-primary btn-sm  pull-right">保存</button>
+                        <a class="btn btn-primary btn-sm  pull-right">保存</a>
                     </div>                
                     <div class="panel-body">
                         <form role="form" class="form-horizontal"> 
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">订单流水号</label>
+                                        <label for="" class="col-md-4 control-label">收单时间</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" disabled="true" placeholder="201607201000">
+                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" >
                                         </div>
                                     </div>    
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">订单类型</label>
+                                        <label for="" class="col-md-4 control-label">交货时间</label>
                                         <div class="col-md-8">
-                                            <select name="" class="form-control input-sm" id="">
-                                                <option value="">电子订单</option>
-                                                <option value="">纸质订单</option>
-                                                <option value="">传真订单</option>
-                                            </select>
-                                        </div>
-                                    </div>    
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">商品ID</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" >
                                         </div>
                                     </div>    
                                 </div>                                
@@ -59,13 +47,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">交货期限</label>
+                                        <label for="" class="col-md-4 control-label">客户名称</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" >
+                                            <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>    
                                 </div>
-                                        
                             </div>                            
                             <div class="row">
                                 <div class="col-md-4">
@@ -96,23 +83,23 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="" class="col-md-2 control-label">地址</label>
+                                        <label for="" class="col-md-2 control-label">收货地址</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>    
                                 </div> 
 
-                                <div class="col-md-4">
+<!--                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">配送方式</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>    
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="row">
+<!--                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">发票信息</label>
@@ -130,11 +117,64 @@
                                         </div>
                                     </div>    
                                 </div>
-                            </div>
+                            </div> -->
 
                         </form>
                     </div>
 
                 </div>
             </div>
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-heading">
+                        明细
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>3</th>
+                                    <th>3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3</td>
+                                    <td><input type="text" class="form-control input-sm"></td>
+                                    <td><input type="text" class="form-control input-sm"></td>
+                                    <td><a href="" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td><a href="" class="btn btn-sm btn-danger"><i class="fa fa-minus"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" class="form form-horizontal">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2">
+                                    备注
+                                </label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" name="" id="" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <a href="" class="btn btn-sm btn-primary">提交订单</a>
+                                <a href="" class="btn btn-sm btn-primary">清除订单</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>            
         </div>

@@ -1,0 +1,50 @@
+{
+    "code": 0,
+    "user": [
+        {
+            "id": 2,
+            "ProductCode": 10001,
+            "OrdinaryName": "4430吸头",
+            "ProductName": "待补",
+            "Unit": "个",
+            "MinPrice": 100.1,
+            "MinNumber": 1,
+            "MinVolume": 0.001,
+            "MinWeight": 1,
+            "Price": 0,
+            "Volume": 0.001,
+            "Weight": 1,
+            "FirstLevel": "试剂耗材",
+            "SecondLevel": "耗材",
+            "Manufactor": "待补",
+            "Validity": 36,
+            "UnitDose": 0,
+            "AverageDose": 0,
+            "AverageNumber": 0,
+            "MaxNumber": 0
+        },
+        {
+            "id": 3,
+            "ProductCode": 10002,
+            "OrdinaryName": "84消毒液",
+            "ProductName": "待补",
+            "Specifications": "500ml",
+            "Unit": "瓶",
+            "MinPrice": 100.1,
+            "MinNumber": 1,
+            "MinVolume": 0.001,
+            "MinWeight": 1,
+            "Price": 2.667,
+            "Volume": 0.001,
+            "Weight": 1,
+            "FirstLevel": "卫生防疫用品",
+            "SecondLevel": "消毒剂",
+            "Manufactor": "待补",
+            "Validity": 36,
+            "UnitDose": 0,
+            "AverageDose": 0,
+            "AverageNumber": 0,
+            "MaxNumber": 0
+        }
+    ]
+}

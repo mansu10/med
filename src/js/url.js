@@ -8,8 +8,8 @@ var settings;
 //====================================================
 if(DEBUG){
 	settings = {
-		host:"localhost",//本地服务器
-		port:":8080"
+		host:"192.168.100.106",//本地服务器
+		port:":8090"
 	}			
 }
 else
@@ -24,3 +24,8 @@ else
 var ident = "student"; 	//身份   student-学生  teacher-教师
 
 var API_URI = "http://" + settings.host + settings.port + "/";
+
+var URL = {
+	login:API_URI+"MedicineManagement/LoginServlet",
+	order:API_URI+""
+}

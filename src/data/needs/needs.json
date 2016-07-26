@@ -1,0 +1,13 @@
+{
+    "code": 0,
+    "order": [
+        {
+            "id": 1,
+            "CustomerCode": "B0001",
+            "CustomerName": "1军1师1团团救护所",
+            "CustomerAddress": "浙江省湖州市",
+            "CustomerNumber": 30,
+            "CustomerType": "团救护所"
+        }
+    ]
+}

@@ -47,7 +47,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				'': {
 					templateUrl: paths.tpl + 'content.html',
 					controller: function($state){
-						$state.go('home.dashboard');
+						// $state.go('home.dashboard');
 					}
 				},
 				'side@home': {
@@ -67,7 +67,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		// 订单部分
 		.state('home.orderAdd',{
 			url: '/order/add',
-			templateUrl: paths.part + 'order.add.html'
+			templateUrl: paths.part + 'order.add.html',
+			controller: 'OrderAddCtrl'
 		})
 		.state('home.orderQuery', {
 			url: '/order/query',

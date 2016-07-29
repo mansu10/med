@@ -1,8 +1,8 @@
 app.controller('LoginCtrl', function($scope, http, $state) {
 
 		$scope.loginInfo = {
-			user: '',
-			pwd: ''
+			name: '',
+			password: ''
 		}
 
 
@@ -10,11 +10,11 @@ app.controller('LoginCtrl', function($scope, http, $state) {
 			
 			console.log("login info:" + JSON.stringify($scope.loginInfo));
 			
-			if (!$scope.loginInfo.user) {
+			if (!$scope.loginInfo.name) {
 				alert("请输入用户名");
 				return;
 			} 
-			if (!$scope.loginInfo.pwd) {
+			if (!$scope.loginInfo.password) {
 				alert("请输入密码");
 				return;
 			} 

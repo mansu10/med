@@ -58,7 +58,7 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 			method: 'GET'
 		}).success(function(data, status, header, config) {
 			//响应成功
-			console.log('get请求返回：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status)
+			console.log('get请求返回：\n' + 'data:' + JSON.stringify(data) + '\nstatus:' + status)
 			if (data.code == 0) {
 				def.resolve(data);
 			} else {
@@ -80,18 +80,19 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 		console.log("post请求参数:" + JSON.stringify(obj));
 		
 		var def = $q.defer();
-		
 		$http({
 			url: requestUrl,
 			method: 'POST',
 			data: obj,
-			header: 'Content-Type:application/json'
+			headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+			
 		}).success(function(data, status, header, config) {
 			//响应成功
 			console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
 			if (data.code == 0) {
 				def.resolve(data);
-				
 			} else {
 				def.reject("Failed to post");
 			}

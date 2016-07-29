@@ -1,5 +1,5 @@
 
-var DEBUG = true;		//测试版本
+var DEBUG = false;		//测试版本
 
 var settings;
 
@@ -16,7 +16,7 @@ else
 {
 	settings = {
 		host: '121.42.182.179',//远程连接
-		port: ""
+		port: ":8080"
 	};
 }
 //====================================================
@@ -27,5 +27,5 @@ var API_URI = "http://" + settings.host + settings.port + "/";
 
 var URL = {
 	login:API_URI+"MedicineManagement/LoginServlet",
-	order:API_URI+""
+	orderAdd:API_URI+"MedicineManagement/OrderServlet"
 }

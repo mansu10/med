@@ -24,7 +24,6 @@ app.controller('OrderAddCtrl', function($scope){
 			})
 		}
 		$scope.rmItem = function(index){
-			// console.log(index);
 			$scope.items.splice(index,1);
 		}
 		// 增加明细
@@ -40,5 +39,18 @@ app.controller('OrderAddCtrl', function($scope){
 			$scope.iptToggle(false);
 			$scope.iptReset(newItem);
 		}
+		$scope.reset = function(){
+			$scope.items = [];
+			$scope.orderForm = {};
+		}
 
 	})
+
+
+
+
+
+
+
+
+

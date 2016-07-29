@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收单时间</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.startTime">
+                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.orderTime">
                                         </div>
                                     </div>    
                                 </div>
@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">交货时间</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.endTime">
+                                            <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.deliveryTime">
                                         </div>
                                     </div>    
                                 </div>                                
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">客户代码</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.userId">
+                                            <input type="text" class="form-control input-sm" ng-model="orderForm.customerCode">
                                         </div>
                                     </div>    
                                 </div>
@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">客户名称</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.userName">
+                                            <input type="text" class="form-control input-sm" ng-model="orderForm.customerName">
                                         </div>
                                     </div>    
                                 </div>
@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">联系方式</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.contact">
+                                            <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
                                         </div>
                                     </div>    
                                 </div>
@@ -82,39 +82,11 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-2 control-label">收货地址</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.address">
+                                            <input type="text" class="form-control input-sm" ng-model="orderForm.receiptAddress">
                                         </div>
                                     </div>    
                                 </div> 
-
-<!--                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">配送方式</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
-                                        </div>
-                                    </div>    
-                                </div> -->
                             </div>
-<!--                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">发票信息</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
-                                        </div>
-                                    </div>    
-                                </div> 
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">支付方式</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div> -->
                         </form>
                     </div>
 
@@ -181,7 +153,7 @@
                                     备注
                                 </label>
                                 <div class="col-md-8">
-                                    <textarea class="form-control" name="" id="" rows="5" ng-model="orderForm.comment"></textarea>
+                                    <textarea class="form-control" name="" id="" rows="5" ng-model="orderForm.memo"></textarea>
                                 </div>
                             </div>
                             <div class="form-group text-center">

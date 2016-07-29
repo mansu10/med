@@ -69,7 +69,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-6">
-                                    <label for="" class="col-md-2 control-label">订单编号</label>
+                                    <label for="" class="col-md-2 control-label">时间</label>
                                     <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="开始日期" pick-a-date="date" pick-a-date-options="dateOptions"></div>
                                     <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="结束日期" pick-a-date="date" pick-a-date-options="dateOptions"></div>    
                                 </div>
@@ -109,107 +109,29 @@
                         <table class="table table-bordered table-striped table-condensed">
                             <thead>
                             <tr>
-                                <th>订单编号</th>
-                                <th class="">订单类型<i class="fa fa-sort"></i></th>
-                                <th class="numeric">客户代码</th>
-                                <th class="numeric">商品ID</th>
-                                <th class="numeric">收货人</th>
-                                <th class="numeric">联系方式</th>
-                                <th class="numeric">收货方式</th>
-                                <th class="">配送方式</th>
-                                <th class="">订单状态</th>
+                                <th>收单时间</th>
+                                <th>订单编号<i class="fa fa-sort"></i></th>
+                                <th>需求单位</th>
+                                <th>订单摘要</th>
+                                <th>单位</th>
+                                <th>订购件数</th>
+                                <th>交货时间</th>
+                                <th>订单状态</th>
+                                <th>订单进度</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
+                            <tr ng-click="modalToggle(true)">
+                                <td>2016－07-25 </td>
+                                <td>90010011</td>
+                                <td>团救护所</td>
+                                <td>团基数3个，营基数</td>
+                                <td>件</td>
+                                <td>20</td>
+                                <td>2016-07-26</td>
+                                <td>已审核</td>
+                                <td>在运输</td>
                             </tr>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-
                             </tbody>
                         </table>
                     </section>
@@ -217,4 +139,20 @@
             </section>
         </div>
     </div>    
+</div>
+<div class="modal" ng-class="{show: modalState}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Media Gallery</h4>
+            </div>
+            <div class="modal-body row">
+                123
+            </div>
+            <div class="modal-footer">
+                <button>555</button>
+            </div>
+        </div>
+    </div>
 </div>

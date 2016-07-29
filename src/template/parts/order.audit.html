@@ -7,11 +7,144 @@
         <li>
             <a href="#">订单</a>
         </li>
-        <li class="active"> 退货处理 </li>
+        <li class="active"> 订单审核 </li>
     </ul>
 </div>
 <!-- page heading end-->
 <div class="wrapper">
+    <div class="row">
+        <div class="panel">               
+            <div class="panel-body">
+                <form role="form" class="form-horizontal"> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收单时间</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.startTime">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">交货时间</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.endTime">
+                                </div>
+                            </div>    
+                        </div>                                
+                    </div>                            
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">客户代码</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" ng-model="orderForm.userId">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">客户名称</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" ng-model="orderForm.userName">
+                                </div>
+                            </div>    
+                        </div>
+                    </div>                            
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收货人</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" ng-model="orderForm.receiver">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">联系方式</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" ng-model="orderForm.contact">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收货方式</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" ng-model="orderForm.receiveMode">
+                                </div>
+                            </div>    
+                        </div>                               
+                    </div>                            
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="" class="col-md-2 control-label">收货地址</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control input-sm" ng-model="orderForm.address">
+                                </div>
+                            </div>    
+                        </div> 
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                明细
+                <a href="javascript:;" class="btn btn-xs btn-primary pull-right" ng-click="iptToggle(true)"><i class="fa fa-plus"></i></a>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">序号</th>
+                            <th class="col-md-1">商品编号</th>
+                            <th class="col-md-3">商品名称</th>
+                            <th class="col-md-1">规格型号</th>
+                            <th class="col-md-1">单位</th>
+                            <th class="col-md-1">单价</th>
+                            <th class="col-md-1">订货量</th>
+                            <th class="col-md-1">金额</th>
+                            <th class="col-md-2">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="iptState">
+                            <td>＃</td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.code"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.name"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.size"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.sum"></td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)">保存</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)">取消</a>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="item in items">
+                            <td>{{$index + 1}}</td>
+                            <td>{{item.code}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.size}}</td>
+                            <td>{{item.unit}}</td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>{{item.sum}}</td>
+                            <td><a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)">删除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">

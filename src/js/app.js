@@ -72,7 +72,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('home.orderQuery', {
 			url: '/order/query',
-			templateUrl: paths.part + 'order.query.html'
+			templateUrl: paths.part + 'order.query.html',
+			controller: 'OrderQueryCtrl'
 		})
 		.state('home.orderAudit', {
 			url: '/order/audit',

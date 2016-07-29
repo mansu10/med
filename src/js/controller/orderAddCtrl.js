@@ -1,14 +1,14 @@
 app.controller('OrderAddCtrl', function($scope){
 		$scope.orderForm = {
-			startTime: '',
-			endTime: '',
-			userId: '',
-			userName: '',
+			orderTime: '',
+			deliveryTime: '',
+			customerCode: '',
+			customerName: '',
 			receiver: '',
-			contact: '',
+			tel: '',
 			receiveMode: '',
-			address: '',
-			comment: ''
+			receiptAddress: '',
+			memo: ''
 		};
 		$scope.items = [];
 		$scope.newItem = {};

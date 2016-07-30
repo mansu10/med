@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">订单编号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" pick-a-time="time">
+                                    <input type="text" class="form-control input-sm" pick-a-time="time" value="201601010010">
                                 </div>
                             </div>    
                         </div>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收单时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.startTime">
+                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" value="2016-07-21 20:43:52.0">
                                 </div>
                             </div>    
                         </div>
@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">交货时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" ng-model="orderForm.endTime">
+                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" value="2016-07-22 20:44:03.0">
                                 </div>
                             </div>    
                         </div>                                
@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">客户代码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="orderForm.userId">
+                                    <input type="text" class="form-control input-sm" value="B0001">
                                 </div>
                             </div>    
                         </div>
@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">客户名称</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="orderForm.userName">
+                                    <input type="text" class="form-control input-sm" value="张三">
                                 </div>
                             </div>    
                         </div>
@@ -104,7 +104,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货人</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="orderForm.receiver">
+                                    <input type="text" class="form-control input-sm" value="王建国">
                                 </div>
                             </div>    
                         </div>
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">联系方式</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="orderForm.contact">
+                                    <input type="text" class="form-control input-sm" value="13456780101">
                                 </div>
                             </div>    
                         </div>
@@ -120,7 +120,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货方式</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="orderForm.receiveMode">
+                                    <input type="text" class="form-control input-sm" value="配送">
                                 </div>
                             </div>    
                         </div>                               
@@ -130,7 +130,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-2 control-label">收货地址</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control input-sm" ng-model="orderForm.address">
+                                    <input type="text" class="form-control input-sm" value="浙江省湖州市">
                                 </div>
                             </div>    
                         </div> 
@@ -152,12 +152,15 @@
                         <tr>
                             <th class="col-md-1">序号</th>
                             <th class="col-md-1">商品编号</th>
-                            <th class="col-md-3">商品名称</th>
+                            <th class="col-md-2">商品名称</th>
                             <th class="col-md-1">规格型号</th>
                             <th class="col-md-1">单位</th>
                             <th class="col-md-1">单价</th>
                             <th class="col-md-1">订货量</th>
                             <th class="col-md-1">金额</th>
+                            <th class="col-md-1">库存量</th>
+                            <th class="col-md-1">缺货量</th>
+                            <th class="col-md-1">分配量</th>
                             <th class="col-md-2">操作</th>
                         </tr>
                     </thead>
@@ -176,7 +179,7 @@
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)">取消</a>
                             </td>
                         </tr>
-                        <tr ng-repeat="item in items">
+                        <tr ng-repeat="item in orderDetail">
                             <td>{{$index + 1}}</td>
                             <td>{{item.code}}</td>
                             <td>{{item.name}}</td>
@@ -185,6 +188,9 @@
                             <td>{{item.price}}</td>
                             <td>{{item.amount}}</td>
                             <td>{{item.sum}}</td>
+                            <td>{{item.storage}}</td>
+                            <td>{{item.lack}}</td>
+                            <td>{{item.distribute}}</td>
                             <td><a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)">删除</a></td>
                         </tr>
                     </tbody>

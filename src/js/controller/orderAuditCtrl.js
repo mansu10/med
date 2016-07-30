@@ -51,9 +51,18 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	    ]
 	}
 	// 临时详细订单
-	$scope.orderDetail = {
-		
-	}
+	$scope.orderDetail = [{
+		'code': '100100010',
+		'name': '阿莫西林胶囊',
+		'size': '10mg',
+		'unit': '粒',
+		'price': '0.15',
+		'amount': '1000',
+		'sum': '150',
+		'storage': '',
+		'lack': 200,
+		'ditribute': 800
+	}]
 	$scope.showDetail = function(index){
 		$scope.auditStateToggle(false);
 

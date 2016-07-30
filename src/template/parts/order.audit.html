@@ -11,12 +11,59 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper">
+<div class="wrapper" ng-show="auditState">
     <div class="row">
-        <div class="panel">               
+        <section class="panel">
+            <div class="panel-body">
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>收单时间</th>
+                            <th>订单编号<i class="fa fa-sort"></i></th>
+                            <th>需求单位</th>
+                            <th>订单摘要</th>
+                            <th>交货时间</th>
+                            <th class="sorting">订单状态</th>
+                            <th>订单进度</th>
+                            <th>审核</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in orderList.order">
+                                <td>{{item.orderTime}}</td>
+                                <td>{{item.customerCode}}</td>
+                                <td>{{item.customerName}}</td>
+                                <td>{{item.memo}}</td>
+                                <td>{{item.deliveryTime}}</td>
+                                <td>{{item.orderStatus}}</td>
+                                <td>{{item.orderProgress}}</td>
+                                <td><a href="javascript:;" ng-click="showDetail($index)">审核</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="wrapper" ng-show="!auditState">
+    <div class="row">
+        <div class="panel"> 
+            <div class="panel-heading">
+                <a href="javascript:;" class="btn btn-primary" ng-click="auditStateToggle(true)"><i class="fa fa-reply"></i></a>
+            </div>              
             <div class="panel-body">
                 <form role="form" class="form-horizontal"> 
                     <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">订单编号</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" pick-a-time="time">
+                                </div>
+                            </div>    
+                        </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收单时间</label>
@@ -146,163 +193,62 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
-            <section class="panel">
-                <div class="panel-heading clearfix">
-                    <button class="btn btn-primary btn-sm pull-right">保存</button>
-                </div>
-                <div class="panel-body">
-                    <section id="unseen">
-                        <table class="table table-bordered table-striped table-condensed">
-                            <thead>
-                            <tr>
-                                <th>操作</th>
-                                <th>订单编号</th>
-                                <th>订单类型</th>
-                                <th class="numeric">客户代码</th>
-                                <th class="numeric">商品ID</th>
-                                <th class="numeric">收货人</th>
-                                <th class="numeric">联系方式</th>
-                                <th class="numeric">收货方式</th>
-                                <th class="numeric">配送方式</th>
-                                <th class="numeric">订单状态</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-                            <tr>
-                                <td><select name="" class="form-control input-sm" id="">
-                                    <option value="">无</option>
-                                    <option value="">通过</option>
-                                    <option value="">不通过</option>
-                                </select></td>
-                                <td>201601010013 </td>
-                                <td>电子订单</td>
-                                <td class="numeric">B0005</td>
-                                <td class="numeric">0101</td>
-                                <td class="numeric">张大发</td>
-                                <td class="numeric">13902102106</td>
-                                <td class="numeric">配送</td>
-                                <td class="numeric">专车</td>
-                                <td class="numeric">未处理</td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
-            </section>
-        </div>
-    </div>    
+        <div class="panel">               
+            <div class="panel-body">
+                <form role="form" class="form-horizontal">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">拟交货时间</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date1">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">包装方式</label>
+                                <div class="col-md-8">
+                                    <select class="form-control input-sm" name="" id="">
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">运输方式</label>
+                                <div class="col-md-8">
+                                    <select class="form-control input-sm" name="" id="">
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="" class="control-label col-md-2">
+                                备注
+                            </label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" name="" id="" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group text-center">
+                            <a href="javascript:;" class="btn btn-sm btn-primary">订单确认</a>
+                            <a href="javascript:;" class="btn btn-sm btn-primary">转至疑问订单</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>    
+          
+    </div>
 </div>

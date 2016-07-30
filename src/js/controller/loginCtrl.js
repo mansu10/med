@@ -23,15 +23,15 @@ app.controller('LoginCtrl', function($scope, http, $state) {
 				function(respone) {
 					console.log(JSON.stringify(respone));
 					if (respone.flag) {
-						$state.go('home');
+						$state.go('home.dashboard');
 					} else{
-						alert("login failed!!");
+						alert("密码或用户名有误，请重新输入！！");
 					}
 					
 				},
 				function(respone) {
 					console.log("login failed!" + JSON.stringify(respone));
-					alert("login failed!!");
+					alert(respone);
 				});
 		}
 	})

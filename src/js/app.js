@@ -32,7 +32,7 @@ var paths = {
 app.config(function($stateProvider, $urlRouterProvider) {
 	//
 	// For any unmatched url, redirect to /state1
-	$urlRouterProvider.otherwise("/login");
+	$urlRouterProvider.otherwise('/login');
 	//
 	// Now set up the states
 	$stateProvider
@@ -42,7 +42,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller:'LoginCtrl'
 		})
 		.state('home', {
-			url: '',
+			url: '/home',
 			views: {
 				'': {
 					templateUrl: paths.tpl + 'content.html',

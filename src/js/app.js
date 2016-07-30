@@ -2,7 +2,8 @@ var app = angular.module('app', [
 
 // 'ngRoute', 'filters', 'service', 'directives'
 	'ui.router',
-	'angular-datepicker'
+	// 'angular-datepicker'
+	'angularjs-datetime-picker'
 
 ])
 /**
@@ -16,12 +17,12 @@ var app = angular.module('app', [
 app.run(function($rootScope, $state, $stateParams) {
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
-	$rootScope.dateOptions = {
-	  format: 'yyyy-mm-dd', // ISO formatted date
-	  onClose: function(e) {
-	    // do something when the picker closes   
-	  }
-	}
+	// $rootScope.dateOptions = {
+	//   format: 'yyyy-mm-dd', // ISO formatted date
+	//   onClose: function(e) {
+	//     // do something when the picker closes   
+	//   }
+	// }
 });
 
 var paths = {
@@ -77,7 +78,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('home.orderAudit', {
 			url: '/order/audit',
-			templateUrl: paths.part + 'order.audit.html'
+			templateUrl: paths.part + 'order.audit.html',
+			controller: 'OrderAuditCtrl'
 		})
 		.state('home.orderRefund', {
 			url: '/order/refund',

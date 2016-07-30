@@ -66,8 +66,8 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="" class="col-md-2 control-label">时间</label>
-                                    <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="开始日期" pick-a-date="date" pick-a-date-options="dateOptions"></div>
-                                    <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="结束日期" pick-a-date="date" pick-a-date-options="dateOptions"></div>    
+                                    <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="开始日期" ng-model="date1" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ></div>
+                                    <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="结束日期" ng-model="date2" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ></div>
                                 </div>
                                 
                                 <label class="control-label col-md-4">
@@ -98,53 +98,51 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
-            <section class="panel">
-                <div class="panel-body">
-                    <section id="unseen">
-                        <table class="table table-bordered table-striped table-condensed">
-                            <thead>
-                            <tr>
-                                <th>收单时间</th>
-                                <th>订单编号<i class="fa fa-sort"></i></th>
-                                <th>需求单位</th>
-                                <th>订单摘要</th>
-                                <th>单位</th>
-                                <th>订购件数</th>
-                                <th>交货时间</th>
-                                <th class="sorting">订单状态</th>
-                                <th>订单进度</th>
+        <section class="panel">
+            <div class="panel-body">
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>收单时间</th>
+                            <th>订单编号<i class="fa fa-sort"></i></th>
+                            <th>需求单位</th>
+                            <th>订单摘要</th>
+                            <th>单位</th>
+                            <th>订购件数</th>
+                            <th>交货时间</th>
+                            <th class="sorting">订单状态</th>
+                            <th>订单进度</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-click="modalToggle(true)" ng-repeat="item in orderList">
+                                <td>{{item.orderTime}}</td>
+                                <td>{{item.customerCode}}</td>
+                                <td>{{item.customerName}}</td>
+                                <td>{{item.memo}}</td>
+                                <td>{{item.unit}}</td>
+                                <td>{{item.sum}}</td>
+                                <td>{{item.deliveryTime}}</td>
+                                <td>{{item.orderStatus}}</td>
+                                <td>{{item.progress}}</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-click="modalToggle(true)" ng-repeat="item in orderList">
-                                    <td>{{item.orderTime}}}</td>
-                                    <td>{{item.customerCode}}</td>
-                                    <td>{{item.customerName}}</td>
-                                    <td>{{item.memo}}</td>
-                                    <td>{{item.unit}}</td>
-                                    <td>{{item.sum}}</td>
-                                    <td>{{item.deliveryTime}}</td>
-                                    <td>{{item.orderStatus}}</td>
-                                    <td>{{item.progress}}</td>
-                                </tr>
-                                <tr class="danger" ng-click="modalToggle(true)">
-                                    <td>2016－07-25 </td>
-                                    <td>90010011</td>
-                                    <td>团救护所</td>
-                                    <td>团基数3个，营基数</td>
-                                    <td>件</td>
-                                    <td>20</td>
-                                    <td>2016-07-26</td>
-                                    <td>已审核</td>
-                                    <td>在运输</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
-            </section>
-        </div>
+                            <tr class="danger" ng-click="modalToggle(true)">
+                                <td>2016－07-25 </td>
+                                <td>90010011</td>
+                                <td>团救护所</td>
+                                <td>团基数3个，营基数</td>
+                                <td>件</td>
+                                <td>20</td>
+                                <td>2016-07-26</td>
+                                <td>已审核</td>
+                                <td>在运输</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </section>
     </div>    
 </div>
 <div class="modal" ng-class="{show: modalState}">

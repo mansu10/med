@@ -80,28 +80,39 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 		console.log("post请求参数:" + JSON.stringify(obj));
 		
 		var def = $q.defer();
-		$http({
-			url: requestUrl,
-			method: 'POST',
-			data: obj,
-			headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					},
+		
+		$.post(requestUrl, obj, function(data, textStatus, xhr) {
 			
-		}).success(function(data, status, header, config) {
-			//响应成功
+			console.log(data);
 			console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
 			if (data.code == 0) {
 				def.resolve(data);
 			} else {
-				def.reject("Failed to post");
+				def.reject(data.error);
 			}
-
-		}).error(function(data, status, header, config) {
-			//处理响应失败
-			def.reject("Failed to post");
-			console.log('post请求失败：\n' + 'date:' + data + '\nheader:' + header + '\nconfig:' + config + '\nstatus:' + status)
 		});
+//		$http({
+//			url: requestUrl,
+//			method: 'POST',
+//			data: obj,
+//			headers: {
+//						'Content-Type': 'application/x-www-form-urlencoded'
+//					},
+//			
+//		}).success(function(data, status, header, config) {
+//			//响应成功
+//			console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
+//			if (data.code == 0) {
+//				def.resolve(data);
+//			} else {
+//				def.reject("Failed to post");
+//			}
+//
+//		}).error(function(data, status, header, config) {
+//			//处理响应失败
+//			def.reject("Failed to post");
+//			console.log('post请求失败：\n' + 'date:' + data + '\nheader:' + header + '\nconfig:' + config + '\nstatus:' + status)
+//		});
 		return def.promise;
 	};
 

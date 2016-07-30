@@ -1,6 +1,13 @@
 app.controller('OrderAddCtrl', function($scope,http){
+	
+	function FormatDate (strTime) {
+    	var date = new Date(strTime);
+    	return date.getFullYear()+(date.getMonth()+1)+date.getDate()+date.getHours()+date.getMinutes()+date.getMilliseconds();
+	}
+		
 		$scope.orderForm = {
-			orderTime: '',
+			method:'addOrder',
+			orderTime: '' ,
 			deliveryTime: '',
 			customerCode: '',
 			customerName: '',
@@ -9,7 +16,7 @@ app.controller('OrderAddCtrl', function($scope,http){
 			receiveMode: '',
 			receiptAddress: '',
 			memo: '',
-			productIds:[]
+			productIds:''
 		};
 		$scope.items = [];
 		$scope.newItem = {};
@@ -47,30 +54,17 @@ app.controller('OrderAddCtrl', function($scope,http){
 		
 		$scope.submitOrder = function() {
 			
-			$scope.orderForm.productIds = {
-    'method': 'addOrder',
-    'customerCode': 'B0001',
-    'customerName': '1军1师1团团救护所',
-    'orderTime': '20160726100750',
-    'deliveryTime': '20160728100750',
-    'receiptAddress': '上海浦东',
-    'receiver': '张三',
-    'tel': '12345678',
-    'productIds': "[{'orderId':29,'productId':2,'productNumber':10,'total':100},{'orderId':29,'productId':3,'productNumber':20,'total':200}]",
-    'memo': '备注'
-};
-			
-			console.log("order info:" + JSON.stringify($scope.orderForm));
+			$scope.orderForm.productIds = "[{'orderId':29,'productId':2,'productNumber':10,'total':100},{'orderId':29,'productId':3,'productNumber':20,'total':200}]",
 			
 			http.post($scope.orderForm,URL.orderAdd).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					alert("order has submit!")
+					alert("订单添加成功！")
 					
 				},
 				function(respone) {
 					console.log("submitOrder failed!" + JSON.stringify(respone));
-					alert("submitOrder failed!!");
+					alert(respone);
 			});
 		}
 

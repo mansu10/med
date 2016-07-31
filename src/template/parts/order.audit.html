@@ -20,7 +20,7 @@
                         <thead>
                         <tr>
                             <th>收单时间</th>
-                            <th>订单编号<i class="fa fa-sort"></i></th>
+                            <th>订单编号</th>
                             <th>需求单位</th>
                             <th>订单摘要</th>
                             <th>交货时间</th>
@@ -32,13 +32,13 @@
                         <tbody>
                             <tr ng-repeat="item in orderList.order">
                                 <td>{{item.orderTime}}</td>
-                                <td>{{item.customerCode}}</td>
+                                <td>{{item.orderCode}}</td>
                                 <td>{{item.customerName}}</td>
                                 <td>{{item.memo}}</td>
                                 <td>{{item.deliveryTime}}</td>
                                 <td>{{item.orderStatus}}</td>
                                 <td>{{item.orderProgress}}</td>
-                                <td><a href="javascript:;" ng-click="showDetail($index)">审核</a></td>
+                                <td><a href="javascript:;" ng-click="showDetail(item)">审核</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">订单编号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" pick-a-time="time" value="201601010010">
+                                    <input type="text" class="form-control input-sm" pick-a-time="time" value="{{detail.orderCode}}">
                                 </div>
                             </div>    
                         </div>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收单时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" value="2016-07-21 20:43:52.0">
+                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" value="{{detail.orderTime}}">
                                 </div>
                             </div>    
                         </div>
@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">交货时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" value="2016-07-22 20:44:03.0">
+                                    <input type="text" class="form-control input-sm" pick-a-date="date" pick-a-date-options="dateOptions" value="{{detail.deliveryTime}}">
                                 </div>
                             </div>    
                         </div>                                
@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">客户代码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" value="B0001">
+                                    <input type="text" class="form-control input-sm" value="{{detail.customerCode}}">
                                 </div>
                             </div>    
                         </div>
@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">客户名称</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" value="张三">
+                                    <input type="text" class="form-control input-sm" value="{{detail.customerName}}">
                                 </div>
                             </div>    
                         </div>
@@ -104,7 +104,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货人</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" value="王建国">
+                                    <input type="text" class="form-control input-sm" value="{{detail.receiver}}">
                                 </div>
                             </div>    
                         </div>
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">联系方式</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" value="13456780101">
+                                    <input type="text" class="form-control input-sm" value="{{detail.tel}}">
                                 </div>
                             </div>    
                         </div>
@@ -120,7 +120,9 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货方式</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" value="配送">
+                                    <select type="text" class="form-control input-sm" value="{{detail.receiptType}}">
+                                    <option value="{{detail.receiptType}}">{{detail.receiptType}}</option>
+                                    </select>
                                 </div>
                             </div>    
                         </div>                               
@@ -130,7 +132,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-2 control-label">收货地址</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control input-sm" value="浙江省湖州市">
+                                    <input type="text" class="form-control input-sm" value="{{detail.receiptAddress}}">
                                 </div>
                             </div>    
                         </div> 
@@ -152,7 +154,7 @@
                         <tr>
                             <th class="col-md-1">序号</th>
                             <th class="col-md-1">商品编号</th>
-                            <th class="col-md-2">商品名称</th>
+                            <th class="col-md-1">商品名称</th>
                             <th class="col-md-1">规格型号</th>
                             <th class="col-md-1">单位</th>
                             <th class="col-md-1">单价</th>
@@ -161,7 +163,7 @@
                             <th class="col-md-1">库存量</th>
                             <th class="col-md-1">缺货量</th>
                             <th class="col-md-1">分配量</th>
-                            <th class="col-md-2">操作</th>
+                            <th class="col-md-1">操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -174,12 +176,15 @@
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.sum"></td>
+                            <td ng-model="newItem.storage"></td>
+                            <td ng-model="newItem.lack"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.ditribute"></td>
                             <td>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)">保存</a>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)">取消</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)"><i class="fa fa-check"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
-                        <tr ng-repeat="item in orderDetail">
+                        <tr ng-repeat="item in items">
                             <td>{{$index + 1}}</td>
                             <td>{{item.code}}</td>
                             <td>{{item.name}}</td>
@@ -207,7 +212,11 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">拟交货时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date1">
+                                    <div class="iconic-input right">
+                                        <i class="fa fa-calendar"></i>
+                                        <input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date1">
+                                    </div>
+                                    
                                 </div>
                             </div>    
                         </div>
@@ -227,9 +236,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">运输方式</label>
                                 <div class="col-md-8">
-                                    <select class="form-control input-sm" name="" id="">
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                    <select class="form-control input-sm" name="" id="" ng-options="o for o in ['拼车','专车']" ng-model="shipMethodSelected">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -248,7 +255,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group text-center">
-                            <a href="javascript:;" class="btn btn-sm btn-primary">订单确认</a>
+                            <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="">订单确认</a>
                             <a href="javascript:;" class="btn btn-sm btn-primary">转至疑问订单</a>
                         </div>
                     </div>

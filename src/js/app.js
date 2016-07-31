@@ -43,7 +43,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller:'LoginCtrl'
 		})
 		.state('home', {
-			url: '/home',
+			url: '',
 			views: {
 				'': {
 					templateUrl: paths.tpl + 'content.html',

@@ -8,3 +8,4 @@ include_js("./src/js/controller/OrderAuditCtrl.js");
 
 include_js("./src/js/service/service.js");
 include_js("./src/js/directives/directives.js");
+include_js("./src/js/filter/orderFilter.js");

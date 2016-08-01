@@ -1,5 +1,5 @@
 //var SideNavModule = angular.module('SideNavModule', []);
-app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
+app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$localstorage) {
 
 		$scope.list = {
 			"parent": {
@@ -115,7 +115,6 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams) {
 		$scope.listToggle = function(index){
 			$scope.list.items[index].isActive = !$scope.list.items[index].isActive;
 		}
-
 	})
 	
 	

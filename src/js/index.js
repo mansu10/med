@@ -4,7 +4,8 @@ include_js("./src/js/controller/loginCtrl.js");
 include_js("./src/js/controller/sideNavCtrl.js");
 include_js("./src/js/controller/orderAddCtrl.js");
 include_js("./src/js/controller/orderQueryCtrl.js");
-include_js("./src/js/controller/OrderAuditCtrl.js");
+include_js("./src/js/controller/orderAuditCtrl.js");
+include_js("./src/js/controller/distrVehicleCtrl.js");
 
 include_js("./src/js/service/service.js");
 include_js("./src/js/directives/directives.js");

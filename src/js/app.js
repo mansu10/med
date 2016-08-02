@@ -113,7 +113,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('home.distrVehicle', {
 			url: '/distr/vehicle',
-			templateUrl: paths.part +'distr.vehicle.html'
+			templateUrl: paths.part +'distr.vehicle.html',
+			controller: 'DistrVehicleCtrl'
 		})
 		// 统计分析
 		.state('home.statistics', {

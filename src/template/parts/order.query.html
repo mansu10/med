@@ -57,7 +57,7 @@
     <div class="row">
         <div class="panel">
             <div class="panel-heading clearfix">
-                <button class="btn btn-primary btn-sm pull-right" ng-click="orderQurey()">查询</button>
+                <button class="btn btn-primary btn-sm pull-right" ng-click="qureyByOrderTime()">查询</button>
             </div>
             <div class="panel-body">
                 <form action="" role="form" class="form-horizontal adminex-form">
@@ -65,30 +65,31 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="col-md-6">
-                                    <label for="" class="col-md-2 control-label">时间</label>
+                                    <label for="" class="col-md-2 control-label">收单时间</label>
                                     <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="开始日期" ng-model="date1" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ></div>
                                     <div class="col-md-5"><input type="text" class="form-control input-sm" placeholder="结束日期" ng-model="date2" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ></div>
                                 </div>
                                 
                                 <label class="control-label col-md-4">
-                                    <a href="javascript:;">6小时</a>｜
-                                    <a href="javascript:;">12小时</a>｜
+                                    <a href="javascript:;" ng-repeat="time in times" ng-click="filterTime(time.hours)"> {{time.tip}} </a>
+                                    <!--<a href="javascript:;">12小时</a>｜
                                     <a href="javascript:;">24小时</a>｜
                                     <a href="javascript:;">48小时</a>｜
-                                    <a href="javascript:;">72小时</a>
+                                    <a href="javascript:;">72小时</a>-->
                                 内订单</label>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-md-1 control-label">状态</label>
-                                <label class="control-label col-md-5">
-                                    <a href="javascript:;">全部</a>｜
+                                <label class="control-label col-md-5" >
+                                	<a href="javascript:;" ng-click="filterOrder(item)" ng-repeat="item in qureyParam">{{item.value}} ｜</a>
+                                    <!--<a href="javascript:;">全部</a> |
                                     <a href="javascript:;">未审核</a>｜
                                     <a href="javascript:;">已审核</a>｜
                                     <a href="javascript:;">有疑问</a>｜
                                     <a href="javascript:;">在配货</a>｜
                                     <a href="javascript:;">在集货</a>｜
                                     <a href="javascript:;">在装载</a>｜
-                                    <a href="javascript:;">在运输</a>
+                                    <a href="javascript:;">在运输</a>-->
                                 </label>
                             </div>
                         </div>
@@ -105,7 +106,7 @@
                         <thead>
                         <tr>
                             <th>收单时间</th>
-                            <th>订单编号<i class="fa fa-sort"></i></th>
+                            <th>客户编号<i class="fa fa-sort"></i></th>
                             <th>需求单位</th>
                             <th>订单摘要</th>
                             <th>单位</th>
@@ -116,7 +117,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-click="modalToggle(true)" ng-repeat="item in orderList">
+                            <tr ng-click="modalToggle(true,item)" ng-repeat="item in orderList">
                                 <td>{{item.orderTime}}</td>
                                 <td>{{item.customerCode}}</td>
                                 <td>{{item.customerName}}</td>
@@ -127,7 +128,7 @@
                                 <td>{{item.orderStatus}}</td>
                                 <td>{{item.progress}}</td>
                             </tr>
-                            <tr class="danger" ng-click="modalToggle(true)">
+                            <!--<tr class="danger" ng-click="modalToggle(true)">
                                 <td>2016－07-25 </td>
                                 <td>90010011</td>
                                 <td>团救护所</td>
@@ -137,7 +138,7 @@
                                 <td>2016-07-26</td>
                                 <td>已审核</td>
                                 <td>在运输</td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </section>
@@ -157,19 +158,19 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">订单编号</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.orderCode}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">收单时间</label>
-                            <p class="col-md-6">20160909</p>
+                            <p class="col-md-6">{{modalInfo.orderTime}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">交货时间</label>
-                            <p class="col-md-6">20160909</p>
+                            <p class="col-md-6">{{modalInfo.deliveryTime}}</p>
                         </div>
                     </div>                    
                 </div>
@@ -177,13 +178,13 @@
                      <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">客户编号</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.customerCode}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">客户名称</label>
-                            <p class="col-md-6">20160909</p>
+                            <p class="col-md-6">{{modalInfo.customerName}}</p>
                         </div>
                     </div>                 
                 </div>
@@ -191,13 +192,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">收货人</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.receiver}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">联系电话</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.tel}}</p>
                         </div>
                     </div>
                 </div>
@@ -205,7 +206,7 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="" class="col-md-3">收货地址</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.receiptAddress}}</p>
                         </div>
                     </div>
                 </div>

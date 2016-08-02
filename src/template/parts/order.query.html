@@ -117,7 +117,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-click="modalToggle(true)" ng-repeat="item in orderList">
+                            <tr ng-click="modalToggle(true,item)" ng-repeat="item in orderList">
                                 <td>{{item.orderTime}}</td>
                                 <td>{{item.customerCode}}</td>
                                 <td>{{item.customerName}}</td>
@@ -158,19 +158,19 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">订单编号</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.orderCode}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">收单时间</label>
-                            <p class="col-md-6">20160909</p>
+                            <p class="col-md-6">{{modalInfo.orderTime}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">交货时间</label>
-                            <p class="col-md-6">20160909</p>
+                            <p class="col-md-6">{{modalInfo.deliveryTime}}</p>
                         </div>
                     </div>                    
                 </div>
@@ -178,13 +178,13 @@
                      <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">客户编号</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.customerCode}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">客户名称</label>
-                            <p class="col-md-6">20160909</p>
+                            <p class="col-md-6">{{modalInfo.customerName}}</p>
                         </div>
                     </div>                 
                 </div>
@@ -192,13 +192,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">收货人</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.receiver}}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="col-md-6">联系电话</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.tel}}</p>
                         </div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="" class="col-md-3">收货地址</label>
-                            <p class="col-md-6">200101010</p>
+                            <p class="col-md-6">{{modalInfo.receiptAddress}}</p>
                         </div>
                     </div>
                 </div>

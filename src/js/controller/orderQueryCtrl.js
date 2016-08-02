@@ -1,6 +1,7 @@
 app.controller('OrderQueryCtrl', function($scope,http){
-	$scope.modalToggle = function(bool){
+	$scope.modalToggle = function(bool,item){
 		$scope.modalState = bool;
+		$scope.modalInfo = item;
 	}
 	var lists = [{
 		orderTime: '2016-07-25 10:00:00',
@@ -15,7 +16,8 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		orderStatus: '已审核',
 		memo: 'hello',
 		sum: '20',
-		progress: '在配货'
+		progress: '在配货',
+		orderCode:'2016080210'
 
 	},{
 		orderTime: '2016-08-02 10:00:00',
@@ -30,7 +32,8 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		orderStatus: '未审核',
 		memo: '222',
 		sum: '20',
-		progress: '在集货'
+		progress: '在集货',
+		orderCode:'2016080211'
 
 	},{
 		orderTime: '2016-08-03 10:00:00',
@@ -45,7 +48,8 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		orderStatus: '有疑问',
 		memo: '333',
 		sum: '30',
-		progress: '在运输'
+		progress: '在运输',
+		orderCode:'2016080212'
 
 	},
 	{
@@ -61,7 +65,8 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		orderStatus: '已审核',
 		memo: '444',
 		sum: '40',
-		progress: '在运输'
+		progress: '在运输',
+		orderCode:'2016080213'
 
 	},{
 		orderTime: '2016-08-04 10:00:00',
@@ -76,7 +81,8 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		orderStatus: '未审核',
 		memo: '555',
 		sum: '50',
-		progress: '在运输'
+		progress: '在运输',
+		orderCode:'2016080214'
 
 	},{
 		orderTime: '2016-08-05 10:00:00',
@@ -91,7 +97,8 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		orderStatus: '已审核',
 		memo: '6666',
 		sum: '60',
-		progress: '在运输'
+		progress: '在运输',
+		orderCode:'2016080215'
 
 	}];
 	$scope.orderList = lists;

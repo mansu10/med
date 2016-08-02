@@ -4,6 +4,13 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		$scope.modalInfo = item;
 	}
 	var lists = [{
+		id:1,
+		shipMethod:"专门",
+        payMethod:0,
+        shipTime:"",
+        level:0,
+        oldOrderId:0,
+        orderMark:0,
 		orderTime: '2016-07-25 10:00:00',
 		deliveryTime: '2016-08-03 10:00:00',
 		customerCode: '90010011',
@@ -12,14 +19,18 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		tel: '111111111111111',
 		receiveMode: 'header1',
 		receiptAddress: '地1',
-		unit: '444件',
 		orderStatus: '已审核',
 		memo: 'hello',
-		sum: '20',
-		progress: '在配货',
+		orderProgress: '在配货',
 		orderCode:'2016080210'
-
 	},{
+		id:2,
+		shipMethod:"专门",
+        payMethod:0,
+        shipTime:"",
+        level:0,
+        oldOrderId:0,
+        orderMark:0,
 		orderTime: '2016-08-02 10:00:00',
 		deliveryTime: '2016-08-04 17:50:00',
 		customerCode: '90010012',
@@ -28,14 +39,18 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		tel: '2222222',
 		receiveMode: 'header2',
 		receiptAddress: '地2',
-		unit: '2件',
 		orderStatus: '未审核',
 		memo: '222',
-		sum: '20',
-		progress: '在集货',
+		orderProgress: '在集货',
 		orderCode:'2016080211'
-
 	},{
+		id:3,
+		shipMethod:"专门",
+        payMethod:0,
+        shipTime:"",
+        level:0,
+        oldOrderId:0,
+        orderMark:0,
 		orderTime: '2016-08-03 10:00:00',
 		deliveryTime: '2016-08-02 04:30:00',
 		customerCode: '90010013',
@@ -44,15 +59,19 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		tel: '333333333',
 		receiveMode: 'header3',
 		receiptAddress: '地3',
-		unit: '33件',
 		orderStatus: '有疑问',
 		memo: '333',
-		sum: '30',
-		progress: '在运输',
+		orderProgress: '在运输',
 		orderCode:'2016080212'
-
 	},
 	{
+		id:4,
+		shipMethod:"专门",
+        payMethod:0,
+        shipTime:"",
+        level:0,
+        oldOrderId:0,
+        orderMark:0,
 		orderTime: '2016-08-03 10:00:00',
 		deliveryTime: '2016-08-02 23:00:00',
 		customerCode: '90010014',
@@ -61,14 +80,18 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		tel: '444444',
 		receiveMode: 'header4',
 		receiptAddress: '地4',
-		unit: '44件',
 		orderStatus: '已审核',
 		memo: '444',
-		sum: '40',
-		progress: '在运输',
+		orderProgress: '在运输',
 		orderCode:'2016080213'
-
 	},{
+		id:5,
+		shipMethod:"专门",
+        payMethod:0,
+        shipTime:"",
+        level:0,
+        oldOrderId:0,
+        orderMark:0,
 		orderTime: '2016-08-04 10:00:00',
 		deliveryTime: '2016-08-04 10:00:00',
 		customerCode: '90010015',
@@ -77,14 +100,18 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		tel: '5555555',
 		receiveMode: 'header5',
 		receiptAddress: '地5',
-		unit: '55件',
 		orderStatus: '未审核',
 		memo: '555',
-		sum: '50',
-		progress: '在运输',
+		orderProgress: '在运输',
 		orderCode:'2016080214'
-
 	},{
+		id:6,
+		shipMethod:"专门",
+        payMethod:0,
+        shipTime:"",
+        level:0,
+        oldOrderId:0,
+        orderMark:0,
 		orderTime: '2016-08-05 10:00:00',
 		deliveryTime: '2016-08-06 10:00:00',
 		customerCode: '90010016',
@@ -93,33 +120,33 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		tel: '666666',
 		receiveMode: 'header6',
 		receiptAddress: '地6',
-		unit: '66件',
 		orderStatus: '已审核',
 		memo: '6666',
-		sum: '60',
-		progress: '在运输',
+		orderProgress: '在运输',
 		orderCode:'2016080215'
-
 	}];
-	$scope.orderList = lists;
+	
+//	$scope.orderList = lists;
+	
 	$scope.qureyInfo = {
 	    'method':'queryAllOrders'
 	}
 	
-	$scope.orderQurey = function() {
+//	$scope.orderQurey = function() {
 			
 			http.post($scope.qureyInfo,URL.orderQurey).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
 					$scope.orderList = respone.order;
-					alert("查询成功！")
-					
+					lists = respone.order;
+//					alert("查询成功！")	
 				},
 				function(respone) {
 					console.log("Order qurey failed!" + JSON.stringify(respone));
+					$scope.orderList = lists;
 					alert(respone);
 			});
-		}
+//		}
 	
 	$scope.filters = {
 		key:'all',
@@ -132,10 +159,10 @@ app.controller('OrderQueryCtrl', function($scope,http){
 		{key:'orderStatus',value:'未审核'},
 		{key:'orderStatus',value:'已审核'},
 		{key:'orderStatus',value:'有疑问'},
-		{key:'progress',value:'在配货'},
-		{key:'progress',value:'在集货'},
-		{key:'progress',value:'在装载'},
-		{key:'progress',value:'在运输'}
+		{key:'orderProgress',value:'在配货'},
+		{key:'orderProgress',value:'在集货'},
+		{key:'orderProgress',value:'在装载'},
+		{key:'orderProgress',value:'在运输'}
 	];
 	
 	//时间状态

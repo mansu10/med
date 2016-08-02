@@ -120,6 +120,18 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	$scope.shipMethod = '';
 	$scope.auditForm['shipMethod'] = $scope.shipMethod;
 	/************* 组装form end    ***********/
+	
+	http.post({'method':'queryAllOrders'},URL.orderQurey).then(
+			function(respone) {
+					console.log(JSON.stringify(respone));
+					$scope.orderList.order = respone.order;
+//					alert("查询成功！")	
+			},
+			function(respone) {
+				console.log("Order qurey failed!" + JSON.stringify(respone));
+				
+				alert(respone);
+	});
 })
 
 

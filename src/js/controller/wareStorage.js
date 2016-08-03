@@ -1,8 +1,23 @@
-app.controller('DistrVehicleCtrl', function($scope,http){
+app.controller('WareStorageCtrl', function($scope,http){
 	// 浮层控制
 	$scope.modalToggle = function(bool){
 		$scope.modalState = bool;
 	}
+	// mapping
+	$scope.mapping = {
+        "productCode": '商品编号',
+        "ordinaryName": "通用名",
+        "productName": "商品名",
+        "specifications": "规格型号",
+        "manufactory": "生产厂家",
+        "unit": "计量单位",
+        "carLoad": "包装规格",
+        "validity": "有效期",
+        "driver": "生产日期",
+        "stockNumber": "库存数量",
+        "memo": "备注"		
+	}
+
 	// 需ajax请求订单列表
 	$scope.vehicleList = {
 		    "code": 0,

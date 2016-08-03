@@ -14,114 +14,208 @@
 <div class="wrapper">
     <div class="row">
         <div class="panel">
-            <div class="panel-heading clearfix">
-                <button class="btn btn-primary btn-sm pull-right">查询</button>
-            </div>
             <div class="panel-body">
-                <form action="" role="form" class="form-horizontal">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="col-md-4 control-label">商品编码</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm"></div>          
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="col-md-4 control-label">位置代码</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="col-md-4 control-label">生产批号</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <div class="col-md-4">
+                    <a href="javascript:;" class="text-center">
+                        <img src="./src/images/Database_1.png" alt="" class="img-responsive center-block">
+                        <p class="text-center">师基数</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="javascript:;" class="text-center">
+                        <img src="./src/images/Database_2.png" alt="" class="img-responsive center-block">
+                        <p class="text-center">团基数</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="javascript:;" class="text-center">
+                        <img src="./src/images/Database_3.png" alt="" class="img-responsive center-block">
+                        <p class="text-center">营基数</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
-            <section class="panel">
-                <div class="panel-body">
-                    <section id="unseen">
-                        <table class="table table-bordered table-striped table-condensed">
-                            <thead>
-                            <tr>
-                                <th>商品编码</th>
-                                <th>库存数量</th>
-                                <th class="numeric">入库时间</th>
-                                <th class="numeric">出库时间</th>
-                                <th class="numeric">生产批号</th>
-                                <th class="numeric">存放位置</th>
-                                <th class="numeric">存放位置代码</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>10001 </td>
-                                <td>1000</td>
-                                <td class="numeric">2016/09/09 10:00</td>
-                                <td class="numeric"></td>
-                                <td class="numeric">20150504</td>
-                                <td class="numeric">1库A区3排4列2层</td>
-                                <td class="numeric">1A343</td>
-                            </tr>
-                            <tr>
-                                <td>10001 </td>
-                                <td>1000</td>
-                                <td class="numeric">2016/09/09 10:00</td>
-                                <td class="numeric"></td>
-                                <td class="numeric">20150504</td>
-                                <td class="numeric">1库A区3排4列2层</td>
-                                <td class="numeric">1A343</td>
-                            </tr>
-                            <tr>
-                                <td>10001 </td>
-                                <td>1000</td>
-                                <td class="numeric">2016/09/09 10:00</td>
-                                <td class="numeric"></td>
-                                <td class="numeric">20150504</td>
-                                <td class="numeric">1库A区3排4列2层</td>
-                                <td class="numeric">1A343</td>
-                            </tr>
-                            <tr>
-                                <td>10001 </td>
-                                <td>1000</td>
-                                <td class="numeric">2016/09/09 10:00</td>
-                                <td class="numeric"></td>
-                                <td class="numeric">20150504</td>
-                                <td class="numeric">1库A区3排4列2层</td>
-                                <td class="numeric">1A343</td>
-                            </tr>
-                            <tr>
-                                <td>10001 </td>
-                                <td>1000</td>
-                                <td class="numeric">2016/09/09 10:00</td>
-                                <td class="numeric"></td>
-                                <td class="numeric">20150504</td>
-                                <td class="numeric">1库A区3排4列2层</td>
-                                <td class="numeric">1A343</td>
-                            </tr>
-                            <tr>
-                                <td>10001 </td>
-                                <td>1000</td>
-                                <td class="numeric">2016/09/09 10:00</td>
-                                <td class="numeric"></td>
-                                <td class="numeric">20150504</td>
-                                <td class="numeric">1库A区3排4列2层</td>
-                                <td class="numeric">1A343</td>
-                            </tr>
+        <section class="panel">
+            <div class="panel-heading">
+                <form action="" role="form" class="form-horizontal">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">商品查询</label>
+                                <div class="col-md-8"><input type="text" class="form-control input-sm" placeholder="商品名/商品号"></div>      
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <a class="btn btn-primary btn-sm pull-right">查询</a>
+                        </div>
+                    </div>    
+                </form>           
+            </div>
 
-
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
-            </section>
-        </div>
+            <div class="panel-heading clearfix">
+                <a href="javascript:;" class="btn btn-xs btn-primary pull-right" ng-click="iptToggle(true)"><i class="fa fa-plus"></i></a> 
+            </div>
+            <div class="panel-body">
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">商品编号</th>
+                            <th class="col-md-1">通用名</th>
+                            <th class="col-md-1">商品名</th>
+                            <th class="col-md-1">规格型号</th>
+                            <th class="col-md-1">生产厂家</th>
+                            <th class="col-md-1">计量单位</th>
+                            <th class="col-md-1">包装规格</th>
+                            <th class="col-md-1">有效期</th>
+                            <th class="col-md-1">生产日期</th>
+                            <th class="col-md-1">库存数量</th>
+                            <th class="col-md-1">备注</th>
+                            <th class="col-md-1">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-show="iptState">
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carCode"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carNumber"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carName"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carType"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carUnit"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carSize"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carLoad"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.capacity"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.driver"></td>
+                            <td></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.memo"></td>
+                            <td><a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)"><i class="fa fa-check"></i></a></td>
+                        </tr>
+                        <tr ng-repeat="item in vehicleList.vehicle">
+                            <td>{{item.carCode}}</td>
+                            <td>{{item.carNumber}}</td>
+                            <td>{{item.carName}}</td>
+                            <td>{{item.carType}}</td>
+                            <td>{{item.carUnit}}</td>
+                            <td>{{item.carSize}}</td>
+                            <td>{{item.carLoad}}</td>
+                            <td>{{item.capacity}}</td>
+                            <td>{{item.driver}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.memo}}</td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="showDetail($index,item)"><i class="fa fa-edit"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-danger" ng-click="rmItem($index)"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </section>
     </div>    
+</div>
+<div class="modal" ng-class="{show: modalState}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="cancelChange()">&times;</button>
+                <h4 class="modal-title">Edit Media Gallery</h4>
+            </div>
+            <div class="modal-body form form-horizontal">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">车辆编号</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carCode" value="{{tempItem.carCode}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">车牌号</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carNumber" value="{{tempItem.carNumber}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">车名</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carName" value="{{tempItem.carName}}">
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                     <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">车型</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carType" value="{{tempItem.carType}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">所属单位</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carUnit" value="{{tempItem.carUnit}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">尺寸</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carSize" value="{{tempItem.carSize}}">
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">载重</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carLoad" value="{{tempItem.carLoad}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">容积限制</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.capacity" value="{{tempItem.capacity}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-5">司机</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.driver" value="{{tempItem.driver}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="" class="col-md-2">备注</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.memo" value="{{tempItem.memo}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-primary" ng-click="saveChange()">保存</button>
+                <button class="btn btn-sm btn-primary" ng-click="cancelChange()">关闭</button>
+            </div>
+        </div>
+    </div>
 </div>

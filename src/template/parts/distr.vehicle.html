@@ -94,8 +94,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="" class="col-md-4 control-label">车型/车牌</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm"></div>      
+                                <label for="" class="col-md-4 control-label">车辆查询</label>
+                                <div class="col-md-8"><input type="text" class="form-control input-sm" placeholder="车型/车牌"></div>      
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -166,12 +166,11 @@
         </section>
     </div>    
 </div>
-<div class="modal" ng-class="{show: modalState}" ng-model="detail">
-{{detail}}
+<div class="modal" ng-class="{show: modalState}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" ng-click="modalToggle(false)">&times;</button>
+                <button type="button" class="close" ng-click="cancelChange()">&times;</button>
                 <h4 class="modal-title">Edit Media Gallery</h4>
             </div>
             <div class="modal-body form form-horizontal">
@@ -180,7 +179,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">车辆编号</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.carCode}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carCode" value="{{tempItem.carCode}}">
                             </div>
                         </div>
                     </div>
@@ -188,7 +187,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">车牌号</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.carNumber}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carNumber" value="{{tempItem.carNumber}}">
                             </div>
                         </div>
                     </div>
@@ -196,7 +195,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">车名</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.carName}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carName" value="{{tempItem.carName}}">
                             </div>
                         </div>
                     </div>                    
@@ -206,7 +205,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">车型</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.carType}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carType" value="{{tempItem.carType}}">
                             </div>
                         </div>
                     </div>
@@ -214,7 +213,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">所属单位</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.carUnit}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carUnit" value="{{tempItem.carUnit}}">
                             </div>
                         </div>
                     </div>
@@ -222,7 +221,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">尺寸</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.carSize}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carSize" value="{{tempItem.carSize}}">
                             </div>
                         </div>
                     </div>                 
@@ -232,7 +231,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">载重</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.carLoad}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.carLoad" value="{{tempItem.carLoad}}">
                             </div>
                         </div>
                     </div>
@@ -240,7 +239,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">容积限制</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.capacity}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.capacity" value="{{tempItem.capacity}}">
                             </div>
                         </div>
                     </div>
@@ -248,7 +247,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-5">司机</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.driver}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.driver" value="{{tempItem.driver}}">
                             </div>
                         </div>
                     </div>
@@ -258,7 +257,7 @@
                         <div class="form-group">
                             <label for="" class="col-md-2">备注</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control input-sm" value="{{detail.item.memo}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.memo" value="{{tempItem.memo}}">
                             </div>
                         </div>
                     </div>
@@ -266,7 +265,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-sm btn-primary" ng-click="saveChange()">保存</button>
-                <button class="btn btn-sm btn-primary" ng-click="modalToggle(false)">关闭</button>
+                <button class="btn btn-sm btn-primary" ng-click="cancelChange()">关闭</button>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	            "memo": "2222",
 	            "level": 0
 	        },{
-	            "id": 29,
+	            "id": 39,
 	            "orderCode": "201601010010",
 	            "customerCode": "B0001",
 	            "customerName": "张五",
@@ -54,14 +54,14 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	// 临时详细订单
 	// 需要ajax请求明细信息
 	$scope.items = [{
-		'code': '100100010',
-		'name': '阿莫西林胶囊',
-		'size': '10mg',
+		'productCode': '100100010',
+		'ordinaryName': '阿莫西林胶囊',
+		'specifications': '10mg',
 		'unit': '粒',
 		'price': '0.15',
-		'amount': '1000',
-		'sum': '150',
-		'storage': '',
+		'productNumber': '1000',
+		'total': '150',
+		'stockNumber': '',
 		'lack': 200,
 		'ditribute': 800
 	}];
@@ -70,21 +70,21 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	$scope.detail = {};
 	$scope.showDetail = function(item){
 		$scope.auditStateToggle(false);
-		$scope.detail = item;
+		queryAuditOrder(item.id);
 	};
 	/************ 添加新明细 start ***************/
 	// 新增明细存储model
 	$scope.newItem = {};
 	$scope.addItem = function(newItem){
 		$scope.items.push({
-			code: newItem.code,
-			name: newItem.name,
-			size: newItem.size,
+			code: newItem.productCode,
+			name: newItem.ordinaryName,
+			size: newItem.specifications,
 			unit: newItem.unit,
 			price: newItem.price,
-			amount: newItem.amount,
-			sum: newItem.sum,
-			storage: newItem.storage,
+			amount: newItem.productNumber,
+			sum: newItem.total,
+			storage: newItem.stockNumber,
 			lack: newItem.lack,
 			ditribute: newItem.ditribute
 		})
@@ -120,6 +120,34 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	$scope.shipMethod = '';
 	$scope.auditForm['shipMethod'] = $scope.shipMethod;
 	/************* 组装form end    ***********/
+	
+	//每次进入审核页拉取订单信息
+	http.post({'method':'queryAllOrders'},URL.orderQurey).then(
+			function(respone) {
+					console.log(JSON.stringify(respone));
+					$scope.orderList.order = respone.order;
+//					alert("查询成功！")	
+			},
+			function(respone) {
+				console.log("Order qurey failed!" + JSON.stringify(respone));
+				
+				alert(respone);
+	});
+	
+	//进入审核明细时拉取
+	var queryAuditOrder = function(id){
+		
+		http.post({'method':'queryOrderAndItem','id':id},URL.orderQurey).then(
+			function(respone) {
+					console.log(JSON.stringify(respone));
+					$scope.detail = respone.order;
+					$scope.items = respone.order.orderItems;
+			},
+			function(respone) {
+				console.log("Order qurey failed!" + JSON.stringify(respone));
+				alert(respone);
+		});
+	}
 })
 
 

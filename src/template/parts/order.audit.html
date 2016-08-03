@@ -169,14 +169,14 @@
                     <tbody>
                         <tr ng-show="iptState">
                             <td>＃</td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.code"></td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.name"></td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.size"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.productCode"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.ordinaryName"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.specifications"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.sum"></td>
-                            <td ng-model="newItem.storage"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.productNumber"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.total"></td>
+                            <td ng-model="newItem.stockNumber"></td>
                             <td ng-model="newItem.lack"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.ditribute"></td>
                             <td>
@@ -186,14 +186,14 @@
                         </tr>
                         <tr ng-repeat="item in items">
                             <td>{{$index + 1}}</td>
-                            <td>{{item.code}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.size}}</td>
+                            <td>{{item.productCode}}</td>
+                            <td>{{item.ordinaryName}}</td>
+                            <td>{{item.specifications}}</td>
                             <td>{{item.unit}}</td>
                             <td>{{item.price}}</td>
-                            <td>{{item.amount}}</td>
-                            <td>{{item.sum}}</td>
-                            <td>{{item.storage}}</td>
+                            <td>{{item.productNumber}}</td>
+                            <td>{{item.total}}</td>
+                            <td>{{item.stockNumber}}</td>
                             <td>{{item.lack}}</td>
                             <td>{{item.distribute}}</td>
                             <td><a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)">删除</a></td>

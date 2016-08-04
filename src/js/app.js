@@ -103,7 +103,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('home.wareInventory', {
 			url: '/ware/inventory',
 			templateUrl: paths.part + 'ware.inventory.html',
-			controller: 'WareInventroy'
+			controller: 'WareInventoryCtrl'
 		})
 		.state('home.wareStorage', {
 			url: '/ware/storage',

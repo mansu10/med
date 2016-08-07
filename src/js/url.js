@@ -28,5 +28,6 @@ var API_URI = "http://" + settings.host + settings.port + "/";
 var URL = {
 	login:API_URI+"MedicineManagement/LoginServlet",
 	orderAdd:API_URI+"MedicineManagement/OrderServlet",
-	orderQurey:API_URI+"MedicineManagement/OrderServlet"
+	orderQurey:API_URI+"MedicineManagement/OrderServlet",
+	orderAudit:API_URI+"MedicineManagement/OrderServlet"
 }

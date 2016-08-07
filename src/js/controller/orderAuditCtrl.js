@@ -70,21 +70,21 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	$scope.detail = {};
 	$scope.showDetail = function(item){
 		$scope.auditStateToggle(false);
-		queryAuditOrder(item.id);
+		queryAuditOrder(item.orderCode);
 	};
 	/************ 添加新明细 start ***************/
 	// 新增明细存储model
 	$scope.newItem = {};
 	$scope.addItem = function(newItem){
 		$scope.items.push({
-			code: newItem.productCode,
-			name: newItem.ordinaryName,
-			size: newItem.specifications,
+			productCode: newItem.productCode,
+			ordinaryName: newItem.ordinaryName,
+			specifications: newItem.specifications,
 			unit: newItem.unit,
 			price: newItem.price,
-			amount: newItem.productNumber,
-			sum: newItem.total,
-			storage: newItem.stockNumber,
+			productNumber: newItem.productNumber,
+			total: newItem.total,
+			stockNumber: newItem.stockNumber,
 			lack: newItem.lack,
 			ditribute: newItem.ditribute
 		})
@@ -138,9 +138,9 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	//进入审核明细时拉取
 	var queryAuditOrder = function(id){
 		
-		http.post({'method':'queryOrderAndItem','id':id},URL.orderQurey).then(
+		http.post({'method':'queryOrderAndItem','orderCode':id},URL.orderQurey).then(
 			function(respone) {
-					console.log(JSON.stringify(respone));
+					console.log("queryOrderAndItem:"+JSON.stringify(respone));
 					$scope.detail = respone.order;
 					$scope.items = respone.order.orderItems;
 					
@@ -150,6 +150,20 @@ app.controller('OrderAuditCtrl', function($scope,http){
 				alert(respone);
 		});
 	}
+	
+	//订单确认
+	var OrderConfirm = function(status){
+		
+		http.post({},URL.orderAudit).then(
+			function(respone) {
+				console.log("queryOrderAndItem:"+JSON.stringify(respone));	
+			},
+			function(respone) {
+				console.log("Order qurey failed!" + JSON.stringify(respone));
+				alert(respone);
+		});
+	}
+	
 })
 
 

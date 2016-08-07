@@ -16,19 +16,15 @@ app.controller('OrderAddCtrl', function($scope,http){
 			receiveMode: '',
 			receiptAddress: '',
 			memo: '',
-			productIds:''
+			orderItems:'[]'
 		};
 		$scope.items = [];
 		$scope.newItem = {};
 		$scope.addItem = function(newItem){
 			$scope.items.push({
-				code: newItem.code,
-				name: newItem.name,
-				size: newItem.size,
-				unit: newItem.unit,
-				price: newItem.price,
-				amount: newItem.amount,
-				sum: newItem.sum
+				productCode: newItem.code,
+				productNum: newItem.amount,
+				total: newItem.sum
 			})
 		}
 		$scope.rmItem = function(index){
@@ -54,8 +50,9 @@ app.controller('OrderAddCtrl', function($scope,http){
 		
 		$scope.submitOrder = function() {
 			
-			$scope.orderForm.productIds = "[{'orderId':29,'productId':2,'productNumber':10,'total':100},{'orderId':29,'productId':3,'productNumber':20,'total':200}]",
-			
+//			$scope.orderForm.productIds = "[{'orderId':29,'productId':2,'productNumber':10,'total':100},{'orderId':29,'productId':3,'productNumber':20,'total':200}]",
+			$scope.orderForm.orderItems = JSON.stringify($scope.items);
+			console.log(JSON.stringify($scope.orderForm)+"==============="+$scope.orderForm.orderItems);
 			http.post($scope.orderForm,URL.orderAdd).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));

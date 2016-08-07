@@ -126,6 +126,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			function(respone) {
 					console.log(JSON.stringify(respone));
 					$scope.orderList.order = respone.order;
+					console.log("==================="+JSON.stringify($scope.orderList.order));
 //					alert("查询成功！")	
 			},
 			function(respone) {
@@ -142,6 +143,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 					console.log(JSON.stringify(respone));
 					$scope.detail = respone.order;
 					$scope.items = respone.order.orderItems;
+					
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));

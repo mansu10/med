@@ -31,7 +31,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in orderList.order">
-                                <td>{{item.orderTime}}</td>
+                                <td>{{item.orderTime}}+{{orderList.order.size}}</td>
                                 <td>{{item.orderCode}}</td>
                                 <td>{{item.customerName}}</td>
                                 <td>{{item.memo}}</td>

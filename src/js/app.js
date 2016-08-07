@@ -101,15 +101,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		// 仓库部分
 		.state('home.wareInventory', {
-			url: '/ware/inventory'
+			url: '/ware/inventory',
+			templateUrl: paths.part + 'ware.inventory.html',
+			controller: 'WareInventoryCtrl'
 		})
 		.state('home.wareStorage', {
 			url: '/ware/storage',
-			templateUrl: paths.part + 'ware.storage.html'
+			templateUrl: paths.part + 'ware.storage.html',
+			controller: 'WareStorageCtrl'
 		})
 		// 配送管理
 		.state('home.distrLoad', {
-			url: '/distr/load'
+			url: '/distr/load',
+			templateUrl: paths.part + 'distr.load.html'
 		})
 		.state('home.distrVehicle', {
 			url: '/distr/vehicle',

@@ -24,6 +24,17 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					  }]					
 				},
 				{
+					"title": "客户管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-users",
+					"child": [{
+							"title": "客户管理",
+							"url": "./",
+							"isActive":false
+						}]					
+				},
+				{
 					"title": "店铺管理",
 					"url": "javascript:;",
 					"isActive":false,
@@ -64,8 +75,12 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"title": "仓库管理",
 					"url": "javascript:;",
 					"isActive":false,
-					"icon":"fa fa-envelope",
+					"icon":"fa fa-home",
 					"child": [{
+							"title": "出入库管理",
+							"url": "javascript:;",
+							"isActive":false
+					 	},{
 							"title": "货位管理",
 							"url": ".wareInventory",
 							"isActive":false
@@ -73,7 +88,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"title": "库存管理",
 							"url": ".wareStorage",
 							"isActive":false
-					  }]					
+					  	}]					
 				},{
 					"title": "配送管理",
 					"url": "javascript:;",
@@ -95,6 +110,16 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"icon":"fa fa-bar-chart-o",
 					"child": [{
 							"title": "订单统计",
+							"url": ".statistics",
+							"isActive":false
+						}]					
+				},{
+					"title": "进货管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-shopping-cart",
+					"child": [{
+							"title": "进货管理",
 							"url": ".statistics",
 							"isActive":false
 						}]					

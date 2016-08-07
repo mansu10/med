@@ -169,7 +169,7 @@
                     <tbody>
                         <tr ng-show="iptState">
                             <td>＃</td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.productCode"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.productCode" ng-change="change(newItem)"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.ordinaryName"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.specifications"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
@@ -256,8 +256,8 @@
                     </div>
                     <div class="row">
                         <div class="form-group text-center">
-                            <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="">订单确认</a>
-                            <a href="javascript:;" class="btn btn-sm btn-primary">转至疑问订单</a>
+                            <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="updateOrder('1')">订单确认</a>
+                            <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="updateOrder('2')">转至疑问订单</a>
                         </div>
                     </div>
                 </form>

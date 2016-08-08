@@ -95,7 +95,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">车辆查询</label>
-                                <div class="col-md-8"><input type="text" class="form-control input-sm" placeholder="车型/车牌"></div>      
+                                <div class="col-md-8"><input type="text" class="form-control input-sm" placeholder="车型/车牌" ng-model="carTypeFilter"></div>      
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -142,17 +142,17 @@
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.memo"></td>
                             <td><a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)"><i class="fa fa-check"></i></a></td>
                         </tr>
-                        <tr ng-repeat="item in vehicleList.vehicle">
+                        <tr ng-repeat="item in vehicleList.cars | filter:carTypeFilter">
                             <td>{{item.carCode}}</td>
                             <td>{{item.carNumber}}</td>
                             <td>{{item.carName}}</td>
                             <td>{{item.carType}}</td>
                             <td>{{item.carUnit}}</td>
-                            <td>{{item.carSize}}</td>
-                            <td>{{item.carLoad}}</td>
-                            <td>{{item.capacity}}</td>
-                            <td>{{item.driver}}</td>
-                            <td>{{item.status}}</td>
+                            <td>{{item.carLength+'x'+item.carWidth+'x'+item.carHeigth}}</td>
+                            <td>{{item.carVolume}}</td>
+                            <td>{{item.carLength+'x'+item.carWidth+'x'+item.carHeigth}}</td>
+                            <td>{{item.carDriver}}</td>
+                            <td>{{item.carStatus}}</td>
                             <td>{{item.memo}}</td>
                             <td>
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="showDetail($index,item)"><i class="fa fa-edit"></i></a>

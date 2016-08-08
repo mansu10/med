@@ -219,8 +219,8 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		
 		var getUpdateOrder = function(status){
 			
-			updateOrderObj.oldOrderId = $scope.detail.id;
-			updateOrderObj.orderCode = $scope.detail.orderCode;
+			updateOrderObj.oldOrderId = $scope.detail.id+'';
+			updateOrderObj.orderCode = $scope.detail.orderCode+'';
 			updateOrderObj.customerCode = $scope.detail.customerCode;
 			updateOrderObj.customerName = $scope.detail.customerName;
 			updateOrderObj.orderTime = $scope.detail.orderTime;
@@ -229,10 +229,10 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			updateOrderObj.receiver = $scope.detail.receiver;
 			updateOrderObj.tel = $scope.detail.tel;
 			updateOrderObj.intendDeliveryTime = $scope.detail.intendDeliveryTime;
-			updateOrderObj.packageMethod = $scope.detail.packageMethod;
-			updateOrderObj.shipMethod = $scope.detail.shipMethod;
+			updateOrderObj.packageMethod = $scope.detail.packageMethod+'';
+			updateOrderObj.shipMethod = $scope.detail.shipMethod+'';
 			updateOrderObj.orderStatus = status;// 1:订单确认 2:转至疑问
-			updateOrderObj.memo = $scope.detail.memo;
+			updateOrderObj.memo = $scope.detail.memo+'成堆成堆成堆成堆';
 			updateOrderObj.orderItems = JSON.stringify($scope.items);
 			updateOrderObj.itemIds = getItemIds();
 			
@@ -259,5 +259,23 @@ app.controller('OrderAuditCtrl', function($scope,http){
 
 
 
-
+//{
+//  'method': 'updateOrderPass',
+//  'oldOrderId': '50',
+//  'orderCode': '20160804103205',
+//  'itemIds': '37,38',
+//  'customerCode': 'B0002',
+//  'customerName': '1军1师2团团救护所',
+//  'orderTime': '2016-08-0310: 07: 50',
+//  'deliveryTime': '2016-08-0510: 07: 50',
+//  'receiptAddress': '上海张江',
+//  'receiver': '李四',
+//  'tel': '2212345678',
+//  'intendDeliveryTime': '2016-08-0610: 07: 50',
+//  'packageMethod': '0',
+//  'shipMethod': '0',
+//  'orderStatus': '1',
+//  'orderItems': "[{'orderCode':'20160804103205','productCode':10000001,'productNumber':15,'total':150}]",
+//  'memo': '备注更新'
+//}
 

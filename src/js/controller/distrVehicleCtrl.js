@@ -99,6 +99,7 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 		$scope.addItem(newItem);
 		$scope.iptToggle(false);
 		$scope.iptReset(newItem);
+		$scope.addCars();
 	};
 	/************* 添加明细 end ***************/		
 	
@@ -111,4 +112,17 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 					console.log("Order qurey failed!" + JSON.stringify(respone));
 					alert(respone);
 			});
+	//添加车辆信息		
+    $scope.addCars = function(){
+
+    	http.post({'method':'addCar','car': JSON.stringify($scope.newItem)},URL.carQurey).then(
+				function(respone) {
+					console.log(JSON.stringify(respone));
+					$scope.vehicleList = respone;
+				},
+				function(respone) {
+					console.log("addCars failed!" + JSON.stringify(respone));
+					alert(respone);
+			});
+    }
 })

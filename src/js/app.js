@@ -120,6 +120,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part +'distr.vehicle.html',
 			controller: 'DistrVehicleCtrl'
 		})
+		.state('home.distrTransport', {
+			url: '/distr/transport',
+			templateUrl: paths.part +'distr.transport.html'
+		})
 		// 统计分析
 		.state('home.statistics', {
 			url: '/statistics'

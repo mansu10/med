@@ -102,7 +102,11 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"title": "车辆管理",
 							"url": ".distrVehicle",
 							"isActive":false
-					  }]					
+					  	},{
+					  		"title": "运输管理",
+					  		"url": ".distrTransport",
+					  		"isActive": false
+					  	}]					
 				},{
 					"title": "统计分析",
 					"url": "javascript:;",

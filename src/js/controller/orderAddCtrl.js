@@ -48,9 +48,9 @@ app.controller('OrderAddCtrl', function($scope,http){
 			$scope.orderForm = {};
 		}
 		
+		//订单提交
 		$scope.submitOrder = function() {
 			
-//			$scope.orderForm.productIds = "[{'orderId':29,'productId':2,'productNumber':10,'total':100},{'orderId':29,'productId':3,'productNumber':20,'total':200}]",
 			$scope.orderForm.orderItems = JSON.stringify($scope.items);
 			console.log(JSON.stringify($scope.orderForm)+"==============="+$scope.orderForm.orderItems);
 			http.post($scope.orderForm,URL.orderAdd).then(
@@ -63,6 +63,38 @@ app.controller('OrderAddCtrl', function($scope,http){
 					console.log("submitOrder failed!" + JSON.stringify(respone));
 					alert(respone);
 			});
+		}
+		
+		var productList = [];//商品列表  
+		//查询所有商品信息
+		var queryProduct = function() {	
+			
+			http.post({'method':'queryProduct'},URL.productQurey).then(
+				function(respone) {
+					console.log("queryProduct info --->"+respone);
+					productList = respone.products;
+				},
+				function(respone) {
+					console.log("queryProduct failed!" + JSON.stringify(respone));
+					alert(respone);
+			});
+		}
+		queryProduct();
+		
+		$scope.change = function(item){
+			angular.forEach(productList,function(product){
+				if(item.code == product.productCode){
+					
+					$scope.newItem.name = product.productName;
+					$scope.newItem.size = product.specifications;
+					$scope.newItem.unit = product.unit;
+					$scope.newItem.price = product.price;
+					$scope.newItem.amount = product.averageNumber;
+					$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
+					
+					return;
+				}
+			})
 		}
 
 	})

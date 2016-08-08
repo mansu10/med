@@ -6,30 +6,36 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 	// 需ajax请求订单列表
 	$scope.vehicleList = {
 		    "code": 0,
-		    "vehicle": [{
-	            "carCode": '车辆编号',
-	            "carNumber": "车牌号",
-	            "carName": "车名",
-	            "carType": "车型",
-	            "carUnit": "所属单位",
-	            "carSize": "尺寸",
-	            "carLoad": "载重",
-	            "capacity": "容积",
-	            "driver": "司机",
-	            "status": "状态",
-	            "memo": "备注"
-	        },{
-	            "carCode": 'C0001',
-	            "carNumber": "沪C0001",
+		    "cars": [{
+		    	"id":1,
+	            "carCode": "C0001",
 	            "carName": "1号车",
-	            "carType": "车型",
 	            "carUnit": "第1车队",
-	            "carSize": "5000",
-	            "carLoad": "50",
-	            "capacity": "5000",
-	            "driver": "王二",
-	            "status": "运输中",
-	            "memo": "备注"
+	            "carDriver": "李一",
+	            "maxWeight": 3000000,
+	            "carVolume": 26796000,
+	            "carNumber": "NC20001",
+	            "carType": "客车",
+	            "carLength": 580,
+	            "carWidth": 210,
+	            "carHeigth": 220,
+	            "carStatus": 0,
+	            "memo": "运输车1"
+	        },{
+	            "id":2,
+	            "carCode": "C0002",
+	            "carName": "2号车",
+	            "carUnit": "第2车队",
+	            "carDriver": "孙二",
+	            "maxWeight": 20000,
+	            "carVolume": 222960,
+	            "carNumber": "NC20002",
+	            "carType": "大巴",
+	            "carLength": 380,
+	            "carWidth": 230,
+	            "carHeigth": 230,
+	            "carStatus": 1,
+	            "memo": "运输车2"
 	        }]
 		}
 	// 详细信息model
@@ -43,7 +49,7 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 	};
 	$scope.saveChange = function(){
 		var i = $scope.detail.index;
-		var origin = $scope.vehicleList.vehicle[i];
+		var origin = $scope.vehicleList.cars[i];
 		cp(origin, $scope.tempItem);
 		$scope.modalToggle(false);
 	}
@@ -61,22 +67,23 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 	// 新增明细存储model
 	$scope.newItem = {};
 	$scope.addItem = function(newItem){
-		$scope.vehicleList.vehicle.push({
+		$scope.vehicleList.cars.push({
 			"carCode": newItem.carCode,
 			"carNumber": newItem.carNumber,
 			"carName": newItem.carName,
 			"carType": newItem.carType,
 			"carUnit": newItem.carUnit,
-			"carSize": newItem.carSize,
-			"carLoad": newItem.carLoad,
-			"capacity": newItem.capacity,
-			"driver": newItem.driver,
+			"carVolume": newItem.carLoad,
+			"carLength": newItem.capacity/3,
+	        "carWidth": newItem.capacity/3,
+	        "carHeigth": newItem.capacity/3,
+			"carDriver": newItem.driver,
 			"memo": newItem.memo
 		})
 	};
 	// 删除明细
 	$scope.rmItem = function(index){
-		$scope.vehicleList.vehicle.splice(index,1);
+		$scope.vehicleList.cars.splice(index,1);
 	};
 	// 显示明细
 	$scope.iptState = false;
@@ -92,6 +99,30 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 		$scope.addItem(newItem);
 		$scope.iptToggle(false);
 		$scope.iptReset(newItem);
+		$scope.addCars();
 	};
 	/************* 添加明细 end ***************/		
+	
+	http.post({'method':'queryAllCars','numberOrType':'NC20001'},URL.carQurey).then(
+				function(respone) {
+					console.log(JSON.stringify(respone));
+					$scope.vehicleList = respone;
+				},
+				function(respone) {
+					console.log("Order qurey failed!" + JSON.stringify(respone));
+					alert(respone);
+			});
+	//添加车辆信息		
+    $scope.addCars = function(){
+
+    	http.post({'method':'addCar','car': JSON.stringify($scope.newItem)},URL.carQurey).then(
+				function(respone) {
+					console.log(JSON.stringify(respone));
+					$scope.vehicleList = respone;
+				},
+				function(respone) {
+					console.log("addCars failed!" + JSON.stringify(respone));
+					alert(respone);
+			});
+    }
 })

@@ -116,7 +116,7 @@
                             <tbody>
                                 <tr ng-show="iptState">
                                     <td>＃</td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.code"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.code" ng-change="change(newItem)"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.name"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.size"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>

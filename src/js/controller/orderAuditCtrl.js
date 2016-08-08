@@ -124,14 +124,10 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	//每次进入审核页拉取订单信息
 	http.post({'method':'queryAllOrders'},URL.orderQurey).then(
 			function(respone) {
-					console.log(JSON.stringify(respone));
-					$scope.orderList.order = respone.order;
-					console.log("==================="+JSON.stringify($scope.orderList.order));
-//					alert("查询成功！")	
+				$scope.orderList.order = respone.order;
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				
 				alert(respone);
 	});
 	
@@ -162,7 +158,100 @@ app.controller('OrderAuditCtrl', function($scope,http){
 				console.log("Order qurey failed!" + JSON.stringify(respone));
 				alert(respone);
 		});
-	}
+	};
+	
+	    /*****订单明细 输入商品号自动补齐   start*******/
+	    var productList = [];//商品列表  
+		//查询所有商品信息
+		var queryProduct = function() {	
+			
+			http.post({'method':'queryProduct'},URL.productQurey).then(
+				function(respone) {
+					console.log("queryProduct info --->"+respone);
+					productList = respone.products;
+				},
+				function(respone) {
+					console.log("queryProduct failed!" + JSON.stringify(respone));
+					alert(respone);
+			});
+		}
+		queryProduct();
+		
+		$scope.change = function(item){
+			angular.forEach(productList,function(product){
+				if(item.productCode == product.productCode){
+					$scope.newItem = product;
+					return;
+				}
+			})
+		}
+		/*****订单明细 输入商品号自动补齐   end*******/
+		
+		/*****订单状态更改*******/
+		var updateOrderObj = {
+			    'method': 'updateOrderPass',
+			    'oldOrderId': '50',
+			    'orderCode': '20160804103205',
+			    'itemIds': '37,38',
+			    'customerCode': 'B0002',
+			    'customerName': '1军1师2团团救护所',
+			    'orderTime': '2016-08-0310: 07: 50',
+			    'deliveryTime': '2016-08-0510: 07: 50',
+			    'receiptAddress': '上海张江',
+			    'receiver': '李四',
+			    'tel': '2212345678',
+			    'intendDeliveryTime': '2016-08-0610: 07: 50',
+			    'packageMethod': '0',
+			    'shipMethod': '0',
+			    'orderStatus': '1',
+			    'orderItems': "[{'orderCode':'20160804103205','productCode':10000001,'productNumber':15,'total':150}]",
+			    'memo': '备注更新'
+		}
+		
+		$scope.updateOrder = function(status){		
+			http.post(getUpdateOrder(status),URL.orderAudit).then(
+				function(respone) {
+				},
+				function(respone) {
+					alert(respone);
+			});
+		}
+		
+		var getUpdateOrder = function(status){
+			
+			updateOrderObj.oldOrderId = $scope.detail.id+'';
+			updateOrderObj.orderCode = $scope.detail.orderCode+'';
+			updateOrderObj.customerCode = $scope.detail.customerCode;
+			updateOrderObj.customerName = $scope.detail.customerName;
+			updateOrderObj.orderTime = $scope.detail.orderTime;
+			updateOrderObj.deliveryTime = $scope.detail.deliveryTime;
+			updateOrderObj.receiptAddress = $scope.detail.receiptAddress;
+			updateOrderObj.receiver = $scope.detail.receiver;
+			updateOrderObj.tel = $scope.detail.tel;
+			updateOrderObj.intendDeliveryTime = $scope.detail.intendDeliveryTime;
+			updateOrderObj.packageMethod = $scope.detail.packageMethod+'';
+			updateOrderObj.shipMethod = $scope.detail.shipMethod+'';
+			updateOrderObj.orderStatus = status;// 1:订单确认 2:转至疑问
+			updateOrderObj.memo = $scope.detail.memo+'成堆成堆成堆成堆';
+			updateOrderObj.orderItems = JSON.stringify($scope.items);
+			updateOrderObj.itemIds = getItemIds();
+			
+			return updateOrderObj;
+			
+		}
+		
+		var getItemIds = function(){
+			var itemIds = "";
+			angular.forEach($scope.items,function(size,item){
+				if (size < $scope.items.size-1) {
+					itemIds = itemIds + item.id + ',';
+				} else{
+					itemIds = itemIds + item.id;
+				}	
+			});
+			return itemIds;
+		}
+		/*****订单状态更改*******/
 	
 })
 
@@ -170,5 +259,23 @@ app.controller('OrderAuditCtrl', function($scope,http){
 
 
 
-
+//{
+//  'method': 'updateOrderPass',
+//  'oldOrderId': '50',
+//  'orderCode': '20160804103205',
+//  'itemIds': '37,38',
+//  'customerCode': 'B0002',
+//  'customerName': '1军1师2团团救护所',
+//  'orderTime': '2016-08-0310: 07: 50',
+//  'deliveryTime': '2016-08-0510: 07: 50',
+//  'receiptAddress': '上海张江',
+//  'receiver': '李四',
+//  'tel': '2212345678',
+//  'intendDeliveryTime': '2016-08-0610: 07: 50',
+//  'packageMethod': '0',
+//  'shipMethod': '0',
+//  'orderStatus': '1',
+//  'orderItems': "[{'orderCode':'20160804103205','productCode':10000001,'productNumber':15,'total':150}]",
+//  'memo': '备注更新'
+//}
 

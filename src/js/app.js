@@ -4,6 +4,7 @@ var app = angular.module('app', [
 	'ui.router',
 	// 'angular-datepicker'
 	'angularjs-datetime-picker'
+	// 'angularTreeview'
 
 ])
 /**
@@ -41,6 +42,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			templateUrl: paths.tpl + 'login.html',
 			controller:'LoginCtrl'
+		})
+		.state('mode', {
+			url: '/mode',
+			templateUrl: paths.part + 'mode.html',
+			controller:'ModeCtrl'
 		})
 		.state('home', {
 			url: '',

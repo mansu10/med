@@ -6,8 +6,9 @@ include_js("./src/js/controller/orderAddCtrl.js");
 include_js("./src/js/controller/orderQueryCtrl.js");
 include_js("./src/js/controller/orderAuditCtrl.js");
 include_js("./src/js/controller/distrVehicleCtrl.js");
-include_js("./src/js/controller/wareStorage.js");
-include_js("./src/js/controller/wareInventory.js");
+include_js("./src/js/controller/wareStorageCtrl.js");
+include_js("./src/js/controller/wareInventoryCtrl.js");
+include_js("./src/js/controller/modeCtrl.js");
 
 include_js("./src/js/service/service.js");
 include_js("./src/js/directives/directives.js");

@@ -3,8 +3,8 @@ var app = angular.module('app', [
 // 'ngRoute', 'filters', 'service', 'directives'
 	'ui.router',
 	// 'angular-datepicker'
-	'angularjs-datetime-picker'
-	// 'angularTreeview'
+	'angularjs-datetime-picker',
+	'ui.tree'
 
 ])
 /**

@@ -9,6 +9,45 @@
 	</div>
 	<div class="error-wrapper text-center">
 		<h3>XX学员，你已经进入业务模式，请选择模拟的药材保障机构</h3>
+		<div class="row">
+			<div class="col-md-4">
+				<div ui-tree class="tree tree-plus-minus">
+				  <ol ui-tree-nodes="" ng-model="list" class="tree-folder">
+				    <li ng-repeat="item in list" ui-tree-node class="tree-folder-header">
+				      <div ui-tree-handle>
+				      <span ng-class="{'fa fa-folder-open': collapsed, 'fa fa-folder': !collapsed }"></span>  
+				        {{item.title}}
+				      </div>
+				      <ol ui-tree-nodes="" ng-model="item.items" class="tree-folder-content">
+				        <li ng-repeat="subItem in item.items" ui-tree-node class="tree-folder" class="tree-folder-content">
+				          <div ui-tree-handle>
+				            {{subItem.title}}
+				          </div>
+				        </li>
+				      </ol>
+				    </li>
+				  </ol>
+				</div>			
+			</div>			
+		</div>
 
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+                <div class="tree text-left">
+                    <div class = "tree-folder">
+                        <div class="tree-folder-header">
+                            <i class="fa fa-folder"></i>
+                            <div class="tree-folder-name"></div>
+                        </div>
+                        <div class="tree-folder-content"></div>
+                        <div class="tree-loader"></div>
+                    </div>
+                    <div class="tree-item">
+                        <i class="tree-dot"></i>
+                        <div class="tree-item-name"></div>
+                    </div>
+                </div>					
+			</div>
+		</div>
 	</div>
 </div>

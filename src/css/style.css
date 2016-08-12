@@ -3363,7 +3363,7 @@ ul.activity-list .activity-desk h5 a {
 
 .tree .tree-item,
 .tree .tree-folder{
-    border:1px solid #FFF
+    /*border:1px solid #FFF;*/
 }
 
 .tree .tree-item,

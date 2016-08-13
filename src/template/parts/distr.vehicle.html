@@ -134,8 +134,12 @@
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.carName"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.carType"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.carUnit"></td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carSize"></td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.carLoad"></td>
+                            <td>
+                                <input type="text" class="ipt-sm" ng-model="newItem.carSize" placeholder="长"><span>*</span>
+                                <input type="text" class="ipt-sm" ng-model="newItem.carSize" placeholder="宽"><span>*</span>
+                                <input type="text" class="ipt-sm" ng-model="newItem.carSize" placeholder="高">
+                            </td>
+                            <td><input type="text" class="form-control input-sm " ng-model="newItem.carLoad"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.capacity"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.driver"></td>
                             <td></td>
@@ -222,12 +226,12 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="" class="col-md-5">尺寸</label>
+                            <label for="" class="col-md-5">司机</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" ng-model="tempItem.carSize" value="{{tempItem.carSize}}">
+                                <input type="text" class="form-control input-sm" ng-model="tempItem.driver" value="{{tempItem.driver}}">
                             </div>
                         </div>
-                    </div>                 
+                    </div>                
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -245,12 +249,17 @@
                                 <input type="text" class="form-control input-sm" ng-model="tempItem.capacity" value="{{tempItem.capacity}}">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                    </div> 
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-10">
                         <div class="form-group">
-                            <label for="" class="col-md-5">司机</label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control input-sm" ng-model="tempItem.driver" value="{{tempItem.driver}}">
+                            <label for="" class="col-md-2">尺寸</label>
+                            <div class="col-md-4">
+                                <input type="text" class="ipt-sm" ng-model="tempItem.carSize" value="{{tempItem.carSize}}" placeholder="长"><span>*</span>
+                                <input type="text" class="ipt-sm" ng-model="tempItem.carSize" value="{{tempItem.carSize}}" placeholder="宽"><span>*</span>
+                                <input type="text" class="ipt-sm" ng-model="tempItem.carSize" value="{{tempItem.carSize}}" placeholder="高">
                             </div>
                         </div>
                     </div>

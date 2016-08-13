@@ -42,9 +42,10 @@ app.controller('DistrLoadCtrl', function($scope,http){
 		};
 		for (var i = 0; i < list.cars.length; i++) {
 			var item = clone(t, list.cars[i]);
+			//angular.copy
 			item.orders = [];
 			$scope.transportList.push(item);
-			console.log($scope.transportList);
+			// console.log($scope.transportList);
 		}
 	}
 	$scope.transportList = [];
@@ -63,4 +64,44 @@ app.controller('DistrLoadCtrl', function($scope,http){
 				console.log("Order qurey failed!" + JSON.stringify(respone));
 				alert(respone);
 		});
+
+	/**
+	 * [loadOrders description]
+	 * @return {[type]} [description]
+	 */
+	$scope.orders = [{
+		orderCode: '2011010101',
+		receiptAddress: '2ewewewewe',
+		volume: '2000',
+		weight: '900'
+	},{
+		orderCode: '2011010991',
+		receiptAddress: '2ewewewewe',
+		volume: '200',
+		weight: '1000'
+	},{
+		orderCode: '2011056701',
+		receiptAddress: '2ewewewewe',
+		volume: '7000',
+		weight: '1400'
+	},{
+		orderCode: '2011033301',
+		receiptAddress: '2ewewewewe',
+		volume: '2900',
+		weight: '1900'
+	}];
+	$scope.checkedOrder = [];
+	$scope.addToTemp = function(index){
+		$scope.checkedOrder.push($scope.orders[index]);
+	}
+	$scope.loadOrders = function(){
+		$scope.transportList[$scope.currentIndex].orders
+		.concat($scope.checkedOrder);
+	}
+
+
+
+
+
+
 })

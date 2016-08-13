@@ -31,19 +31,19 @@
                             <th>体积</th>
                             <th>重量</th>
                         </tr>
-                         <tr>
-                            <td class="text-center"><input type="checkbox"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                         <tr ng-repeat="item in orders">
+                            <td class="text-center"><input type="checkbox" ng-click="addToTemp($index)"></td>
+                            <td>{{item.orderCode}}</td>
+                            <td>{{item.receiptAddress}}</td>
+                            <td>{{item.volume}}</td>
+                            <td>{{item.weight}}</td>
                          </tr>
                     </table>
                 </div>
             </div>    
         </div>
         <div class="col-md-1 text-center">
-            <a href="javascript:;" class="btn btn-xs btn-primary">添加到</a>
+            <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="loadOrders()">添加到</a>
         </div>
         <div class="col-md-5">
             <div class="panel">
@@ -51,7 +51,7 @@
                     车辆列表
                 </div>
                 <div class="panel-body">
-                    <table class="table table-condensed table-bordered">
+                    <table class="table table-condensed table-bordered" ng-model="transportList">
                         <tr>
                             <th>车辆编号</th>
                             <th>容积</th>
@@ -71,11 +71,11 @@
                             <th>重量</th>
                             <th>操作</th>
                         </tr>
-                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                         <tr ng-repeat="item in transportList[currentIndex].orders">
+                            <td>{{item.orderCode}}</td>
+                            <td>{{item.receiptAddress}}</td>
+                            <td>{{item.volume}}</td>
+                            <td>{{item.weight}}</td>
                             <td class="text-center">
                                 <a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                             </td>

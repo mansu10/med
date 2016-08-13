@@ -51,16 +51,16 @@
                     车辆列表
                 </div>
                 <div class="panel-body">
-                    <table class="table table-condensed table-bordered" ng-model="carDetail">
+                    <table class="table table-condensed table-bordered">
                         <tr>
                             <th>车辆编号</th>
                             <th>容积</th>
                             <th>载重</th>
                         </tr>
                         <tr>
-                            <td>{{carDetail.carCode}}</td>
-                            <td>{{carDetail.carVolume}}</td>
-                            <td>{{carDetail.maxWeight}}</td>
+                            <td>{{transportList[currentIndex].carCode}}</td>
+                            <td>{{transportList[currentIndex].carVolume}}</td>
+                            <td>{{transportList[currentIndex].maxWeight}}</td>
                         </tr>
                     </table>
                     <table class="table table-condensed table-bordered">

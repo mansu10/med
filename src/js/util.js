@@ -53,3 +53,9 @@ var inArray=function(param, value) {
 	Array.prototype.addItemToArry = function(item) {
 		this.push(item);
 	}
+	
+	function secondsToData (strTime) {
+    	var date = new Date(strTime);
+    	console.log("===============================2"+strTime+date);
+    	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getMilliseconds();
+	}

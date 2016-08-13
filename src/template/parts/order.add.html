@@ -71,9 +71,12 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收货方式</label>
-                                        <div class="col-md-8">
+                                        <!--<div class="col-md-8">
                                             <input type="text" class="form-control input-sm" ng-model="orderForm.receiveMode">
-                                        </div>
+                                        </div>-->
+                                        <select ng-model="receiptSelect.value" class="form-control input-sm"  disabled="disabled"
+                    						ng-options="x.value as x.name for x in receiptMethod">               
+            							</select>
                                     </div>    
                                 </div>                               
                             </div>                            

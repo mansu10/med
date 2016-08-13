@@ -54,6 +54,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	// 临时详细订单
 	// 需要ajax请求明细信息
 	$scope.items = [{
+		'id':0,
 		'productCode': '100100010',
 		'ordinaryName': '阿莫西林胶囊',
 		'specifications': '10mg',
@@ -86,7 +87,8 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			total: newItem.total,
 			stockNumber: newItem.stockNumber,
 			lack: newItem.lack,
-			ditribute: newItem.ditribute
+			ditribute: newItem.ditribute,
+			id:$scope.items.length
 		})
 	};
 	// 删除明细
@@ -139,7 +141,8 @@ app.controller('OrderAuditCtrl', function($scope,http){
 					console.log("queryOrderAndItem:"+JSON.stringify(respone));
 					$scope.detail = respone.order;
 					$scope.items = respone.order.orderItems;
-					
+					$scope.detail.deliveryTime = secondsToData(respone.order.deliveryTime);
+					$scope.detail.orderTime = secondsToData(respone.order.orderTime);	
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
@@ -153,6 +156,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		http.post({},URL.orderAudit).then(
 			function(respone) {
 				console.log("queryOrderAndItem:"+JSON.stringify(respone));	
+				
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
@@ -211,6 +215,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		$scope.updateOrder = function(status){		
 			http.post(getUpdateOrder(status),URL.orderAudit).then(
 				function(respone) {
+					alert(status=="1" ? "订单已确认":"已转至疑问订单");
 				},
 				function(respone) {
 					alert(respone);
@@ -229,10 +234,10 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			updateOrderObj.receiver = $scope.detail.receiver;
 			updateOrderObj.tel = $scope.detail.tel;
 			updateOrderObj.intendDeliveryTime = $scope.detail.intendDeliveryTime;
-			updateOrderObj.packageMethod = $scope.detail.packageMethod+'';
-			updateOrderObj.shipMethod = $scope.detail.shipMethod+'';
+			updateOrderObj.packageMethod = $scope.pmSelect.value+'';
+			updateOrderObj.shipMethod = $scope.shipSelect.value+'';
 			updateOrderObj.orderStatus = status;// 1:订单确认 2:转至疑问
-			updateOrderObj.memo = $scope.detail.memo+'成堆成堆成堆成堆';
+			updateOrderObj.memo = $scope.detail.memo+'';
 			updateOrderObj.orderItems = JSON.stringify($scope.items);
 			updateOrderObj.itemIds = getItemIds();
 			
@@ -242,16 +247,41 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		
 		var getItemIds = function(){
 			var itemIds = "";
-			angular.forEach($scope.items,function(size,item){
-				if (size < $scope.items.size-1) {
-					itemIds = itemIds + item.id + ',';
-				} else{
-					itemIds = itemIds + item.id;
-				}	
+			angular.forEach($scope.items,function(value){
+				itemIds += value.id + ',';
 			});
-			return itemIds;
+			return itemIds.substring(0,itemIds.length-1);
 		}
 		/*****订单状态更改*******/
+		
+		
+		//包装方式 option
+		$scope.packageMethod = [
+			{value : 0, name : "纸箱"},
+	    	{value : 1, name : "PP中空板箱"},
+	    	{value : 2, name : "制式医疗箱"}
+		];
+		$scope.pmSelect = $scope.packageMethod[0];//默认选中
+		
+		//运输方式 option
+		$scope.shipMethod = [
+			{value : 0, name : "专车"},
+	    	{value : 1, name : "拼车"}
+		];
+		$scope.shipSelect = $scope.shipMethod[0];//默认选中
+	
+		//收货方式 option
+		$scope.receiptMethod = [
+			{value : 0, name : "配送"},
+	    	{value : 1, name : "自取"}
+		];
+		$scope.receiptSelect = $scope.receiptMethod[0];//默认选中
+		
+		$scope.getValue = function(type){
+			
+		}
+		
+		
 	
 })
 

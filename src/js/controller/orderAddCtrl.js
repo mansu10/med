@@ -95,7 +95,14 @@ app.controller('OrderAddCtrl', function($scope,http){
 					return;
 				}
 			})
-		}
+		};
+		
+		//收货方式 option
+		$scope.receiptMethod = [
+			{value : 0, name : "配送"},
+	    	{value : 1, name : "自取"}
+		];
+		$scope.receiptSelect = $scope.receiptMethod[0];//默认选中
 
 	})
 

@@ -52,6 +52,7 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 		var origin = $scope.vehicleList.cars[i];
 		cp(origin, $scope.tempItem);
 		$scope.modalToggle(false);
+		$scope.updateCars($scope.tempItem);
 	}
 	$scope.cancelChange = function(){
 		cp($scope.tempItem, $scope.detail.item);
@@ -73,17 +74,20 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 			"carName": newItem.carName,
 			"carType": newItem.carType,
 			"carUnit": newItem.carUnit,
-			"carVolume": newItem.carLoad,
-			"carLength": newItem.capacity/3,
-	        "carWidth": newItem.capacity/3,
-	        "carHeigth": newItem.capacity/3,
-			"carDriver": newItem.driver,
-			"memo": newItem.memo
+			"carVolume": newItem.carVolume,
+			"carLength": newItem.carLength,
+	        "carWidth": newItem.carWidth,
+	        "carHeigth": newItem.carHeigth,
+			"carDriver": newItem.carDriver,
+			"memo": newItem.memo,
+			"id":0
 		})
 	};
 	// 删除明细
-	$scope.rmItem = function(index){
+	$scope.rmItem = function(index,id){
 		$scope.vehicleList.cars.splice(index,1);
+		$scope.deleteCars(id);
+		
 	};
 	// 显示明细
 	$scope.iptState = false;
@@ -98,31 +102,68 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 	$scope.iptSave = function(newItem){
 		$scope.addItem(newItem);
 		$scope.iptToggle(false);
+		$scope.addCars(JSON.stringify(newItem));
 		$scope.iptReset(newItem);
-		$scope.addCars();
 	};
 	/************* 添加明细 end ***************/		
 	
-	http.post({'method':'queryAllCars','numberOrType':'NC20001'},URL.carQurey).then(
+	//查询车辆信息
+	$scope.queryCars = function(queryItem){
+		
+		http.post({'method':'queryAllCars','numberOrType':queryItem},URL.carQurey).then(
 				function(respone) {
-					console.log(JSON.stringify(respone));
+					console.log("=========查询车辆信息========="+JSON.stringify(respone));
 					$scope.vehicleList = respone;
 				},
 				function(respone) {
-					console.log("Order qurey failed!" + JSON.stringify(respone));
+					console.log("queryCars failed!" + JSON.stringify(respone));
 					alert(respone);
-			});
-	//添加车辆信息		
-    $scope.addCars = function(){
-
-    	http.post({'method':'addCar','car': JSON.stringify($scope.newItem)},URL.carQurey).then(
+		});
+	}
+	
+	$scope.queryCars("");	//进入该页面自动拉取所有车辆信息	
+	
+	//添加车辆信息
+    $scope.addCars = function(newItem){
+		console.log("===========add cars============"+newItem);
+    	http.post({'method':'addCar','car': newItem},URL.carQurey).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					$scope.vehicleList = respone;
+					alert(JSON.stringify("添加成功"+JSON.stringify(respone)));
 				},
 				function(respone) {
 					console.log("addCars failed!" + JSON.stringify(respone));
-					alert(respone);
+					alert(JSON.stringify(respone));
 			});
     }
+    
+    //修改车辆信息
+    $scope.updateCars = function(item){
+		console.log("===========updateCars============"+item);
+    	http.post({'method':'updateCar','car': item},URL.carQurey).then(
+				function(respone) {
+					console.log(JSON.stringify(respone));
+					alert(JSON.stringify("updateCars成功"+JSON.stringify(respone)));
+				},
+				function(respone) {
+					console.log("updateCars failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+			});
+    }
+    
+    //删除车辆信息
+    $scope.deleteCars = function(id){
+		console.log("===========deleteCars============"+id);
+    	http.post({'method':'deleteCar','id':id},URL.carQurey).then(
+				function(respone) {
+					console.log(JSON.stringify(respone));
+					alert(JSON.stringify("deleteCars成功"+JSON.stringify(respone)));
+				},
+				function(respone) {
+					console.log("deleteCars!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+			});
+    }
+    
+    
 })

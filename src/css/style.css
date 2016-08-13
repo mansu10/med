@@ -2908,7 +2908,8 @@ div.tagsinput span.tag a {
     display: inline-block;
     margin-bottom: 20px;
     margin-top: 50px;
-
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .error-wrapper .back-btn:hover {

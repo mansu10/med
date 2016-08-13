@@ -12,27 +12,15 @@
     <div class="row">
         <div class="panel">
             <div class="panel-body">
-				<div class="col-md-6">
-					<!-- <div class="progress progress-xs">
-						<img src="./src/images/Truck.png" alt="">
-                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                            <span class="">70%</span>
-                        </div>
-                    </div> -->
-				</div>
-				<div class="col-md-6">
-					
-				</div>
+                <button class="btn btn-xs btn-success pull-right">保存</button>
             </div>
         </div>
     </div>
     <div class="row">
-
         <div class="col-md-6">
             <div class="panel">
                 <div class="panel-heading clearfix">
                     订单列表
-                    <a href="javascript:;" class="btn btn-xs btn-primary pull-right">添加</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-condensed table-bordered">
@@ -54,7 +42,10 @@
                 </div>
             </div>    
         </div>
-        <div class="col-md-6">
+        <div class="col-md-1 text-center">
+            <a href="javascript:;" class="btn btn-xs btn-primary">添加到</a>
+        </div>
+        <div class="col-md-5">
             <div class="panel">
                 <div class="panel-heading">
                     车辆列表
@@ -62,19 +53,41 @@
                 <div class="panel-body">
                     <table class="table table-condensed table-bordered">
                         <tr>
-                            <th></th>
                             <th>车辆编号</th>
                             <th>容积</th>
                             <th>载重</th>
                         </tr>
                         <tr>
-                            <td class="text-center"><input type="radio" >
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
                         </tr>
                     </table>
+                    <table class="table table-condensed table-bordered">
+                        <tr>
+                            <th>订单编号</th>
+                            <th>收货地址</th>
+                            <th>体积</th>
+                            <th>重量</th>
+                            <th>操作</th>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">
+                                <a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                            </td>
+                         </tr>
+                    </table>
+                    <div class="col-md-12">
+                      <ul class="pager">
+                        <li class="previous"><a href="javascript:;"><span aria-hidden="true">&larr;</span> 上一辆</a></li>
+                        <li><span>2</span></li>
+                        <li class="next"><a href="javascript:;">下一辆 <span aria-hidden="true">&rarr;</span></a></li>
+                      </ul>                        
+                    </div>
                 </div>
             </div>    
         </div>

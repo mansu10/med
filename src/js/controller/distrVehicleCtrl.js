@@ -52,7 +52,7 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 		var origin = $scope.vehicleList.cars[i];
 		cp(origin, $scope.tempItem);
 		$scope.modalToggle(false);
-		$scope.updateCars($scope.tempItem);
+		$scope.updateCars(JSON.stringify($scope.tempItem));
 	}
 	$scope.cancelChange = function(){
 		cp($scope.tempItem, $scope.detail.item);

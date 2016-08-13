@@ -112,7 +112,7 @@ app.controller('WareStorageCtrl', function($scope,http){
 	
 	//查询库存信息
 	$scope.queryStorage = function(){
-		http.post({'method':'queryAllStocks'},URL.carQurey).then(
+		http.post({'method':'queryAllStocks'},URL.stockQurey).then(
 				function(respone) {
 					console.log("=========查询库存信息========="+JSON.stringify(respone));
 				},

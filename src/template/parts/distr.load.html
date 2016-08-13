@@ -51,16 +51,16 @@
                     车辆列表
                 </div>
                 <div class="panel-body">
-                    <table class="table table-condensed table-bordered">
+                    <table class="table table-condensed table-bordered" ng-model="carDetail">
                         <tr>
                             <th>车辆编号</th>
                             <th>容积</th>
                             <th>载重</th>
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td>{{carDetail.carCode}}</td>
+                            <td>{{carDetail.carVolume}}</td>
+                            <td>{{carDetail.maxWeight}}</td>
                         </tr>
                     </table>
                     <table class="table table-condensed table-bordered">
@@ -83,9 +83,9 @@
                     </table>
                     <div class="col-md-12">
                       <ul class="pager">
-                        <li class="previous"><a href="javascript:;"><span aria-hidden="true">&larr;</span> 上一辆</a></li>
-                        <li><span>2</span></li>
-                        <li class="next"><a href="javascript:;">下一辆 <span aria-hidden="true">&rarr;</span></a></li>
+                        <li class="previous"><a href="javascript:;" ng-click="chgCar(-1)"><span aria-hidden="true">&larr;</span> 上一辆</a></li>
+                        <li><span>{{currentIndex+1}}</span></li>
+                        <li class="next"><a href="javascript:;" ng-click="chgCar(1)">下一辆 <span aria-hidden="true">&rarr;</span></a></li>
                       </ul>                        
                     </div>
                 </div>

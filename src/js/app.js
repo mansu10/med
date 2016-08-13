@@ -18,12 +18,6 @@ var app = angular.module('app', [
 app.run(function($rootScope, $state, $stateParams) {
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
-	// $rootScope.dateOptions = {
-	//   format: 'yyyy-mm-dd', // ISO formatted date
-	//   onClose: function(e) {
-	//     // do something when the picker closes   
-	//   }
-	// }
 });
 
 var paths = {
@@ -119,7 +113,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		// 配送管理
 		.state('home.distrLoad', {
 			url: '/distr/load',
-			templateUrl: paths.part + 'distr.load.html'
+			templateUrl: paths.part + 'distr.load.html',
+			controller: 'DistrLoadCtrl'
 		})
 		.state('home.distrVehicle', {
 			url: '/distr/vehicle',

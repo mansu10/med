@@ -109,4 +109,17 @@ app.controller('WareStorageCtrl', function($scope,http){
 		$scope.iptReset(newItem);
 	};
 	/************* 添加明细 end ***************/		
+	
+	//查询库存信息
+	$scope.queryStorage = function(){
+		http.post({'method':'queryAllStocks'},URL.carQurey).then(
+				function(respone) {
+					console.log("=========查询库存信息========="+JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("queryAllStocks failed!" + JSON.stringify(respone));
+					alert(respone);
+		});
+	}
+	$scope.queryStorage();
 })

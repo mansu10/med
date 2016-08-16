@@ -20,9 +20,9 @@
                         <thead>
                         <tr>
                         	<th>序号</th>
-                            <th>收单时间</th>
-                            <th>订单编号</th>
-                            <th>需求单位</th>
+                            <!--<th>收单时间</th>-->
+                            <th>订单号</th>
+                            <th>申请单位</th>
                             <th>订单摘要</th>
                             <th>交货时间</th>
                             <th class="sorting">订单状态</th>
@@ -33,7 +33,7 @@
                         <tbody>
                             <tr ng-repeat="item in orderList.order | orderBy:'deliveryTime':true">
                             	<td>{{$index+1}}</td>
-                                <td>{{item.orderTime}}</td>
+                                <!--<td>{{item.orderTime}}</td>-->
                                 <td>{{item.orderCode}}</td>
                                 <td>{{item.customerName}}</td>
                                 <td>{{item.memo}}</td>

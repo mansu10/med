@@ -19,6 +19,7 @@
                     <table class="table table-bordered table-striped table-condensed">
                         <thead>
                         <tr>
+                        	<th>序号</th>
                             <th>收单时间</th>
                             <th>订单编号</th>
                             <th>需求单位</th>
@@ -31,6 +32,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in orderList.order">
+                            	<td>{{$index+1}}</td>
                                 <td>{{item.orderTime}}</td>
                                 <td>{{item.orderCode}}</td>
                                 <td>{{item.customerName}}</td>
@@ -198,7 +200,7 @@
                             <td>{{item.productNumber}}</td>
                             <td>{{item.total}}</td>
                             <td>{{item.stockNumber}}</td>
-                            <td>{{item.lack}}</td>
+                            <td>{{item.productNumber > item.stockNumber ? item.productNumber - item.stockNumber : 0}}</td>
                             <td>{{item.distribute}}</td>
                             <td><a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)">删除</a></td>
                         </tr>

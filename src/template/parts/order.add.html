@@ -68,18 +68,26 @@
                                         </div>
                                     </div>    
                                 </div>
-                                <div class="col-md-4">
+                                <!--<div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收货方式</label>
                                         <!--<div class="col-md-8">
                                             <input type="text" class="form-control input-sm" ng-model="orderForm.receiveMode">
-                                        </div>-->
+                                        </div>
                                         <select ng-model="receiptSelect.value" class="form-control input-sm"  disabled="disabled"
                     						ng-options="x.value as x.name for x in receiptMethod">               
             							</select>
                                     </div>    
-                                </div>                               
-                            </div>                            
+                                </div>-->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-4 control-label">订单方式</label>
+                                        <select ng-model="orderSelect.value" class="form-control input-sm" 
+                    						    ng-options="x.value as x.name for x in orderMethod">               
+            							</select>
+                                    </div>    
+                                </div>
+                                                      
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -99,7 +107,7 @@
                 <div class="panel">
                     <div class="panel-heading">
                         明细
-                        <a href="javascript:;" class="btn btn-xs btn-primary pull-right" ng-click="iptToggle(true)"><i class="fa fa-plus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-primary pull-right" ng-click="iptToggle(true)">添加明细  <i class="fa fa-plus"></i></a>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed table-bordered table-striped">
@@ -112,7 +120,7 @@
                                     <th class="col-md-1">单位</th>
                                     <th class="col-md-1">单价</th>
                                     <th class="col-md-1">订货量</th>
-                                    <th class="col-md-1">金额</th>
+                                    <!--<th class="col-md-1">金额</th>-->
                                     <th class="col-md-2">操作</th>
                                 </tr>
                             </thead>
@@ -125,7 +133,7 @@
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.sum"></td>
+                                    <!--<td><input type="text" class="form-control input-sm" ng-model="newItem.sum" value="newItem.price*newItem.amount" disabled="disabled"></td>-->
                                     <td>
                                         <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)">保存</a>
                                         <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)">取消</a>
@@ -139,7 +147,7 @@
                                     <td>{{item.unit}}</td>
                                     <td>{{item.price}}</td>
                                     <td>{{item.productNum}}</td>
-                                    <td>{{item.total}}</td>
+                                    <td>{{item.price*item.productNum}}</td>
                                     <td><a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)">删除</a></td>
                                 </tr>
                             </tbody>

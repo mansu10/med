@@ -7,7 +7,7 @@ app.controller('OrderAddCtrl', function($scope,http){
 		
 		$scope.orderForm = {
 			method:'addOrder',
-			orderTime: '' ,
+			orderTime: secondsToData(new Date().getTime()) ,
 			deliveryTime: '',
 			customerCode: '',
 			customerName: '',
@@ -23,8 +23,12 @@ app.controller('OrderAddCtrl', function($scope,http){
 		$scope.addItem = function(newItem){
 			$scope.items.push({
 				productCode: newItem.code,
-				productNum: newItem.amount,
-				total: newItem.sum
+				total: newItem.price*newItem.amount,
+				unit:newItem.unit,
+				price:newItem.price,
+				productNum:newItem.amount,
+				size:newItem.size,
+				name:newItem.name
 			})
 		}
 		$scope.rmItem = function(index){
@@ -103,6 +107,14 @@ app.controller('OrderAddCtrl', function($scope,http){
 	    	{value : 1, name : "自取"}
 		];
 		$scope.receiptSelect = $scope.receiptMethod[0];//默认选中
+		
+		//订单方式 option
+		$scope.orderMethod = [
+			{value : 0, name : "电话订单"},
+	    	{value : 1, name : "网络电子订单"},
+	    	{value : 2, name : "邮件订单"}
+		];
+		$scope.orderSelect = $scope.orderMethod[0];//默认选中
 
 	})
 

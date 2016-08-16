@@ -31,7 +31,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in orderList.order">
+                            <tr ng-repeat="item in orderList.order | orderBy:'deliveryTime':true">
                             	<td>{{$index+1}}</td>
                                 <td>{{item.orderTime}}</td>
                                 <td>{{item.orderCode}}</td>
@@ -181,7 +181,7 @@
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.productNumber"></td>
-                            <td><input type="text" class="form-control input-sm" ng-model="newItem.total"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="newItem.total" disabled="disabled"></td>
                             <td ng-model="newItem.stockNumber"></td>
                             <td ng-model="newItem.lack"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="newItem.ditribute"></td>
@@ -196,12 +196,12 @@
                             <td>{{item.ordinaryName}}</td>
                             <td>{{item.specifications}}</td>
                             <td>{{item.unit}}</td>
-                            <td>{{item.price}}</td>
+                            <td>{{item.price | number:2}}</td>
                             <td>{{item.productNumber}}</td>
-                            <td>{{item.total}}</td>
+                            <td>{{item.price * item.productNumber | number:2}}</td>
                             <td>{{item.stockNumber}}</td>
                             <td>{{item.productNumber > item.stockNumber ? item.productNumber - item.stockNumber : 0}}</td>
-                            <td>{{item.distribute}}</td>
+                            <td>{{item.productNumber > item.stockNumber ? item.stockNumber : item.productNumber}}</td>
                             <td><a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)">删除</a></td>
                         </tr>
                     </tbody>
@@ -220,7 +220,7 @@
                                 <div class="col-md-8">
                                     <div class="iconic-input right">
                                         <i class="fa fa-calendar"></i>
-                                        <input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="detail.intendDeliveryTime">
+                                        <input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="detail.intendDeliveryTime" value="item.deliveryTime">
                                     </div>
                                     
                                 </div>

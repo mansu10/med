@@ -84,9 +84,9 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			unit: newItem.unit,
 			price: newItem.price,
 			productNumber: newItem.productNumber,
-			total: newItem.total,
+			total: newItem.price*newItem.productNumber,
 			stockNumber: newItem.stockNumber,
-			lack: newItem.lack,
+			lack: (newItem.productNumber - newItem.stockNumber) < 0 ? (newItem.stockNumber - newItem.productNumber) : 0,
 			ditribute: newItem.ditribute,
 			id:$scope.items.length
 		})
@@ -143,6 +143,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 					$scope.items = respone.order.orderItems;
 					$scope.detail.deliveryTime = secondsToData(respone.order.deliveryTime);
 					$scope.detail.orderTime = secondsToData(respone.order.orderTime);	
+					$scope.detail.intendDeliveryTime = secondsToData(respone.order.deliveryTime);
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));

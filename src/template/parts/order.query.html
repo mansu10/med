@@ -118,7 +118,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-click="modalToggle(true,item)" ng-repeat="item in orderList">
+                            <tr ng-click="modalToggle(true,item)" ng-repeat="item in orderList | orderBy:'deliveryTime':false ">
                                 <td>{{$index+1}}</td>
                                 <td>{{item.orderTime}}</td>
                                 <td>{{item.customerCode}}</td>

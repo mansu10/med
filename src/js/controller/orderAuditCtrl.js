@@ -126,12 +126,25 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	//每次进入审核页拉取订单信息
 	http.post({'method':'queryAllOrders'},URL.orderQurey).then(
 			function(respone) {
-				$scope.orderList.order = respone.order;
+				$scope.orderList.order = filterOrderByStatus(respone.order);
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
 				alert(respone);
 	});
+	
+	//过滤订单 只显示未审核和有疑问的订单
+	function filterOrderByStatus(items){
+		
+		var tempArray = [];
+		angular.forEach(items,function(item){
+			if(item.orderStatus == '未审核' || item.orderStatus == '有疑问'){
+				tempArray.push(item);
+			}
+		});
+		
+		return tempArray;
+	}
 	
 	//进入审核明细时拉取
 	var queryAuditOrder = function(id){

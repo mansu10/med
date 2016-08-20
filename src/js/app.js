@@ -100,6 +100,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/goods/multi'
 		})
 		// 仓库部分
+		
+		.state('home.wareEntry', {
+			url: '/ware/inventory',
+			templateUrl: paths.part + 'ware.entry.html'
+		})
 		.state('home.wareInventory', {
 			url: '/ware/inventory',
 			templateUrl: paths.part + 'ware.inventory.html',

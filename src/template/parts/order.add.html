@@ -18,6 +18,17 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label for="" class="col-md-4 control-label">订单方式</label>
+                                        <div class="col-md-8">
+                                            <select ng-model="orderSelect.value" class="form-control input-sm" ng-options="x.value as x.name for x in orderMethod">
+                                            </select>    
+                                        </div>
+                                    </div>    
+                                </div> 
+                            </div>
+                            <div class="row">           
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收单时间</label>
                                         <div class="col-md-8">
                                             <input class="form-control input-sm" type="text" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="orderForm.orderTime">
@@ -79,16 +90,7 @@
             							</select>
                                     </div>    
                                 </div>-->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">订单方式</label>
-                                        <div class="col-md-8">
-                                            <select ng-model="orderSelect.value" class="form-control input-sm" ng-options="x.value as x.name for x in orderMethod">
-                                            </select>    
-                                        </div>
-                                        
-                                    </div>    
-                                </div>
+
                             </div>                          
                             <div class="row">
                                 <div class="col-md-8">

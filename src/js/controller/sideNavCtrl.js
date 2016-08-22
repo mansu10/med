@@ -56,7 +56,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"icon":"fa fa-laptop",
 					"child": [{
 							"title": "库存查询",
-							"url": "javascript:;",
+							"url": ".collectStorage",
 							"isActive":false
 						},{
 							"title": "药材筹措",

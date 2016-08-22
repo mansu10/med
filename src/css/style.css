@@ -3164,49 +3164,6 @@ ul.activity-list .activity-desk h5 a {
 /*-------------------------------
             added styles
 -------------------------------*/
-.w1000 {
-    width: 1000px;
-}
-#table-inventory td {
-    padding: 0;
-    width: 50px;
-    height: 30px;
-}
-#table-inventory td div {
-    width: 100%;
-    height: 100%;
-    background-color: #65cea7;
-    text-align: center;
-    line-height: 30px;
-}
-#table-inventory th {
-    width: 100px;
-}
-#table-inventory td .occupy {
-    background-color: #f0ad4e
-}
-#table-inventory .hlt {
-    animation: blink .5s 3;
-}
-@keyframes blink
-{
-    from {opacity: 1;}
-    to {opacity: .6;}
-}
-
-
-.progress {
-    margin-bottom: 0;
-}
-
-.mode-wrapper {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #6bc5a4;
-}
 
 
 // tree
@@ -3468,4 +3425,56 @@ ul.activity-list .activity-desk h5 a {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;           
+}
+.w1000 {
+    width: 1000px;
+    overflow-x: scroll;
+}
+#table-inventory td {
+    padding: 0;
+    width: 50px;
+    height: 30px;
+}
+#table-inventory td div {
+    width: 100%;
+    height: 100%;
+    background-color: #65cea7;
+    text-align: center;
+    line-height: 30px;
+}
+#table-inventory th {
+    width: 100px;
+}
+#table-inventory td .occupy {
+    background-color: #f0ad4e
+}
+#table-inventory .hlt {
+    animation: blink .5s 3;
+}
+@keyframes blink
+{
+    from {opacity: 1;}
+    to {opacity: .6;}
+}
+
+
+.progress {
+    margin-bottom: 0;
+}
+
+.mode-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #6bc5a4;
+}
+.tbl {
+    display: table;
+    border-collapse: collapse;
+}
+.cell {
+    display: table-cell;
+    border: 1px solid #ddd;
 }

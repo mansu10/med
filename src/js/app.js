@@ -65,6 +65,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/dashboard',
 			templateUrl: paths.part + 'dashboard.html'
 		})
+		// 集货管理
+		.state('home.collectStorage',{
+			url: '/collect/storage',
+			templateUrl: paths.part + 'collect.storage.html'
+		})
 		// 订单部分
 		.state('home.orderAdd',{
 			url: '/order/add',
@@ -102,7 +107,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		// 仓库部分
 		
 		.state('home.wareEntry', {
-			url: '/ware/inventory',
+			url: '/ware/entry',
 			templateUrl: paths.part + 'ware.entry.html'
 		})
 		.state('home.wareInventory', {

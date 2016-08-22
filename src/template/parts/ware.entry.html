@@ -159,13 +159,14 @@
                             <thead>
                                 <tr>
                                     <th class="col-md-1">序号</th>
-                                    <th class="col-md-1">商品编号</th>
-                                    <th class="col-md-3">商品名称</th>
+                                    <th class="col-md-1">药材编号</th>
+                                    <th class="col-md-2">药材名称</th>
                                     <th class="col-md-1">规格型号</th>
                                     <th class="col-md-1">单位</th>
+                                    <th class="col-md-1">厂家</th>
+                                    <th class="col-md-1">批号</th>
                                     <th class="col-md-1">单价</th>
-                                    <th class="col-md-1">订货量</th>
-                                    <!--<th class="col-md-1">金额</th>-->
+                                    <th class="col-md-1">入库数量</th>
                                     <th class="col-md-2">操作</th>
                                 </tr>
                             </thead>
@@ -199,27 +200,8 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <button class="btn btn-sm btn-primary pull-right">确认入库</button>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="panel">
-                    <div class="panel-body">
-                        <form action="" class="form form-horizontal">
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-2">
-                                    备注
-                                </label>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" name="" id="" rows="5" ng-model="orderForm.memo"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group text-center">
-                                <a href="" class="btn btn-sm btn-primary" ng-click="submitOrder()">提交订单</a>
-                                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="reset()">清除订单</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>            
+            </div>          
         </div>

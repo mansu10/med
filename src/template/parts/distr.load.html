@@ -8,7 +8,7 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper">
+<!-- <div class="wrapper">
     <div class="row">
         <div class="col-md-6">
             <div class="panel">
@@ -87,4 +87,120 @@
         </div>
         	
     </div>
+</div> -->
+
+<div class="wrapper">
+    <div class="row">
+        <div class="panel">
+    <section style="width: 80%;margin: 0 auto">
+        <div class="genre width-100">
+            <ul class="clear genreBorder" >
+                <li class="width-10 floatLeft">配送区域</li>
+                <ul class="clear floatRight width-90">
+                    <li class="width-10 floatLeft">配送点</li>
+                    <ul class="clear floatRight width-90 genre_li">
+                        <li class="width-20">订单号</li>
+                        <li class="width-10">件数</li>
+                        <li class="width-10">体积</li>
+                        <li class="width-10">重量</li>
+                        <li class="width-20">交货期限</li>
+                        <li class="width-20">剩余时间</li>
+                        <li class="width-10">配载选择</li>
+                    </ul>
+                </ul>
+            </ul>
+        </div>
+        <div class="genre width-100">
+            <ul class="clear genre-border-left-right" ng-repeat="a in genre" style="">
+                <li class="width-10 floatLeft">{{a.city}}</li>
+                <ul class="clear floatRight width-90 genreBorder-bottom genreBorder-left" ng-repeat="b in a.cityGenre">
+                    <li class="width-10 floatLeft">{{b.distributionSites}}</li>
+                    <ul class="clear floatRight width-90 genre_li genreBorder-bottom" ng-repeat="c in b.genreNumber">
+                        <li class="width-20">{{c.order}}</li>
+                        <li class="width-10">{{c.piece}}</li>
+                        <li class="width-10">{{c.bulk}}</li>
+                        <li class="width-10">{{c.weight}}</li>
+                        <li class="width-20">{{c.deliveryTime}}</li>
+                        <li class="width-20">{{c.remainingTime}}</li>
+                        <li class="width-10"><input type="checkbox" style="vertical-align: middle"></li>
+                    </ul>
+                </ul>
+            </ul>
+        </div>
+
+        <div class="genre width-100 genreMarginTop-10" >
+            <ul class="clear genreBorder genre_li">
+                <li class="width-20">&nbsp;</li>   <!--撑起左边-->
+                <li class="width-15">
+                    <span>选中订单数</span>
+                    <p>12</p>
+                </li>
+                <li class="width-15">
+                    <span>件数</span>
+                    <p>4545</p>
+                </li>
+                <li class="width-15">
+                    <span>体积</span>
+                    <p>4545</p>
+                </li>
+                <li class="width-15">
+                    <span>重量</span>
+                    <p>44545</p>
+                </li>
+                <li class="width-20">&nbsp;</li>   <!--撑起右边-->
+            </ul>
+        </div>
+
+        <div class="genre width-100" >
+            <ul class="clear genre-border-left-right2 genre_li">
+                <li class="width-10">可选车</li>
+                <ul class="clear floatLeft width-80 genre_li genre_li2">
+                    <li class="width-25" ng-repeat="t in car">
+                        <div class="genreBorder genreMarginRightTop">{{t.brand}}</div>
+                    </li>
+                </ul>
+
+                <li class="width-10" style="float:right;background: red;height: 100%">确认</li>
+
+
+
+            </ul>
+        </div>
+    </section>            
+        </div>
+    </div>
 </div>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;text-decoration: none;font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+        .clear:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+        .floatLeft{float: left}
+        .floatRight{float:right}
+        .width-5{width: 5%}
+        .width-8{width: 8%}
+        .width-10{width: 9%}
+        .width-15{width: 15%}
+        .width-16{width: 16%}
+        .width-20{width: 20%}
+        .width-25{width: 25%}
+        .width-30{width: 30%}
+        .width-40{width: 40%}
+        .width-50{width: 50%}
+        .width-60{width: 60%}
+        .width-70{width: 70%}
+        .width-80{width: 80%}
+        .width-85{width: 85%}
+        .width-90{width: 90%}
+        .width-100{width: 100%}
+        .genre li{text-align: center}
+        .genre .genre_li li{float:left;text-align: center}
+        .genre .genreBorder-bottom:last-child {border-bottom: none!important;}
+        .genreBorder{border:1px solid #ddd}
+        .genreMarginTop-10{margin-top: 10px}
+        .genreBorder-left{padding-left: 5px;border-left:1px solid #ddd;}
+        .genreBorder-bottom{border-bottom: 1px solid #ddd;}
+        .genre-border-left-right{border-left: 1px solid #ddd;border-right: 1px solid #ddd;padding-bottom: 5px;border-bottom:1px solid #ddd}
+        .genre-border-left-right2{border-left: 1px solid #ddd;border-right: 1px solid #ddd;border-bottom:1px solid #ddd}
+        .genre .genre_li2 li:nth-child(4n){margin-right: 0px!important;}
+        .genre .genre_li2 .genreMarginRightTop{padding: 5px 0px;margin-top: 5px;margin-right:15px;margin-bottom: 5px}
+
+    </style>

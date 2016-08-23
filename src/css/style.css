@@ -3473,8 +3473,48 @@ ul.activity-list .activity-desk h5 a {
 .tbl {
     display: table;
     border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
-.cell {
+.tbl ul, .tbl li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.tbl .item {
+    width: 100%;
+}
+.tbl .item .tt {
+    width: 10%;
+    float: left;
+    display: table-cell;
+    border-top: 1px solid #ddd;
+}
+.tbl .item .cnt {
+    width: 90%;
+    float: right;
+    border-left: 1px solid #ddd;
+}
+.cnt .detail li {
+    float: left;
+    display: table-cell;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+
+}
+.fl {
+    float: left;
+}
+.tbl .item .cnt span {
     display: table-cell;
     border: 1px solid #ddd;
+}
+.w5 {
+    width: 5%;
+}
+.w8 {
+    width: 8%;
 }

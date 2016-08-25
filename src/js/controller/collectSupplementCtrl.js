@@ -1,4 +1,4 @@
-app.controller('CollectStorageCtrl', function($scope,http){
+app.controller('CollectSupplementCtrl', function($scope,http){
 	// 需ajax请求列表
 	$scope.storageList = [{
 	            "medicName": "健胃消食片",
@@ -7,11 +7,8 @@ app.controller('CollectStorageCtrl', function($scope,http){
 	            "type": "型号1",
 	            "unit": "24粒/盒",
 	            "vender": "厂家1",
-	            "location": "货位1",
-	            "boxNum": "001",
 	            "price": 1.00,
 	            "inventory": 100,
-	            "inventValue": 0,
 	            "minInvent": 1,
 	            "maxInvent": 3,
 	            "inventLevel": 3/4,
@@ -22,16 +19,13 @@ app.controller('CollectStorageCtrl', function($scope,http){
 	            "spec": "规格2",
 	            "type": "型号2",
 	            "unit": "12粒/盒",
-	            "vender": "厂家2",
-	            "location": "货位2",
-	            "boxNum": "002",
+	            "vender": "厂家2",	         
 	            "price": 1.00,
-	            "inventory": 30,
-	            "inventValue": 0,
+	            "inventory": 30,	            
 	            "minInvent": 100,
 	            "maxInvent": 30000,
 	            "inventLevel": 1/2,
-	            "status": {value : 0, name : "不足",color:"warning"},
+	            "status": {value : 0, name : "不足",color:"warning"}
 	        },{
 	            "medicName": "清热解毒胶囊",
 	            "medicCode": "A00103",
@@ -46,7 +40,7 @@ app.controller('CollectStorageCtrl', function($scope,http){
 	            "inventValue": 0,
 	            "minInvent": 130,
 	            "maxInvent": 300,
-	            "inventLevel": 1/4,
+	            "inventLevel": 1/3,
 	            "status": {value : 1, name : "超量",color:"danger"}
 	        }
 	    ];

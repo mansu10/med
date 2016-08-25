@@ -17,12 +17,9 @@
 						<div class="form-group">
 							<label for="" class="control-label col-md-4">库存状态</label>
 							<div class="col-md-8">
-								<select class="form-control input-sm">
-									<option value="">正常</option>
-									<option value="">不足</option>
-									<option value="">超量</option>
-								</select>
-								
+								<select ng-model="defaultSelect.value" class="form-control input-sm" ng-change="getValue()"
+                    						ng-options="x.value as x.name for x in inventStatus">               
+            					</select>
 							</div>
 						</div>							
 					</div>
@@ -51,56 +48,23 @@
 						<th>库存状态</th>
 						<th>建议订货量</th>
 					</tr>
-					<tr class="danger">
+					
+					<tr ng-repeat="item in storageList | orderBy:'status.value':false" class="{{item.status.color}}">
 						<td class="text-center"><input type="checkbox"></input></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr class="warning">
-						<td class="text-center"><input type="checkbox"></input></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr class="success">
-						<td class="text-center"><input type="checkbox"></input></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>{{$index+1}}</td>
+						<td>{{item.medicName}}</td>
+						<td>{{item.medicCode}}</td>
+						<td>{{item.spec}}</td>
+						<td>{{item.type}}</td>
+						<td>{{item.unit}}</td>
+						<td>{{item.vender}}</td>
+						<td>{{item.price}}</td>
+						<td>{{item.inventory}}</td>
+						<td>{{item.minInvent}}</td>
+						<td>{{item.maxInvent}}</td>
+						<td>{{item.inventLevel*100 +"%" }}</td>
+						<td>{{item.status.name}}</td>
+						<td>0</td>
 					</tr>
 				</table>				
 			</div>

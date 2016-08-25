@@ -13,24 +13,24 @@
 		<div class="panel">
 			<div class="panel-body">
 				<form action="" class="form form-horizontal">
-					<div class="form-group">
-						<div class="col-md-3"><input type="text" class="form-control input-sm"></div>
-						<a href="javascript:;" class="btn btn-sm btn-primary">库存查询</a>
-					</div>						
-					<div class="row">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="" class="control-label col-md-4">库存状态</label>
-								<div class="col-md-8">
-									<select class="form-control input-sm">
-										<option value="">正常</option>
-										<option value="">不足</option>
-										<option value="">超量</option>
-									</select>
-									
-								</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="" class="control-label col-md-4">库存状态</label>
+							<div class="col-md-8">
+								<select class="form-control input-sm">
+									<option value="">正常</option>
+									<option value="">不足</option>
+									<option value="">超量</option>
+								</select>
+								
 							</div>
-						</div>
+						</div>							
+					</div>
+					<div class="col-md-8">
+						<div class="form-group">
+							<div class="col-md-3"><input type="text" class="form-control input-sm"></div>
+							<a href="javascript:;" class="btn btn-sm btn-primary">库存查询</a>
+						</div>							
 					</div>
 				</form>
 				<table class="table table-condensed table-bordered">
@@ -45,11 +45,51 @@
 						<th>厂家</th>
 						<th>单价</th>
 						<th>库存量</th>
+						<th>最小库存</th>
+						<th>最大库存</th>
+						<th>库存水平</th>
 						<th>库存状态</th>
-						<th>缺货量</th>
+						<th>建议订货量</th>
 					</tr>
-					<tr>
-						<td><input type="checkbox"></input></td>
+					<tr class="danger">
+						<td class="text-center"><input type="checkbox"></input></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="warning">
+						<td class="text-center"><input type="checkbox"></input></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td class="text-center"><input type="checkbox"></input></td>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -75,17 +115,17 @@
 			<div class="panel-body">
 				<table class="table table-condensed table-bordered">
 					<tr>
-						<th>序号</th>
-						<th>药材名称</th>
-						<th>药材编号</th>
-						<th>规格</th>
-						<th>型号</th>
-						<th>计量单位</th>
-						<th>厂家</th>
-						<th>单价</th>
-						<th>供应商</th>
-						<th>订购量</th>
-						<th>操作</th>
+						<th class="col-md-1">序号</th>
+						<th class="col-md-1">药材名称</th>
+						<th class="col-md-1">药材编号</th>
+						<th class="col-md-1">规格</th>
+						<th class="col-md-1">型号</th>
+						<th class="col-md-1">计量单位</th>
+						<th class="col-md-1">厂家</th>
+						<th class="col-md-1">单价</th>
+						<th class="col-md-1">供应商</th>
+						<th class="col-md-1">订购量</th>
+						<th class="col-md-1">操作</th>
 					</tr>
 					<tr>
 						<td></td>
@@ -97,23 +137,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td></td>
-						<td>
-							<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-check"></i></a>
-							<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><input type="text" class="form-control input-sm"></td>
 						<td>
 							<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
 							<a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>

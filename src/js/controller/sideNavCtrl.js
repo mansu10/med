@@ -60,7 +60,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"isActive":false
 						},{
 							"title": "药材筹措",
-							"url": "javascript:;",
+							"url": ".collectSupplement",
 							"isActive":false
 					  }]					
 				},

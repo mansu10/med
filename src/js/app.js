@@ -69,7 +69,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('home.collectStorage',{
 			url: '/collect/storage',
 			templateUrl: paths.part + 'collect.storage.html',
-			controller: 'collectStorageCtrl'
+			controller: 'CollectStorageCtrl'
+		})
+		.state('home.collectSupplement',{
+			url: '/collect/supplement',
+			templateUrl: paths.part + 'collect.supplement.html',
+			controller: 'CollectSupplementCtrl'
 		})
 		// 订单部分
 		.state('home.orderAdd',{

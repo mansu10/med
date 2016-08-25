@@ -3,6 +3,9 @@ include_js("./src/js/controller/headerCtrl.js"); //此处要用对于与index.ht
 include_js("./src/js/controller/loginCtrl.js");
 include_js("./src/js/controller/sideNavCtrl.js");
 
+include_js("./src/js/controller/collectStorageCtrl.js");
+include_js("./src/js/controller/collectSupplementCtrl.js");
+
 include_js("./src/js/controller/orderAddCtrl.js");
 include_js("./src/js/controller/orderQueryCtrl.js");
 include_js("./src/js/controller/orderAuditCtrl.js");

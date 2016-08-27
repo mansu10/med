@@ -32,5 +32,7 @@ var URL = {
 	orderAudit:API_URI+"MedicineManagement/OrderServlet",
 	productQurey:API_URI+"MedicineManagement/ProductServlet",
 	carQurey:API_URI+"MedicineManagement/CarServlet",
-	stockQurey:API_URI+"MedicineManagement/StockServlet"
+	stockQurey:API_URI+"MedicineManagement/StockServlet",
+	raiseInventory:API_URI+"MedicineManagement/RaiseInventoryServlet"
+	
 }

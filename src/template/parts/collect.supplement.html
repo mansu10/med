@@ -25,8 +25,8 @@
 					</div>
 					<div class="col-md-8">
 						<div class="form-group">
-							<div class="col-md-3"><input type="text" class="form-control input-sm"></div>
-							<a href="javascript:;" class="btn btn-sm btn-primary">库存查询</a>
+							<div class="col-md-3"><input type="text" class="form-control input-sm" ng-model="qureyValue"></div>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="queryStorage()">库存查询</a>
 						</div>							
 					</div>
 				</form>
@@ -50,7 +50,7 @@
 					</tr>
 					
 					<tr ng-repeat="item in storageList | orderBy:'status.value':false" class="{{item.status.color}}">
-						<td class="text-center"><input type="checkbox"></input></td>
+						<td class="text-center"><input type="checkbox" id={{item.medicCode}} name="{{item.medicName}}" ng-checked="isSelected(item.medicCode)" ng-click="updateSelection($event,item)"></input></td>
 						<td>{{$index+1}}</td>
 						<td>{{item.medicName}}</td>
 						<td>{{item.medicCode}}</td>
@@ -58,18 +58,18 @@
 						<td>{{item.type}}</td>
 						<td>{{item.unit}}</td>
 						<td>{{item.vender}}</td>
-						<td>{{item.price}}</td>
+						<td>{{item.price | number:2}}</td>
 						<td>{{item.inventory}}</td>
 						<td>{{item.minInvent}}</td>
 						<td>{{item.maxInvent}}</td>
-						<td>{{item.inventLevel*100 +"%" }}</td>
+						<td>{{item.inventory/item.maxInvent *100 | number:2}}%</td>
 						<td>{{item.status.name}}</td>
-						<td>0</td>
+						<td>{{item.approvalNumber}}</td>
 					</tr>
 				</table>				
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="javascript:;" class="btn btn-sm btn-primary pull-right">添加</a>
+				<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="addInventory()">添加</a>
 			</div>			
 		</div>
 	</div>
@@ -91,26 +91,26 @@
 						<th class="col-md-1">订购量</th>
 						<th class="col-md-1">操作</th>
 					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><input type="text" class="form-control input-sm"></td>
+					<tr ng-repeat="item in inventList">
+						<td>{{$index+1}}</td>
+						<td>{{item.medicName}}</td>
+						<td>{{item.medicCode}}</td>
+						<td>{{item.spec}}</td>
+						<td>{{item.type}}</td>
+						<td>{{item.unit}}</td>
+						<td>{{item.vender}}</td>
+						<td>{{item.price | number:2}}</td>
+						<td>{{item.supplier}}</td>
+						<td><input type="text" class="form-control input-sm" ng-model="item.approvalNumber" ng-disabled="editDisabled"></td>
 						<td>
-							<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-							<a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+							<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit" ng-click="editOrderAmount()"></i></a>
+							<a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times" ng-click="remove($index)"></i></a>
 						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="javascript:;" class="btn btn-sm btn-primary pull-right">确认</a>
+				<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="confirmInventory()">确认</a>
 			</div>
 		</div>
 	</div>

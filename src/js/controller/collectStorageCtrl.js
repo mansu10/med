@@ -13,7 +13,7 @@ app.controller('CollectStorageCtrl', function($scope,http){
 	            "inventory": 100,
 	            "inventValue": 0,
 	            "minInvent": 1,
-	            "maxInvent": 3,
+	            "maxInvent": 1000,
 	            "inventLevel": 3/4,
 	            "status": {value : 2, name : "正常",color:"success"}
 	        },{
@@ -25,11 +25,11 @@ app.controller('CollectStorageCtrl', function($scope,http){
 	            "vender": "厂家2",
 	            "location": "货位2",
 	            "boxNum": "002",
-	            "price": 1.00,
-	            "inventory": 30,
+	            "price": 2.00,
+	            "inventory": 20,
 	            "inventValue": 0,
-	            "minInvent": 100,
-	            "maxInvent": 30000,
+	            "minInvent": 30,
+	            "maxInvent": 100,
 	            "inventLevel": 1/2,
 	            "status": {value : 0, name : "不足",color:"warning"},
 	        },{
@@ -42,21 +42,81 @@ app.controller('CollectStorageCtrl', function($scope,http){
 	            "location": "货位3",
 	            "boxNum": "003",
 	            "price": 1.00,
-	            "inventory": 30,
+	            "inventory": 1110,
 	            "inventValue": 0,
 	            "minInvent": 130,
-	            "maxInvent": 300,
+	            "maxInvent": 500,
 	            "inventLevel": 1/4,
 	            "status": {value : 1, name : "超量",color:"danger"}
 	        }
 	    ];
 	    
-	    //库存状态 option
-		$scope.inventStatus = [
-			{value : 0, name : "不足"},
-	    	{value : 1, name : "超量"},
-	    	{value : 2, name : "正常"},
-	    	{value : 3, name : "全部"}
+	//库存状态 option
+	$scope.inventStatus = [
+			{value : 0, name : "不足",color:"warning"},
+	    	{value : 1, name : "超量",color:"danger"},
+	    	{value : 2, name : "正常",color:"success"},
+	    	{value : 3, name : "全部",color:"success"}
 		];
-		$scope.defaultSelect = $scope.inventStatus[3];//默认选中
+	$scope.defaultSelect = $scope.inventStatus[3];//默认选中
+		
+	//查询库存信息
+	$scope.queryStorage = function(){
+		http.post({'method':'queryAllStocks','productCodeOrName':$scope.qureyValue},URL.stockQurey).then(
+				function(respone) {
+					console.log("=========查询库存信息========="+JSON.stringify(respone));
+					refreshStorageList(respone.stocks);
+				},
+				function(respone) {
+					console.log("queryAllStocks failed!" + JSON.stringify(respone));
+					alert(respone);
+		});
+	}
+	$scope.queryStorage();
+	
+	function refreshStorageList(list){
+		var tempList = [];
+		angular.forEach(list,function(item){
+			if($scope.defaultSelect.value == 0 && item.stockQuantity >= item.product.minStock){
+				console.log("库存不足时查询商品，不符合条件跳过"+item.stockQuantity+"/ "+item.product.minStock);
+				return;
+			}
+			if($scope.defaultSelect.value == 1 && item.stockQuantity <= item.product.maxStock){
+				console.log("库存超量时查询商品，不符合条件跳过"+item.stockQuantity+"/ "+item.product.maxStock);
+				return;
+			}
+			if($scope.defaultSelect.value == 2 && (item.stockQuantity < item.product.minStock || item.stockQuantity > item.product.maxStock)){
+				console.log("库存正常时查询商品，不符合条件跳过"+item.stockQuantity+"/ "+item.product.minStock+"/ "+item.product.maxStock);
+				return;
+			}
+			tempList.push({
+	            "medicName": item.product.productName,
+	            "medicCode": item.productCode,
+	            "spec": item.product.specifications,
+	            "type": item.product.model,
+	            "unit": item.product.unit,
+	            "vender": item.product.manufactor,
+	            "location": item.locatorName,
+	            "boxNum": item.locatorCode,
+	            "price": item.product.price,
+	            "inventory": item.stockQuantity,
+	            "inventValue": item.stockValue,
+	            "minInvent": item.product.minStock,
+	            "maxInvent": item.product.maxStock,
+	            "inventLevel": item.stockLevel,
+	            "status": getStatus(item.stockQuantity,item.product.minStock,item.product.maxStock)
+	       });
+		});
+		$scope.storageList = tempList;
+	}
+	
+	function getStatus(inventory,min,max){
+		if(inventory > max){
+			return {value : 1, name : "超量",color:"danger"};
+		}else if(inventory < min){
+			return {value : 0, name : "不足",color:"warning"};
+		}else{
+			return {value : 2, name : "正常",color:"success"};
+		} 
+	}
 })

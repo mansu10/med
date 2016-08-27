@@ -26,8 +26,8 @@
 					</div>
 					<div class="col-md-8">
 						<div class="form-group">
-							<div class="col-md-3"><input type="text" class="form-control input-sm"></div>
-							<a href="javascript:;" class="btn btn-sm btn-primary">库存查询</a>
+							<div class="col-md-3"><input type="text" class="form-control input-sm" ng-model="qureyValue"></div>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="queryStorage()">库存查询</a>
 						</div>						
 					</div>
 				</form>
@@ -62,12 +62,12 @@
 						<td>{{item.vender}}</td>
 						<td>{{item.location}}</td>
 						<td>{{item.boxNum}}</td>
-						<td>{{item.price}}</td>
+						<td>{{item.price | number:2}}</td>
 						<td>{{item.inventory}}</td>
-						<td>{{item.inventValue}}</td>
+						<td>{{item.price * item.inventory | number:2}}</td>
 						<td>{{item.minInvent}}</td>
 						<td>{{item.maxInvent}}</td>
-						<td>{{item.inventLevel*100 +"%" }}</td><!--| percentage:2:"$"-->
+						<td>{{item.inventory/item.maxInvent *100 | number:2}}% </td><!--| percentage:2:"$"-->
 						<td>{{item.status.name}}</td>
 					</tr>
 				</table>

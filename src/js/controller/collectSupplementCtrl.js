@@ -173,7 +173,7 @@ app.controller('CollectSupplementCtrl', function($scope,http){
 		
 		var submitInfo = {'productCode':'10000001','orderAmount':'30','memo':'筹措清单备注'};
 		
-		http.post({'method':'addRaiseInventory','inventory':JSON.stringify(temp)},URL.raiseInventory).then(
+		http.post({'method':'addRaiseInventory','inventorys':JSON.stringify(temp)},URL.raiseInventory).then(
 				function(respone) {
 					console.log("=========确认筹措清单========="+JSON.stringify(respone));
 					alert("筹措清单提交成功！")

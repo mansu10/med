@@ -101,10 +101,14 @@
 						<td>{{item.vender}}</td>
 						<td>{{item.price | number:2}}</td>
 						<td>{{item.supplier}}</td>
-						<td><input type="text" class="form-control input-sm" ng-model="item.approvalNumber" ng-disabled="editDisabled"></td>
-						<td>
+						<td><input type="number" class="form-control input-sm" ng-model="item.approvalNumber" ng-disabled="editDisabled"></td>
+						<td ng-if="editDisabled">
 							<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit" ng-click="editOrderAmount()"></i></a>
 							<a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times" ng-click="remove($index)"></i></a>
+						</td>
+						<td ng-if="!editDisabled">
+							<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-check" ng-click="save()"></i></a>
+							<a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-minus-circle" ng-click="cancel($index)"></i></a>
 						</td>
 					</tr>
 				</table>

@@ -124,24 +124,24 @@ app.controller('CollectSupplementCtrl', function($scope,http){
 	
 	$scope.selected = [];
     $scope.selectedTags = [];
-    var selectedList = [];
+    $scope.selectedList = [];
  
     var updateSelected = function(action,item,name){
     	var id = item.medicCode
         if(action == 'add' && $scope.selected.indexOf(id) == -1){
              $scope.selected.push(id);
              $scope.selectedTags.push(name);
-             selectedList.push(item);
+             $scope.selectedList.push(item);
         }
-//      if(action == 'remove' && $scope.selected.indexOf(id)!=-1){
-//           var idx = $scope.selected.indexOf(id);
-//           $scope.selected.splice(idx,1);
-//           $scope.selectedTags.splice(idx,1);
-//           selectedList.splice(idx,1);
-//      }
+        if(action == 'remove' && $scope.selected.indexOf(id)!=-1){
+             var idx = $scope.selected.indexOf(id);
+             $scope.selected.splice(idx,1);
+             $scope.selectedTags.splice(idx,1);
+             $scope.selectedList.splice(idx,1);
+        }
         console.log("=========$scope.selected=========="+JSON.stringify($scope.selected));
         console.log("=========$scope.selectedTags=========="+JSON.stringify($scope.selectedTags));
-        console.log("=========selectedList=========="+JSON.stringify(selectedList));
+        console.log("=========selectedList=========="+JSON.stringify($scope.selectedList));
     }
  
     $scope.updateSelection = function($event, item){
@@ -153,10 +153,13 @@ app.controller('CollectSupplementCtrl', function($scope,http){
     $scope.isSelected = function(id){
          return $scope.selected.indexOf(id)>=0;
     }
-    
     //添加商品到筹措清单列表
     $scope.addInventory = function(){
-    	$scope.inventList = selectedList.concat();
+//  	temp = $scope.selectedList.concat();
+//  	$scope.inventList = temp;
+//  	temp = [];
+    	$scope.inventList = angular.copy($scope.selectedList);
+    	
 //  	$scope.inventList.orderAmount = $scope.inventList.maxInvent - $scope.inventList.inventory;
     }
     
@@ -189,5 +192,14 @@ app.controller('CollectSupplementCtrl', function($scope,http){
 	//删除清单项
 	$scope.remove = function(index){
 		$scope.inventList.splice(index,1);
+	}
+	//保存更改
+	$scope.save = function(){
+		$scope.editDisabled = true;
+	}
+	//取消
+	$scope.cancel = function(index){
+		$scope.editDisabled = true;
+		$scope.inventList[index].approvalNumber = $scope.inventList[index].maxInvent - $scope.inventList[index].inventory;
 	}
 })

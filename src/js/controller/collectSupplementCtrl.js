@@ -153,14 +153,30 @@ app.controller('CollectSupplementCtrl', function($scope,http){
     $scope.isSelected = function(id){
          return $scope.selected.indexOf(id)>=0;
     }
+    
+    $scope.inventList = [];
     //添加商品到筹措清单列表
     $scope.addInventory = function(){
 //  	temp = $scope.selectedList.concat();
-//  	$scope.inventList = temp;
 //  	temp = [];
-    	$scope.inventList = angular.copy($scope.selectedList);
+//  	$scope.inventList = angular.copy($scope.selectedList);
+    	angular.forEach(angular.copy($scope.selectedList),function(item){
+    		if(!containSubCategory(item)){
+    			$scope.inventList.push(item);
+    		}
+    	})
     	
 //  	$scope.inventList.orderAmount = $scope.inventList.maxInvent - $scope.inventList.inventory;
+    }
+    
+    //判断数组中是否包含某对象
+    function containSubCategory(element){
+    	for (var i= 0;i<$scope.inventList.length;i++) {
+    		if($scope.inventList[i].medicCode == element.medicCode){
+    			return true;
+    		}
+    	}
+    	return false;
     }
     
     //确认筹措清单

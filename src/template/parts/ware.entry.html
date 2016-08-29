@@ -85,73 +85,32 @@
                                     </div>    
                                 </div>
                             </div>
-                            <hr>                      
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">验收员</label>
+                                        <label for="" class="col-md-4 control-label">收货凭证</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
+                                            <input type="text" class="form-control input-sm" >
                                         </div>
                                     </div>    
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">验收结论</label>
+                                        <label for="" class="col-md-4 control-label">凭证号</label>
                                         <div class="col-md-8">
-                                            <select ng-model="orderSelect.value" class="form-control input-sm">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                            </select>    
-                                        </div>
-                                        
-                                    </div>    
-                                </div>
-                            </div>                          
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-2 control-label">备注</label>
-                                        <div class="col-md-10">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.receiptAddress">
+                                            <input type="text" class="form-control input-sm" >
                                         </div>
                                     </div>    
-                                </div> 
-                                <div class="col-md-2">
-                                    <button class="btn btn-sm btn-primary">验收确认</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
             <div class="row">
                 <div class="panel">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="col-md-4 control-label">入库编号</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
-                                    </div>
-                                </div>    
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="col-md-4 control-label">入库时间</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control input-sm" type="text" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="d2">
-                                    </div>  
-                                    
-                                </div>    
-                            </div>                            
-                        </div>
-
-                    </div>
                     <div class="panel-heading">
-                        入库明细
+                        收货明细
                         <a href="javascript:;" class="btn btn-xs btn-primary pull-right" ng-click="iptToggle(true)">添加明细  <i class="fa fa-plus"></i></a>
                     </div>
                     <div class="panel-body">
@@ -161,12 +120,13 @@
                                     <th class="col-md-1">序号</th>
                                     <th class="col-md-1">药材编号</th>
                                     <th class="col-md-2">药材名称</th>
-                                    <th class="col-md-1">规格型号</th>
+                                    <th class="col-md-1">规格</th>
+                                    <th class="col-md-1">型号</th>
                                     <th class="col-md-1">单位</th>
                                     <th class="col-md-1">厂家</th>
-                                    <th class="col-md-1">批号</th>
+                                    <th class="col-md-1">生产批号</th>
                                     <th class="col-md-1">单价</th>
-                                    <th class="col-md-1">入库数量</th>
+                                    <th class="col-md-1">装箱数量</th>
                                     <th class="col-md-2">操作</th>
                                 </tr>
                             </thead>
@@ -200,8 +160,51 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-sm btn-primary pull-right">确认入库</button>
                     </div>
                 </div>
-            </div>          
+            </div>
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" class="form form-horizontal">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-4 control-label">验收员</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
+                                        </div>
+                                    </div>    
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-4 control-label">验收结论</label>
+                                        <div class="col-md-8">
+                                            <select ng-model="orderSelect.value" class="form-control input-sm">
+                                                <option value="">1</option>
+                                                <option value="">2</option>
+                                            </select>    
+                                        </div>
+                                        
+                                    </div>    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-2 control-label">备注</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control input-sm" ng-model="orderForm.receiptAddress">
+                                        </div>
+                                    </div>    
+                                </div> 
+                                <div class="col-md-2">
+                                    <button class="btn btn-sm btn-primary">验收确认</button>
+                                </div>
+                            </div>                              
+                        </form>
+                    
+                    </div>
+                </div>
+            </div>       
         </div>

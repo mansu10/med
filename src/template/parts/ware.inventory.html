@@ -8,7 +8,7 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper">
+<!-- <div class="wrapper">
 	<div class="row">
 		<div class="panel">
 			<div class="panel-body">
@@ -302,4 +302,102 @@
 
     	</div>
     </div>
+</div> -->
+
+
+<div class="wrapper">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel-group">
+				<div class="panel" ng-repeat="item in testObj">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a href="javascript:;">{{item.title}}</a>
+							<a href="javascript:;" ng-click="toggleCollapse($index)">详细</a>
+							<a href="javascript:;" class="pull-right">查看货区></a>
+						</h4>
+					</div>
+					<div class="panel-body" ng-class="{'ng-hide':!item.collapse}">
+						<table class="table table-condensed table-bordered">
+							<tr>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>3</td>
+								<td>4</td>
+							</tr>
+						</table>
+						<a href="javascript:;" class="btn btn-xs btn-primary">edit</a>
+						<a href="javascript:;" class="btn btn-xs btn-primary">del</a>
+					</div>
+				</div>
+				<div class="panel">
+					<div class="panel-heading">
+						<a href="javascript:;" class="pull-right">创建</a>
+					</div>
+					<div class="panel-body hide">
+						<form class="form">
+							
+						</form>
+					</div>
+				</div>				
+			</div>
+
+		</div>
+		<div class="col-md-4">
+			<div class="panel">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a href="javascript:;">title</a>
+						<a href="javascript:;" class="pull-right">more></a>
+					</h4>
+				</div>
+				<div class="panel-body">
+					<table class="table table-condensed table-bordered">
+						<tr>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+						</tr>
+					</table>
+					<a href="javascript:;" class="btn btn-xs btn-primary">edit</a>
+					<a href="javascript:;" class="btn btn-xs btn-primary">del</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a href="javascript:;">title</a>
+						<a href="javascript:;" class="pull-right">more></a>
+					</h4>
+				</div>
+				<div class="panel-body">
+					<table class="table table-condensed table-bordered">
+						<tr>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+						</tr>
+					</table>
+					<a href="javascript:;" class="btn btn-xs btn-primary">edit</a>
+					<a href="javascript:;" class="btn btn-xs btn-primary">del</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

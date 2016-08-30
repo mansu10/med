@@ -1,0 +1,187 @@
+<!-- page heading start-->
+<div class="page-heading">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">库存</a>
+        </li>
+        <li class="active"> 保管养护 </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<div class="wrapper">
+	<div class="row">
+		<div class="panel">
+			<div class="panel-body">
+				<form action="" class="form form-horizontal">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="" class="control-label col-md-4">仓库</label>
+							<div class="col-md-8">
+								<select class="form-control input-sm">
+									<option value="">1</option>             
+									<option value="">2</option>             
+            					</select>
+							</div>							
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="" class="control-label col-md-4">记录日期</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date">
+							</div>							
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="" class="control-label col-md-4">保管员</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control input-sm">
+							</div>							
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="panel">
+			<div class="panel-heading">库房温湿度情况</div>
+			<div class="panel-body">
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<th></th>
+						<th>记录时间</th>
+						<th>温度</th>
+						<th>湿度</th>
+						<th>调控措施</th>
+					</tr>
+					<tr>
+						<td>上午</td>
+						<td>2016.08.30 10:00</td>
+						<td>30<span>&#8451;</span></td>
+						<td>70%</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>下午</td>
+						<td>2016.08.30 20:00</td>
+						<td>30<span>&#8451;</span></td>
+						<td>70%</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="panel">
+			<div class="panel-heading">库房设备运转情况</div>
+			<div class="panel-body">
+				<form action="" class="form form-horizontal">
+					<div class="col-md-8">
+						<textarea name="" id="" rows="3" class="form-control"></textarea>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="panel">
+			<div class="panel-heading">药材养护检查情况</div>
+			<div class="panel-body">
+				<form action="" class="form form-horizontal">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="" class="control-label col-md-4">养护库区</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control input-sm">
+								</div>								
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="" class="control-label col-md-4">养护人</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control input-sm">
+								</div>								
+							</div>
+						</div>						
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="" class="control-label col-md-4">养护品规数</label>
+								<div class="col-md-8">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm">
+										<span class="input-group-addon">种</span>
+									</div>
+								</div>								
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="" class="control-label col-md-4">养护批次数</label>
+								<div class="col-md-8">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm">
+										<span class="input-group-addon">批次</span>
+									</div>
+								</div>								
+							</div>
+						</div>							
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="" class="control-label col-md-2">质量状态</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control input-sm">
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="" class="control-label col-md-2">养护措施</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control input-sm">
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="" class="control-label col-md-2">处理结果</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control input-sm">
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="" class="control-label col-md-2">备注</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control input-sm">
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer clearfix">
+				<button class="pull-right btn btn-sm btn-primary">保存</button>
+			</div>
+		</div>
+	</div>
+</div>

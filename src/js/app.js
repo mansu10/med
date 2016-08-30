@@ -114,7 +114,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		
 		.state('home.wareEntry', {
 			url: '/ware/entry',
-			templateUrl: paths.part + 'ware.entry.html'
+			templateUrl: paths.part + 'ware.entry.html',
+			controller: 'WareEntryCtrl'
 		})
 		.state('home.wareInventory', {
 			url: '/ware/inventory',

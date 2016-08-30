@@ -80,7 +80,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					  	},
 						{
 							"title": "保管养护",
-							"url": ".wareStorage",
+							"url": ".wareMaintain",
 							"isActive":false
 					  	}]
 				},

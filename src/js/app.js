@@ -121,10 +121,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'ware.inventory.html',
 			controller: 'WareInventoryCtrl'
 		})
-		.state('home.wareStorage', {
-			url: '/ware/storage',
-			templateUrl: paths.part + 'ware.storage.html',
-			controller: 'WareStorageCtrl'
+		.state('home.wareMaintain', {
+			url: '/ware/maintain',
+			templateUrl: paths.part + 'ware.maintain.html'
 		})
 		// 配送管理
 		.state('home.distrLoad', {

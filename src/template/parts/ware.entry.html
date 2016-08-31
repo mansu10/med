@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收货时间</label>
                                         <div class="col-md-8">
-                                            <input class="form-control input-sm" type="text" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="d1">
+                                            <input class="form-control input-sm" type="text" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="entryInfo.recevierTime">
                                         </div>
                                     </div>    
                                 </div>
@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-2 control-label">货物描述</label>
                                         <div class="col-md-10">
-                                            <input class="form-control input-sm" type="text">
+                                            <input class="form-control input-sm" type="text" ng-model="entryInfo.goodsDes">
                                         </div>
                                     </div>    
                                 </div>                                
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">供货方</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.supplier.supply">
                                         </div>
                                     </div>    
                                 </div>
@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">联系人</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.supplier.linkMan">
                                         </div>
                                     </div>    
                                 </div>
@@ -54,7 +54,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">联系方式</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.supplier.tel">
                                         </div>
                                     </div>    
                                 </div>
@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">送货方</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.deliver.deliver">
                                         </div>
                                     </div>    
                                 </div>
@@ -72,7 +72,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">联系人</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.deliver.linkMan">
                                         </div>
                                     </div>    
                                 </div>
@@ -80,7 +80,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">联系方式</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.deliver.tel">
                                         </div>
                                     </div>    
                                 </div>
@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收货凭证</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.receivingNote">
                                         </div>
                                     </div>    
                                 </div>
@@ -98,7 +98,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">凭证号</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" >
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.receivingCode">
                                         </div>
                                     </div>    
                                 </div>
@@ -176,7 +176,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">外观性状情况</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.appearence">
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">说明书标签情况</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.direction">
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +192,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">质检报告情况</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.qualityReport">
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">验收员</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.checkMan">
                                         </div>
                                     </div>    
                                 </div>
@@ -210,10 +210,9 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">验收结论</label>
                                         <div class="col-md-8">
-                                            <select class="form-control input-sm">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                            </select>    
+                                            <select ng-model="defaultSelect.value" class="form-control input-sm" ng-change="getValue()"
+                    								ng-options="x.value as x.name for x in conclusion">               
+            								</select>
                                         </div>
                                         
                                     </div>    
@@ -224,7 +223,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-2 control-label">备注</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.remark">
                                         </div>
                                     </div>    
                                 </div> 

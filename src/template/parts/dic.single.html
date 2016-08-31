@@ -1,0 +1,125 @@
+<!-- page heading start-->
+<div class="page-heading">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">药材字典</a>
+        </li>
+        <li class="active"> 单一药材 </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<div class="wrapper">
+    <div class="row">
+        <div class="panel">    
+            <div class="panel-heading">
+                <div class="form form-horizontal">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>  
+                                <div class="col-md-4">
+                                    <button class="btn btn-sm btn-primary">查询</button>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-bordered">
+                    <tr>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>
+                            <a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" ng-class="{show: modalState}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="modalToggle(false)">&times;</button>
+                <h4 class="modal-title">Edit Media Gallery</h4>
+            </div>
+            <div class="modal-body row">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-4">订单编号:</label>
+                            <p class="col-md-8"><input type="text" class="form-control"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-4">收单时间:</label>
+                            <p class="col-md-8"><input type="text" class="form-control"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-4">交货时间:</label>
+                            <p class="col-md-8"><input type="text" class="form-control"></p>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                     <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-4">客户编号:</label>
+                            <p class="col-md-8"><input type="text" class="form-control"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-4">客户名称:</label>
+                            <p class="col-md-8"><input type="text" class="form-control"></p>
+                        </div>
+                    </div>                 
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-4">收货人:</label>
+                            <p class="col-md-8"><input type="text" class="form-control"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-md-4">联系电话:</label>
+                            <p class="col-md-8"><input type="text" class="form-control"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="" class="col-md-2">收货地址:</label>
+                            <p class="col-md-4"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-primary" ng-click="modalToggle(false)">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

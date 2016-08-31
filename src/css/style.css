@@ -3518,3 +3518,6 @@ ul.activity-list .activity-desk h5 a {
 .w8 {
     width: 8%;
 }
+.angularjs-datetime-picker {
+    z-index: 10;
+}

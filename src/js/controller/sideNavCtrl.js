@@ -166,7 +166,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"icon":"fa fa-bar-chart-o",
 					"child": [{
 							"title": "单一药材",
-							"url": "javascript:;",
+							"url": ".dicSingle",
 							"isActive":false
 						},
 						{

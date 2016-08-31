@@ -1,5 +1,8 @@
 app.controller('WareEntryCtrl', function($scope,http){
 
+	// $scope.items = [{
+
+	// }]
 	$scope.addItem = function(newItem){
 		return;
 	}
@@ -19,6 +22,9 @@ app.controller('WareEntryCtrl', function($scope,http){
 	$scope.reset = function(){
 		$scope.items = [];
 		$scope.orderForm = {};
+	}
+	$scope.rmItem = function(){
+		return;
 	}
 
 })

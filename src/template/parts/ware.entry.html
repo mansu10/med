@@ -139,7 +139,7 @@
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.type"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.factory"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.seri"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.serial"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
                                     <td>
@@ -149,13 +149,15 @@
                                 </tr>
                                 <tr ng-repeat="item in items">
                                     <td>{{$index + 1}}</td>
-                                    <td>{{item.productCode}}</td>
+                                    <td>{{item.code}}</td>
                                     <td>{{item.name}}</td>
                                     <td>{{item.size}}</td>
+                                    <td>{{item.type}}</td>
                                     <td>{{item.unit}}</td>
-                                    <!-- <td>{{item.price}}</td> -->
-                                    <td>{{item.productNum}}</td>
-                                    <td>{{item.price*item.productNum}}</td>
+                                    <td>{{item.factory}}</td>
+                                    <td>{{item.serial}}</td>
+                                    <td>{{item.price}}</td>
+                                    <td>{{item.amount}}</td>
                                     <td>
                                         <a href="" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                         <a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)"><i class="fa fa-times"></i></a></td>
@@ -174,7 +176,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">外观性状情况</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
+                                            <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +184,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">说明书标签情况</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
+                                            <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +192,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">质检报告情况</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
+                                            <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +202,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">验收员</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.tel">
+                                            <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>    
                                 </div>
@@ -208,7 +210,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">验收结论</label>
                                         <div class="col-md-8">
-                                            <select ng-model="orderSelect.value" class="form-control input-sm">
+                                            <select class="form-control input-sm">
                                                 <option value="">1</option>
                                                 <option value="">2</option>
                                             </select>    
@@ -222,7 +224,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-2 control-label">备注</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control input-sm" ng-model="orderForm.receiptAddress">
+                                            <input type="text" class="form-control input-sm">
                                         </div>
                                     </div>    
                                 </div> 

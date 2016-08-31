@@ -124,7 +124,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('home.wareMaintain', {
 			url: '/ware/maintain',
-			templateUrl: paths.part + 'ware.maintain.html'
+			templateUrl: paths.part + 'ware.maintain.html',
+			controller: 'wareMaintainCtrl'
 		})
 		// 配送管理
 		.state('home.distrLoad', {

@@ -16,6 +16,7 @@ include_js("./src/js/controller/distrLoadCtrl.js");
 include_js("./src/js/controller/wareStorageCtrl.js");
 include_js("./src/js/controller/wareInventoryCtrl.js");
 include_js("./src/js/controller/wareMaintainCtrl.js");
+include_js("./src/js/controller/wareEntryCtrl.js");
 
 include_js("./src/js/controller/modeCtrl.js");
 

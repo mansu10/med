@@ -141,6 +141,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/distr/transport',
 			templateUrl: paths.part +'distr.transport.html'
 		})
+		// 药材字典
+		.state('home.dicSingle', {
+			url: '/dic/single',
+			templateUrl: paths.part + 'dic.single.html'
+		})
 		// 统计分析
 		.state('home.statistics', {
 			url: '/statistics'

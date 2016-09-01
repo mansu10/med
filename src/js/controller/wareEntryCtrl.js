@@ -1,8 +1,11 @@
 app.controller('WareEntryCtrl', function($scope,http){
     //入库管理表
     $scope.entryInfo = {
+    	"recevier":"收货人",
+    	"receiveStore":"收货仓库",
     	"recevierTime":secondsToData(new Date().getTime()),
     	"goodsDes":"11111",
+    	"resource":"来源",
     	"supplier":{
     		"supply":"大润发",
     		"linkMan":"李新雨",
@@ -18,6 +21,7 @@ app.controller('WareEntryCtrl', function($scope,http){
     	"appearence":"外观",
     	"direction":"说明书",
     	"qualityReport":"质检报告",
+    	"checkRecord":"验收",
     	"checkMan":"张益达",
     	"conclusion":"结论",
     	"remark":"备注"    	
@@ -25,12 +29,20 @@ app.controller('WareEntryCtrl', function($scope,http){
     
     //验收结论 option
 		$scope.conclusion = [
-			{value : 0, name : "不足"},
-	    	{value : 1, name : "超量"},
-	    	{value : 2, name : "正常"},
-	    	{value : 3, name : "全部"}
+			{value : 0, name : "合格"},
+	    	{value : 1, name : "不合格"},
 		];
-		$scope.defaultSelect = $scope.conclusion[3];//默认选中
+		$scope.defaultSelect = $scope.conclusion[0];//默认选中
+		
+		//
+		$scope.receiverType = [
+			{value : 0, name : "请领收货"},
+	    	{value : 1, name : "配发收货"},
+	    	{value : 2, name : "外购收货"},
+	    	{value : 3, name : "其他"},
+	    	{value : 4, name : "--收货类型--"}
+		];
+		$scope.receiverSelect = $scope.receiverType[4];//默认选中
     //明细列表
     $scope.items = [{
 	            "name": "健胃消食片",	
@@ -41,7 +53,13 @@ app.controller('WareEntryCtrl', function($scope,http){
 	            "factory":"厂家1",
 	            "serial":"001",
 	            "price": 1.00,
-	            "amount": 100        
+	            "amount": 100,
+	            "date":"2016-09-01",
+	            "singleAmount":1,
+	            "boxAmount":2,
+	            "smallAmount":2,
+	            "zeroAmount":0,
+	            "remark":"xxx"
 	        },{
 	            "name": "感冒通灵",	    
 	            "code":"000002",
@@ -51,7 +69,13 @@ app.controller('WareEntryCtrl', function($scope,http){
 	            "factory": "厂家2",	
 	            "serial":"002",
 	            "price": 1.00,
-	            "amount": 200     	            
+	            "amount": 200,
+	            "date":"2016-09-02",
+	            "singleAmount":2,
+	            "boxAmount":3,
+	            "smallAmount":6,
+	            "zeroAmount":1,
+	            "remark":"xxx"
 	        }	     
 	    ];
 	$scope.newItem = {};

@@ -21,13 +21,9 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收货类型</label>
                                         <div class="col-md-8">
-                                            <select name="" id="" class="form-control">
-                                                <option value="">-收货类型--</option>
-                                                <option value="">请领收货</option>
-                                                <option value="">配发收货</option>
-                                                <option value="">外购收货</option>
-                                                <option value="">其他</option>
-                                            </select>
+                                            <select ng-model="receiverSelect.value" class="form-control input-sm" ng-change="getValue()"
+                    								ng-options="x.value as x.name for x in receiverType">               
+            								</select>
                                         </div>
                                     </div>
                                 </div>
@@ -35,7 +31,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收货人</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.recevier">
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +39,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">收货仓库</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control input-sm">
+                                            <input type="text" class="form-control input-sm" ng-model="entryInfo.receiveStore">
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +65,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-4 control-label">来源</label>
                                         <div class="col-md-8">
-                                            <input class="form-control input-sm" type="text" ng-model="entryInfo.goodsDes">
+                                            <input class="form-control input-sm" type="text" ng-model="entryInfo.resource">
                                         </div>
                                     </div>    
                                 </div>                                
@@ -159,7 +155,7 @@
                         <table class="table table-condensed table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>序号</th>
+                                    <th width="5%">序号</th>
                                     <th>药材名称</th>
                                     <th>药材编号</th>
                                     <th>规格</th>
@@ -168,11 +164,11 @@
                                     <th>厂家</th>
                                     <th>购进单价</th>
                                     <th>生产批号</th>
-                                    <th>生产日期</th>
+                                    <th class="col-md-1">生产日期</th>
                                     <th>单箱数量</th>
                                     <th>箱数</th>
                                     <th>小计数量</th>
-                                    <th>零箱标记</th>
+                                    <th width="6%">零箱标记</th>
                                     <th>备注</th>
                                     <th class="col-md-1">操作</th>
                                 </tr>
@@ -186,14 +182,14 @@
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.type"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.factory"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.serial"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.serial"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.date"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.singleAmount"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.boxAmount"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.smallAmount"></td>
+                                    <td class="text-center"><input type="checkbox" ng-model="newItem.zeroAmount"/></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.remark"></td>
                                     <td>
                                         <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)"><i class="fa fa-check"></i></a>
                                         <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)"><i class="fa fa-times"></i></a>
@@ -207,14 +203,14 @@
                                     <td>{{item.type}}</td>
                                     <td>{{item.unit}}</td>
                                     <td>{{item.factory}}</td>
-                                    <td>{{item.serial}}</td>
                                     <td>{{item.price}}</td>
-                                    <td>{{item.amount}}</td>
-                                    <td>{{item.amount}}</td>
-                                    <td>{{item.amount}}</td>
-                                    <td>{{item.amount}}</td>
-                                    <td class="text-center"><input type="checkbox" /></td>
-                                    <td>{{item.amount}}</td>
+                                    <td>{{item.serial}}</td>                                 
+                                    <td>{{item.date}}</td>
+                                    <td>{{item.singleAmount}}</td>
+                                    <td>{{item.boxAmount}}</td>
+                                    <td>{{item.smallAmount}}</td>
+                                    <td class="text-center"><input type="checkbox" ng-model="item.zeroAmount"/></td>
+                                    <td>{{item.remark}}</td>
                                     <td>
                                         <a href="" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                         <a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)"><i class="fa fa-times"></i></a></td>
@@ -236,7 +232,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-md-2 control-label">验收纪录</label>
                                         <div class="col-md-10">
-                                            <textarea name="" id="" rows="2" class="form-control"></textarea>
+                                            <textarea name="" id="" rows="2" class="form-control" ng-model="entryInfo.checkRecord"></textarea>
                                         </div>
                                     </div>
                                 </div>

@@ -70,8 +70,12 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"isActive":false,
 					"icon":"fa fa-home",
 					"child": [{
-							"title": "验收入库",
+							"title": "收获验收",
 							"url": ".wareEntry",
+							"isActive":false
+						},{
+							"title": "入库上架",
+							"url": "javascript:;",
 							"isActive":false
 						},{
 							"title": "货位管理",

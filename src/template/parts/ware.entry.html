@@ -159,17 +159,22 @@
                         <table class="table table-condensed table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th class="col-md-1">序号</th>
-                                    <th class="col-md-2">药材名称</th>
-                                    <th class="col-md-1">药材编号</th>
-                                    <th class="col-md-1">规格</th>
-                                    <th class="col-md-1">型号</th>
-                                    <th class="col-md-1">单位</th>
-                                    <th class="col-md-1">厂家</th>
-                                    <th class="col-md-1">生产批号</th>
-                                    <th class="col-md-1">单价</th>
-                                    <th class="col-md-1">装箱数量</th>
-                                    <th class="col-md-2">操作</th>
+                                    <th>序号</th>
+                                    <th>药材名称</th>
+                                    <th>药材编号</th>
+                                    <th>规格</th>
+                                    <th>型号</th>
+                                    <th>计量单位</th>
+                                    <th>厂家</th>
+                                    <th>购进单价</th>
+                                    <th>生产批号</th>
+                                    <th>生产日期</th>
+                                    <th>单箱数量</th>
+                                    <th>箱数</th>
+                                    <th>小计数量</th>
+                                    <th>零箱标记</th>
+                                    <th>备注</th>
+                                    <th class="col-md-1">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,6 +188,11 @@
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.factory"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.serial"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
                                     <td>
                                         <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)"><i class="fa fa-check"></i></a>
@@ -199,6 +209,11 @@
                                     <td>{{item.factory}}</td>
                                     <td>{{item.serial}}</td>
                                     <td>{{item.price}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td class="text-center"><input type="checkbox" /></td>
                                     <td>{{item.amount}}</td>
                                     <td>
                                         <a href="" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>

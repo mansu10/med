@@ -10,8 +10,13 @@ app.controller('WareShelvesCtrl', function($scope,http){
 	 * @type {Array}
 	 */
 	$scope.stateBox = [false, false, false];
-	$scope.toggleState = function(index){
-
+	$scope.toggleState = function(index, event){
+		var e = event;
+		e.stopPropagation();
+		for (var i = 0; i < $scope.stateBox.length; i++) {
+			$scope.stateBox[i] = false;
+		}
+		$scope.stateBox[index] = true;
 	}
 
 })

@@ -3518,6 +3518,17 @@ ul.activity-list .activity-desk h5 a {
 .w8 {
     width: 8%;
 }
+.w100 {
+    width: 100%;
+    overflow: auto;
+}
 .angularjs-datetime-picker {
     z-index: 10;
+}
+.tbl-wrap {
+    height: 220px;
+    overflow-y: scroll;
+}
+.tbl-1500 {
+    width: 1500px!important;
 }

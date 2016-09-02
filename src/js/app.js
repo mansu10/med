@@ -122,6 +122,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'ware.inventory.html',
 			controller: 'WareInventoryCtrl'
 		})
+		.state('home.wareShelves', {
+			url: '/ware/shelves',
+			templateUrl: paths.part + 'ware.shelves.html',
+			controller: 'WareShelvesCtrl'
+		})
 		.state('home.wareMaintain', {
 			url: '/ware/maintain',
 			templateUrl: paths.part + 'ware.maintain.html',

@@ -1,0 +1,338 @@
+<!-- page heading start-->
+<div class="page-heading">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">仓储管理</a>
+        </li>
+        <li class="active"> 入库上架 </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<div class="wrapper">
+    <div class="row">
+        <div class="panel">  
+            <div class="panel-heading">
+                收货查询
+            </div>             
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">
+                    <div class="form-group">
+                        <label for="" class="control-label col-md-1">收货日期</label>
+                        <div class="col-md-2">
+                            <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="date1" placeholder="开始日期">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="date2" placeholder="结束日期">
+                        </div>
+                        <a href="javascript:;" class="btn btn-sm btn-primary">查询</a>
+                    </div>
+                </form>
+                <div class="tbl-wrap">
+                    <table class="table table-condensed table-bordered">
+                        <tr>
+                            <th>序号</th>
+                            <th>收货日期</th>
+                            <th>收货编号</th>
+                            <th>货物描述</th>
+                            <th>收货类型</th>
+                            <th>供货方</th>
+                            <th>送货方</th>
+                            <th class="col-md-2">操作</th>
+                        </tr>
+                        <tr ng-repeat="item in items">
+                            <td>{{$index+1}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-xs btn-primary">入库记账</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary">上架标签</a>
+                            </td>
+                        </tr>
+                    </table>                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">  
+            <div class="panel-heading">
+                收货明细
+            </div>             
+            <div class="panel-body">
+
+                <form role="form" class="form-horizontal"> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收货类型</label>
+                                <div class="col-md-8">
+                                    <select ng-model="receiverSelect.value" class="form-control input-sm" ng-change="getValue()"
+                                            ng-options="x.value as x.name for x in receiverType" disabled="true">               
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收货人</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.recevier">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收货仓库</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receiveStore">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收货时间</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-sm" type="text" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="entryInfo.recevierTime" disabled="true">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">货物描述</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-sm" type="text" ng-model="entryInfo.goodsDes" disabled="true">
+                                </div>
+                            </div>    
+                        </div>  
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">来源</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-sm" type="text" ng-model="entryInfo.resource" disabled="true">
+                                </div>
+                            </div>    
+                        </div>                                
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">供货方</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplier.supply">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">联系人</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplier.linkMan">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">联系方式</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplier.tel">
+                                </div>
+                            </div>    
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">送货方</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliver.deliver">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">联系人</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliver.linkMan">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">联系方式</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliver.tel">
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">收货凭证</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receivingNote">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="col-md-4 control-label">凭证号</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receivingCode">
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th width="5%">序号</th>
+                            <th>药材名称</th>
+                            <th>药材编号</th>
+                            <th>规格</th>
+                            <th>型号</th>
+                            <th>计量单位</th>
+                            <th>厂家</th>
+                            <th>购进单价</th>
+                            <th>生产批号</th>
+                            <th class="col-md-1">生产日期</th>
+                            <th>箱号</th>
+                            <th>数量</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>                                 
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>                                 
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th width="5%">序号</th>
+                            <th>药材名称</th>
+                            <th>药材编号</th>
+                            <th>规格</th>
+                            <th>型号</th>
+                            <th>计量单位</th>
+                            <th>厂家</th>
+                            <th>购进单价</th>
+                            <th>生产批号</th>
+                            <th class="col-md-1">生产日期</th>
+                            <th>箱号</th>
+                            <th>数量</th>
+                            <th class="col-md-1">分配货位</th>
+                            <th>容积率</th>
+                            <th class="col-md-1">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input type="text" class="form-control input-sm"></td>
+                            <td></td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th width="5%">序号</th>
+                            <th>药材名称</th>
+                            <th>药材编号</th>
+                            <th>规格</th>
+                            <th>型号</th>
+                            <th>计量单位</th>
+                            <th>厂家</th>
+                            <th>购进单价</th>
+                            <th>生产批号</th>
+                            <th class="col-md-1">生产日期</th>
+                            <th>箱号</th>
+                            <th>数量</th>
+                            <th class="col-md-1">分配货位</th>
+                            <th>容积率</th>
+                            <th class="col-md-1">选择</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class=" text-center">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+            <div class="panel-footer clearfix">
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right">确认入库</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right">生成标签</a>
+            </div>
+        </div>
+    </div>    
+</div>

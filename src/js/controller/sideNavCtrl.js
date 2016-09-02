@@ -75,7 +75,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"isActive":false
 						},{
 							"title": "入库上架",
-							"url": "javascript:;",
+							"url": ".wareShelves",
 							"isActive":false
 						},{
 							"title": "货位管理",

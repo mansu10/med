@@ -162,6 +162,7 @@ app.controller('CollectSupplementCtrl', function($scope,http){
 //  	$scope.inventList = angular.copy($scope.selectedList);
     	angular.forEach(angular.copy($scope.selectedList),function(item){
     		if(!containSubCategory(item)){
+    			item.editDisabled = true;
     			$scope.inventList.push(item);
     		}
     	})
@@ -202,20 +203,20 @@ app.controller('CollectSupplementCtrl', function($scope,http){
 	
 	//编辑订购量
 	$scope.editDisabled = true;
-	$scope.editOrderAmount = function(){
-		$scope.editDisabled = false;
+	$scope.editOrderAmount = function(index){
+		$scope.inventList[index].editDisabled = false;
 	}
 	//删除清单项
 	$scope.remove = function(index){
 		$scope.inventList.splice(index,1);
 	}
 	//保存更改
-	$scope.save = function(){
-		$scope.editDisabled = true;
+	$scope.save = function(index){
+		$scope.inventList[index].editDisabled = true;
 	}
 	//取消
 	$scope.cancel = function(index){
-		$scope.editDisabled = true;
+		$scope.inventList[index].editDisabled = true;
 		$scope.inventList[index].approvalNumber = $scope.inventList[index].maxInvent - $scope.inventList[index].inventory;
 	}
 })

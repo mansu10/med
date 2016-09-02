@@ -58,8 +58,9 @@ app.controller('WareEntryCtrl', function($scope,http){
 	            "singleAmount":1,
 	            "boxAmount":2,
 	            "smallAmount":2,
-	            "zeroAmount":0,
-	            "remark":"xxx"
+	            "zeroAmount":false,
+	            "remark":"xxx",
+	            "editDisabled":true
 	        },{
 	            "name": "感冒通灵",	    
 	            "code":"000002",
@@ -74,12 +75,14 @@ app.controller('WareEntryCtrl', function($scope,http){
 	            "singleAmount":2,
 	            "boxAmount":3,
 	            "smallAmount":6,
-	            "zeroAmount":1,
-	            "remark":"xxx"
+	            "zeroAmount":false,
+	            "remark":"xxx",
+	            "editDisabled":true
 	        }	     
 	    ];
 	$scope.newItem = {};
 	$scope.addItem = function(newItem){
+		newItem.editDisabled = true;
 		$scope.items.push(newItem);
 		return;
 	}
@@ -103,6 +106,18 @@ app.controller('WareEntryCtrl', function($scope,http){
 	$scope.rmItem = function(index){
 		$scope.items.splice(index,1);
 		return;
+	}
+	
+	$scope.edit = function(index){
+		$scope.items[index].editDisabled = false;
+	}
+	//保存更改
+	$scope.save = function(index){
+		$scope.items[index].editDisabled = true;
+	}
+	//取消
+	$scope.cancel = function(index){
+		$scope.items[index].editDisabled = true;
 	}
 
 })

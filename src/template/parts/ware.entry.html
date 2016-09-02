@@ -182,12 +182,12 @@
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.type"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.factory"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
+                                    <td><input type="number" class="form-control input-sm" ng-model="newItem.price"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.serial"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.date"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.singleAmount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.boxAmount"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.smallAmount"></td>
+                                    <td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="newItem.date"></td>
+                                    <td><input type="number" class="form-control input-sm" ng-model="newItem.singleAmount"></td>
+                                    <td><input type="number" class="form-control input-sm" ng-model="newItem.boxAmount"></td>
+                                    <td><input type="number" class="form-control input-sm" ng-model="newItem.smallAmount"></td>
                                     <td class="text-center"><input type="checkbox" ng-model="newItem.zeroAmount"/></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.remark"></td>
                                     <td>
@@ -203,17 +203,22 @@
                                     <td>{{item.type}}</td>
                                     <td>{{item.unit}}</td>
                                     <td>{{item.factory}}</td>
-                                    <td>{{item.price}}</td>
-                                    <td>{{item.serial}}</td>                                 
-                                    <td>{{item.date}}</td>
+                                    <td><input type="number" class="form-control input-sm" ng-model="item.price" ng-disabled="item.editDisabled"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="item.serial" ng-disabled="item.editDisabled"></td>                                 
+                                    <td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="item.date" ng-disabled="item.editDisabled"></td>
                                     <td>{{item.singleAmount}}</td>
                                     <td>{{item.boxAmount}}</td>
-                                    <td>{{item.smallAmount}}</td>
+                                    <td><input type="number" class="form-control input-sm" ng-model="item.singleAmount*item.boxAmount" ng-disabled="!item.zeroAmount"></td>
                                     <td class="text-center"><input type="checkbox" ng-model="item.zeroAmount"/></td>
                                     <td>{{item.remark}}</td>
-                                    <td>
-                                        <a href="" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)"><i class="fa fa-times"></i></a></td>
+                                    <td ng-if="item.editDisabled">
+                                        <a href="" class="btn btn-xs btn-primary" ng-click="edit($index)"><i class="fa fa-edit"></i></a>
+                                        <a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)"><i class="fa fa-times"></i></a>
+                                    </td>
+                                    <td ng-if="!item.editDisabled">
+                                        <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="save($index)"><i class="fa fa-check"></i></a>
+                                        <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancel($index)"><i class="fa fa-times"></i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

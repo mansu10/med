@@ -1,28 +1,46 @@
 app.controller('WareInventoryCtrl', function($scope,http){
-	
-	$scope.testObj = [{
-		title: '仓库1',
-		collapse: false,
-		division: [{
-			title: '货区1',
-			collpase: false,
-			division: [{
-				title: '货位1',
-				collapse: false
-			},{
-				title: '货位2',
-				collapse: false
-			}]
-		}]
-	},{
-		title: '仓库2',
-		collapse: false
-	},{
-		title: '仓库3',
-		collapse: false
-	}];
-	$scope.toggleCollapse = function(index){
-		$scope.testObj[index].collapse = !$scope.testObj[index].collapse;
+
+	/**
+	 * 输入框编辑模式
+	 * @type {Boolean}
+	 */
+	$scope.editMode = false;
+	$scope.editWare = function(){
+		$scope.editMode = !$scope.editMode;
+	}
+	/**
+	 * 添加模式
+	 * @type {Boolean}
+	 */
+	$scope.addNewMode = true;
+
+	/**
+	 * 切换显示模式
+	 */
+	$scope.toggleMode = function(bool){
+		$scope.addNewMode = bool;
 	}
 
+	/**
+	 * [addNewArea description]
+	 */
+	$scope.newAreaList = {};
+	$scope.isNewArea = false;
+	$scope.addNewArea = function(){
+		$scope.isNewArea = !$scope.isNewArea;
+	}
+	$scope.saveNewArea = function(){
+		// 
+		$scope.isNewArea = false;
+	}
+
+	$scope.newShelveList = {};
+	$scope.isNewShelve = false;
+	$scope.addNewShelve = function(){
+		$scope.isNewShelve = !$scope.isNewShelve;
+	}
+	$scope.saveNewShelve = function(){
+		// 
+		$scope.isNewShelve = false;
+	}
 })

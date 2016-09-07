@@ -26,13 +26,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-click="toggleMode(false)">
+							<tr
+								ng-repeat="item in wareList">
 								<td class="text-center">
-									<input type="radio">
+									<input type="radio" name="radio" ng-click="updateSelection($event,item)">
 								</td>
-								<td>01</td>
-								<td>战备药材库</td>
-								<td>战备药材</td>
+								<td>{{item.id}}</td>
+								<td>{{item.name}}</td>
+								<td>{{item.type}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -234,7 +235,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库编号</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode" ng-model="selectedList.id">
 										</div>
 									</div>
 								</div>
@@ -242,7 +243,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库名称</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode" ng-model="selectedList.name">
 										</div>
 									</div>
 								</div>							
@@ -252,7 +253,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库地址</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode"  ng-model="selectedList.address">
 										</div>
 									</div>
 								</div>
@@ -260,7 +261,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">储存品类</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode" ng-model="selectedList.category">
 										</div>
 									</div>
 								</div>			
@@ -270,7 +271,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">负责人</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode"  ng-model="selectedList.charge">
 										</div>
 									</div>
 								</div>			
@@ -280,7 +281,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内长</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode" ng-model="selectedList.length">
 										</div>
 									</div>
 								</div>
@@ -288,7 +289,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内宽</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode" ng-model="selectedList.width">
 										</div>
 									</div>
 								</div>			
@@ -298,7 +299,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内高</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode" ng-model="selectedList.height">
 										</div>
 									</div>
 								</div>
@@ -306,7 +307,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">使用面积</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!editMode">
+											<input type="text" class="form-control input-sm" ng-disabled="!editMode" ng-model="selectedList.area">
 										</div>
 									</div>
 								</div>			
@@ -315,7 +316,7 @@
 					</div>
 					<div class="panel-footer clearfix" ng-show="editMode">
 						<div class="form-group pull-right ">
-							<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveEditWare()">保存</a>
 						</div>					
 					</div>
 				</div>

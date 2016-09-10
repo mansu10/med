@@ -45,44 +45,31 @@ app.controller('WareEntryCtrl', function($scope,http){
 		$scope.receiverSelect = $scope.receiverType[4];//默认选中
     //明细列表
     $scope.items = [{
-	            "name": "健胃消食片",	
-	            "code":"000001",
-	            "size": "规格1",
-	            "type": "型号1",
-	            "unit": "24粒/盒",
-	            "factory":"厂家1",
-	            "serial":"001",
-	            "price": 1.00,
-	            "amount": 100,
-	            "date":"2016-09-01",
-	            "singleAmount":1,
-	            "boxAmount":2,
-	            "smallAmount":2,
-	            "zeroAmount":false,
-	            "remark":"xxx",
-	            "editDisabled":true
-	        },{
 	            "name": "感冒通灵",	    
-	            "code":"000002",
+	            "productCode":"000002",
 	            "size": "规格2",
 	            "type": "型号2",
 	            "unit": "12粒/盒",
 	            "factory": "厂家2",	
-	            "serial":"002",
-	            "price": 1.00,
-	            "amount": 200,
-	            "date":"2016-09-02",
+	            "productionBatch":"002",
+	            "purchasePrice": 1.00,
+	            "quantity": 200,
+	            "factoryTime":"2016-09-02",
 	            "singleAmount":2,
-	            "boxAmount":3,
+	            "boxQuantity":3,
 	            "smallAmount":6,
-	            "zeroAmount":false,
-	            "remark":"xxx",
+	            "boxMark":0,
+	            "memo":"xxx",
 	            "editDisabled":true
 	        }	     
 	    ];
 	$scope.newItem = {};
 	$scope.addItem = function(newItem){
 		newItem.editDisabled = true;
+		if(!newItem.smallAmount){
+			newItem.smallAmount = newItem.boxQuantity * newItem.singleAmount;
+		}
+	
 		$scope.items.push(newItem);
 		return;
 	}
@@ -118,6 +105,49 @@ app.controller('WareEntryCtrl', function($scope,http){
 	//取消
 	$scope.cancel = function(index){
 		$scope.items[index].editDisabled = true;
+	}
+	//验收确认
+	var AcceptanceRecord = {};
+	$scope.confirm = function(){
+		AcceptanceRecord = {
+			'receiptType': $scope.receiverSelect.value,
+	        'receiver': $scope.entryInfo.recevier,
+	        'receiptDepot': $scope.entryInfo.receiveStore,
+	        'receiptTime': $scope.entryInfo.recevierTime,
+	        'goodsDescription': $scope.entryInfo.goodsDes,
+	        'source': $scope.entryInfo.resource,
+	        'supplierName': $scope.entryInfo.supplier.supply,
+	        'supplierContacts': $scope.entryInfo.supplier.linkMan,
+	        'supplierTel': $scope.entryInfo.supplier.tel,
+	        'deliveryName': $scope.entryInfo.deliver.supply,
+	        'deliveryContactes': $scope.entryInfo.deliver.linkMan,
+	        'deliveryTel': $scope.entryInfo.deliver.tel,
+	        'receiptCertificate': $scope.entryInfo.receivingNote,
+	        'certificateNumber': $scope.entryInfo.receivingCode,
+	        'acceptanceRecord': $scope.entryInfo.checkRecord,
+	        'acceptor': $scope.entryInfo.checkMan,
+	        'acceptanceResult': $scope.defaultSelect.name,
+	        'memo': $scope.entryInfo.remark
+		}
+		
+		submit();
+	}
+	
+	var submit = function(){
+		
+		http.post({
+				'method':'addReceiptAcceptanceRecord',
+				'receiptAcceptanceRecord':JSON.stringify(AcceptanceRecord),
+				'receiptItems':JSON.stringify($scope.items)
+			},URL.RARS).then(
+				function(respone) {
+					console.log("=========收货验收========="+JSON.stringify(respone));
+					alert("已确认！")
+				},
+				function(respone) {
+					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
+					alert(respone);
+		});
 	}
 
 })

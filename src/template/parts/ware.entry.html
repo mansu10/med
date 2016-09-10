@@ -178,19 +178,19 @@
                                     <tr ng-show="iptState">
                                         <td>＃</td>
                                         <td><input type="text" class="form-control input-sm" ng-model="newItem.name"></td>
-                                        <td><input type="text" class="form-control input-sm" ng-model="newItem.code" ng-change="change(newItem)"></td>
+                                        <td><input type="text" class="form-control input-sm" ng-model="newItem.productCode" ng-change="change(newItem)"></td>
                                         <td><input type="text" class="form-control input-sm" ng-model="newItem.size"></td>
                                         <td><input type="text" class="form-control input-sm" ng-model="newItem.type"></td>
                                         <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                                         <td><input type="text" class="form-control input-sm" ng-model="newItem.factory"></td>
-                                        <td><input type="number" class="form-control input-sm" ng-model="newItem.price"></td>
-                                        <td><input type="text" class="form-control input-sm" ng-model="newItem.serial"></td>
-                                        <td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="newItem.date"></td>
+                                        <td><input type="number" class="form-control input-sm" ng-model="newItem.purchasePrice"></td>
+                                        <td><input type="text" class="form-control input-sm" ng-model="newItem.productionBatch"></td>
+                                        <td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="newItem.factoryTime"></td>
                                         <td><input type="number" class="form-control input-sm" ng-model="newItem.singleAmount"></td>
-                                        <td><input type="number" class="form-control input-sm" ng-model="newItem.boxAmount"></td>
+                                        <td><input type="number" class="form-control input-sm" ng-model="newItem.boxQuantity"></td>
                                         <td><input type="number" class="form-control input-sm" ng-model="newItem.smallAmount"></td>
-                                        <td class="text-center"><input type="checkbox" ng-model="newItem.zeroAmount"/></td>
-                                        <td><input type="text" class="form-control input-sm" ng-model="newItem.remark"></td>
+                                        <td class="text-center"><input type="checkbox" ng-model="newItem.boxMark"/></td>
+                                        <td><input type="text" class="form-control input-sm" ng-model="newItem.memo"></td>
                                         <td>
                                             <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)"><i class="fa fa-check"></i></a>
                                             <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)"><i class="fa fa-times"></i></a>
@@ -199,19 +199,19 @@
                                     <tr ng-repeat="item in items">
                                         <td>{{$index + 1}}</td>
                                         <td>{{item.name}}</td>
-                                        <td>{{item.code}}</td>
+                                        <td>{{item.productCode}}</td>
                                         <td>{{item.size}}</td>
                                         <td>{{item.type}}</td>
                                         <td>{{item.unit}}</td>
                                         <td>{{item.factory}}</td>
-                                        <td><input type="number" class="form-control input-sm" ng-model="item.price" ng-disabled="item.editDisabled"></td>
-                                        <td><input type="text" class="form-control input-sm" ng-model="item.serial" ng-disabled="item.editDisabled"></td>                                 
-                                        <td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="item.date" ng-disabled="item.editDisabled"></td>
+                                        <td><input type="number" class="form-control input-sm" ng-model="item.purchasePrice" ng-disabled="item.editDisabled"></td>
+                                        <td><input type="text" class="form-control input-sm" ng-model="item.productionBatch" ng-disabled="item.editDisabled"></td>                                 
+                                        <td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="item.factoryTime" ng-disabled="item.editDisabled"></td>
                                         <td>{{item.singleAmount}}</td>
-                                        <td>{{item.boxAmount}}</td>
-                                        <td><input type="number" class="form-control input-sm" ng-model="item.singleAmount*item.boxAmount" ng-disabled="!item.zeroAmount"></td>
-                                        <td class="text-center"><input type="checkbox" ng-model="item.zeroAmount"/></td>
-                                        <td>{{item.remark}}</td>
+                                        <td><input type="number" class="form-control input-sm" ng-model="item.boxQuantity" ng-disabled="item.editDisabled"></td>
+                                        <td><input type="number" class="form-control input-sm" ng-model="item.smallAmount" ng-disabled="!item.boxMark"></td>
+                                        <td class="text-center"><input type="checkbox" ng-model="item.boxMark"/></td>
+                                        <td>{{item.memo}}</td>
                                         <td ng-if="item.editDisabled">
                                             <a href="" class="btn btn-xs btn-primary" ng-click="edit($index)"><i class="fa fa-edit"></i></a>
                                             <a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)"><i class="fa fa-times"></i></a>
@@ -276,7 +276,7 @@
                                     </div>    
                                 </div> 
                                 <div class="col-md-2">
-                                    <button class="btn btn-sm btn-primary">验收确认</button>
+                                    <button class="btn btn-sm btn-primary" ng-click="confirm()">验收确认</button>
                                 </div>
                             </div>                              
                         </form>

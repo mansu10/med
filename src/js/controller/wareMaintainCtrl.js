@@ -34,12 +34,56 @@ app.controller('wareMaintainCtrl', function($scope,http){
     },
     
     //仓库 option
-		$scope.storage1 = [
+	$scope.storage1 = [
 			{value : 0, name : "仓库1"},
 	    	{value : 1, name : "仓库2"},
 	    	{value : 2, name : "仓库3"},
 	    	{value : 3, name : "仓库4"}
 		];
-		$scope.defaultSelect = $scope.storage1[0];//默认选中
+	$scope.defaultSelect = $scope.storage1[0];//默认选中
+	
+	var storageRecord = {};
+	//保存保管养护
+	$scope.save = function(){
+		
+		storageRecord =  {
+	        'storageRecordTime': $scope.maintainInfo.recordDate,
+	        'depotCode': $scope.defaultSelect.value+'',
+	        'storager': $scope.maintainInfo.storeMan,
+	        'morningRecordTime': $scope.maintainInfo.storeRoom[0].recordTime,
+	        'morningTemperature': $scope.maintainInfo.storeRoom[0].temperature,
+	        'morningHumidity': $scope.maintainInfo.storeRoom[0].humidity,
+	        'morningMeasure': $scope.maintainInfo.storeRoom[0].adjustMeasures,
+	        'afternoonRecordTime': $scope.maintainInfo.storeRoom[1].recordTime,
+	        'afternoonTemperature': $scope.maintainInfo.storeRoom[1].temperature,
+	        'afternoonHumidity': $scope.maintainInfo.storeRoom[1].humidity,
+	        'afternoonMeasure': $scope.maintainInfo.storeRoom[1].adjustMeasures,
+	        'equipmentSituation': $scope.maintainInfo.storeDevices,
+	        'conserveReservoir': $scope.maintainInfo.check.maintainPlace,
+	        'conserver': $scope.maintainInfo.check.maintainPeople,
+	        'conserveNumber': $scope.maintainInfo.check.specNum+'',
+	        'conserveBatch': $scope.maintainInfo.check.batchNum+'',
+	        'qualityStatus': $scope.maintainInfo.check.maintainPeople,
+	        'conserveMeasure': $scope.maintainInfo.check.quality,
+	        'handleResult': $scope.maintainInfo.check.result,
+	        'memo': $scope.maintainInfo.check.remark
+    	},
+    	
+    	submit1();
+    
+	}
+	
+	var submit1 = function(){
+		
+		http.post({'method':'addStorageRecord','storageRecord':JSON.stringify(storageRecord)},URL.storageRecordServlet).then(
+				function(respone) {
+					console.log("=========保管养护========="+JSON.stringify(respone));
+					alert("已保存！")
+				},
+				function(respone) {
+					console.log("saveStorage failed!" + JSON.stringify(respone));
+					alert(respone);
+		});
+	}
    
 })

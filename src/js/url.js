@@ -33,6 +33,7 @@ var URL = {
 	productQurey:API_URI+"MedicineManagement/ProductServlet",
 	carQurey:API_URI+"MedicineManagement/CarServlet",
 	stockQurey:API_URI+"MedicineManagement/StockServlet",
-	raiseInventory:API_URI+"MedicineManagement/RaiseInventoryServlet"
-	
+	raiseInventory:API_URI+"MedicineManagement/RaiseInventoryServlet",
+	storageRecordServlet:API_URI+"MedicineManagement/StorageRecordServlet", //保管养护
+	RARS:API_URI+"MedicineManagement/ReceiptAcceptanceRecordServlet"        //收货验收
 }

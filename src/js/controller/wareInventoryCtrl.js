@@ -1,34 +1,38 @@
 app.controller('WareInventoryCtrl', function($scope,http){
 
+	$scope.states = {
+		// 进入状态详细信息隐藏
+		basicState : false,
+		// 编辑模式状态
+		editMode : false,
+		// 添加模式状态
+		addNewMode : true,
+		// 当前选中仓库
+		currentWare : -1
+
+	}
+
 	/**
 	 * 输入框编辑模式
 	 * @type {Boolean}
 	 */
-	$scope.editMode = false;
 	$scope.editWare = function(){
-		if (!$scope.addNewMode) {
-			$scope.editMode = !$scope.editMode;			
+		if (!$scope.states.addNewMode) {
+			$scope.states.editMode = !$scope.states.editMode;			
 		}
 
 	}
-	/**
-	 * 添加模式
-	 * @type {Boolean}
-	 */
-	$scope.addNewMode = true;
-
 	/**
 	 * 切换显示模式
 	 * ｛新建/编辑｝
 	 */
 	$scope.toggleMode = function(bool){
-		$scope.addNewMode = bool;
+		$scope.states.addNewMode = bool;
 	}
 
 	/**
 	 * 仓库列表
 	 */
-	$scope.currentWare = 0; 
 	$scope.wareList = [{
 	 	 	'id': '01',
 	 	 	'name': '战备药材库',
@@ -55,25 +59,25 @@ app.controller('WareInventoryCtrl', function($scope,http){
 
 	 	 }];
 
-	$scope.selectedList ={};
+	$scope.selectedList = {};
  
-    $scope.updateSelection = function($event, item){
+    $scope.updateSelection = function($event, item, index){
         var checkbox = $event.target;
-		$scope.editMode = false;
+        $scope.states.basicState = true;
+		$scope.states.editMode = false;
 		$scope.toggleMode(false);
         $scope.selectedList = {};
         $scope.selectedList = angular.copy(item);
+		$scope.states.currentWare = index;
     }
 	$scope.selectWare = function(index){
-		$scope.editMode = false;
+		$scope.states.editMode = false;
 		$scope.toggleMode(false);
-		$scope.currentWare = index;
+		$scope.states.currentWare = index;
 	}
 	$scope.saveEditWare = function(){
 
 	}
-
-
 
 	/**
 	 * [addNewArea description]

@@ -6,7 +6,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		// 编辑模式状态
 		editMode : false,
 		// 添加模式状态
-		addNewMode : true,
+		addNewMode : false,
 		// 当前选中仓库
 		currentWare : -1
 
@@ -21,6 +21,14 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			$scope.states.editMode = !$scope.states.editMode;			
 		}
 
+	}
+	/**
+	 * 新增模式
+	 * @type {Boolean}
+	 */
+	$scope.addWare = function(){
+		$scope.toggleMode(true);
+		$scope.states.basicState = true;
 	}
 	/**
 	 * 切换显示模式

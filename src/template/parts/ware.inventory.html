@@ -40,7 +40,7 @@
 				</div>
 				<div class="panel-footer clearfix">
 					<div class="form-group pull-right">
-						<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleMode(true)">新建</a>
+						<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addWare()">新建</a>
 						<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="editWare()">调整</a>
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 			<!-- 新增 -->
 			<div ng-if="states.addNewMode && states.basicState">
 				<div class="panel">
-					<div class="panel-heading">XX库 基本信息</div>
+					<div class="panel-heading">{{selectedList.name}} 基本信息</div>
 					<div class="panel-body">
 						<form action="" class="form form-horizontal">
 							<div class="row">
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 				<div class="panel">
-					<div class="panel-heading">XX库 货区信息</div>
+					<div class="panel-heading">{{selectedList.name}} 货区信息</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
@@ -192,35 +192,38 @@
 					</div>
 				</div>
 				<div class="panel">
-					<div class="panel-heading">XX库 货区信息</div>
+					<div class="panel-heading">{{selectedList.name}} 新增货架</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
 								<tr>
 									<th>序号</th>
-									<th class="col-md-2">货区</th>
-									<th class="col-md-2">货区名</th>
-									<th class="col-md-2">货架数</th>
-									<th class="col-md-2">货位数</th>
-									<th class="col-md-2">箱数</th>
+									<th>货架选型</th>
+									<th>层数</th>
+									<th>数量</th>
+									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr ng-show="isNewShelve">
-									<td class="text-center"></td>
+									<td class="text-center col-md-1"></td>
 									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
 									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
 									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
+									<td class="col-md-2">
+										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-check"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+									</td>
 								</tr>
 								<tr>
 									<td class="text-center">1</td>
 									<td>A</td>
 									<td>口服药区</td>
 									<td>50</td>
-									<td>50</td>
-									<td>50</td>
+									<td>
+										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -236,7 +239,7 @@
 			<!-- 编辑 -->
 			<div ng-if="!states.addNewMode && states.basicState">
 				<div class="panel">
-					<div class="panel-heading">XX库 基本信息</div>
+					<div class="panel-heading">{{selectedList.name}} 基本信息</div>
 					<div class="panel-body">
 						<form action="" class="form form-horizontal">
 							<div class="row">
@@ -329,8 +332,8 @@
 						</div>					
 					</div>
 				</div>
-				<div class="panel" ng-if="states.editMode">
-					<div class="panel-heading">XX库 货区信息</div>
+				<div class="panel">
+					<div class="panel-heading">{{selectedList.name}} 货区信息</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
@@ -367,8 +370,8 @@
 						</div>					
 					</div>
 				</div>
-				<div class="panel">
-					<div class="panel-heading">XX库 新增货架</div>
+				<div class="panel" ng-if="states.editMode">
+					<div class="panel-heading">{{selectedList.name}} 新增货架</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
@@ -402,8 +405,8 @@
 		</div>
 		<div class="col-md-6" ng-if="states.basicState">
 			<!-- 查看信息 -->
-			<div class="panel" ng-if="!states.editMode">
-				<div class="panel-heading">XX库 货位信息</div>
+			<div class="panel" ng-if="!states.editMode && !states.addNewMode">
+				<div class="panel-heading">{{selectedList.name}} 货位信息</div>
 				<div class="panel-body">
 					<table class="table table-condensed table-bordered">
 						<thead>
@@ -426,7 +429,7 @@
 								<td>1</td>
 								<td>1</td>
 								<td>1</td>
-								<td>阿莫西林</td>
+								<td>11</td>
 								<td>
 									<input type="radio">
 								</td>
@@ -440,9 +443,9 @@
 					</div>
 				</div>
 			</div>
-			<!-- 查看信息 -->
-			<div class="panel" ng-if="states.editMode">
-				<div class="panel-heading">XX库 货位信息</div>
+			<!-- 编辑信息 -->
+			<div class="panel" ng-if="states.editMode && !states.addNewMode">
+				<div class="panel-heading">{{selectedList.name}} 货区调整</div>
 				<div class="panel-body">
 					<table class="table table-condensed table-bordered">
 						<thead>
@@ -450,10 +453,10 @@
 								<th>序号</th>
 								<th>货区</th>
 								<th>货架</th>
-								<th>型号</th>
+								<th>规格</th>
 								<th>层数</th>
 								<th>储存货品</th>
-								<th>选择</th>
+								<th>变更货区</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -465,7 +468,48 @@
 								<td>1</td>
 								<td>阿莫西林</td>
 								<td>
-									<input type="radio">
+									<select name="" id="">
+										<option value="">货区</option>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="panel-footer clearfix">
+					<div class="form-group pull-right">
+						<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+					</div>
+				</div>
+			</div>	
+			<!-- 新建信息 -->
+			<div class="panel" ng-if="states.addNewMode && states.basicState">
+				<div class="panel-heading">{{selectedList.name}} 货区分配</div>
+				<div class="panel-body">
+					<table class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>货区</th>
+								<th>货架</th>
+								<th>规格</th>
+								<th>层数</th>
+								<th>储存货品</th>
+								<th>分配货区</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>A</td>
+								<td>011</td>
+								<td>1</td>
+								<td>1</td>
+								<td>阿莫西林</td>
+								<td>
+									<select name="" id="">
+										<option value="">货区</option>
+									</select>
 								</td>
 							</tr>
 						</tbody>

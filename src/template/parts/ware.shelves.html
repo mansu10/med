@@ -19,12 +19,12 @@
                     <div class="form-group">
                         <label for="" class="control-label col-md-1">收货日期</label>
                         <div class="col-md-2">
-                            <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="date1" placeholder="开始日期">
+                            <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd hh:mm:ss" ng-model="startTime" placeholder="开始日期">
                         </div>
                         <div class="col-md-2">
-                            <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="date2" placeholder="结束日期">
+                            <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd hh:mm:ss" ng-model="endTime" placeholder="结束日期">
                         </div>
-                        <a href="javascript:;" class="btn btn-sm btn-primary">查询</a>
+                        <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="queryReciver()">查询</a>
                     </div>
                 </form>
                 <div class="tbl-wrap">
@@ -39,17 +39,17 @@
                             <th>送货方</th>
                             <th class="col-md-2">操作</th>
                         </tr>
-                        <tr ng-repeat="item in items" ng-click="toggleState(0, $event);">
-                            <td>{{$index+1}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr ng-repeat="item in items" ng-click="toggleState(0, $event,item.receiptCode);">
+                            <td>{{$index+1}}</td>                          
+                            <td>{{item.receiptTime}}</td>
+                            <td>{{item.receiptCode}}</td>
+                            <td>{{item.goodsDescription}}</td>
+                            <td>{{item.receiptType}}</td>
+                            <td>{{item.supplierName}}</td>
+                            <td>{{item.deliveryName}}</td>
                             <td>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleState(1, $event);">入库记账</a>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleState(2, $event);">上架标签</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleState(1, $event,item.receiptCode);">入库记账</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleState(2, $event,item.receiptCode);">上架标签</a>
                             </td>
                         </tr>
                     </table>                    
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货人</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.recevier">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receiver">
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货仓库</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receiveStore">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receiptDepot">
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货时间</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-sm" type="text" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="entryInfo.recevierTime" disabled="true">
+                                    <input class="form-control input-sm" type="text" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="entryInfo.receiptTime" disabled="true">
                                 </div>
                             </div>    
                         </div>
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">货物描述</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-sm" type="text" ng-model="entryInfo.goodsDes" disabled="true">
+                                    <input class="form-control input-sm" type="text" ng-model="entryInfo.goodsDescription" disabled="true">
                                 </div>
                             </div>    
                         </div>  
@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">来源</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-sm" type="text" ng-model="entryInfo.resource" disabled="true">
+                                    <input class="form-control input-sm" type="text" ng-model="entryInfo.source" disabled="true">
                                 </div>
                             </div>    
                         </div>                                
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">供货方</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplier.supply">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplierName">
                                 </div>
                             </div>    
                         </div>
@@ -133,7 +133,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">联系人</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplier.linkMan">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplierContacts">
                                 </div>
                             </div>    
                         </div>
@@ -141,7 +141,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">联系方式</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplier.tel">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.supplierTel">
                                 </div>
                             </div>    
                         </div>
@@ -151,7 +151,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">送货方</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliver.deliver">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliveryName">
                                 </div>
                             </div>    
                         </div>
@@ -159,7 +159,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">联系人</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliver.linkMan">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliveryContactes">
                                 </div>
                             </div>    
                         </div>
@@ -167,7 +167,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">联系方式</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliver.tel">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.deliveryTel">
                                 </div>
                             </div>    
                         </div>
@@ -177,7 +177,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">收货凭证</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receivingNote">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receiptCertificate">
                                 </div>
                             </div>    
                         </div>
@@ -185,7 +185,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">凭证号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.receivingCode">
+                                    <input type="text" class="form-control input-sm" disabled="true" ng-model="entryInfo.certificateNumber">
                                 </div>
                             </div>    
                         </div>
@@ -211,35 +211,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>                                 
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>                                 
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                        <tr ng-repeat="item in entryInfo.items">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.product.ordinaryName}}</td>
+                            <td>{{item.productCode}}</td>
+                            <td>{{item.product.specifications}}</td>
+                            <td>{{item.product.model}}</td>
+                            <td>{{item.product.unit}}</td>
+                            <td>{{item.product.manufactor}}</td>
+                            <td>{{item.purchasePrice  | number : 2 }}</td>
+                            <td>{{item.productionBatch}}</td>                                 
+                            <td>{{item.factoryTime | date : 'yyyy-MM-dd hh:mm:ss'}}</td>
+                            <td>{{item.boxMark}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>{{item.memo}}</td>
                         </tr>
                     </tbody>
                 </table>

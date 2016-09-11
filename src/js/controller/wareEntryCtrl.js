@@ -39,10 +39,9 @@ app.controller('WareEntryCtrl', function($scope,http){
 			{value : 0, name : "请领收货"},
 	    	{value : 1, name : "配发收货"},
 	    	{value : 2, name : "外购收货"},
-	    	{value : 3, name : "其他"},
-	    	{value : 4, name : "--收货类型--"}
+	    	{value : 3, name : "其他"}
 		];
-		$scope.receiverSelect = $scope.receiverType[4];//默认选中
+		$scope.receiverSelect = $scope.receiverType[0];//默认选中
     //明细列表
     $scope.items = [{
 	            "name": "感冒通灵",	    

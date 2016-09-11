@@ -35,5 +35,5 @@ var URL = {
 	stockQurey:API_URI+"MedicineManagement/StockServlet",
 	raiseInventory:API_URI+"MedicineManagement/RaiseInventoryServlet",
 	storageRecordServlet:API_URI+"MedicineManagement/StorageRecordServlet", //保管养护
-	RARS:API_URI+"MedicineManagement/ReceiptAcceptanceRecordServlet"        //收货验收
+	RARS:API_URI+"MedicineManagement/ReceiptAcceptanceRecordServlet"       //收货验收
 }

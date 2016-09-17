@@ -248,22 +248,23 @@
                             <th class="col-md-1">操作</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><input type="text" class="form-control input-sm"></td>
-                            <td></td>
+                    <tbody>                   
+                        <tr ng-repeat="item in entryInfo.items">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.product.ordinaryName}}</td>
+                            <td>{{item.productCode}}</td>
+                            <td>{{item.product.specifications}}</td>
+                            <td>{{item.product.model}}</td>
+                            <td>{{item.product.unit}}</td>
+                            <td>{{item.product.manufactor}}</td>
+                            <td>{{item.purchasePrice  | number : 2 }}</td>
+                            <td>{{item.productionBatch}}</td>                                 
+                            <td>{{item.factoryTime | date : 'yyyy-MM-dd hh:mm:ss'}}</td>
+                            <td>{{item.boxMark}}</td>
+                            <td>{{item.quantity}}</td>                         
+                            <td><input type="text" class="form-control input-sm" ng-model="item.productArea"></td>
+                            <td>{{item.plotRatio}}</td>  
+                        
                             <td>
                                 <a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                             </td>
@@ -291,21 +292,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr ng-repeat="item in entryInfo.items">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.product.ordinaryName}}</td>
+                            <td>{{item.productCode}}</td>
+                            <td>{{item.product.specifications}}</td>
+                            <td>{{item.product.model}}</td>
+                            <td>{{item.product.unit}}</td>
+                            <td>{{item.product.manufactor}}</td>
+                            <td>{{item.purchasePrice  | number : 2 }}</td>
+                            <td>{{item.productionBatch}}</td>                                 
+                            <td>{{item.factoryTime | date : 'yyyy-MM-dd hh:mm:ss'}}</td>
+                            <td>{{item.boxMark}}</td>
+                            <td>{{item.quantity}}</td>                         
+                            <td>{{item.productArea}}</td>
+                            <td>{{item.plotRatio}}</td>  
                             <td class=" text-center">
                                 <input type="checkbox">
                             </td>

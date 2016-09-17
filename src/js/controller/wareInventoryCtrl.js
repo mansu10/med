@@ -77,6 +77,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
         $scope.selectedList = {};
         $scope.selectedList = angular.copy(item);
 		$scope.states.currentWare = index;
+		catInfoByCode(item.id);
     }
 	$scope.selectWare = function(index){
 		$scope.states.editMode = false;
@@ -109,4 +110,92 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		// 
 		$scope.isNewShelve = false;
 	}
+	
+	http.post({
+				'method':'queryAllDepots'
+			},URL.DepotServlet).then(
+				function(respone) {
+					refreshWareList(respone.depots);
+					console.log("=========货位管理========="+JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
+					alert(respone);
+		});
+		
+	function refreshWareList(items){
+		angular.forEach(items,function(item){
+			$scope.wareList.push({
+				'id': item.id,
+		 	 	'name': item.depotName,
+		 	 	'type': item.depotType,
+		 	 	'address': item.depotAddress,
+		 	 	'category': '品类品类2',
+		 	 	'charge': item.pricipal,
+		 	 	'length': item.depotLength,
+		 	 	'width': item.depotWidth,
+		 	 	'height': item.depotHeigth,
+		 	 	'area': item.cargoAreas
+			})
+		})
+	}
+	
+	function catInfoByCode(codeNum){
+		
+		http.post({
+				'method':'findDepotByCode',
+				'depotCode':codeNum
+			},URL.DepotServlet).then(
+				function(respone) {
+					$scope.selectedList.cargoAreas = respone.depots.cargoAreas;
+					console.log("=========货位管理byId========="+JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
+					alert(respone);
+		});
+	}
+	
+//	{
+//  "code": 0,
+//  "depots": {
+//      "id": 1,
+//      "depotCode": 12,
+//      "depotName": "药品常温库",
+//      "depotType": "1",
+//      "depotAddress": "东大街1号",
+//      "pricipal": "负者人",
+//      "depotLength": 200,
+//      "depotWidth": 60,
+//      "depotHeigth": 200,
+//      "depotVolume": 2400000,
+//      "cargoAreas": [
+//          {
+//              "id": 1,
+//              "depotCode": 12,
+//              "cargoAreaCode": "A",
+//              "cargoAreaName": "口服剂型区",
+//              "cargoAreaDesc": "口服剂",
+//              "shelfCount": 3,
+//              "locatorCount": 13,
+//              "boxCount": 0
+//          },
+//          {
+//              "id": 2,
+//              "depotCode": 12,
+//              "cargoAreaCode": "B",
+//              "cargoAreaName": "针剂输液去",
+//              "cargoAreaDesc": "针剂",
+//              "shelfCount": 1,
+//              "locatorCount": 3,
+//              "boxCount": 0
+//          }
+//      ],
+//      "depotNumber": 0,
+//      "reservoirs": null,
+//      "depotCount": 0
+//  }
+//}
+	
+	
 })

@@ -47,7 +47,7 @@ app.controller('WareShelvesCtrl', function($scope,http){
 	
 	
 
-	//收获查询
+	//收货查询
 	$scope.queryReciver = function(){
 		
 		console.log("llllllllll:"+$scope.startTime+" / endTime :"+$scope.endTime);
@@ -68,6 +68,10 @@ app.controller('WareShelvesCtrl', function($scope,http){
 		http.post({'method':'queryRecordAndItemByCode','receiptCode':receiptCode},URL.RARS).then(
 				function(respone) {
 					$scope.entryInfo = respone.receiptAcceptanceRecord;
+					angular.forEach($scope.entryInfo.items,function(item){
+						item.productArea = '';
+						item.plotRatio = 0;
+					})
 					console.log("=========queryRecordAndItemByCode========="+JSON.stringify(respone));
 				},
 				function(respone) {

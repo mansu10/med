@@ -348,13 +348,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-center">1</td>
-									<td>A</td>
-									<td>口服药区</td>
-									<td>50</td>
-									<td>50</td>
-									<td>50</td>
+								<tr ng-repeat="cargoArea in selectedList.cargoAreas">
+									<td class="text-center">{{cargoArea.id}}</td>
+									<td>{{cargoArea.cargoAreaCode}}</td>
+									<td>{{cargoArea.cargoAreaName}}</td>
+									<td>{{cargoArea.shelfCount}}</td>
+									<td>{{cargoArea.locatorCount}}</td>
+									<td>{{cargoArea.boxCount}}</td>
 									<td>
 										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
 										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>

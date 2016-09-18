@@ -120,6 +120,35 @@ app.controller('WareShelvesCtrl', function($scope,http){
 	    	{value : 3, name : "其他"}
 		];
 		$scope.receiverSelect = $scope.receiverType[0];//默认选中
+		
+	//确认入库
+	$scope.confirmEntryInfo = function(items){
+		
+		var stocks = [];
+		angular.forEach(items,function(item){
+				stocks.push({
+					'productCode':item.productCode,
+					'caseQuantity':item.quantity,
+					'banchNumber':item.productionBatch,
+					'locatorName':item.productArea,
+					'caseNumber':item.boxMark,
+					'factoryTime':item.factoryTime ,
+					'status':1,
+					'receiptCode':item.receiptCode ,
+					'memo':item.memo
+				});
+		})
+		
+		http.post({'method':'addStock','stocks':JSON.stringify(stocks)},URL.stockQurey).then(
+				function(respone) {
+					console.log("=========入库提交========="+JSON.stringify(respone));
+					alert("已成功入库！");
+				},
+				function(respone) {
+					console.log("=========入库失败============" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
 	
 	$scope.entryInfo = {
         "id": 1,

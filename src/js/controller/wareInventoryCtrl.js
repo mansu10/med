@@ -130,7 +130,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		 	 	'name': item.depotName,
 		 	 	'type': item.depotType,
 		 	 	'address': item.depotAddress,
-		 	 	'category': '品类品类2',
+		 	 	'category': item.depotType,
 		 	 	'charge': item.pricipal,
 		 	 	'length': item.depotLength,
 		 	 	'width': item.depotWidth,

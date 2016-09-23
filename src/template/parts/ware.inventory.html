@@ -422,14 +422,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
+							<tr ng-repeat="item in locators">
+								<td>{{$index+1}}</td>
 								<td>A</td>
-								<td>011</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>11</td>
+								<td>{{item.shelfNumber}}</td>
+								<td>{{item.locatorCode}}</td>
+								<td>0</td>
+								<td>{{item.gridLength*item.gridWidth*item.gridHeigth}}</td>
+								<td>0</td>
 								<td>
 									<input type="radio">
 								</td>
@@ -451,7 +451,6 @@
 						<thead>
 							<tr>
 								<th>序号</th>
-								<th>货区</th>
 								<th>货架</th>
 								<th>规格</th>
 								<th>层数</th>
@@ -462,7 +461,6 @@
 						<tbody>
 							<tr>
 								<td>1</td>
-								<td>A</td>
 								<td>011</td>
 								<td>1</td>
 								<td>1</td>
@@ -490,7 +488,6 @@
 						<thead>
 							<tr>
 								<th>序号</th>
-								<th>货区</th>
 								<th>货架</th>
 								<th>规格</th>
 								<th>层数</th>
@@ -501,7 +498,6 @@
 						<tbody>
 							<tr>
 								<td>1</td>
-								<td>A</td>
 								<td>011</td>
 								<td>1</td>
 								<td>1</td>

@@ -144,16 +144,27 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		
 		http.post({
 				'method':'findDepotByCode',
-				'depotCode':codeNum
+				'depotCode':12
 			},URL.DepotServlet).then(
 				function(respone) {
 					$scope.selectedList.cargoAreas = respone.depots.cargoAreas;
+					createLocatorList($scope.selectedList.cargoAreas);
 					console.log("=========货位管理byId========="+JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
 					alert(respone);
 		});
+	}
+	
+
+	function createLocatorList(cargoAreasList){
+		var temp = [];
+		angular.forEach(cargoAreasList,function(item){
+			temp = temp.concat(item.locators);
+		});
+		$scope.locators = temp;
+		console.log("========locators========"+JSON.stringify(temp));
 	}
 	
 //	{

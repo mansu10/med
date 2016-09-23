@@ -29,6 +29,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	$scope.addWare = function(){
 		$scope.toggleMode(true);
 		$scope.states.basicState = true;
+		$scope.hasSaveDepot = false;
+		$scope.newDepot = {};
 	}
 	/**
 	 * 切换显示模式
@@ -42,30 +44,21 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	 * 仓库列表
 	 */
 	$scope.wareList = [{
-	 	 	'id': '01',
-	 	 	'name': '战备药材库',
-	 	 	'type': '战备药材',
-	 	 	'address': '地址地址',
-	 	 	'category': '品类品类',
-	 	 	'charge': '负责人',
-	 	 	'length': '内长',
-	 	 	'width': '内宽',
-	 	 	'height': '内高',
-	 	 	'area': '使用面积'
-
-	 	 },{
-	 	 	'id': '02',
-	 	 	'name': '战备药材库2',
-	 	 	'type': '战备药材2',
-	 	 	'address': '地址地址2',
-	 	 	'category': '品类品类2',
-	 	 	'charge': '负责人2',
-	 	 	'length': '内长2',
-	 	 	'width': '内宽',
-	 	 	'height': '内高',
-	 	 	'area': '使用面积'
-
-	 	 }];
+	        "id": 1,
+	        "depotCode": 12,
+	        "depotName": "测试仓库",
+	        "depotType": "品类",
+	        "depotAddress": "东大街1号",
+	        "principal": null,
+	        "depotLength": 0,
+	        "depotWidth": 0,
+	        "depotHeigth": 0,
+	        "depotVolume": 0,
+	        "cargoAreas": null,
+	        "depotNumber": 0,
+	        "reservoirs": null,
+	        "depotCount": 0
+    	}];
 
 	$scope.selectedList = {};
  
@@ -115,7 +108,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 				'method':'queryAllDepots'
 			},URL.DepotServlet).then(
 				function(respone) {
-					refreshWareList(respone.depots);
+//					refreshWareList(respone.depots);
+					$scope.wareList = respone.depots;
 					console.log("=========货位管理========="+JSON.stringify(respone));
 				},
 				function(respone) {
@@ -207,6 +201,34 @@ app.controller('WareInventoryCtrl', function($scope,http){
 //      "depotCount": 0
 //  }
 //}
+/*************新建仓库 start*************/
+	$scope.hasSaveDepot = false;
+	$scope.newDepot = {
+//						"id": null,
+//				        "depotCode": null,
+//				        "depotName": null,
+//				        "depotType": null,
+//				        "depotAddress": null,
+//				        "principal": null,
+//				        "depotLength": null,
+//				        "depotWidth": null,
+//				        "depotHeigth": null,
+//				        "depotVolume": null,
+//				        "cargoAreas": null,
+//				        "depotNumber": null,
+//				        "reservoirs": null,
+//				        "depotCount": null
+				};
+	$scope.addNewDepot = function(){
+		$scope.newDepot.id = $scope.wareList[$scope.wareList.length-1].id + 1;
+		$scope.wareList.push(angular.copy($scope.newDepot));
+		console.log($scope.newDepot);
+		$scope.hasSaveDepot = true;
+	}
+			
+			
+
+	
 	
 	
 })

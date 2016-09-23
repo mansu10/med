@@ -32,8 +32,8 @@
 									<input type="radio" name="radio" ng-checked="$index == states.currentWare ? true : false">
 								</td>
 								<td>{{item.id}}</td>
-								<td>{{item.name}}</td>
-								<td>{{item.type}}</td>
+								<td>{{item.depotName}}</td>
+								<td>{{item.depotType}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -48,7 +48,7 @@
 			<!-- 新增 -->
 			<div ng-if="states.addNewMode && states.basicState">
 				<div class="panel">
-					<div class="panel-heading">{{selectedList.name}} 基本信息</div>
+					<div class="panel-heading">{{selectedList.depotName}} 基本信息</div>
 					<div class="panel-body">
 						<form action="" class="form form-horizontal">
 							<div class="row">
@@ -56,7 +56,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库编号</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotCode">
 										</div>
 									</div>
 								</div>
@@ -64,7 +64,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库名称</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotName">
 										</div>
 									</div>
 								</div>							
@@ -74,7 +74,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库地址</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotAddress">
 										</div>
 									</div>
 								</div>
@@ -82,7 +82,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">储存品类</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotType">
 										</div>
 									</div>
 								</div>			
@@ -92,7 +92,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">负责人</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.principal">
 										</div>
 									</div>
 								</div>			
@@ -102,7 +102,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内长</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotLength">
 										</div>
 									</div>
 								</div>
@@ -110,7 +110,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内宽</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotWidth">
 										</div>
 									</div>
 								</div>			
@@ -120,7 +120,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内高</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotHeigth">
 										</div>
 									</div>
 								</div>
@@ -128,7 +128,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">使用面积</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotVolume">
 										</div>
 									</div>
 								</div>			
@@ -137,12 +137,12 @@
 					</div>
 					<div class="panel-footer clearfix">
 						<div class="form-group pull-right ">
-							<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addNewDepot()" ng-disabled="hasSaveDepot">保存</a>
 						</div>					
 					</div>
 				</div>
 				<div class="panel">
-					<div class="panel-heading">{{selectedList.name}} 货区信息</div>
+					<div class="panel-heading">{{selectedList.depotName}} 货区信息</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
@@ -192,7 +192,7 @@
 					</div>
 				</div>
 				<div class="panel">
-					<div class="panel-heading">{{selectedList.name}} 新增货架</div>
+					<div class="panel-heading">{{selectedList.depotName}} 新增货架</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
@@ -239,7 +239,7 @@
 			<!-- 编辑 -->
 			<div ng-if="!states.addNewMode && states.basicState">
 				<div class="panel">
-					<div class="panel-heading">{{selectedList.name}} 基本信息</div>
+					<div class="panel-heading">{{selectedList.depotName}} 基本信息</div>
 					<div class="panel-body">
 						<form action="" class="form form-horizontal">
 							<div class="row">
@@ -255,7 +255,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库名称</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.name">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotName">
 										</div>
 									</div>
 								</div>							
@@ -265,7 +265,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库地址</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode"  ng-model="selectedList.address">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode"  ng-model="selectedList.depotAddress">
 										</div>
 									</div>
 								</div>
@@ -273,7 +273,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">储存品类</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.category">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotType">
 										</div>
 									</div>
 								</div>			
@@ -283,7 +283,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">负责人</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode"  ng-model="selectedList.charge">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode"  ng-model="selectedList.principal">
 										</div>
 									</div>
 								</div>			
@@ -293,7 +293,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内长</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.length">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotLength">
 										</div>
 									</div>
 								</div>
@@ -301,7 +301,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内宽</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.width">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotWidth">
 										</div>
 									</div>
 								</div>			
@@ -311,7 +311,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内高</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.height">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotHeigth">
 										</div>
 									</div>
 								</div>
@@ -319,7 +319,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">使用面积</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.area">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotVolume">
 										</div>
 									</div>
 								</div>			
@@ -333,7 +333,7 @@
 					</div>
 				</div>
 				<div class="panel">
-					<div class="panel-heading">{{selectedList.name}} 货区信息</div>
+					<div class="panel-heading">{{selectedList.depotName}} 货区信息</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
@@ -371,7 +371,7 @@
 					</div>
 				</div>
 				<div class="panel" ng-if="states.editMode">
-					<div class="panel-heading">{{selectedList.name}} 新增货架</div>
+					<div class="panel-heading">{{selectedList.depotName}} 新增货架</div>
 					<div class="panel-body">
 						<table class="table table-condensed table-bordered">
 							<thead>
@@ -406,7 +406,7 @@
 		<div class="col-md-6" ng-if="states.basicState">
 			<!-- 查看信息 -->
 			<div class="panel" ng-if="!states.editMode && !states.addNewMode">
-				<div class="panel-heading">{{selectedList.name}} 货位信息</div>
+				<div class="panel-heading">{{selectedList.depotName}} 货位信息</div>
 				<div class="panel-body">
 					<table class="table table-condensed table-bordered">
 						<thead>

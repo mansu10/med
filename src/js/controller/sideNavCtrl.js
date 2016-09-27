@@ -208,23 +208,27 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"url": "javascript:;",
 							"isActive":false
 						}]					
-				},
-				{
+				},{
 					"title": "用户管理",
 					"url": "javascript:;",
 					"isActive":false,
 					"icon":"fa fa-user",
 					"child": [
 						{
-							"title": "供应机构",
-							"url": "javascript:;",
+							"title": "供应机构",//机构设置
+							"url": ".userInstitute",
 							"isActive":false
 						},
 						{
-							"title": "人员角色",
-							"url": "javascript:;",
+							"title": "人员角色",//教员用户
+							"url": ".userTeacher",
 							"isActive":false
-						}]					
+						}/*,
+						{
+							"title": "学员用户",
+							"url": ".userStudent",
+							"isActive":false
+						}*/]					
 				}
 			]
 		}

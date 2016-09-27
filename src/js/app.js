@@ -157,8 +157,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/statistics'
 		})
 		// 用户管理
-		.state('home.userManage', {
-			url: 'user/manage'
+		.state('home.userInstitute', {
+			url: '/user/institute',
+			templateUrl: paths.part + 'user.institute.html'
+		})
+		.state('home.userTeacher', {
+			url: '/user/teacher',
+			templateUrl: paths.part + 'user.teacher.html'
+		})
+		.state('home.userStudent', {
+			url: '/user/student',
+			templateUrl: paths.part + 'user.student.html'
 		})
 });
 

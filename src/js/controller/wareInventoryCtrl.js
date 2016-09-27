@@ -30,7 +30,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		$scope.toggleMode(true);
 		$scope.states.basicState = true;
 		$scope.hasSaveDepot = false;
-		$scope.newDepot = {};
+//		$scope.newDepot = {};
+		clearList();
 	}
 	/**
 	 * 切换显示模式
@@ -104,61 +105,56 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		$scope.isNewShelve = false;
 	}
 	
+	/**********************************************************************
+	 *****************************查看仓库 **********************************
+	 ***********************************************************************/
+	
 	http.post({
 				'method':'queryAllDepots'
 			},URL.DepotServlet).then(
 				function(respone) {
-//					refreshWareList(respone.depots);
 					$scope.wareList = respone.depots;
-					console.log("=========货位管理========="+JSON.stringify(respone));
+					console.log("=========仓库查询========="+JSON.stringify(respone));
 				},
 				function(respone) {
-					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
+					console.log("queryAllDepots failed!" + JSON.stringify(respone));
 					alert(respone);
 		});
 		
-	function refreshWareList(items){
-		angular.forEach(items,function(item){
-			$scope.wareList.push({
-				'id': item.id,
-		 	 	'name': item.depotName,
-		 	 	'type': item.depotType,
-		 	 	'address': item.depotAddress,
-		 	 	'category': item.depotType,
-		 	 	'charge': item.pricipal,
-		 	 	'length': item.depotLength,
-		 	 	'width': item.depotWidth,
-		 	 	'height': item.depotHeigth,
-		 	 	'area': item.cargoAreas
-			})
-		})
-	}
-	
-	function catInfoByCode(codeNum){
+	/**
+	 * 根据仓库编号查询仓库详细信息
+	 * @param {depotCode} -仓库编号
+	 * @return {无返回}
+	 */
+	function catInfoByCode(depotCode){
 		
 		http.post({
 				'method':'findDepotByCode',
-				'depotCode':12
+				'depotCode':depotCode
 			},URL.DepotServlet).then(
 				function(respone) {
 					$scope.selectedList.cargoAreas = respone.depots.cargoAreas;
-					createLocatorList($scope.selectedList.cargoAreas);
-					console.log("=========货位管理byId========="+JSON.stringify(respone));
+					createLocatorList($scope.selectedList.cargoAreas);//生成货位表
+					console.log("=========仓库详情查询byId========="+JSON.stringify(respone));
 				},
 				function(respone) {
-					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
+					console.log("findDepotByCode failed!" + JSON.stringify(respone));
 					alert(respone);
 		});
 	}
 	
-
+	/**
+	 * 根据仓库列表生成货位信息
+	 * @param {cargoAreasList} -仓库列表
+	 * @return {无返回}
+	 */
 	function createLocatorList(cargoAreasList){
 		var temp = [];
 		angular.forEach(cargoAreasList,function(item){
 			temp = temp.concat(item.locators);
 		});
 		$scope.locators = temp;
-		console.log("========locators========"+JSON.stringify(temp));
+		console.log("========create locators========"+JSON.stringify(temp));
 	}
 	
 //	{
@@ -201,7 +197,9 @@ app.controller('WareInventoryCtrl', function($scope,http){
 //      "depotCount": 0
 //  }
 //}
-/*************新建仓库 start*************/
+/***************************************************************************
+*****************************新建仓库 start**********************************
+****************************************************************************/      
 	$scope.hasSaveDepot = false;
 	$scope.newDepot = {
 //						"id": null,
@@ -219,16 +217,269 @@ app.controller('WareInventoryCtrl', function($scope,http){
 //				        "reservoirs": null,
 //				        "depotCount": null
 				};
+	/**
+	 * 新增仓库 保存
+	 * @return {无返回}
+	 */
 	$scope.addNewDepot = function(){
+		if(isEmptyValue($scope.newDepot)){
+			alert("仓库信息不能为空！");
+			return;
+		}
 		$scope.newDepot.id = $scope.wareList[$scope.wareList.length-1].id + 1;
 		$scope.wareList.push(angular.copy($scope.newDepot));
-		console.log($scope.newDepot);
+		console.log($scope.wareList);
 		$scope.hasSaveDepot = true;
+		
+		http.post({
+				'method':'addDepot',
+				'depot':JSON.stringify($scope.newDepot)
+			},URL.DepotServlet).then(
+				function(respone) {
+					console.log("=========新建仓库========="+JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("addDepot failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
 	}
-			
-			
-
 	
+	//新建货区
+	$scope.addCargoAreas = [
+//	    {
+//	        'depotCode': null,
+//	        'cargoAreaName': null,
+//	        'cargoAreaCode': null,
+//	        'cargoAreaDesc': null
+//	    }
+	],
+	
+	$scope.newCargoArea = {
+//		'depotCode': null,
+//	    'cargoAreaName': null,
+//	    'cargoAreaCode': null,
+//	    'cargoAreaDesc': null
+	}
+	/**
+	 * 新增货区 保存
+	 * @return {无返回}
+	 */
+	$scope.addNewCargoArea = function(){
+		if(isEmptyValue($scope.newDepot)){
+			alert("请先输入仓库基本信息，并保存！");
+			return;
+		}
+		$scope.newCargoArea.depotCode = angular.copy($scope.newDepot).depotCode;
+		$scope.addCargoAreas.push(angular.copy($scope.newCargoArea));
+		$scope.newCargoArea = {}; 
+		
+	}
+	$scope.editNewCargoArea = true;
+	$scope.cancelCargoArea = function(type,index){
+		switch(type){
+			case 0:
+				$scope.isNewArea = !$scope.isNewArea;
+				break;
+			case 1:
+				$scope.addCargoAreas.splice(index,1);
+				break;
+			case 2:
+				break;
+		}
+	}
+	$scope.editCargoArea = function(){
+		$scope.editNewCargoArea = !$scope.editNewCargoArea;
+	}
+	
+	$scope.saveNewCargoAreas = function(){
+		if(isEmptyValue($scope.newDepot)){
+			alert("请先输入仓库基本信息，并保存！");
+			return;
+		}
+		$scope.isNewArea = false;
+		if(isEmptyValue($scope.addCargoAreas)){
+			alert('货区信息不能为空！');
+			return;
+		}
+		
+		http.post({
+				'method':'addCargoArea',
+				'cargoAreas':JSON.stringify($scope.addCargoAreas)
+			},URL.CargoAreaServlet).then(
+				function(respone) {
+					console.log("=========新建货区========="+JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+					$scope.slectCargoAreaList = angular.copy($scope.addCargoAreas);
+				},
+				function(respone) {
+					console.log("CargoAreaServlet add failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+	
+	
+	//新建货架
+	
+	$scope.addShelfList = [
+//	     {
+//	        'shelfSpecification': 2,
+//	        'shelfLayer': 2,
+//	        'shelfCount': 2
+//  	}
+	],
+	
+	$scope.newShelft = {
+//			'shelfSpecification': 2,
+//	        'shelfLayer': 2,
+//	        'shelfCount': 2
+	}
+	
+	$scope.addNewShelft = function(){
+		if(isEmptyValue($scope.newDepot)){
+			alert("请先输入仓库基本信息，并保存！");
+			return;
+		}
+		
+		if(isEmptyValue($scope.newShelft)){
+			alert("请填写货架信息！");
+			return;
+		}
+		
+		$scope.addShelfList.push(angular.copy($scope.newShelft));
+		$scope.newShelft = {}; 
+		
+		console.log("------------"+JSON.stringify($scope.addShelfList))
+		
+	}
+	$scope.editNewShelft = true;
+	$scope.cancelShelft = function(type,index){
+		switch(type){
+			case 0:
+				$scope.isNewShelve = !$scope.isNewShelve;
+				break;
+			case 1:
+				$scope.addShelfList.splice(index,1);
+				break;
+			case 2:
+				break;
+		}
+	}
+	$scope.editShelft = function(){
+		$scope.editNewShelft = !$scope.editNewShelft;
+	}
+	
+	$scope.saveNewShelft = function(){
+		if(isEmptyValue($scope.newDepot)){
+			alert("请先输入仓库基本信息，并保存！");
+			return;
+		}
+		$scope.isNewShelve= false;
+		if(isEmptyValue($scope.addShelfList)){
+			alert('货架信息为空！');
+			return;
+		}
+		
+		http.post({
+				'method':'addShelf',
+				'shelfs':JSON.stringify($scope.addShelfList)
+			},URL.ShelfServlet).then(
+				function(respone) {
+					console.log("=========新建货架========="+JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+					//货区调整 / 分配
+					$scope.addNewShelfs = angular.copy($scope.addShelfList);
+				},
+				function(respone) {
+					console.log("addShelf add failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+		
+	
+	
+	function queryAllShelfs(){
+		http.post({//货架查询
+				'method':'queryAllShelfs',
+			},URL.ShelfServlet).then(
+				function(respone) {
+					console.log("=========查询货架========="+JSON.stringify(respone));
+//					$scope.shelfs = respone.shelfs;
+				},
+				function(respone) {
+					console.log("queryAllShelfs failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+		
+	/**
+	 * 根据仓库编号查询货位   货位分配/调整  货位下拉列表
+	 * @param {depotCode} -仓库编号
+	 * @return {无返回}
+	 */	
+	function catCargoAreaCodesByDepotCode(depotCode){//货位查询
+		http.post({
+				'method':'findCargoAreaCodesByDepotCode',
+				'depotCode':depotCode
+			},URL.CargoAreaServlet).then(
+				function(respone) {
+					console.log("=========货区分配========="+JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("CargoAreaServlet failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+		
+	/*
+	 * 根货位分配/调整  保存
+	 */	
+	$scope.updateCargoAreaCodes = function(){
+		http.post({
+				'method':'updateShelf',
+				'shelfs':JSON.stringify($scope.addNewShelfs)
+			},URL.ShelfServlet).then(
+				function(respone) {
+					console.log("=========updateShelf========="+JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("updateShelf failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+		
+//		"shelfs": [
+//      {
+//          "shelfCode": 1,
+//          "shelfName": null,
+//          "shelfSpecification": 0,
+//          "shelfLayer": 4,
+//          "cargoAreaCode": null,
+//          "shelfStorageCategory": null,
+//          "locators": null,
+//          "shelfNumber": null,
+//          "shelfCount": 0,
+//          "locatorCount": 0,
+//          "layers": null
+//			"cargoAreaOptions":[]
+//      },
+		
+	function clearList(){
+		$scope.newDepot = {};
+		
+		$scope.addCargoAreas = [];
+		$scope.newCargoArea = {};
+		
+		$scope.addShelfList = [];
+		$scope.newShelft = {};
+		
+		$scope.addNewShelfs = [];
+			
+	}
+/**********************************************************************
+*****************************调整仓库 **********************************
+***********************************************************************/
 	
 	
 })

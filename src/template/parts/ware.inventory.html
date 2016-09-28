@@ -50,13 +50,13 @@
 				<div class="panel">
 					<div class="panel-heading">{{selectedList.depotName}} 基本信息</div>
 					<div class="panel-body">
-						<form action="" class="form form-horizontal">
+						<form action="" class="form form-horizontal" >
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库编号</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotCode">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotCode" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>
@@ -64,7 +64,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库名称</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotName">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotName" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>							
@@ -74,7 +74,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库地址</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotAddress">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotAddress" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>
@@ -82,7 +82,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">储存品类</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotType">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotType" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>			
@@ -92,7 +92,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">负责人</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.principal">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.principal" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>			
@@ -102,7 +102,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内长</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotLength">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotLength" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>
@@ -110,7 +110,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内宽</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotWidth">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotWidth" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>			
@@ -120,7 +120,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内高</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotHeigth">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotHeigth" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>
@@ -128,7 +128,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">使用面积</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotVolume">
+											<input type="text" class="form-control input-sm" ng-model="newDepot.depotVolume" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>			
@@ -159,26 +159,26 @@
 							<tbody>
 								<tr ng-show="isNewArea">
 									<td class="text-center"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoArea.cargoAreaCode"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoArea.cargoAreaName"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
 									<td class="col-md-2">
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-check"></i></a>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewCargoArea()"><i class="fa fa-check" ></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelCargoArea(0)"><i class="fa fa-times" ></i></a>
 									</td>
 								</tr>
-								<tr>
-									<td class="text-center">1</td>
-									<td>A</td>
-									<td>口服药区</td>
-									<td>50</td>
-									<td>50</td>
-									<td>50</td>
+								<tr ng-repeat="item in addCargoAreas">
+									<td class="text-center">{{$index+1}}</td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="item.cargoAreaCode" ng-disabled="editNewCargoArea"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="item.cargoAreaName" ng-disabled="editNewCargoArea"></td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
 									<td>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editCargoArea()"><i class="{{editNewCargoArea ? 'fa fa-edit': 'fa fa-check'}}"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelCargoArea(1,$index)"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
 							</tbody>
@@ -187,7 +187,7 @@
 					<div class="panel-footer clearfix">
 						<div class="form-group pull-right ">
 							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addNewArea()">{{isNewArea ? '取消': '新增'}}</a>
-							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveNewArea()">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveNewCargoAreas()">保存</a>
 						</div>					
 					</div>
 				</div>
@@ -207,22 +207,22 @@
 							<tbody>
 								<tr ng-show="isNewShelve">
 									<td class="text-center col-md-1"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfSpecification"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfLayer"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfCount"></td>
 									<td class="col-md-2">
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-check"></i></a>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewShelft()"><i class="fa fa-check"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelShelft(0)"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
-								<tr>
-									<td class="text-center">1</td>
-									<td>A</td>
-									<td>口服药区</td>
-									<td>50</td>
+								<tr ng-repeat="item in addShelfList">
+									<td class="text-center">{{$index+1}}</td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewShelft"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewShelft"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewShelft"></td>
 									<td>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editShelft()"><i class="{{editNewShelft ? 'fa fa-edit': 'fa fa-check'}}"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelShelft(1,$index)"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
 							</tbody>
@@ -231,7 +231,7 @@
 					<div class="panel-footer clearfix">
 						<div class="form-group pull-right ">
 							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addNewShelve()">{{isNewShelve ? '取消': '新增'}}</a>
-							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveNewShelve()">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveNewShelft()">保存</a>
 						</div>					
 					</div>
 				</div>				
@@ -422,14 +422,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>A</td>
-								<td>011</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>11</td>
+							<tr ng-repeat="item in locators">
+								<td>{{$index+1}}</td>
+								<td>{{item.cargoAreaCode}}</td>
+								<td>{{item.shelfNumber}}</td>
+								<td>{{item.locatorCode}}</td>
+								<td>0</td>
+								<td>{{item.gridLength*item.gridWidth*item.gridHeigth}}</td>
+								<td>0</td>
 								<td>
 									<input type="radio">
 								</td>
@@ -451,7 +451,6 @@
 						<thead>
 							<tr>
 								<th>序号</th>
-								<th>货区</th>
 								<th>货架</th>
 								<th>规格</th>
 								<th>层数</th>
@@ -462,7 +461,6 @@
 						<tbody>
 							<tr>
 								<td>1</td>
-								<td>A</td>
 								<td>011</td>
 								<td>1</td>
 								<td>1</td>
@@ -490,7 +488,6 @@
 						<thead>
 							<tr>
 								<th>序号</th>
-								<th>货区</th>
 								<th>货架</th>
 								<th>规格</th>
 								<th>层数</th>
@@ -499,17 +496,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>A</td>
-								<td>011</td>
-								<td>1</td>
-								<td>1</td>
-								<td>阿莫西林</td>
+							<tr ng-repeat="item in addNewShelfs">
+								<td>{{$index}}</td>
+								<td>{{item.shelfCode}}</td>
+								<td>{{item.shelfSpecification}}</td>
+								<td>{{item.shelfLayer}}</td>
+								<td>{{item.shelfStorageCategory}}</td>
 								<td>
-									<select name="" id="">
-										<option value="">货区</option>
-									</select>
+									<select ng-model="item.cargoAreaCode" class="form-control input-sm" ng-change="getValue()"
+                    						ng-options="x.cargoAreaCode for x in slectCargoAreaList">               
+            						</select>
 								</td>
 							</tr>
 						</tbody>
@@ -517,7 +513,7 @@
 				</div>
 				<div class="panel-footer clearfix">
 					<div class="form-group pull-right">
-						<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+						<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="updateCargoAreaCodes()">保存</a>
 					</div>
 				</div>
 			</div>			

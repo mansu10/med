@@ -36,5 +36,8 @@ var URL = {
 	raiseInventory:API_URI+"MedicineManagement/RaiseInventoryServlet",
 	storageRecordServlet:API_URI+"MedicineManagement/StorageRecordServlet", //保管养护
 	RARS:API_URI+"MedicineManagement/ReceiptAcceptanceRecordServlet",     //收货验收
-	DepotServlet:API_URI+"MedicineManagement/DepotServlet"       //  货位管理
+	DepotServlet:API_URI+"MedicineManagement/DepotServlet" ,      //  仓库管理
+	CargoAreaServlet:API_URI+"MedicineManagement/CargoAreaServlet" ,//货区管理
+	ShelfServlet:API_URI+"MedicineManagement/ShelfServlet" ,//货架信息
+	
 }

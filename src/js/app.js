@@ -156,11 +156,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('home.statistics', {
 			url: '/statistics'
 		})
-		// 用户管理
-		.state('home.userInstitute', {
-			url: '/user/institute',
-			templateUrl: paths.part + 'user.institute.html'
+		// 机构管理
+		.state('home.instSupply', {
+			url: '/inst/supply',
+			templateUrl: paths.part + 'inst.supply.html'
 		})
+		.state('home.instDemand', {
+			url: '/inst/demand',
+			templateUrl: paths.part + 'inst.demand.html'
+		})
+		// 用户管理
 		.state('home.userTeacher', {
 			url: '/user/teacher',
 			templateUrl: paths.part + 'user.teacher.html'

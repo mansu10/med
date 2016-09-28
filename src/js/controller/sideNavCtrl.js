@@ -116,7 +116,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"title": "配货管理",
 					"url": "javascript:;",
 					"isActive":false,
-					"icon":"fa fa-home",
+					"icon":"fa fa-briefcase",
 					"child": [{
 							"title": "订货分拣",
 							"url": "javascript:;",
@@ -132,7 +132,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"title": "配载管理",
 					"url": "javascript:;",
 					"isActive":false,
-					"icon":"fa fa-truck",
+					"icon":"fa fa-archive",
 					"child": [{
 							"title": "订货配载",
 							"url": ".distrLoad",
@@ -196,7 +196,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"title": "业务统计",
 					"url": "javascript:;",
 					"isActive":false,
-					"icon":"fa fa-user",
+					"icon":"fa fa-book",
 					"child": [
 						{
 							"title": "订单统计",
@@ -209,26 +209,37 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"isActive":false
 						}]					
 				},{
+					"title": "机构管理",
+					"url": "javascript:;",
+					"isActive":false,
+					"icon":"fa fa-sitemap",
+					"child": [
+						{
+							"title": "供应机构",
+							"url": ".instSupply",
+							"isActive":false
+						},
+						{
+							"title": "需求机构",
+							"url": ".instDemand",
+							"isActive":false
+						}]					
+				},{
 					"title": "用户管理",
 					"url": "javascript:;",
 					"isActive":false,
 					"icon":"fa fa-user",
 					"child": [
 						{
-							"title": "供应机构",//机构设置
-							"url": ".userInstitute",
-							"isActive":false
-						},
-						{
-							"title": "人员角色",//教员用户
+							"title": "教员用户",
 							"url": ".userTeacher",
 							"isActive":false
-						}/*,
+						},
 						{
 							"title": "学员用户",
 							"url": ".userStudent",
 							"isActive":false
-						}*/]					
+						}]					
 				}
 			]
 		}

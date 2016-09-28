@@ -347,17 +347,30 @@
 									<th>操作</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr ng-repeat="cargoArea in selectedList.cargoAreas">
-									<td class="text-center">{{cargoArea.id}}</td>
-									<td>{{cargoArea.cargoAreaCode}}</td>
-									<td>{{cargoArea.cargoAreaName}}</td>
-									<td>{{cargoArea.shelfCount}}</td>
-									<td>{{cargoArea.locatorCount}}</td>
-									<td>{{cargoArea.boxCount}}</td>
+							<tbody>							
+								<tr ng-show="isNewAreaAdjust">
+									<td class="text-center"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoAreaAdjust.cargoAreaCode"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoAreaAdjust.cargoAreaName"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2">
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addAdjustCargoArea()"><i class="fa fa-check" ></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelAdjustCargoArea(0)"><i class="fa fa-times" ></i></a>
+									</td>
+								</tr>
+								
+								<tr ng-repeat="item in selectedList.cargoAreas">
+									<td class="text-center">{{$index+1}}</td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="item.cargoAreaCode" ng-disabled="editAdjustCargoArea"></td>
+									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="item.cargoAreaName" ng-disabled="editAdjustCargoArea"></td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
 									<td>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-										<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-times"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editAdjust()"><i class="{{editAdjustCargoArea ? 'fa fa-edit': 'fa fa-check'}}"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelAdjustCargoArea(1,$index)"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
 							</tbody>
@@ -365,8 +378,8 @@
 					</div>
 					<div class="panel-footer clearfix" ng-show="states.editMode">
 						<div class="form-group pull-right ">
-							<a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
-							<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addCargoArea()">{{isNewAreaAdjust ? '取消': '新增'}}</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveAdjustCargoAreas()">保存</a>
 						</div>					
 					</div>
 				</div>
@@ -385,7 +398,7 @@
 							<tbody>
 								<tr>
 									<td class="text-center">1</td>
-									<td>口服药区</td>
+									<td>口服药区111</td>
 									<td>50</td>
 									<td>50</td>
 								</tr>
@@ -394,7 +407,7 @@
 					</div>
 					<div class="panel-footer clearfix" ng-show="states.editMode">
 						<div class="form-group pull-right ">
-							<a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addNewShelve()">{{isNewShelve ? '取消': '新增'}}</a>
 							<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
 						</div>					
 					</div>

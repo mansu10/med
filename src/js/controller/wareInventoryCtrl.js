@@ -1,5 +1,6 @@
 app.controller('WareInventoryCtrl', function($scope,http){
 
+	var currentDepotCode;
 	$scope.states = {
 		// 进入状态详细信息隐藏
 		basicState : false,
@@ -62,7 +63,6 @@ app.controller('WareInventoryCtrl', function($scope,http){
     	}];
 
 	$scope.selectedList = {};
- 
     $scope.updateSelection = function($event, item, index){
         var checkbox = $event.target;
         $scope.states.basicState = true;
@@ -78,9 +78,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		$scope.toggleMode(false);
 		$scope.states.currentWare = index;
 	}
-	$scope.saveEditWare = function(){
-
-	}
+	
 
 	/**
 	 * [addNewArea description]
@@ -127,7 +125,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	 * @return {无返回}
 	 */
 	function catInfoByCode(depotCode){
-		
+		currentDepotCode = depotCode;
 		http.post({
 				'method':'findDepotByCode',
 				'depotCode':depotCode
@@ -395,7 +393,6 @@ app.controller('WareInventoryCtrl', function($scope,http){
 					alert(JSON.stringify(respone));
 		});
 	}
-		
 	
 	
 	function queryAllShelfs(){
@@ -480,6 +477,89 @@ app.controller('WareInventoryCtrl', function($scope,http){
 /**********************************************************************
 *****************************调整仓库 **********************************
 ***********************************************************************/
+	/**
+	 * 仓库 保存
+	 * @return {无返回}
+	 */
+	$scope.saveEditWare = function(){
+		if ($scope.states.addNewMode) {
+			return;	
+		}
+		
+		$scope.states.editMode = !$scope.states.editMode;
+		$scope.wareList[$scope.states.currentWare] = angular.copy($scope.selectedList);
+		
+		http.post({
+				'method':'updateDepot',
+				'depot':JSON.stringify($scope.selectedList)
+			},URL.DepotServlet).then(
+				function(respone) {
+					console.log("=========调整仓库========="+JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("调整货仓库failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
 	
+	/**
+	 * 调整货区 保存
+	 * @return {无返回}
+	 */
+	$scope.newCargoAreaAdjust = {};
+	$scope.isNewAreaAdjust = false;
+	
+	$scope.editAdjustCargoArea = true;
+	
+	$scope.addCargoArea = function(){
+		$scope.isNewAreaAdjust = !$scope.isNewAreaAdjust;
+	}
+
+	$scope.addAdjustCargoArea = function(){
+		$scope.newCargoAreaAdjust.depotCode = currentDepotCode;
+		$scope.selectedList.cargoAreas.push(angular.copy($scope.newCargoAreaAdjust));
+		$scope.newCargoAreaAdjust = {}; 
+	}
+	
+	$scope.cancelAdjustCargoArea = function(type,index){
+		switch(type){
+			case 0:
+				$scope.isNewAreaAdjust = !$scope.isNewAreaAdjust;
+				$scope.newCargoAreaAdjust = {};
+				break;
+			case 1:
+				$scope.selectedList.cargoAreas.splice(index,1);
+				break;
+			case 2:
+				break;
+		}
+	}
+	
+	$scope.editAdjust = function(){
+		$scope.editAdjustCargoArea = !$scope.editAdjustCargoArea;
+	}
+	
+	$scope.saveAdjustCargoAreas = function(){
+		
+		$scope.isNewAreaAdjust = false;
+		if(isEmptyValue($scope.selectedList.cargoAreas)){
+			alert('货区信息不能为空！');
+			return;
+		}
+		
+		http.post({
+				'method':'updateCargoArea',
+				'cargoAreas':JSON.stringify($scope.selectedList.cargoAreas)
+			},URL.CargoAreaServlet).then(
+				function(respone) {
+					console.log("=========调整货区========="+JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("updateCargoArea failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
 	
 })

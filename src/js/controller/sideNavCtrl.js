@@ -164,34 +164,15 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"isActive":false
 						},]					
 				},{
-					"title": "药材字典",
+					"title": "药材管理",
 					"url": "javascript:;",
 					"isActive":false,
 					"icon":"fa fa-bar-chart-o",
 					"child": [{
-							"title": "单一药材",
+							"title": "药材字典",
 							"url": ".dicSingle",
 							"isActive":false
-						},
-						{
-							"title": "组合药材",
-							"url": "javascript:;",
-							"isActive":false
 						}]
-				},{
-					"title": "供应管理",
-					"url": "javascript:;",
-					"isActive":false,
-					"icon":"fa fa-shopping-cart",
-					"child": [{
-							"title": "受供单位",
-							"url": "javascript:;",
-							"isActive":false
-						},{
-							"title": "可供药材",
-							"url": "javascript:;",
-							"isActive":false
-						}]					
 				},{
 					"title": "业务统计",
 					"url": "javascript:;",

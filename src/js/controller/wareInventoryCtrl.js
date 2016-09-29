@@ -317,7 +317,9 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	}
 	
 	
-	//新建货架
+	/**
+	 * 新增货架
+	 */
 	
 	$scope.addShelfList = [
 //	     {
@@ -477,9 +479,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 /**********************************************************************
 *****************************调整仓库 **********************************
 ***********************************************************************/
+
+	/**************************************调整货仓 start*********************************************/
+	
 	/**
-	 * 仓库 保存
-	 * @return {无返回}
+	 * 仓库调整
 	 */
 	$scope.saveEditWare = function(){
 		if ($scope.states.addNewMode) {
@@ -502,10 +506,12 @@ app.controller('WareInventoryCtrl', function($scope,http){
 					alert(JSON.stringify(respone));
 		});
 	}
+	/**************************************调整货仓 end*********************************************/
 	
+	
+	/**************************************调整货区  start*********************************************/
 	/**
-	 * 调整货区 保存
-	 * @return {无返回}
+	 * 调整货区 
 	 */
 	$scope.newCargoAreaAdjust = {};
 	$scope.isNewAreaAdjust = false;
@@ -561,5 +567,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 					alert(JSON.stringify(respone));
 		});
 	}
+	/**************************************调整货区  end*********************************************/
+	
+
 	
 })

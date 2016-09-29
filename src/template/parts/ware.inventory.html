@@ -393,22 +393,37 @@
 									<th>货架选型</th>
 									<th>层数</th>
 									<th>数量</th>
+									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-center">1</td>
-									<td>口服药区111</td>
-									<td>50</td>
-									<td>50</td>
+								<tr ng-show="isNewAdjustShelve">
+									<td class="text-center col-md-1"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfSpecification"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfLayer"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfCount"></td>
+									<td class="col-md-2">
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewAdjustShelft()"><i class="fa fa-check"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelAdjustShelft(0)"><i class="fa fa-times"></i></a>
+									</td>
+								</tr>
+								<tr ng-repeat="item in addAdjustShelfList">
+									<td class="text-center">{{$index+1}}</td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewAdjustShelft"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewAdjustShelft"></td>
+									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewAdjustShelft"></td>
+									<td>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editAdjustShelft()"><i class="{{editNewAdjustShelft ? 'fa fa-edit': 'fa fa-check'}}"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelAdjustShelft(1,$index)"><i class="fa fa-times"></i></a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="panel-footer clearfix" ng-show="states.editMode">
 						<div class="form-group pull-right ">
-							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addNewShelve()">{{isNewShelve ? '取消': '新增'}}</a>
-							<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="addNewAdjustShelve()">{{isNewAdjustShelve ? '取消': '新增'}}</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveNewAdjustShelft()">保存</a>
 						</div>					
 					</div>
 				</div>				

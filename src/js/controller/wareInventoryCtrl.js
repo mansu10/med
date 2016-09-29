@@ -571,4 +571,82 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	
 
 	
+	
+	/**
+	 * 调整货架
+	 */
+	//新建货架
+	
+	$scope.addAdjustShelfList = [
+//	     {
+//	        'shelfSpecification': 2,
+//	        'shelfLayer': 2,
+//	        'shelfCount': 2
+//  	}
+	],
+	
+	$scope.newAdjustShelft = {
+//			'shelfSpecification': 2,
+//	        'shelfLayer': 2,
+//	        'shelfCount': 2
+	}
+	
+	$scope.addNewAdjustShelve = function(){
+		$scope.isNewAdjustShelve = !$scope.isNewAdjustShelve;
+	}
+	
+	$scope.addNewAdjustShelft = function(){
+		if(isEmptyValue($scope.newAdjustShelft)){
+			alert("请填写货架信息！");
+			return;
+		}
+		
+		$scope.addAdjustShelfList.push(angular.copy($scope.newAdjustShelft));
+		$scope.newAdjustShelft = {}; 
+		
+		console.log("------------"+JSON.stringify($scope.addAdjustShelfList))
+		
+	}
+	$scope.editNewAdjustShelft = true;
+	$scope.cancelAdjustShelft = function(type,index){
+		switch(type){
+			case 0:
+				$scope.isNewAdjustShelve = !$scope.isNewAdjustShelve;
+				break;
+			case 1:
+				$scope.addAdjustShelfList.splice(index,1);
+				break;
+			case 2:
+				break;
+		}
+	}
+	$scope.editAdjustShelft = function(){
+		$scope.editNewAdjustShelft = !$scope.editNewAdjustShelft;
+	}
+	
+	$scope.saveNewAdjustShelft = function(){
+		
+		$scope.isNewAdjustShelve= false;
+		if(isEmptyValue($scope.addAdjustShelfList)){
+			alert('货架信息为空！');
+			return;
+		}
+		
+		http.post({
+				'method':'addShelf',
+				'shelfs':JSON.stringify($scope.addAdjustShelfList)
+			},URL.ShelfServlet).then(
+				function(respone) {
+					console.log("=========新建货架========="+JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+				},
+				function(respone) {
+					console.log("addShelf add failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+	
+	
+	
+	
 })

@@ -71,7 +71,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
         $scope.selectedList = {};
         $scope.selectedList = angular.copy(item);
 		$scope.states.currentWare = index;
-		catInfoByCode(item.id);
+		catInfoByCode(item.depotCode);
     }
 	$scope.selectWare = function(index){
 		$scope.states.editMode = false;
@@ -321,6 +321,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	 * 新增货架
 	 */
 	
+	$scope.shelfSpecSlectionList = [{'value':0},{'value':1},{'value':2}]
 	$scope.addShelfList = [
 //	     {
 //	        'shelfSpecification': 2,
@@ -346,6 +347,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			return;
 		}
 		
+		$scope.newShelft.depotCode = angular.copy($scope.newDepot).depotCode;
 		$scope.addShelfList.push(angular.copy($scope.newShelft));
 		$scope.newShelft = {}; 
 		

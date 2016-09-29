@@ -207,7 +207,12 @@
 							<tbody>
 								<tr ng-show="isNewShelve">
 									<td class="text-center col-md-1"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfSpecification"></td>
+									<td>
+										<select ng-model="newShelft.shelfSpecification" class="form-control input-sm" 
+                    						ng-options="x.value for x in shelfSpecSlectionList">               
+            							</select>
+									</td>
+									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfSpecification"></td>-->
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfLayer"></td>
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfCount"></td>
 									<td class="col-md-2">
@@ -217,7 +222,12 @@
 								</tr>
 								<tr ng-repeat="item in addShelfList">
 									<td class="text-center">{{$index+1}}</td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewShelft"></td>
+									<td>
+										<select ng-model="item.shelfSpecification" class="form-control input-sm" ng-disabled="editNewShelft"
+                    						ng-options="x.value for x in shelfSpecSlectionList">               
+            							</select>
+									</td>
+									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewShelft"></td>-->
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewShelft"></td>
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewShelft"></td>
 									<td>
@@ -399,7 +409,12 @@
 							<tbody>
 								<tr ng-show="isNewAdjustShelve">
 									<td class="text-center col-md-1"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfSpecification"></td>
+									<td>
+										<select ng-model="newAdjustShelft.shelfSpecification" class="form-control input-sm" 
+                    						ng-options="x.value for x in shelfSpecSlectionList">               
+            							</select>
+									</td>
+									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfSpecification"></td>-->
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfLayer"></td>
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfCount"></td>
 									<td class="col-md-2">
@@ -409,7 +424,12 @@
 								</tr>
 								<tr ng-repeat="item in addAdjustShelfList">
 									<td class="text-center">{{$index+1}}</td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewAdjustShelft"></td>
+									<td>
+										<select ng-model="item.shelfSpecification" class="form-control input-sm" ng-change="getValue()" ng-disabled="editNewAdjustShelft"
+                    						ng-options="x.value for x in shelfSpecSlectionList">               
+            							</select>
+									</td>
+									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewAdjustShelft"></td>-->
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewAdjustShelft"></td>
 									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewAdjustShelft"></td>
 									<td>

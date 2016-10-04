@@ -8,7 +8,7 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper">
+<div class="wrapper" ng-show="!detailState">
     <div class="row">
         <div class="panel">
             <div class="panel-body">
@@ -42,7 +42,7 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleDetailState(true)">新增</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
                 </div>
             </div>
@@ -78,15 +78,18 @@
     </div>
 </div>
 
-<div class="wrapper">
+<div class="wrapper" ng-show="detailState">
     <div class="row">
         <div class="panel">
-            <div class="panel-heading">XX机构情况</div>
+            <div class="panel-heading">
+                <a href="javascript:;" class="btn btn-primary" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>
+                XX机构情况
+            </div>
             <div class="panel-heading clearfix">
                 <span>XX基本信息</span>
                 <div class="pull-right">
-                    <a href="javascript" class="btn btn-sm btn-primary">修改</a>
-                    <a href="javascript" class="btn btn-sm btn-primary">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                 </div>
             </div>
             <div class="panel-body">

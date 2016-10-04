@@ -159,11 +159,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		// 机构管理
 		.state('home.instSupply', {
 			url: '/inst/supply',
-			templateUrl: paths.part + 'inst.supply.html'
+			templateUrl: paths.part + 'inst.supply.html',
+			controller: 'InstSupplyCtrl'
 		})
 		.state('home.instDemand', {
 			url: '/inst/demand',
-			templateUrl: paths.part + 'inst.demand.html'
+			templateUrl: paths.part + 'inst.demand.html',
+			controller: 'InstDemandCtrl'
 		})
 		// 用户管理
 		.state('home.userTeacher', {

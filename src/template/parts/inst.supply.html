@@ -8,125 +8,236 @@
     </ul>
 </div>
 <!-- page heading end-->
+
 <div class="wrapper">
     <div class="row">
         <div class="panel">
-            <div class="panel-heading clearfix">药材保障机构设置
-                <button class="btn btn-primary btn-sm pull-right">新增</button>
-            </div>
             <div class="panel-body">
-            	<table class="table table-condensed table-bordered">
-            		<thead>
-            			<tr>
-            				<th>序号</th>
-            				<th>机构编号</th>
-            				<th>机构名称</th>
-            				<th>开设地点</th>
-            				<th>级别</th>
-            				<th>人数</th>
-            				<th>操作</th>
-            			</tr>
-            		</thead>
-            		<tbody>
-            			<tr>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td>
-            					<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-            					<a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
-            				</td>
-            			</tr>
-            		</tbody>
-            	</table>
+                <form action="" class="form form-horizontal">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="" class="control-label col-md-4">机构名称</label>
+                                    <div class="col-md-8"><input type="text" class="form-control input-sm"></div>   
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="control-label col-md-4">分类</label>
+                                    <div class="col-md-8">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">----</option>
+                                        </select>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer clearfix">
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right">查询</a>
             </div>
         </div>
     </div>
     <div class="row">
-    	<div class="panel">
-    		<div class="panel-heading">XX基本信息</div>
-    		<div class="panel-body">
-    			<form action="" class="form form-horizontal">
-    				<div class="row">
-    					<div class="col-md-12">
-    						<div class="form-group">
-    							<div class="col-md-6">
-    								<label for="" class="control-label col-md-4">机构编号</label>
-    								<div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-    							</div>
-    							<div class="col-md-6">
-    								<label for="" class="control-label col-md-4">机构名称</label>
-    								<div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="row">
-    					<div class="col-md-12">
-    						<div class="form-group">
-    							<div class="col-md-6">
-    								<label for="" class="control-label col-md-4">机构类型</label>
-    								<div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-    							</div>
-    							<div class="col-md-6">
-    								<label for="" class="control-label col-md-4">机构级别</label>
-    								<div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="row">
-    					<div class="col-md-12">
-    						<div class="form-group">
-    							<div class="col-md-6">
-    								<label for="" class="control-label col-md-4">开设地点</label>
-    								<div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-    							</div>
-    							<div class="col-md-6">
-    								<label for="" class="control-label col-md-4">人数</label>
-    								<div class="col-md-8"><input type="text" class="form-control input-sm"></div>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</form>
-    		</div>
-    		<div class="panel-footer clearfix">
-    			<a href="javascript:;" class="btn btn-sm btn-primary pull-right">保存</a>
-    		</div>
-    	</div>
-    	<div class="panel">
-    		<div class="panel-heading">XX编组情况</div>
-    		<div class="panel-body">
-            	<table class="table table-condensed table-bordered">
-            		<thead>
-            			<tr>
-            				<th>序号</th>
-            				<th>组编号</th>
-            				<th>组名称</th>
-            				<th>岗位角色</th>
-            				<th>人数</th>
-            				<th>操作</th>
-            			</tr>
-            		</thead>
-            		<tbody>
-            			<tr>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td>
-            					<a href="javascript:;" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-            					<a href="javascript:;" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
-            				</td>
-            			</tr>
-            		</tbody>
-            	</table>
-    		</div>
-    	</div>
+        <div class="panel">
+            <div class="panel-heading clearfix">
+                <div class="pull-right">
+                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">序号</th>
+                            <th class="col-md-1">机构类型</th>
+                            <th class="">机构名称</th>
+                            <th class="col-md-1">机构代码</th>
+                            <th class="">开设地点</th>
+                            <th class="col-md-1">机构人数</th>
+                            <th class="col-md-1">选择</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">
+                                <input type="checkbox" name="radio">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">XX机构情况</div>
+            <div class="panel-heading clearfix">
+                <span>XX基本信息</span>
+                <div class="pull-right">
+                    <a href="javascript" class="btn btn-sm btn-primary">修改</a>
+                    <a href="javascript" class="btn btn-sm btn-primary">保存</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">机构编号</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">机构名称</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">机构类型</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">级别</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">开设点</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">地址</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">位置坐标</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">人数</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading clearfix">
+                <span>XX编组设置</span>
+                <div class="pull-right">
+                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">序号</th>
+                            <th class="col-md-1">组号</th>
+                            <th class="">组名</th>
+                            <th class="">组描述</th>
+                            <th class="col-md-1">选择</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">
+                                <input type="checkbox" name="radio">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading clearfix">
+                <span>XX岗位设置</span>
+                <div class="pull-right">
+                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">序号</th>
+                            <th class="">组室</th>
+                            <th class="">岗位</th>
+                            <th class="">人数</th>
+                            <th class="col-md-1">选择</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">
+                                <input type="checkbox" name="radio">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

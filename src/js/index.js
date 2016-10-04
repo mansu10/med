@@ -19,6 +19,9 @@ include_js("./src/js/controller/wareShelvesCtrl.js");
 include_js("./src/js/controller/wareMaintainCtrl.js");
 include_js("./src/js/controller/wareEntryCtrl.js");
 
+include_js("./src/js/controller/instSupplyCtrl.js");
+include_js("./src/js/controller/instDemandCtrl.js");
+
 include_js("./src/js/controller/modeCtrl.js");
 
 include_js("./src/js/service/service.js");

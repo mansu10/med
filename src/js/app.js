@@ -4,7 +4,8 @@ var app = angular.module('app', [
 	'ui.router',
 	// 'angular-datepicker'
 	'angularjs-datetime-picker',
-	'ui.tree'
+	'ui.tree',
+	'customFilter'
 
 ])
 /**

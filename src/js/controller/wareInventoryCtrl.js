@@ -72,6 +72,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
         $scope.selectedList = angular.copy(item);
 		$scope.states.currentWare = index;
 		catInfoByCode(item.depotCode);
+		queryAllShelfsByDepotCode(item.depotCode);
+		catCargoAreaCodesByDepotCode(item.depotCode);
     }
 	$scope.selectWare = function(index){
 		$scope.states.editMode = false;
@@ -244,6 +246,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	}
 	
 	//新建货区
+	$scope.selectCargoAreaList = [],//货区选择列表
 	$scope.addCargoAreas = [
 //	    {
 //	        'depotCode': null,
@@ -258,7 +261,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 //	    'cargoAreaName': null,
 //	    'cargoAreaCode': null,
 //	    'cargoAreaDesc': null
-	}
+	},
+
 	/**
 	 * 新增货区 保存
 	 * @return {无返回}
@@ -308,7 +312,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 				function(respone) {
 					console.log("=========新建货区========="+JSON.stringify(respone));
 					alert(JSON.stringify(respone));
-					$scope.slectCargoAreaList = angular.copy($scope.addCargoAreas);
+				//	$scope.selectCargoAreaList = angular.copy($scope.addCargoAreas);
+					createSelectCargoAreaList(angular.copy($scope.addCargoAreas));
 				},
 				function(respone) {
 					console.log("CargoAreaServlet add failed!" + JSON.stringify(respone));
@@ -316,12 +321,28 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		});
 	}
 	
+	function createSelectCargoAreaList(objs){
+		angular.forEach(objs, function(data,index,array){
+			//data等价于array[index]
+			$scope.selectCargoAreaList.push({'cargoCode':data.cargoAreaCode})
+		});
+		console.log("$scope.selectCargoAreaList:"+JSON.stringify($scope.selectCargoAreaList));
+	}
+	$scope.selectCargoArea = function(item,index){
+		
+		if ($scope.states.addNewMode) {	
+			$scope.addShelfList[index].cargoAreaCode = item.cargoAreaCode.cargoCode;
+			console.log("添加模式："+JSON.stringify($scope.addShelfList[index]));
+		}else{
+			$scope.addAdjustShelfList[index].cargoAreaCode = item.cargoAreaCode.cargoCode;
+			console.log("调整模式："+JSON.stringify($scope.addAdjustShelfList[index]));	
+		}
+		
+	}
 	
 	/**
 	 * 新增货架
 	 */
-	
-	$scope.shelfSpecSlectionList = [{'value':0},{'value':1},{'value':2}]
 	$scope.addShelfList = [
 //	     {
 //	        'shelfSpecification': 2,
@@ -348,10 +369,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		}
 		
 		$scope.newShelft.depotCode = angular.copy($scope.newDepot).depotCode;
+		$scope.newShelft.shelfCode = $scope.addShelfList.length + 1;
 		$scope.addShelfList.push(angular.copy($scope.newShelft));
 		$scope.newShelft = {}; 
 		
-		console.log("------------"+JSON.stringify($scope.addShelfList))
+		console.log("------$scope.addShelfList------"+JSON.stringify($scope.addShelfList))
 		
 	}
 	$scope.editNewShelft = true;
@@ -398,21 +420,6 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		});
 	}
 	
-	
-	function queryAllShelfs(){
-		http.post({//货架查询
-				'method':'queryAllShelfs',
-			},URL.ShelfServlet).then(
-				function(respone) {
-					console.log("=========查询货架========="+JSON.stringify(respone));
-//					$scope.shelfs = respone.shelfs;
-				},
-				function(respone) {
-					console.log("queryAllShelfs failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
-		});
-	}
-		
 	/**
 	 * 根据仓库编号查询货位   货位分配/调整  货位下拉列表
 	 * @param {depotCode} -仓库编号
@@ -425,6 +432,15 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========货区分配========="+JSON.stringify(respone));
+					$scope.cargoAreaAssignArray = [];
+					angular.forEach(respone.cargoAreaCodes,function(item){
+						$scope.cargoAreaAssignArray.push({
+							'cargoCode':item
+						});
+					});
+					
+					console.log("=========$scope.cargoAreaAssignArray========="+JSON.stringify($scope.cargoAreaAssignArray));
+					
 				},
 				function(respone) {
 					console.log("CargoAreaServlet failed!" + JSON.stringify(respone));
@@ -436,9 +452,16 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	 * 根货位分配/调整  保存
 	 */	
 	$scope.updateCargoAreaCodes = function(){
+		var shlfsStr = '';
+		if ($scope.states.addNewMode) {		
+			shlfsStr = JSON.stringify($scope.addShelfList)
+		}else{
+			shlfsStr = JSON.stringify($scope.addAdjustShelfList)
+		}
+		
 		http.post({
 				'method':'updateShelf',
-				'shelfs':JSON.stringify($scope.addNewShelfs)
+				'shelfs':shlfsStr
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========updateShelf========="+JSON.stringify(respone));
@@ -476,6 +499,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		$scope.newShelft = {};
 		
 		$scope.addNewShelfs = [];
+		
+		$scope.isNewAdjustShelve = false;
 			
 	}
 /**********************************************************************
@@ -602,11 +627,13 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			alert("请填写货架信息！");
 			return;
 		}
-		
+		$scope.newAdjustShelft.depotCode = currentDepotCode;
+		$scope.newAdjustShelft.shelfCode = $scope.addAdjustShelfList.length+1;
+		console.log("-----$scope.newAdjustShelft.shelfCode-------"+$scope.newAdjustShelft.shelfCode);
 		$scope.addAdjustShelfList.push(angular.copy($scope.newAdjustShelft));
 		$scope.newAdjustShelft = {}; 
 		
-		console.log("------------"+JSON.stringify($scope.addAdjustShelfList))
+		console.log("-----addNewAdjustShelft-------"+JSON.stringify($scope.addAdjustShelfList))
 		
 	}
 	$scope.editNewAdjustShelft = true;
@@ -635,15 +662,30 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		}
 		
 		http.post({
-				'method':'addShelf',
+				'method':'updateShelf',
 				'shelfs':JSON.stringify($scope.addAdjustShelfList)
 			},URL.ShelfServlet).then(
 				function(respone) {
-					console.log("=========新建货架========="+JSON.stringify(respone));
+					console.log("=========调整货架修改提交========="+JSON.stringify(respone));
 					alert(JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("addShelf add failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+	
+	function queryAllShelfsByDepotCode(depotCode){
+		http.post({//货架查询
+				'method':'queryAllShelfs',
+				'depotCode':depotCode
+			},URL.ShelfServlet).then(
+				function(respone) {
+					console.log("=========查询货架调整========="+JSON.stringify(respone));
+					$scope.addAdjustShelfList = respone.shelfs;
+				},
+				function(respone) {
+					console.log("queryAllShelfs failed!" + JSON.stringify(respone));
 					alert(JSON.stringify(respone));
 		});
 	}

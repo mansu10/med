@@ -31,7 +31,7 @@
 								<td class="text-center">
 									<input type="radio" name="radio" ng-checked="$index == states.currentWare ? true : false">
 								</td>
-								<td>{{item.id}}</td>
+								<td>{{item.depotCode}}</td>
 								<td>{{item.depotName}}</td>
 								<td>{{item.depotType}}</td>
 							</tr>
@@ -102,7 +102,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内长</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotLength" ng-disabled="hasSaveDepot">
+											<input type="number" class="form-control input-sm" ng-model="newDepot.depotLength" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>
@@ -110,7 +110,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内宽</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotWidth" ng-disabled="hasSaveDepot">
+											<input type="number" class="form-control input-sm" ng-model="newDepot.depotWidth" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>			
@@ -120,7 +120,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内高</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotHeigth" ng-disabled="hasSaveDepot">
+											<input type="number" class="form-control input-sm" ng-model="newDepot.depotHeigth" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>
@@ -128,7 +128,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">使用面积</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-model="newDepot.depotVolume" ng-disabled="hasSaveDepot">
+											<input type="number" class="form-control input-sm" ng-model="newDepot.depotVolume" ng-disabled="hasSaveDepot">
 										</div>
 									</div>
 								</div>			
@@ -161,9 +161,9 @@
 									<td class="text-center"></td>
 									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoArea.cargoAreaCode"></td>
 									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoArea.cargoAreaName"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="number" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="number" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="number" class="input-sm form-control" ng-disabled="true"></td>
 									<td class="col-md-2">
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewCargoArea()"><i class="fa fa-check" ></i></a>
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelCargoArea(0)"><i class="fa fa-times" ></i></a>
@@ -208,13 +208,15 @@
 								<tr ng-show="isNewShelve">
 									<td class="text-center col-md-1"></td>
 									<td>
-										<select ng-model="newShelft.shelfSpecification" class="form-control input-sm" 
-                    						ng-options="x.value for x in shelfSpecSlectionList">               
-            							</select>
+            							<select ng-model="newShelft.shelfSpecification" ng-change="getValue()" class="form-control input-sm">
+	            							<option value="0">1.2*0.4*2</option>
+	           								<option value="1">1.5*0.5*2</option>
+	            							<option value="2">2*0.6*2</option>
+        								</select>
 									</td>
 									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfSpecification"></td>-->
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfLayer"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newShelft.shelfCount"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="newShelft.shelfLayer"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="newShelft.shelfCount"></td>
 									<td class="col-md-2">
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewShelft()"><i class="fa fa-check"></i></a>
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelShelft(0)"><i class="fa fa-times"></i></a>
@@ -223,13 +225,15 @@
 								<tr ng-repeat="item in addShelfList">
 									<td class="text-center">{{$index+1}}</td>
 									<td>
-										<select ng-model="item.shelfSpecification" class="form-control input-sm" ng-disabled="editNewShelft"
-                    						ng-options="x.value for x in shelfSpecSlectionList">               
-            							</select>
+										<select ng-model="item.shelfSpecification" ng-change="getValue()" class="form-control input-sm">
+	            							<option value="0">1.2*0.4*2</option>
+	           								<option value="1">1.5*0.5*2</option>
+	            							<option value="2">2*0.6*2</option>
+        								</select>
 									</td>
 									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewShelft"></td>-->
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewShelft"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewShelft"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewShelft"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewShelft"></td>
 									<td>
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editShelft()"><i class="{{editNewShelft ? 'fa fa-edit': 'fa fa-check'}}"></i></a>
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelShelft(1,$index)"><i class="fa fa-times"></i></a>
@@ -257,7 +261,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">仓库编号</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.id">
+											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotCode">
 										</div>
 									</div>
 								</div>
@@ -303,7 +307,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内长</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotLength">
+											<input type="number" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotLength">
 										</div>
 									</div>
 								</div>
@@ -311,7 +315,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内宽</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotWidth">
+											<input type="number" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotWidth">
 										</div>
 									</div>
 								</div>			
@@ -321,7 +325,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">内高</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotHeigth">
+											<input type="number" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotHeigth">
 										</div>
 									</div>
 								</div>
@@ -329,7 +333,7 @@
 									<div class="form-group">
 										<label for="" class="col-md-4 control-label">使用面积</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotVolume">
+											<input type="number" class="form-control input-sm" ng-disabled="!states.editMode" ng-model="selectedList.depotVolume">
 										</div>
 									</div>
 								</div>			
@@ -362,9 +366,9 @@
 									<td class="text-center"></td>
 									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoAreaAdjust.cargoAreaCode"></td>
 									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-model="newCargoAreaAdjust.cargoAreaName"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
-									<td class="col-md-2"><input type="text" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="number" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="number" class="input-sm form-control" ng-disabled="true"></td>
+									<td class="col-md-2"><input type="number" class="input-sm form-control" ng-disabled="true"></td>
 									<td class="col-md-2">
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addAdjustCargoArea()"><i class="fa fa-check" ></i></a>
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelAdjustCargoArea(0)"><i class="fa fa-times" ></i></a>
@@ -410,13 +414,16 @@
 								<tr ng-show="isNewAdjustShelve">
 									<td class="text-center col-md-1"></td>
 									<td>
-										<select ng-model="newAdjustShelft.shelfSpecification" class="form-control input-sm" 
-                    						ng-options="x.value for x in shelfSpecSlectionList">               
-            							</select>
+            							<select ng-model="newAdjustShelft.shelfSpecification" ng-change="getValue()" class="form-control input-sm">
+	            							<option value="">请选择型号</option>
+	            							<option value="0">1.2*0.4*2</option>
+	           								<option value="1">1.5*0.5*2</option>
+	            							<option value="2">2*0.6*2</option>
+        								</select>
 									</td>
 									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfSpecification"></td>-->
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfLayer"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="newAdjustShelft.shelfCount"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="newAdjustShelft.shelfLayer"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="newAdjustShelft.shelfCount"></td>
 									<td class="col-md-2">
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewAdjustShelft()"><i class="fa fa-check"></i></a>
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelAdjustShelft(0)"><i class="fa fa-times"></i></a>
@@ -424,16 +431,14 @@
 								</tr>
 								<tr ng-repeat="item in addAdjustShelfList">
 									<td class="text-center">{{$index+1}}</td>
-									<td>
-										<select ng-model="item.shelfSpecification" class="form-control input-sm" ng-change="getValue()" ng-disabled="editNewAdjustShelft"
-                    						ng-options="x.value for x in shelfSpecSlectionList">               
-            							</select>
+									<td>{{item.shelfSpecification | shelfFilter}}
+										
 									</td>
 									<!--<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfSpecification" ng-disabled="editNewAdjustShelft"></td>-->
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewAdjustShelft"></td>
-									<td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewAdjustShelft"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="item.shelfLayer" ng-disabled="editNewAdjustShelft"></td>
+									<td class="col-md-2"><input type="number" class="form-control input-sm" ng-model="item.shelfCount" ng-disabled="editNewAdjustShelft"></td>
 									<td>
-										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editAdjustShelft()"><i class="{{editNewAdjustShelft ? 'fa fa-edit': 'fa fa-check'}}"></i></a>
+										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click=""><i class="{{editNewAdjustShelft ? 'fa fa-edit': 'fa fa-check'}}"></i></a>
 										<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancelAdjustShelft(1,$index)"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
@@ -507,16 +512,24 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>011</td>
-								<td>1</td>
-								<td>1</td>
-								<td>阿莫西林</td>
+							<tr ng-repeat="item in addAdjustShelfList">
+								<td>{{$index+1}}</td>
+								<td>{{item.shelfCode}}</td>
 								<td>
-									<select name="" id="">
-										<option value="">货区</option>
-									</select>
+									{{item.shelfSpecification | shelfFilter}}
+									<!--<select ng-model="item.shelfSpecification" ng-change="getValue()" class="form-control input-sm">
+            							<option value="0">1.2*0.4*2</option>
+           								<option value="1">1.5*0.5*2</option>
+            							<option value="2">2*0.6*2</option>
+        							</select>
+								</td>-->
+								<td>{{item.shelfLayer}}</td>
+								<td>{{item.shelfStorageCategory}}</td>
+								<td>
+    								<select ng-model="item.cargoAreaCode" class="form-control input-sm" ng-change="selectCargoArea(item,$index)"
+            								ng-options="o.cargoCode for o in cargoAreaAssignArray">
+        								<option value="">-- 请选择 --</option>
+    								</select>
 								</td>
 							</tr>
 						</tbody>
@@ -524,7 +537,7 @@
 				</div>
 				<div class="panel-footer clearfix">
 					<div class="form-group pull-right">
-						<a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+						<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="updateCargoAreaCodes()">保存</a>
 					</div>
 				</div>
 			</div>	
@@ -545,15 +558,17 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="item in addNewShelfs">
-								<td>{{$index}}</td>
+								<td>{{$index+1}}</td>
 								<td>{{item.shelfCode}}</td>
-								<td>{{item.shelfSpecification}}</td>
+								<td>{{item.shelfSpecification | shelfFilter}}</td>
 								<td>{{item.shelfLayer}}</td>
 								<td>{{item.shelfStorageCategory}}</td>
 								<td>
-									<select ng-model="item.cargoAreaCode" class="form-control input-sm" ng-change="getValue()"
-                    						ng-options="x.cargoAreaCode for x in slectCargoAreaList">               
-            						</select>
+									
+            						<select ng-model="item.cargoAreaCode" class="form-control input-sm" ng-change="selectCargoArea(item,$index)"
+            								ng-options="o.cargoCode for o in selectCargoAreaList">
+        								<option value="">-- 请选择 --</option>
+    								</select>
 								</td>
 							</tr>
 						</tbody>

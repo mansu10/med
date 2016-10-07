@@ -324,7 +324,9 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	function createSelectCargoAreaList(objs){
 		angular.forEach(objs, function(data,index,array){
 			//data等价于array[index]
-			$scope.selectCargoAreaList.push({'cargoCode':data.cargoAreaCode})
+			if(!isInArray($scope.selectCargoAreaList,{'cargoCode':data.cargoAreaCode})){
+				$scope.selectCargoAreaList.push({'cargoCode':data.cargoAreaCode})
+			}
 		});
 		console.log("$scope.selectCargoAreaList:"+JSON.stringify($scope.selectCargoAreaList));
 	}
@@ -334,7 +336,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			$scope.addShelfList[index].cargoAreaCode = item.cargoAreaCode.cargoCode;
 			console.log("添加模式："+JSON.stringify($scope.addShelfList[index]));
 		}else{
-			$scope.addAdjustShelfList[index].cargoAreaCode = item.cargoAreaCode.cargoCode;
+			//$scope.addAdjustShelfList[index].cargoAreaCode = item.cargoAreaCode.cargoCode;
 			console.log("调整模式："+JSON.stringify($scope.addAdjustShelfList[index]));	
 		}
 		
@@ -432,13 +434,13 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========货区分配========="+JSON.stringify(respone));
-					$scope.cargoAreaAssignArray = [];
-					angular.forEach(respone.cargoAreaCodes,function(item){
+					$scope.cargoAreaAssignArray = respone.cargoAreaCodes;
+					/*angular.forEach(respone.cargoAreaCodes,function(item){
 						$scope.cargoAreaAssignArray.push({
 							'cargoCode':item
 						});
 					});
-					
+					*/
 					console.log("=========$scope.cargoAreaAssignArray========="+JSON.stringify($scope.cargoAreaAssignArray));
 					
 				},
@@ -689,8 +691,6 @@ app.controller('WareInventoryCtrl', function($scope,http){
 					alert(JSON.stringify(respone));
 		});
 	}
-	
-	
 	
 	
 })

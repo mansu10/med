@@ -527,7 +527,7 @@
 								<td>{{item.shelfStorageCategory}}</td>
 								<td>
     								<select ng-model="item.cargoAreaCode" class="form-control input-sm" ng-change="selectCargoArea(item,$index)"
-            								ng-options="o.cargoCode for o in cargoAreaAssignArray">
+            								ng-options="x for x in cargoAreaAssignArray">
         								<option value="">-- 请选择 --</option>
     								</select>
 								</td>

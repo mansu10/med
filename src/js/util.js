@@ -39,6 +39,17 @@ var inArray=function(param, value) {
 	return false;
 }
 
+/**
+ * 判断数组中是否存在某元素
+ * @param 数组、元素
+ */
+var isInArray=function(arr, value) {
+	
+	if(JSON.stringify(arr).indexOf(JSON.stringify(value)) > -1) 
+   		return true;//存在
+ 	else
+    	return false; //不存在
+}
 
 	//根据下标删除数组元素
 	Array.prototype.removeItem = function(dx) {

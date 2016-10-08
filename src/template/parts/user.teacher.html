@@ -19,11 +19,11 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<label for="" class="control-label col-md-4">账号</label>
-									<div class="col-md-8"><input type="text" class="form-control input-sm"></div>	
+									<div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="queryInfo.userCode"></div>	
 								</div>
 								<div class="col-md-6">
 									<label for="" class="control-label col-md-4">姓名</label>
-									<div class="col-md-8"><input type="text" class="form-control input-sm"></div>	
+									<div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="queryInfo.userName"></div>	
 								</div>
 							</div>
 						</div>
@@ -34,18 +34,15 @@
 								<div class="col-md-6">
 									<label for="" class="control-label col-md-4">用户类型</label>
 									<div class="col-md-8">
-										<select name="" id="" class="form-control">
-											<option value="">----</option>
+										<select name="" id="" class="form-control" ng-model="queryInfo.userType">
+											<option value="1">学员</option>
+											<option value="2">教员</option>
 										</select>
 									</div>	
 								</div>
 								<div class="col-md-6">
 									<label for="" class="control-label col-md-4">班次</label>
-									<div class="col-md-8">
-										<select name="" id="" class="form-control">
-											<option value="">----</option>
-										</select>
-									</div>	
+									<div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="queryInfo.className"></div>	
 								</div>
 							</div>
 						</div>
@@ -53,14 +50,14 @@
 				</form>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="javascript:;" class="btn btn-sm btn-primary pull-right">查询</a>
+				<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="queryUser()">查询</a>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="panel">
 			<div class="panel-heading">
-				<a href="javascript:;" class="btn btn-sm btn-primary">新建帐号</a>
+				<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="createAccount()">新建帐号</a>
 			</div>
 			<div class="panel-body">
 				<table class="table table-condensed table-bordered">
@@ -80,55 +77,63 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr ng-show="isCreateAccount">
 							<td></td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="newAccount.userCode">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="newAccount.userPassword">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<select name="" id="" class="form-control" ng-model="newAccount.userType">
+											<option value="1">学员</option>
+											<option value="2">教员</option>
+								</select>
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="newAccount.userName"> 
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="newAccount.studentId">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="newAccount.className">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date1">
+								<input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="newAccount.startTime">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date2">
+								<input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="newAccount.endTime">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="newAccount.team">
 							</td>
 							<td>
-								<a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
-								<a href="javascript:;" class="btn btn-xs btn-primary">取消</a>
+								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="save()">保存</a>
+								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancel()">取消</a>
 							</td>
 						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr ng-repeat = "item in users">
+							<td>{{$index+1}}</td>
+							<td><input type="text" class="form-control input-sm" ng-model="item.userCode" ng-disabled="!item.editable"></td>
+							<td><input type="text" class="form-control input-sm" ng-model="item.userPassword" ng-disabled="!item.editable"></td>
 							<td>
-								<a href="javascript:;" class="btn btn-xs btn-primary">修改</a>
-								<a href="javascript:;" class="btn btn-xs btn-primary">删除</a>
-								<a href="javascript:;" class="btn btn-xs btn-primary">密码重置</a>
+								<select name="" id="" class="form-control" ng-model="item.userType" ng-disabled="!item.editable">
+											<option value="1">学员</option>
+											<option value="2">教员</option>
+								</select>
+							</td>
+							<td><input type="text" class="form-control input-sm" ng-model="item.userName" ng-disabled="!item.editable"></td>
+							<td><input type="text" class="form-control input-sm" ng-model="item.studentId" ng-disabled="!item.editable"></td>
+							<td><input type="text" class="form-control input-sm" ng-model="item.className" ng-disabled="!item.editable"></td>
+							<td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="item.startTime" ng-disabled="!item.editable"></td>
+							<td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="item.endTime" ng-disabled="!item.editable"></td>
+							<td><input type="text" class="form-control input-sm" ng-model="item.team" ng-disabled="!item.editable"></td>
+							<td>
+								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="edit($index)">{{label}}</a>
+								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="del($index)">删除</a>
+								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="resetPassword($index)">密码重置</a>
 							</td>
 						</tr>
 					</tbody>

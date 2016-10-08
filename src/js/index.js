@@ -24,6 +24,9 @@ include_js("./src/js/controller/instDemandCtrl.js");
 
 include_js("./src/js/controller/modeCtrl.js");
 
+include_js("./src/js/controller/userStudentCtrl.js");
+include_js("./src/js/controller/userTeacherCtrl.js");
+
 include_js("./src/js/service/service.js");
 include_js("./src/js/directives/directives.js");
 include_js("./src/js/filter/orderFilter.js");

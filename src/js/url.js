@@ -39,5 +39,5 @@ var URL = {
 	DepotServlet:API_URI+"MedicineManagement/DepotServlet" ,      //  仓库管理
 	CargoAreaServlet:API_URI+"MedicineManagement/CargoAreaServlet" ,//货区管理
 	ShelfServlet:API_URI+"MedicineManagement/ShelfServlet" ,//货架信息
-	
+	UserServlet:API_URI+"MedicineManagement/UserServlet"
 }

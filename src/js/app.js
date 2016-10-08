@@ -171,11 +171,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		// 用户管理
 		.state('home.userTeacher', {
 			url: '/user/teacher',
-			templateUrl: paths.part + 'user.teacher.html'
+			templateUrl: paths.part + 'user.teacher.html',
+			controller: 'UserTeacherCtrl'
 		})
 		.state('home.userStudent', {
 			url: '/user/student',
-			templateUrl: paths.part + 'user.student.html'
+			templateUrl: paths.part + 'user.student.html',
+			controller: 'UserStudentCtrl'
 		})
 });
 

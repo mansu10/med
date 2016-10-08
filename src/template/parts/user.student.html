@@ -20,12 +20,12 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">用户名</lable>
-									<div class="col-md-8"><input type="text" class="form-control"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userCode"></div>
 								</div>
-								<div class="col-md-6">
+								<!--<div class="col-md-6">
 									<lable class="col-md-4 control-label">角色名</lable>
 									<div class="col-md-8"><input type="text" class="form-control"></div>
-								</div>
+								</div>-->
 							</div>
 						</div>
 					</div>
@@ -34,11 +34,11 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">密码</lable>
-									<div class="col-md-8"><input type="password" class="form-control"></div>
+									<div class="col-md-8"><input type="password" class="form-control" ng-model="user.userPassword"></div>
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">重复密码</lable>
-									<div class="col-md-8"><input type="password" class="form-control"></div>
+									<div class="col-md-8"><input type="password" class="form-control" ng-model="userPassword"></div>
 								</div>
 							</div>
 						</div>
@@ -49,14 +49,15 @@
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">用户类型</lable>
 									<div class="col-md-8">
-										<select name="" id="" class="form-control">
-											<option value="">----</option>
+										<select name="" id="" class="form-control" ng-model="user.userType">
+											<option value="1">学员</option>
+											<option value="2">教员</option>
 										</select>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">姓名</lable>
-									<div class="col-md-8"><input type="text" class="form-control"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userName"></div>
 								</div>
 							</div>
 						</div>
@@ -66,11 +67,11 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">班次</lable>
-									<div class="col-md-8"><input type="text" class="form-control"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.className"></div>
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">学号</lable>
-									<div class="col-md-8"><input type="text" class="form-control"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.studentId"></div>
 								</div>
 							</div>
 						</div>
@@ -80,11 +81,11 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">启用时间</lable>
-									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date1"></div>
+									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.startTime"></div>
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">到期时间</lable>
-									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date2"></div>
+									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.endTime"></div>
 								</div>
 							</div>
 						</div>
@@ -100,7 +101,7 @@
 				</form>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="javascript:;" class="btn btn-sm btn-primary pull-right">保存</a>
+				<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="save()">保存</a>
 			</div>
 		</div>
 	</div>

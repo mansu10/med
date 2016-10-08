@@ -6,5 +6,11 @@ app.controller('InstDemandCtrl', function($scope,http){
 		
 		$scope.detailState = bool;
 	}
-	
+
+	$scope.editMode = true;
+
+	$scope.toggleEditMode = function(bool) {
+		$scope.editMode = bool;
+	}
+
 })

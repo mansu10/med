@@ -21,6 +21,7 @@ include_js("./src/js/controller/wareEntryCtrl.js");
 
 include_js("./src/js/controller/instSupplyCtrl.js");
 include_js("./src/js/controller/instDemandCtrl.js");
+include_js("./src/js/controller/instSafetyCtrl.js");
 
 include_js("./src/js/controller/modeCtrl.js");
 

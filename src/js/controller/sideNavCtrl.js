@@ -204,6 +204,11 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"title": "需求机构",
 							"url": ".instDemand",
 							"isActive":false
+						},
+						{
+							"title": "保障关系",
+							"url": ".instSafety",
+							"isActive":false
 						}]					
 				},{
 					"title": "用户管理",

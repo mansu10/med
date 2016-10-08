@@ -168,6 +168,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'inst.demand.html',
 			controller: 'InstDemandCtrl'
 		})
+		.state('home.instSafety', {
+			url: '/inst/safety',
+			templateUrl: paths.part + 'inst.safety.html',
+			controller: 'InstSafetyCtrl'
+		})
 		// 用户管理
 		.state('home.userTeacher', {
 			url: '/user/teacher',

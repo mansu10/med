@@ -1,0 +1,110 @@
+<!-- page heading start-->
+<div class="page-heading">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">机构管理</a>
+        </li>
+        <li class="active"> 保障关系 </li>
+    </ul>
+</div>
+<!-- page heading end-->
+
+<div class="wrapper">
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="" class="control-label col-md-4">供应机构</label>
+                                    <div class="col-md-8"><input type="text" class="form-control input-sm"></div>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="" class="control-label col-md-4">需求机构</label>
+                                    <div class="col-md-8"><input type="text" class="form-control input-sm"></div>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer clearfix">
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right">查询</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading clearfix">
+                <div class="pull-right">
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddNewState(true)">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">序号</th>
+                            <th class="">供应机构</th>
+                            <th class="">供应机构代码</th>
+                            <th class="">供应机构地点</th>
+                            <th class="">对应需求机构</th>
+                            <th class="">需求机构代码</th>
+                            <th class="">需求机构地点</th>
+                            <th class="col-md-2">选择</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="addNewState">
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td class="text-center">
+                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleAddNewState(false)">取消</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">
+                                <input type="checkbox" name="radio">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

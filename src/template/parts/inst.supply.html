@@ -88,7 +88,7 @@
             <div class="panel-heading clearfix">
                 <span>XX基本信息</span>
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleEditMode(!editMode)">{{editMode == false ? '取消' : '修改'}}</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构编号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构名称</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构类型</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">级别</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">开设点</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">地址</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">位置坐标</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">人数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
             <div class="panel-heading clearfix">
                 <span>XX编组设置</span>
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddGroupState(true)">新增</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
                 </div>
@@ -188,10 +188,26 @@
                             <th class="col-md-1">组号</th>
                             <th class="">组名</th>
                             <th class="">组描述</th>
-                            <th class="col-md-1">选择</th>
+                            <th class="col-md-2">选择</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr ng-if="addGroupState">
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td class="text-center">
+                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleAddGroupState(false)">取消</a>
+                            </td>
+                        </tr>
                         <tr>
                             <td></td>
                             <td></td>
@@ -211,7 +227,7 @@
             <div class="panel-heading clearfix">
                 <span>XX岗位设置</span>
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddPosiState(true)">新增</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
                 </div>
@@ -224,10 +240,26 @@
                             <th class="">组室</th>
                             <th class="">岗位</th>
                             <th class="">人数</th>
-                            <th class="col-md-1">选择</th>
+                            <th class="col-md-2">选择</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr ng-if="addPosiState">
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td class="text-center">
+                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleAddPosiState(false)">取消</a>
+                            </td>
+                        </tr>
                         <tr>
                             <td></td>
                             <td></td>

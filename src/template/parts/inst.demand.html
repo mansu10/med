@@ -88,7 +88,7 @@
             <div class="panel-heading clearfix">
                 <span>XX基本信息</span>
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleEditMode(!editMode)">{{editMode == false ? '取消' : '修改'}}</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构代码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构名称</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构类型</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构级别</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">开设地点</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构地址</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构坐标</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构人数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">保障人数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">联系人</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">联系电话</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>

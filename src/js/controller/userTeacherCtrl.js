@@ -1,5 +1,6 @@
 app.controller('UserTeacherCtrl', function($scope,http){
     $scope.users = [];
+    var temp = [];
     $scope.queryInfo = {
 			'userCode':'',
 			'userName':'',
@@ -41,20 +42,45 @@ app.controller('UserTeacherCtrl', function($scope,http){
 	$scope.label = '修改';
 	$scope.createAccount = function(){
 		$scope.isCreateAccount = true;
+		temp = angular.copy($scope.users);
+		$scope.users = [];
 	}
 	
 	$scope.save = function(){
 		if(isEmptyValue($scope.newAccount)){
 			return;
 		}
-		$scope.isCreateAccount = false;
-		$scope.users.push(angular.copy($scope.newAccount));
-		$scope.newAccount = {};
+		
+		http.post({
+				'method':'addUser',
+				'user':getUserInfoStr($scope.newAccount)
+			},URL.UserServlet).then(
+				function(respone) {
+					console.log("=========已保存========="+JSON.stringify(respone));
+					alert("已保存！");
+					$scope.isCreateAccount = false;
+//					$scope.users.push(angular.copy($scope.newAccount));
+					$scope.newAccount = {};
+					$scope.queryInfo = {
+						'userCode':'',
+						'userName':'',
+						'userType':'',
+						'className':''
+   					 }
+					$scope.queryUser();
+					
+				},
+				function(respone) {
+					console.log("addUser failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});	
+		
 	}
 	
 	$scope.cancel = function(){
 		$scope.isCreateAccount = false;
 		$scope.newAccount = {};
+		$scope.users = temp;
 	}
 	
 	$scope.edit = function(index){
@@ -105,7 +131,7 @@ app.controller('UserTeacherCtrl', function($scope,http){
    var updateUser = function(item){
 		http.post({
 				'method':'updateUser',
-				'user':JSON.stringify(item)
+				'user':getUserInfoStr(item)
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========updateUser========="+JSON.stringify(respone));
@@ -117,6 +143,16 @@ app.controller('UserTeacherCtrl', function($scope,http){
 		});
 	}
 	
+	var getUserInfoStr = function(obj){
+		var temp = angular.copy(obj);
+		if (temp.userType == '学员') {
+			temp.userType = 1;
+		} else{
+			temp.userType = 2;
+		} 
+		
+		return JSON.stringify(temp);
+	}
 	
 	
 	

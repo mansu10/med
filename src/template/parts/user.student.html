@@ -20,7 +20,7 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">用户名</lable>
-									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userCode"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userCode" ng-disabled="true"></div>
 								</div>
 								<!--<div class="col-md-6">
 									<lable class="col-md-4 control-label">角色名</lable>
@@ -47,17 +47,19 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<div class="col-md-6">
-									<lable class="col-md-4 control-label">用户类型</lable>
-									<div class="col-md-8">
-										<select name="" id="" class="form-control" ng-model="user.userType">
-											<option value="1">学员</option>
-											<option value="2">教员</option>
-										</select>
-									</div>
+									<!--<lable class="col-md-4 control-label">用户类型</lable>
+									<div class="col-md-8">-->
+										<lable class="col-md-4 control-label">用户类型</lable>
+										<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userType" ng-disabled="true"></div>
+										<!--<select name="" id="" class="form-control" ng-model="user.userType" ng-disabled="true">
+											<option value="学员">学员</option>
+											<option value="教员">教员</option>
+										</select>-->
+									<!--</div>-->
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">姓名</lable>
-									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userName"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userName" ng-disabled="true"></div>
 								</div>
 							</div>
 						</div>
@@ -67,11 +69,11 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">班次</lable>
-									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.className"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.className" ng-disabled="true"></div>
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">学号</lable>
-									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.studentId"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-model="user.studentId" ng-disabled="true"></div>
 								</div>
 							</div>
 						</div>
@@ -81,11 +83,11 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">启用时间</lable>
-									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.startTime"></div>
+									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.startTime" ng-disabled="true"></div>
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">到期时间</lable>
-									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.endTime"></div>
+									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.endTime" ng-disabled="true"></div>
 								</div>
 							</div>
 						</div>
@@ -94,14 +96,14 @@
 						<div class="col-md-12">
 							<label for="" class="control-label col-md-2">备注</label>
 							<div class="col-md-10">
-								<textarea name="" class="form-control" id="" rows="5"></textarea>
+								<textarea name="" class="form-control" id="" rows="5" ng-disabled="true"></textarea>
 							</div>
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="save()">保存</a>
+				<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="updateUser()">保存</a>
 			</div>
 		</div>
 	</div>

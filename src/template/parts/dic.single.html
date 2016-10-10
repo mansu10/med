@@ -45,7 +45,7 @@
             <div class="panel-heading clearfix">
                 <div class="pull-right">
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleDetailState(true)">新增单一药材</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">新增组合药材</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="openMultiDetail()">新增组合药材</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
                 </div>
             </div>
@@ -53,6 +53,7 @@
                 <table class="table table-condensed table-bordered">
                     <thead>
                         <tr>
+                            <th>选择</th>
                             <th>序号</th>
                             <th>综合类型</th>
                             <th>一级类</th>
@@ -66,11 +67,14 @@
                             <th>厂家</th>
                             <th>计量单位</th>
                             <th>转换比</th>
-                            <th>选择</th>
+                            <th>操作</th>
                         </tr>                        
                     </thead>
                     <tbody>
                         <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
                             <td>2</td>
                             <td>2</td>
                             <td>2</td>
@@ -85,7 +89,7 @@
                             <td>2</td>
                             <td>2</td>
                             <td>
-                                <input type="checkbox">
+                                <a href="javascript:;" class="btn btn-xs btn-primary">明细</a>
                             </td>
                         </tr>                        
                     </tbody>
@@ -101,7 +105,7 @@
             <div class="panel-heading clearfix">
                 药材明细信息
                 <div class=" pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">返回查询</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="backToQuery()">返回查询</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                 </div>
@@ -511,10 +515,93 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="isMulti">
         <div class="panel">
-            <div class="panel-heading">
-                
+            <div class="panel-heading clearfix">
+                <span>明细</span>
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="addNewItem()">{{isAddNewItem?'取消':'添加明细项'}}</a>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>一级类</th>
+                            <th>二级类</th>
+                            <th>用途分类</th>
+                            <th>标识码</th>
+                            <th>对照码</th>
+                            <th>通用名</th>
+                            <th>商品名</th>
+                            <th>规格</th>
+                            <th>型号</th>
+                            <th>厂家</th>
+                            <th>计量单位</th>
+                            <th>数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="isAddNewItem">
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm">
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

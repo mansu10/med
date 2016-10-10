@@ -37,4 +37,13 @@ app.controller('InstSupplyCtrl', function($scope,http){
 	$scope.toggleAddPosiState = function(bool) {
 		$scope.addPosiState = bool;
 	}
+	
+	$scope.type = [
+		'药材仓库',
+		'药材供应站',
+		'野战药材仓库',
+		'野战药材保障队'
+	],
+	
+	$scope.selectedName = '药材仓库';
 })

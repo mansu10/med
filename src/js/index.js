@@ -23,6 +23,8 @@ include_js("./src/js/controller/instSupplyCtrl.js");
 include_js("./src/js/controller/instDemandCtrl.js");
 include_js("./src/js/controller/instSafetyCtrl.js");
 
+include_js("./src/js/controller/dicSingleCtrl.js");
+
 include_js("./src/js/controller/modeCtrl.js");
 
 include_js("./src/js/controller/userStudentCtrl.js");

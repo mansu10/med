@@ -43,7 +43,7 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleDetailState(true)">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
                 </div>
             </div>
@@ -51,25 +51,30 @@
                 <table class="table table-condensed table-bordered">
                     <thead>
                         <tr>
+                            <th class="col-md-1">选择</th>
                             <th class="col-md-1">序号</th>
                             <th class="col-md-1">机构类型</th>
                             <th class="">机构名称</th>
                             <th class="col-md-1">机构代码</th>
                             <th class="">开设地点</th>
                             <th class="col-md-1">机构人数</th>
-                            <th class="col-md-1">选择</th>
+                            <th class="col-md-2">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                             <td class="text-center">
                                 <input type="checkbox" name="radio">
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-xs btn-primary">修改</a>
+                                <a href="javascript:;"  ng-click="toggleDetailState(true)" class="btn btn-xs btn-primary">明细</a>
                             </td>
                         </tr>
                     </tbody>
@@ -83,7 +88,7 @@
     <div class="row">
         <div class="panel">
             <div class="panel-heading">
-                <a href="javascript:;" class="btn btn-primary" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>XX机构情况
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>XX机构情况
             </div>
             <div class="panel-heading clearfix">
                 <span>XX基本信息</span>
@@ -173,60 +178,9 @@
     <div class="row">
         <div class="panel">
             <div class="panel-heading clearfix">
-                <span>XX编组设置</span>
-                <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddGroupState(true)">新增</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <table class="table table-condensed table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="col-md-1">序号</th>
-                            <th class="col-md-1">组号</th>
-                            <th class="">组名</th>
-                            <th class="">组描述</th>
-                            <th class="col-md-2">选择</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-if="addGroupState">
-                            <td></td>
-                            <td>
-                                <input type="text" class="form-control input-sm">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control input-sm">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control input-sm">
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleAddGroupState(false)">取消</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-center">
-                                <input type="checkbox" name="radio">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="panel">
-            <div class="panel-heading clearfix">
                 <span>XX岗位设置</span>
                 <div class="pull-right">
+                    <a href="javascript:;" class="btn btn-primary btn-sm" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddPosiState(true)">新增</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
@@ -236,15 +190,17 @@
                 <table class="table table-condensed table-bordered">
                     <thead>
                         <tr>
+                            <th class="col-md-1">选择</th>
                             <th class="col-md-1">序号</th>
                             <th class="">组室</th>
                             <th class="">岗位</th>
                             <th class="">人数</th>
-                            <th class="col-md-2">选择</th>
+                            <th class="col-md-2">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-if="addPosiState">
+                            <td></td>
                             <td></td>
                             <td>
                                 <input type="text" class="form-control input-sm">
@@ -261,12 +217,16 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="text-center">
+                                <input type="checkbox" name="radio">
+                            </td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td class="text-center">
-                                <input type="checkbox" name="radio">
+                                <a href="javascript:;" class="btn btn-xs btn-primary">修改</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
                             </td>
                         </tr>
                     </tbody>

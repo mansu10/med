@@ -151,7 +151,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		// 药材字典
 		.state('home.dicSingle', {
 			url: '/dic/single',
-			templateUrl: paths.part + 'dic.single.html'
+			templateUrl: paths.part + 'dic.single.html',
+			controller: 'DicSingleCtrl'
 		})
 		// 统计分析
 		.state('home.statistics', {

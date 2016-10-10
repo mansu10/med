@@ -8,7 +8,7 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper">
+<div class="wrapper" ng-if="!detailState">
     <div class="row">
         <div class="panel">    
             <div class="panel-body">
@@ -44,7 +44,7 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">新增单一药材</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleDetailState(true)">新增单一药材</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">新增组合药材</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
                 </div>
@@ -95,7 +95,7 @@
         </div>
     </div>
 </div>
-<div class="wrapper">
+<div class="wrapper" ng-if="detailState">
     <div class="row">
         <div class="panel">
             <div class="panel-heading clearfix">
@@ -106,7 +106,416 @@
                     <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
                 </div>
             </div>
-            <div class="panel-body"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                编码
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">标识码</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">条形码</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">对照码</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">拼音码</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                品规
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">通用名</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">商品名</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">规格</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">剂型</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                商品
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">厂家</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">型号</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">批准文号</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">计量单位</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">价格</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">转换比</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                分类
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">一级类</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">二级类</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                用量
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">次使用量</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">使用量单位</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">DDD值</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">日最大使用量</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                包装
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">大包装计量单位</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">大包装数量</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">包装材料</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">包装长</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">包装宽</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">包装高</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">大包装整重</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                贮存
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">贮存条件</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">有效期</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                库存
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">库存下限</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">库存上限</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                货位
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">货位码</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                标准
+            </div>
+            <div class="panel-body">
+                <form action="" class="form form-horizontal">   
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-4">出处</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                
+            </div>
         </div>
     </div>
 </div>

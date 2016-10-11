@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">机构名称</label>
-                                    <div class="col-md-8"><input type="text" class="form-control input-sm"></div>   
+                                    <div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="demandAgencyName"></div>   
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">分类</label>
@@ -33,7 +33,7 @@
                 </form>
             </div>
             <div class="panel-footer clearfix">
-                <a href="javascript:;" class="btn btn-sm btn-primary pull-right">查询</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="queryDemandAgency()">查询</a>
             </div>
         </div>
     </div>
@@ -41,8 +41,8 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddState()">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delDemandAgency()">删除</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -60,19 +60,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-dblclick="toggleDetailState(true)">
+                        <tr ng-repeat="item in demandAgencyList" ng-dblclick="toggleDetailState(true,item,$index)">
                             <td class="text-center">
-                                <input type="checkbox" name="radio">
+                                <input type="checkbox" name="radio" 
+                                	   ng-checked="isSelected($index)"
+                                	   ng-click="updateSelection($event,$index)">
+                           
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+          
+                            <td>{{$index+1}}</td>
+                            <td>{{item.demandAgencyType}}</td>
+                            <td>{{item.demandAgencyName}}</td>
+                            <td>{{item.demandAgencyCode}}</td>
+                            <td>{{item.demandAgencyAddress1}}</td>
+                            <td>{{item.demandAgencyNumber}}</td>
                             <td>
-                                <a href="javascript:;" class="btn btn-xs btn-primary">修改</a>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleDetailState(true)">明细</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editDemandAgency(item,$index)">修改</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleDetailState(true,item,$index)">明细</a>
                             </td>
                         </tr>
                     </tbody>
@@ -92,8 +96,8 @@
             <div class="panel-heading clearfix">
                 <span>XX基本信息</span>
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleEditMode(!editMode)">{{editMode == false ? '取消' : '修改'}}</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleEditMode(!editMode)" ng-show="!addState">{{editMode == false ? '取消' : '修改'}}</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveAddOrDetailInfo()">保存</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -103,7 +107,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构代码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +115,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构名称</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyName" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -121,7 +125,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构类型</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyType" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -129,7 +133,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构级别</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyLevel" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -139,7 +143,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">开设地点</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyAddress1" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -147,7 +151,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构地址</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyAddress2" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +161,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构坐标</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyCoordinate" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -167,7 +171,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构人数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyNumber" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -175,7 +179,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">保障人数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.demandAgencyProtect" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -185,7 +189,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">联系人</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.contacts" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -193,7 +197,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">联系电话</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="demandAgency.tel" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>

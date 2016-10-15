@@ -71,6 +71,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 	
 	//查询模块
 	$scope.type = [
+	    '',
 		'师救护所',
 		'团救护所',
 		'营救护所',
@@ -86,7 +87,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 	 * @type {查询条件 ：1.机构名称  2.机构类型}
 	 */
 	$scope.queryDemandAgency = function(){
-		alert('查询');
+	
 		http.post({
 				'method':'findAllDemandAgencys',
 				'demandAgencyType':$scope.selectedName,
@@ -104,19 +105,19 @@ app.controller('InstDemandCtrl', function($scope,http){
 	
 	
 	$scope.demandAgencyList = [
-		{
-			'demandAgencyCode': 'B00001',
-	        'demandAgencyName': '1军1师1团团救护所',
-	        'demandAgencyType': '团救护所',
-	        'demandAgencyLevel': '级别',
-	        'demandAgencyAddress1': '浙江省湖州市吴兴区',
-	        'demandAgencyAddress2': '车站路9号',
-	        'demandAgencyCoordinate': '120.104566,30.861911',
-	        'demandAgencyNumber': 30,
-	        'demandAgencyProtect': '20',
-	        'contacts': '王建国',
-	        'tel': '13902102101'
-		}
+//		{
+//			'demandAgencyCode': 'B00001',
+//	        'demandAgencyName': '1军1师1团团救护所',
+//	        'demandAgencyType': '团救护所',
+//	        'demandAgencyLevel': '级别',
+//	        'demandAgencyAddress1': '浙江省湖州市吴兴区',
+//	        'demandAgencyAddress2': '车站路9号',
+//	        'demandAgencyCoordinate': '120.104566,30.861911',
+//	        'demandAgencyNumber': 30,
+//	        'demandAgencyProtect': '20',
+//	        'contacts': '王建国',
+//	        'tel': '13902102101'
+//		}
 	]
 	
 	$scope.demandAgency = {
@@ -159,7 +160,6 @@ app.controller('InstDemandCtrl', function($scope,http){
 	 * @type {}
 	 */
 	var updateDemandAgency = function(){
-		$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
 		http.post({
 				'method':'updateDemandAgency',
 				'demandAgency':JSON.stringify($scope.demandAgency)
@@ -215,7 +215,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 		console.log("=========$scope.selected del =========="+JSON.stringify($scope.selected));
 		var tempList = angular.copy($scope.demandAgencyList);
 		angular.forEach($scope.selected,function(item){//根据坐标批量删除选择的机构 
-			deleteID = tempList[item].demandAgencyCode + ',' + deleteID; 
+			deleteID = tempList[item].id + ',' + deleteID; 
 			console.log("========= del =========="+item);
 			$scope.demandAgencyList.splice(item,1);
 		});

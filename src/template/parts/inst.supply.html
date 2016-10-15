@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">机构名称</label>
-                                    <div class="col-md-8"><input type="text" class="form-control input-sm"></div>   
+                                    <div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="supplyAgencyName"></div>   
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">分类</label>
@@ -34,7 +34,7 @@
                 </form>
             </div>
             <div class="panel-footer clearfix">
-                <a href="javascript:;" class="btn btn-sm btn-primary pull-right">查询</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="findAllSupplyAgencys()">查询</a>
             </div>
         </div>
     </div>
@@ -42,8 +42,8 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">新增</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddState()">新增</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delSupplyAgency()">删除</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -61,19 +61,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  ng-dblclick="toggleDetailState(true)">
+                        <tr ng-repeat="item in supplyAgencies" ng-dblclick="toggleDetailState(true,item,$index)">
                             <td class="text-center">
-                                <input type="checkbox" name="radio">
+                               <input type="checkbox" name="radio" 
+                                	   ng-checked="isSelected($index)"
+                                	   ng-click="updateSelection($event,$index)">
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.supplyAgencyType}}</td>
+                            <td>{{item.supplyAgencyName}}</td>
+                            <td>{{item.supplyAgencyCode}}</td>
+                            <td>{{item.supplyAgencyAddress1}}</td>
+                            <td>{{item.supplyAgencyNumber}}</td>
                             <td>
-                                <a href="javascript:;" class="btn btn-xs btn-primary">修改</a>
-                                <a href="javascript:;"  ng-click="toggleDetailState(true)" class="btn btn-xs btn-primary">明细</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editSupplyAgency(item,$index)">修改</a>
+                                <a href="javascript:;"  ng-click="toggleDetailState(true,item,$index)" class="btn btn-xs btn-primary">明细</a>
                             </td>
                         </tr>
                     </tbody>
@@ -87,13 +89,13 @@
     <div class="row">
         <div class="panel">
             <div class="panel-heading">
-                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>XX机构情况
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>{{supplyAgency.supplyAgencyName || 'xxx'}}机构情况
             </div>
             <div class="panel-heading clearfix">
-                <span>XX基本信息</span>
+                <span>{{supplyAgency.supplyAgencyName || 'xxx'}}基本信息</span>
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleEditMode(!editMode)">{{editMode == false ? '取消' : '修改'}}</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleEditMode(!editMode)" ng-show="!addState">{{editMode == false ? '取消' : '修改'}}</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveAddOrDetailInfo()">保存</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -103,7 +105,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构编号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="supplyAgency.supplyAgencyCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +113,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构名称</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="supplyAgency.supplyAgencyName" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -121,7 +123,13 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">机构类型</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+             
+                                    <select class="form-control" ng-model="supplyAgency.supplyAgencyType" ng-disabled="editMode">											
+											<option value="药材仓库">药材仓库</option>
+											<option value="药材供应站">药材供应站</option>
+											<option value="野战药材仓库">野战药材仓库</option>
+											<option value="野战药材保障队">野战药材保障队</option>				
+									</select>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +137,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">级别</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="supplyAgency.supplyAgencyLevel" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -139,7 +147,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">开设点</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="supplyAgency.supplyAgencyAddress1" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -147,7 +155,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">地址</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="supplyAgency.supplyAgencyAddress2" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +165,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">位置坐标</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="text" class="form-control input-sm" ng-model="supplyAgency.supplyAgencyCoordinate" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -165,7 +173,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">人数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-disabled="editMode">
+                                    <input type="number" class="form-control input-sm" ng-model="supplyAgency.supplyAgencyNumber" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -177,7 +185,7 @@
     <div class="row">
         <div class="panel">
             <div class="panel-heading clearfix">
-                <span>XX岗位设置</span>
+                <span>{{supplyAgency.supplyAgencyName || 'xxx'}}岗位设置</span>
                 <div class="pull-right">
                     <a href="javascript:;" class="btn btn-primary btn-sm" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddPosiState(true)">新增</a>
@@ -202,30 +210,30 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" class="form-control input-sm" ng-model="newSupplyJob.roleCode">
                             </td>
                             <td>
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" class="form-control input-sm" ng-model="newSupplyJob.roleName">
                             </td>
                             <td>
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" class="form-control input-sm" ng-model="newSupplyJob.roleGroup">
                             </td>
                             <td class="text-center">
-                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewJob()">保存</a>
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleAddPosiState(false)">取消</a>
                             </td>
                         </tr>
-                        <tr>
+                        <tr ng-repeat="item in supplyAgencyJobs">
                             <td class="text-center">
                                 <input type="checkbox" name="radio">
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$index+1}}</td>
+                            <td><input type="text" class="form-control input-sm" ng-model="item.roleCode" ng-disabled="!item.editJobMode"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="item.roleName" ng-disabled="!item.editJobMode"></td>
+                            <td><input type="text" class="form-control input-sm" ng-model="item.roleGroup" ng-disabled="!item.editJobMode"></td>
                             <td class="text-center">
-                                <a href="javascript:;" class="btn btn-xs btn-primary">修改</a>
-                                <a href="javascript:;" class="btn btn-xs btn-primary">保存</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="setSupplyJob($index,item)">{{item.editJobMode ? '取消' : '修改'}}</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="saveSupplyJob($index)">保存</a>
                             </td>
                         </tr>
                     </tbody>

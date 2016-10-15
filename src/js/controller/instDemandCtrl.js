@@ -64,6 +64,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 //			$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
 		} else{//修改
 			$scope.demandAgencyList[currentIndex] = angular.copy($scope.demandAgency);
+			updateDemandAgency();
 		}
 		
 	}
@@ -86,18 +87,19 @@ app.controller('InstDemandCtrl', function($scope,http){
 	 */
 	$scope.queryDemandAgency = function(){
 		alert('查询');
-//		http.post({
-//				'method':'queryDemandAgency',
-//				'demandAgencyType':$scope.selectedName,
-//				'demandAgencyName':$scope.demandAgencyName
-//			},URL.UserServlet).then(
-//				function(respone) {
-//					console.log("========= queryDemandAgency success！========="+JSON.stringify(respone));
-//				},
-//				function(respone) {
-//					console.log("queryDemandAgency failed!" + JSON.stringify(respone));
-//					alert(JSON.stringify(respone));
-//		});
+		http.post({
+				'method':'findAllDemandAgencys',
+				'demandAgencyType':$scope.selectedName,
+				'demandAgencyCode':$scope.demandAgencyName
+			},URL.DemandAgencyServlet).then(
+				function(respone) {
+					console.log("========= findAllDemandAgencys success！========="+JSON.stringify(respone));
+					$scope.demandAgencyList = respone.demandAgencies;
+				},
+				function(respone) {
+					console.log("findAllDemandAgencys failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
 	}
 	
 	
@@ -136,16 +138,37 @@ app.controller('InstDemandCtrl', function($scope,http){
 	 * @type {}
 	 */
 	var addDemandAgency = function(){
-		$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
+		
 		http.post({
 				'method':'addDemandAgency',
 				'demandAgency':JSON.stringify($scope.demandAgency)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					console.log("========= demandAgency success！========="+JSON.stringify(respone));	
+					console.log("========= demandAgency success！========="+JSON.stringify(respone));
+					$scope.demandAgency.id = respone.id;
+					$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
 				},
 				function(respone) {
 					console.log("demandAgency failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+		});
+	}
+	
+	/**
+	 * 更新需求机构
+	 * @type {}
+	 */
+	var updateDemandAgency = function(){
+		$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
+		http.post({
+				'method':'updateDemandAgency',
+				'demandAgency':JSON.stringify($scope.demandAgency)
+			},URL.DemandAgencyServlet).then(
+				function(respone) {
+					console.log("========= updateDemandAgency success！========="+JSON.stringify(respone));	
+				},
+				function(respone) {
+					console.log("updateDemandAgency failed!" + JSON.stringify(respone));
 					alert(JSON.stringify(respone));
 		});
 	}
@@ -178,6 +201,8 @@ app.controller('InstDemandCtrl', function($scope,http){
 	 * 根据编号删除对应的需求机构
 	 */
 	$scope.delDemandAgency = function() {
+		
+		var deleteID = '';
 		if(isEmptyValue($scope.selected)){
 			alert("请先选择删除项！！")
 			return;
@@ -188,10 +213,27 @@ app.controller('InstDemandCtrl', function($scope,http){
 			}
 		);
 		console.log("=========$scope.selected del =========="+JSON.stringify($scope.selected));
-		
+		var tempList = angular.copy($scope.demandAgencyList);
 		angular.forEach($scope.selected,function(item){//根据坐标批量删除选择的机构 
+			deleteID = tempList[item].demandAgencyCode + ',' + deleteID; 
 			console.log("========= del =========="+item);
 			$scope.demandAgencyList.splice(item,1);
+		});
+		
+		if(isEmptyValue(deleteID)){
+			alert("提交的删除项编号为空，请检查后重新提交！！")
+			return;
+		}
+		http.post({
+				'method':'deleteDemandAgency',
+				'ids':deleteID.substring(0,deleteID.length-1)
+			},URL.DemandAgencyServlet).then(
+				function(respone) {
+					console.log("========= deleteDemandAgency success！========="+JSON.stringify(respone));	
+				},
+				function(respone) {
+					console.log("deleteDemandAgency failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
 		});
 		
 		$scope.selected = [];

@@ -77,40 +77,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'collect.supplement.html',
 			controller: 'CollectSupplementCtrl'
 		})
-		// 订单部分
-		.state('home.orderAdd',{
-			url: '/order/add',
-			templateUrl: paths.part + 'order.add.html',
-			controller: 'OrderAddCtrl'
-		})
-		.state('home.orderQuery', {
-			url: '/order/query',
-			templateUrl: paths.part + 'order.query.html',
-			controller: 'OrderQueryCtrl'
-		})
-		.state('home.orderAudit', {
-			url: '/order/audit',
-			templateUrl: paths.part + 'order.audit.html',
-			controller: 'OrderAuditCtrl'
-		})
-		.state('home.orderRefund', {
-			url: '/order/refund',
-			templateUrl: paths.part + 'order.refund.html'
-		})
-		// 商店部分
-		.state('home.storeSale', {
-			url: '/store/sale'
-		})
-		.state('home.storeDisplay', {
-			url: '/store/display'
-		})
-		// 商品管理
-		.state('home.goodsSingle', {
-			url: '/goods/single'
-		})
-		.state('home.goodsMulti', {
-			url: '/goods/multi'
-		})
 		// 仓库部分
 		
 		.state('home.wareEntry', {
@@ -132,6 +98,51 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/ware/maintain',
 			templateUrl: paths.part + 'ware.maintain.html',
 			controller: 'wareMaintainCtrl'
+		})
+		// 订单部分
+		.state('home.orderAdd',{
+			url: '/order/add',
+			templateUrl: paths.part + 'order.add.html',
+			controller: 'OrderAddCtrl'
+		})
+		.state('home.orderQuery', {
+			url: '/order/query',
+			templateUrl: paths.part + 'order.query.html',
+			controller: 'OrderQueryCtrl'
+		})
+		.state('home.orderAudit', {
+			url: '/order/audit',
+			templateUrl: paths.part + 'order.audit.html',
+			controller: 'OrderAuditCtrl'
+		})
+		.state('home.orderRefund', {
+			url: '/order/refund',
+			templateUrl: paths.part + 'order.refund.html'
+		})
+		//配货管理
+		.state('home.allocateGoods', {
+			url: '/allocate/goods',
+			templateUrl: paths.part + 'allocate.goods.html',
+			controller: 'AllocateGoodsCtrl'
+		})
+		.state('home.allocateCheck', {
+			url: '/allocate/check',
+			templateUrl: paths.part + 'allocate.check.html',
+			controller: 'AllocateCheckCtrl'
+		})
+		// 商店部分
+		.state('home.storeSale', {
+			url: '/store/sale'
+		})
+		.state('home.storeDisplay', {
+			url: '/store/display'
+		})
+		// 商品管理
+		.state('home.goodsSingle', {
+			url: '/goods/single'
+		})
+		.state('home.goodsMulti', {
+			url: '/goods/multi'
 		})
 		// 配送管理
 		.state('home.distrLoad', {

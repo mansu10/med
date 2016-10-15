@@ -10,6 +10,9 @@ include_js("./src/js/controller/orderAddCtrl.js");
 include_js("./src/js/controller/orderQueryCtrl.js");
 include_js("./src/js/controller/orderAuditCtrl.js");
 
+include_js("./src/js/controller/allocateGoodsCtrl.js");
+include_js("./src/js/controller/allocateChecktCtrl.js");
+
 include_js("./src/js/controller/distrVehicleCtrl.js");
 include_js("./src/js/controller/distrLoadCtrl.js");
 

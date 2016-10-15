@@ -6,5 +6,5 @@ app.controller('HeaderCtrl', function($rootScope, $scope,$localstorage){
 		
 		var user1 = $localstorage.getObject("user");
 		$scope.username = user1.userName;
-		console.log("USER2==="+JSON.stringify(user1)+"-----"+$scope.username)
+		// console.log("USER2==="+JSON.stringify(user1)+"-----"+$scope.username)
 	})

@@ -54,7 +54,6 @@ app.controller('DicSingleCtrl', function($scope,http){
 		$scope.detailState = bool;
 	}
 
-	$scope.isMulti = false;
 	/**
 	 * 显示明细
 	 * @param  {[type]} item [description]
@@ -62,7 +61,7 @@ app.controller('DicSingleCtrl', function($scope,http){
 	 */
 	$scope.showDetails = function(item){
 		setMidware(item);
-		isMulti = item.something==true ? true : false;
+
 		$scope.toggleDetailState(true);
 	}
 
@@ -74,31 +73,14 @@ app.controller('DicSingleCtrl', function($scope,http){
 		clearMidware();
 		$scope.toggleDetailState(true);
 	}
-	/**
-	 * 展开组合药材页面
-	 * @type {Boolean}
-	 */
-	$scope.openMultiDetail = function(){
-		clearMidware();
-		$scope.isMulti = true;
-		$scope.toggleDetailState(true);
 
-	}
 	/**
 	 * 返回查询列表
 	 * @return {[type]} [description]
 	 */
 	$scope.backToQuery = function(){
-		$scope.isMulti = false;
+
 		$scope.toggleDetailState(false);
 	}
 
-	/**
-	 * 添加明细
-	 * @type {Boolean}
-	 */
-	$scope.isAddNewItem = false;
-	$scope.addNewItem = function(){
-		$scope.isAddNewItem = !$scope.isAddNewItem;
-	}
 })

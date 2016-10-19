@@ -119,6 +119,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/order/refund',
 			templateUrl: paths.part + 'order.refund.html'
 		})
+		//配载管理
+		.state('home.loadSelect', {
+			url: '/load/select',
+			templateUrl: paths.part + 'load.select.html',
+			controller: 'LoadSelectCtrl'
+		})
+		.state('home.loadQuery', {
+			url: '/load/query',
+			templateUrl: paths.part + 'load.query.html',
+			controller: 'LoadQueryCtrl'
+		})
 		//配货管理
 		.state('home.allocateGoods', {
 			url: '/allocate/goods',

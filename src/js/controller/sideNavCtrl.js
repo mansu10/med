@@ -134,8 +134,12 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"isActive":false,
 					"icon":"fa fa-archive",
 					"child": [{
-							"title": "订货配载",
-							"url": ".distrLoad",
+							"title": "选配货载",
+							"url": ".loadSelect",
+							"isActive":false
+						},{
+							"title": "配载查询",
+							"url": ".loadQuery",
 							"isActive":false
 						}]					
 				},
@@ -156,7 +160,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 							"isActive":false
 						},{
 							"title": "路线规划",
-							"url": ".distrLoad",
+							"url": "javascript:;",
 							"isActive":false
 						},{
 							"title": "途中调度",

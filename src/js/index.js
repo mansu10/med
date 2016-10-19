@@ -13,6 +13,9 @@ include_js("./src/js/controller/orderAuditCtrl.js");
 include_js("./src/js/controller/allocateGoodsCtrl.js");
 include_js("./src/js/controller/allocateChecktCtrl.js");
 
+include_js("./src/js/controller/loadSelectCtrl.js");
+include_js("./src/js/controller/loadQueryCtrl.js");
+
 include_js("./src/js/controller/distrVehicleCtrl.js");
 include_js("./src/js/controller/distrLoadCtrl.js");
 

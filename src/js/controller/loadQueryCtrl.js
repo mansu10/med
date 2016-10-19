@@ -1,0 +1,1 @@
+app.controller('LoadQueryCtrl', function($scope,http){})

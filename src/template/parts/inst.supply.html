@@ -189,8 +189,8 @@
                 <div class="pull-right">
                     <a href="javascript:;" class="btn btn-primary btn-sm" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddPosiState(true)">新增</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                   <!-- <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveSupplyJobs()">保存</a>-->
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delSupplyJobs()">删除</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -225,7 +225,9 @@
                         </tr>
                         <tr ng-repeat="item in supplyAgencyJobs">
                             <td class="text-center">
-                                <input type="checkbox" name="radio">
+                               <input type="checkbox" name="radio" 
+                                	   ng-checked="isSelected($index)"
+                                	   ng-click="updateSelection($event,$index)">
                             </td>
                             <td>{{$index+1}}</td>
                             <td><input type="text" class="form-control input-sm" ng-model="item.roleCode" ng-disabled="!item.editJobMode"></td>

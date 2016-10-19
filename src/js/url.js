@@ -41,5 +41,6 @@ var URL = {
 	ShelfServlet:API_URI+"MedicineManagement/ShelfServlet" ,//货架信息
 	UserServlet:API_URI+"MedicineManagement/UserServlet",//用户管理
 	DemandAgencyServlet:API_URI+"MedicineManagement/DemandAgencyServlet",//需求机构
-	SupplyAgencyServlet:API_URI+"MedicineManagement/SupplyAgencyServlet"
+	SupplyAgencyServlet:API_URI+"MedicineManagement/SupplyAgencyServlet",//供应机构
+	GuaranteeRelationShipServlet:API_URI+"MedicineManagement/GuaranteeRelationShipServlet"//保障关系
 }

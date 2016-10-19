@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">供应机构</label>
-                                    <div class="col-md-8"><input type="text" class="form-control input-sm"></div>   
+                                    <div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="supplyAgencyCode"></div>   
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">需求机构</label>
-                                    <div class="col-md-8"><input type="text" class="form-control input-sm"></div>   
+                                    <div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="demandAgencyName"></div>   
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                 </form>
             </div>
             <div class="panel-footer clearfix">
-                <a href="javascript:;" class="btn btn-sm btn-primary pull-right">查询</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="qurey()">查询</a>
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delGuaranteeRelationShip()">删除</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -123,16 +123,18 @@
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleAddNewState(false)">取消</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr ng-repeat="item in guaranteeRelationShips">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.supplyAgencyName}}</td>
+                            <td>{{item.supplyAgencyCode}}</td>
+                            <td>{{item.supplyAgencyAddress1}}</td>
+                            <td>{{item.demandAgencyName}}</td>
+                            <td>{{item.demandAgencyCode}}</td>
+                            <td>{{item.demandAgencyAddress1}}</td>
                             <td class="text-center">
-                                <input type="checkbox" name="radio">
+                               <input type="checkbox" name="radio" 
+                                	   ng-checked="isSelected($index)"
+                                	   ng-click="updateSelection($event,$index)">
                             </td>
                         </tr>
                     </tbody>

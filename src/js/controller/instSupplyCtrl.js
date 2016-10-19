@@ -13,8 +13,18 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		$scope.detailState = bool;
 		$scope.editMode = true;//不可修改
 		$scope.addState = false;
+		$scope.selected = [];
+		if(!bool){
+			return;
+		}
 		currentIndex = index;
 		$scope.supplyAgency = angular.copy(item);
+		console.log("===="+JSON.stringify($scope.supplyAgency));
+		$scope.supplyAgencyJobs = $scope.supplyAgency.supplyAgencyJobs;
+		
+		$scope.addPosiState = false;
+		$scope.newSupplyJob = {'roleCode':'','roleName':'','roleGroup':''};
+		
 	}
 	
 	/**
@@ -25,7 +35,13 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		$scope.addState = true;
 		$scope.detailState = true;
 		$scope.editMode = false;//可修改
+		$scope.addPosiState = false;
+		$scope.newSupplyJob = {'roleCode':'','roleName':'','roleGroup':''};
+		
 		$scope.supplyAgency = {};
+		$scope.supplyAgencyJobs = [];
+		$scope.supplyAgency.supplyAgencyJobs = $scope.supplyAgencyJobs ;
+		$scope.selected = [];
 	}
 
 	/**
@@ -35,6 +51,10 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 	$scope.toggleEditMode = function(bool) {
 		$scope.editMode = bool;
 		$scope.addState = false;
+		
+		$scope.addPosiState = false;
+		$scope.newSupplyJob = {'roleCode':'','roleName':'','roleGroup':''};
+		
 	}
 	
 	/**
@@ -47,6 +67,8 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		$scope.addState = false;
 		currentIndex = index;
 		$scope.supplyAgency = angular.copy(item);
+		$scope.selected = [];
+		
 	}
 	
 	/**
@@ -57,14 +79,15 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 			alert("请填写内容后再进行保存！！")
 			return;
 		}
+		$scope.selected = [];
 		$scope.editMode = false;
 		$scope.detailState = false;
 		if ($scope.addState) {//添加
-//			addSupplyAgency();
+			addSupplyAgency();
 //			$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
 		} else{//修改
 			$scope.supplyAgencies[currentIndex] = angular.copy($scope.supplyAgency);
-			//updateSupplyAgency();
+			updateSupplyAgency();
 		}
 		
 	}
@@ -100,7 +123,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 	$scope.selectedName = ''; //机构类型
 	$scope.supplyAgencyName = ''; //机构名称
 	/**
-	 * 查询需求机构
+	 * 查询供应机构
 	 * @type {查询条件 ：1.机构名称  2.机构类型}
 	 */
 	$scope.findAllSupplyAgencys = function() {
@@ -112,7 +135,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
 				console.log("========= findAllSupplyAgencys success！=========" + JSON.stringify(respone));
-				$scope.supplyAgencies = respone.demandAgencies;
+				$scope.supplyAgencies = respone.supplyAgencies;
 			},
 			function(respone) {
 				console.log("findAllSupplyAgencys failed!" + JSON.stringify(respone));
@@ -120,35 +143,37 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 			});
 	}
 
-	$scope.supplyAgencies = [{
-		'id': 2,
-		'supplyAgencyAddress1': "浙江省湖州市吴兴区",
-		'supplyAgencyAddress2': "车站路9号",
-		'supplyAgencyCode': "B00001",
-		'supplyAgencyCoordinate': "120.104566,30.861911",
-		'supplyAgencyJobs': [],
-		'supplyAgencyLevel': "级别",
-		'supplyAgencyName': "1军1师1团团救护所",
-		'supplyAgencyNumber': 30,
-		'supplyAgencyType': "团救护所"
-	}];
+	$scope.supplyAgencies = [
+//		{
+//			'id': 2,
+//			'supplyAgencyAddress1': "浙江省湖州市吴兴区",
+//			'supplyAgencyAddress2': "车站路9号",
+//			'supplyAgencyCode': "B00001",
+//			'supplyAgencyCoordinate': "120.104566,30.861911",
+//			'supplyAgencyJobs': [],
+//			'supplyAgencyLevel': "级别",
+//			'supplyAgencyName': "1军1师1团团救护所",
+//			'supplyAgencyNumber': 30,
+//			'supplyAgencyType': "团救护所"
+//		}
+	];
 
 	$scope.supplyAgency = {
-		'id': 2,
-		'supplyAgencyAddress1': "浙江省湖州市吴兴区",
-		'supplyAgencyAddress2': "车站路9号",
-		'supplyAgencyCode': "B00001",
-		'supplyAgencyCoordinate': "120.104566,30.861911",
-		'supplyAgencyJobs': [],
-		'supplyAgencyLevel': "级别",
-		'supplyAgencyName': "1军1师1团团救护所",
-		'supplyAgencyNumber': 30,
-		'supplyAgencyType': "团救护所"
+//		'id': 2,
+//		'supplyAgencyAddress1': "浙江省湖州市吴兴区",
+//		'supplyAgencyAddress2': "车站路9号",
+//		'supplyAgencyCode': "B00001",
+//		'supplyAgencyCoordinate': "120.104566,30.861911",
+//		'supplyAgencyJobs': [],
+//		'supplyAgencyLevel': "级别",
+//		'supplyAgencyName': "1军1师1团团救护所",
+//		'supplyAgencyNumber': 30,
+//		'supplyAgencyType': "团救护所"
 	},
 	
 
 	/**
-	 * 添加需求机构
+	 * 添加供应机构
 	 * @type {}
 	 */
 	addSupplyAgency = function() {
@@ -170,19 +195,19 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 	};
 
 	/**
-	 * 更新需求机构
+	 * 更新供应机构
 	 * @type {}
 	 */
 	var updateSupplyAgency = function() {
 		http.post({
-			'method': 'updateDemandAgency',
-			'demandAgency': JSON.stringify($scope.demandAgency)
+			'method': 'updateSupplyAgency',
+			'supplyAgency': JSON.stringify($scope.supplyAgency),
+			'supplyAgencyJobs':JSON.stringify($scope.supplyAgency.supplyAgencyJobs)
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
-				console.log("========= updateDemandAgency success！=========" + JSON.stringify(respone));
 			},
 			function(respone) {
-				console.log("updateDemandAgency failed!" + JSON.stringify(respone));
+				console.log("updateSupplyAgency failed!" + JSON.stringify(respone));
 				alert(JSON.stringify(respone));
 			});
 	};
@@ -212,7 +237,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 	}
 
 	/**
-	 * 根据编号删除对应的需求机构
+	 * 根据编号删除对应的供应机构
 	 */
 	$scope.delSupplyAgency = function() {
 
@@ -238,17 +263,17 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 				alert("提交的删除项编号为空，请检查后重新提交！！")
 				return;
 			}
-//			http.post({
-//				'method': 'deleteDemandAgency',
-//				'ids': deleteID.substring(0, deleteID.length - 1)
-//			}, URL.DemandAgencyServlet).then(
-//				function(respone) {
-//					console.log("========= deleteDemandAgency success！=========" + JSON.stringify(respone));
-//				},
-//				function(respone) {
-//					console.log("deleteDemandAgency failed!" + JSON.stringify(respone));
-//					alert(JSON.stringify(respone));
-//				});
+			http.post({
+				'method': 'deleteSupplyAgency',
+				'ids': deleteID.substring(0, deleteID.length - 1)
+			}, URL.DemandAgencyServlet).then(
+				function(respone) {
+					alert("删除成功");
+				},
+				function(respone) {
+					console.log("deleteSupplyAgency failed!" + JSON.stringify(respone));
+					alert(JSON.stringify(respone));
+				});
 
 			$scope.selected = [];
 		}
@@ -274,12 +299,11 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		var temp = {};
 		$scope.setSupplyJob = function(index,item){
 			
-			console.log("==================" + JSON.stringify($scope.supplyAgencyJobs[index]) + " / index :"+index);
 			if (!$scope.supplyAgencyJobs[index].editJobMode) {//修改岗位
 				temp = angular.copy($scope.supplyAgencyJobs[index])
 				$scope.supplyAgencyJobs[index].editJobMode = true;
 			} else{//取消修改
-				console.log("=========121212=========")
+			
 				$scope.supplyAgencyJobs[index] = temp;
 				$scope.supplyAgencyJobs[index].editJobMode = false;
 			}
@@ -288,6 +312,28 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		
 		$scope.saveSupplyJob = function(index,item){
 			$scope.supplyAgencyJobs[index].editJobMode = false;
+			$scope.newSupplyJob = {'roleCode':'','roleName':'','roleGroup':''};
+		}
+		
+
+		$scope.delSupplyJobs = function(){
+			if(isEmptyValue($scope.selected)) {
+				alert("请先选择删除项！！")
+				return;
+			}
+			$scope.selected.sort( // 数组批量删除必须降序排序  不然会出问题
+				function(a, b) {
+					return b - a
+				}
+			);
+			console.log("=========$scope.selected del ==========" + JSON.stringify($scope.selected));
+			var tempList = angular.copy($scope.supplyAgencyJobs);
+			angular.forEach($scope.selected, function(item) { //根据坐标批量删除选择的机构 
+				console.log("========= del ==========" + item);
+				$scope.supplyAgencyJobs.splice(item, 1);
+			});
+
+			$scope.selected = [];
 		}
 		
 		

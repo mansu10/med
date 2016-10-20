@@ -140,7 +140,6 @@ app.controller('WareEntryCtrl', function($scope,http){
 				'receiptItems':JSON.stringify($scope.items)
 			},URL.RARS).then(
 				function(respone) {
-					console.log("=========收货验收========="+JSON.stringify(respone));
 					alert("已确认！")
 				},
 				function(respone) {

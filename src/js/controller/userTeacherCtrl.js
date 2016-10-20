@@ -17,8 +17,8 @@ app.controller('UserTeacherCtrl', function($scope,http){
 				'className':$scope.queryInfo.className
 			},URL.UserServlet).then(
 				function(respone) {
-					$scope.users = respone.order;					
-					console.log("=========queryUser========="+JSON.stringify(respone));
+					$scope.users = respone.order;	
+					alert('queryUser success!')
 				},
 				function(respone) {
 					console.log("queryUser failed!" + JSON.stringify(respone));
@@ -135,7 +135,7 @@ app.controller('UserTeacherCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========updateUser========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone))
+					alert("=========updateUser success!========="+JSON.stringify(respone))
 				},
 				function(respone) {
 					console.log("updateUser failed!" + JSON.stringify(respone));

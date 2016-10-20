@@ -152,6 +152,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		http.post({'method':'queryOrderAndItem','orderCode':id},URL.orderQurey).then(
 			function(respone) {
 					console.log("queryOrderAndItem:"+JSON.stringify(respone));
+					alert("queryOrderAndItem success!")
 					$scope.detail = respone.order;
 					$scope.items = respone.order.orderItems;
 					$scope.detail.deliveryTime = secondsToData(respone.order.deliveryTime);
@@ -170,7 +171,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		http.post({},URL.orderAudit).then(
 			function(respone) {
 				console.log("queryOrderAndItem:"+JSON.stringify(respone));	
-				
+				alert("订单确认成功！")
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
@@ -186,6 +187,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			http.post({'method':'queryProduct'},URL.productQurey).then(
 				function(respone) {
 					console.log("queryProduct info --->"+respone);
+					alert("queryProduct success!")
 					productList = respone.products;
 				},
 				function(respone) {

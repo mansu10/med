@@ -96,6 +96,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 				function(respone) {
 					console.log("========= findAllDemandAgencys success！========="+JSON.stringify(respone));
 					$scope.demandAgencyList = respone.demandAgencies;
+					alert("findAllDemandAgencys success！")
 				},
 				function(respone) {
 					console.log("findAllDemandAgencys failed!" + JSON.stringify(respone));
@@ -145,9 +146,10 @@ app.controller('InstDemandCtrl', function($scope,http){
 				'demandAgency':JSON.stringify($scope.demandAgency)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					console.log("========= demandAgency success！========="+JSON.stringify(respone));
+			
 					$scope.demandAgency.id = respone.id;
 					$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
+					alert("addDemandAgency success!")
 				},
 				function(respone) {
 					console.log("demandAgency failed!" + JSON.stringify(respone));
@@ -165,7 +167,8 @@ app.controller('InstDemandCtrl', function($scope,http){
 				'demandAgency':JSON.stringify($scope.demandAgency)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					console.log("========= updateDemandAgency success！========="+JSON.stringify(respone));	
+					alert("updateDemandAgency success！")
+					
 				},
 				function(respone) {
 					console.log("updateDemandAgency failed!" + JSON.stringify(respone));
@@ -216,7 +219,6 @@ app.controller('InstDemandCtrl', function($scope,http){
 		var tempList = angular.copy($scope.demandAgencyList);
 		angular.forEach($scope.selected,function(item){//根据坐标批量删除选择的机构 
 			deleteID = tempList[item].id + ',' + deleteID; 
-			console.log("========= del =========="+item);
 			$scope.demandAgencyList.splice(item,1);
 		});
 		
@@ -229,7 +231,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 				'ids':deleteID.substring(0,deleteID.length-1)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					console.log("========= deleteDemandAgency success！========="+JSON.stringify(respone));	
+					alert("eleteDemandAgency success！")
 				},
 				function(respone) {
 					console.log("deleteDemandAgency failed!" + JSON.stringify(respone));

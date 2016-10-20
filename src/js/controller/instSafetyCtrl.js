@@ -105,5 +105,60 @@ app.controller('InstSafetyCtrl', function($scope,http){
 			$scope.selected = [];
 		}
 		/************************选择删除  end*****************************/
+		
+		var findAllSupplyAndDemands = function(){
+			http.post({
+				'method': 'findAllSupplyAgencyAndDemandAgencyCodes'
+			}, URL.SupplyAgencyServlet).then(
+				function(respone) {
+					addInfoFilter.supplyAgencyCodes = respone.supplyAgencyCodes;
+					addInfoFilter.demandAgencyCodes = respone.demandAgencyCodes;
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+				});
+		}		
+		var addInfoFilter = {
+			"supplyAgencyCodes":[],
+			"demandAgencyCodes":[]
+		}
+		
+		findAllSupplyAndDemands();
+
+		$scope.newRelation = {'demandAgencyCode':'','supplyAgencyCode':''};
+		$scope.createNewRelation = function(){
+			
+			if(isEmptyValue($scope.newRelation.supplyAgencyCode)){
+				alert('请输入供应机构');
+				return;
+			}
+			
+			if(isEmptyValue($scope.newRelation.demandAgencyCode)){
+				alert('请输入需求机构');
+				return;
+			}
+			
+			if(addInfoFilter.supplyAgencyCodes.indexOf($scope.newRelation.supplyAgencyCode) == -1){
+				alert('输入的供应机构不存在，请查证后重新输入！！！');
+				return;
+			}
+			
+			if(addInfoFilter.demandAgencyCodes.indexOf($scope.newRelation.demandAgencyCode) == -1){
+				alert('输入的需求机构不存在，请查证后重新输入！！！');
+				return;
+			}
+			
+			http.post({
+				'method': 'addGuaranteeRelationShip',
+				'guaranteeRelationShip': JSON.stringify($scope.newRelation)
+			}, URL.GuaranteeRelationShipServlet).then(
+				function(respone) {
+					alert("建立成功！！！");
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
+		}
+		
 	
 })

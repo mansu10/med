@@ -114,11 +114,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.DepotServlet).then(
 				function(respone) {
 					$scope.wareList = respone.depots;
-					console.log("=========仓库查询========="+JSON.stringify(respone));
+					
 				},
 				function(respone) {
 					console.log("queryAllDepots failed!" + JSON.stringify(respone));
-					alert(respone);
+//					alert(respone);
 		});
 		
 	/**
@@ -135,7 +135,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 				function(respone) {
 					$scope.selectedList.cargoAreas = respone.depots.cargoAreas;
 					createLocatorList($scope.selectedList.cargoAreas);//生成货位表
-					console.log("=========仓库详情查询byId========="+JSON.stringify(respone));
+					alert("仓库查询完成！")
 				},
 				function(respone) {
 					console.log("findDepotByCode failed!" + JSON.stringify(respone));
@@ -442,7 +442,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 					});
 					*/
 					console.log("=========$scope.cargoAreaAssignArray========="+JSON.stringify($scope.cargoAreaAssignArray));
-					
+					alert("findCargoAreaCodesByDepotCode success!")
 				},
 				function(respone) {
 					console.log("CargoAreaServlet failed!" + JSON.stringify(respone));
@@ -467,7 +467,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========updateShelf========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					alert("updateShelf success!"+JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("updateShelf failed!" + JSON.stringify(respone));
@@ -631,11 +631,10 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		}
 		$scope.newAdjustShelft.depotCode = currentDepotCode;
 		$scope.newAdjustShelft.shelfCode = $scope.addAdjustShelfList.length+1;
-		console.log("-----$scope.newAdjustShelft.shelfCode-------"+$scope.newAdjustShelft.shelfCode);
+		
 		$scope.addAdjustShelfList.push(angular.copy($scope.newAdjustShelft));
 		$scope.newAdjustShelft = {}; 
 		
-		console.log("-----addNewAdjustShelft-------"+JSON.stringify($scope.addAdjustShelfList))
 		
 	}
 	$scope.editNewAdjustShelft = true;
@@ -685,6 +684,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 				function(respone) {
 					console.log("=========查询货架调整========="+JSON.stringify(respone));
 					$scope.addAdjustShelfList = respone.shelfs;
+					alert("queryAllShelfsByDepotCode success!")
 				},
 				function(respone) {
 					console.log("queryAllShelfs failed!" + JSON.stringify(respone));

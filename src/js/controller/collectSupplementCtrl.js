@@ -64,7 +64,8 @@ app.controller('CollectSupplementCtrl', function($scope,http){
 	$scope.queryStorage = function(){
 		http.post({'method':'queryAllStocks','productCodeOrName':$scope.qureyValue},URL.stockQurey).then(
 				function(respone) {
-					console.log("=========查询库存信息========="+JSON.stringify(respone));
+					
+					alert("queryAllStocks success!");
 					refreshStorageList(respone.stocks);
 				},
 				function(respone) {
@@ -192,7 +193,7 @@ app.controller('CollectSupplementCtrl', function($scope,http){
 		
 		http.post({'method':'addRaiseInventory','inventorys':JSON.stringify(temp)},URL.raiseInventory).then(
 				function(respone) {
-					console.log("=========确认筹措清单========="+JSON.stringify(respone));
+		
 					alert("筹措清单提交成功！")
 				},
 				function(respone) {

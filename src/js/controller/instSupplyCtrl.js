@@ -134,8 +134,8 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 			'supplyAgencyType': $scope.selectedName
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
-				console.log("========= findAllSupplyAgencys success！=========" + JSON.stringify(respone));
 				$scope.supplyAgencies = respone.supplyAgencies;
+				alert("findAllSupplyAgencys success！")
 			},
 			function(respone) {
 				console.log("findAllSupplyAgencys failed!" + JSON.stringify(respone));
@@ -184,7 +184,8 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 			'supplyAgencyJobs':JSON.stringify($scope.supplyAgency.supplyAgencyJobs)
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
-				console.log("========= addSupplyAgency success！=========" + JSON.stringify(respone));
+				
+				alert("addSupplyAgency success！");
 				$scope.supplyAgency.id = respone.id;
 				$scope.supplyAgencies.push(angular.copy($scope.supplyAgency));
 			},
@@ -205,6 +206,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 			'supplyAgencyJobs':JSON.stringify($scope.supplyAgency.supplyAgencyJobs)
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
+				alert("updateSupplyAgency success!")
 			},
 			function(respone) {
 				console.log("updateSupplyAgency failed!" + JSON.stringify(respone));

@@ -9,7 +9,7 @@
 </div>
 <!-- page heading end-->
 
-<div class="wrapper">
+<div class="wrapper" ng-if="stateFactory.query">
     <div class="row">
         <div class="panel">
             <div class="panel-body">
@@ -86,7 +86,7 @@
                             <td></td>
                             <td></td>
                             <td class="text-center">
-								<a href="javascript:;">打印配载单</a>
+								<a href="javascript:;" ng-click="changeState('print')">打印配载单</a>
 								<a href="javascript:;">删除</a>
                             </td>
                         </tr>
@@ -96,9 +96,9 @@
         </div>
     </div>
 </div>    
-
-<div class="wrapper">
-<!-- 	<div class="row">
+<!-- 打印 -->
+<div class="wrapper" ng-if="stateFactory.print">
+	<div class="row">
 		<div class="panel">
 			<div class="panel-heading">
 				<div class="row">
@@ -106,7 +106,7 @@
 						<img src="" alt="" width="150" height="30">
 					</div>
 					<div class="col-md-2 text-right">
-						<a href="javascript:;" class="btn btn-sm btn-primary">打印</a>
+						<a href="javascript:;" class="btn btn-sm btn-primary" onclick="window.print()">打印</a>
 					</div>
 				</div>
 			</div>
@@ -115,15 +115,15 @@
 					<div class="row">
 						<div class="form-group">
 							<div class="col-md-4">
-								<label class="col-md-4 control-label">订单号</label>
+								<label class="col-md-4 control-label">配载单号</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<label for="" class="form-control">333</label>
 								</div>
 							</div>
 							<div class="col-md-offset-4 col-md-4">
-								<label class="col-md-4 control-label">拣货单号</label>
+								<label class="col-md-4 control-label">订单数</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<label for="" class="form-control">333</label>
 								</div>
 							</div>
 						</div>
@@ -131,37 +131,21 @@
 					<div class="row">
 						<div class="form-group">
 							<div class="col-md-4">
-								<label class="col-md-4 control-label">拣货仓库</label>
+								<label class="col-md-4 control-label">配送路线</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<label for="" class="form-control">333</label>
 								</div>
 							</div>
 							<div class="col-md-4">
-								<label class="col-md-4 control-label">拣货区</label>
+								<label class="col-md-4 control-label">车辆编号</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<label for="" class="form-control">333</label>
 								</div>
 							</div>
 							<div class="col-md-4">
-								<label class="col-md-4 control-label">拣货员</label>
+								<label class="col-md-4 control-label">车牌号</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">品规数</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">总件数</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<label for="" class="form-control">333</label>
 								</div>
 							</div>
 						</div>
@@ -173,31 +157,33 @@
 					<thead>
 						<tr>
 							<th>序号</th>
-							<th>药材编码</th>
-							<th>通用名</th>
-							<th>规格</th>
-							<th>型号</th>
-							<th>厂家</th>
-							<th>计量单位</th>
-							<th>货位码</th>
-							<th>拣货数量</th>
+							<th>收货点</th>
+							<th>拟交货时间</th>
+							<th>订单号</th>
+							<th>订单摘要</th>
+							<th>收货地址</th>
+							<th>联系人</th>
+							<th>联系方式</th>
+							<th>签收情况</th>
 							<th>备注</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
+						<tr>
+							<td>1</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div>

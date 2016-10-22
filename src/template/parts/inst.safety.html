@@ -54,7 +54,12 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">供应机构</label>
-                                    <div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="newRelation.supplyAgencyCode"></div>   
+                                    <div class="col-md-8">
+                                    		<select ng-model="newRelation.supplyAgencyCode" class="form-control input-sm"
+                                    			ng-options="a for a in addInfoFilter.supplyAgencyCodes">
+    											<option value="">请选择供应机构</option>
+  											</select>
+                                    </div>   
                                 </div>
                             </div>
                         </div>
@@ -64,7 +69,12 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="" class="control-label col-md-4">需求机构</label>
-                                    <div class="col-md-8"><input type="text" class="form-control input-sm" ng-model="newRelation.demandAgencyCode"></div>   
+                                    <div class="col-md-8">
+                                    		<select ng-model="newRelation.demandAgencyCode" class="form-control input-sm"
+                                    			ng-options="a for a in addInfoFilter.demandAgencyCodes">
+    											<option value="">请选择需求机构</option>
+  											</select>
+                                    </div>   
                                 </div>
                             </div>
                         </div>

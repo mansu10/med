@@ -111,23 +111,23 @@ app.controller('InstSafetyCtrl', function($scope,http){
 				'method': 'findAllSupplyAgencyAndDemandAgencyCodes'
 			}, URL.SupplyAgencyServlet).then(
 				function(respone) {
-					addInfoFilter.supplyAgencyCodes = respone.supplyAgencyCodes;
-					addInfoFilter.demandAgencyCodes = respone.demandAgencyCodes;
+					$scope.addInfoFilter.supplyAgencyCodes = respone.supplyAgencyCodes;
+					$scope.addInfoFilter.demandAgencyCodes = respone.demandAgencyCodes;
 				},
 				function(respone) {
 					alert(JSON.stringify(respone));
 				});
 		}		
-		var addInfoFilter = {
+		$scope.addInfoFilter = {
 			"supplyAgencyCodes":[],
 			"demandAgencyCodes":[]
 		}
 		
 		findAllSupplyAndDemands();
 
-		$scope.newRelation = {'demandAgencyCode':'','supplyAgencyCode':''};
+		$scope.newRelation = {'demandAgencyCode':'1','supplyAgencyCode':'2'};
 		$scope.createNewRelation = function(){
-			
+			console.log("createNewRelation")
 			if(isEmptyValue($scope.newRelation.supplyAgencyCode)){
 				alert('请输入供应机构');
 				return;
@@ -138,12 +138,12 @@ app.controller('InstSafetyCtrl', function($scope,http){
 				return;
 			}
 			
-			if(addInfoFilter.supplyAgencyCodes.indexOf($scope.newRelation.supplyAgencyCode) == -1){
+			if($scope.addInfoFilter.supplyAgencyCodes.indexOf($scope.newRelation.supplyAgencyCode) == -1){
 				alert('输入的供应机构不存在，请查证后重新输入！！！');
 				return;
 			}
 			
-			if(addInfoFilter.demandAgencyCodes.indexOf($scope.newRelation.demandAgencyCode) == -1){
+			if($scope.addInfoFilter.demandAgencyCodes.indexOf($scope.newRelation.demandAgencyCode) == -1){
 				alert('输入的需求机构不存在，请查证后重新输入！！！');
 				return;
 			}

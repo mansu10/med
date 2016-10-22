@@ -1,5 +1,5 @@
 app.controller('LoadQueryCtrl', function($scope,http){
-		
+
 	$scope.stateFactory = {
 		"query": true,
 		"print": false
@@ -15,5 +15,11 @@ app.controller('LoadQueryCtrl', function($scope,http){
 			$scope.stateFactory[o] = false;
 		}
 		$scope.stateFactory[option] = true;
+	}
+
+	$scope.print = function(id){
+		var content = document.getElementById(id).innerHTML;
+		document.body.innerHTML = content;
+		window.print();
 	}
 })

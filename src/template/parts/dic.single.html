@@ -26,11 +26,10 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">分类</label>
                                 <div class="col-md-8">
-                                    <select name="" id="" class="form-control" ng-model="queryInfo.medType">
-                                        <option value="">----</option>
-                                        <option value="1">----</option>
-                                        <option value="2">----</option>
-                                    </select>
+                                    <select ng-model="queryInfo.medType" class="form-control input-sm"
+                                    			ng-options="a for a in medTypeList">
+    											<option value="">全部</option>
+  									</select>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +46,7 @@
             <div class="panel-heading clearfix">
                 <div class="pull-right">
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="openSingleDetail()">新增</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delMedListById()">删除</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -72,25 +71,27 @@
                         </tr>                        
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in medList">
+                        <tr ng-repeat="item in medList" ng-dblclick="showDetails(item,$index)">
                             <td>
-                                <input type="checkbox">
+                                <input type="checkbox" name="radio" 
+                                	   ng-checked="isSelected($index)"
+                                	   ng-click="updateSelection($event,$index)">
                             </td>
                             <td>{{$index+1}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
-                            <td>{{item.synType}}</td>
+                            <td>{{item.herbsType}}</td>
+                            <td>{{item.firstLevel}}</td>
+                            <td>{{item.secondLevel}}</td>
+                            <td>{{item.productCode}}</td>
+                            <td>{{item.controlCode}}</td>
+                            <td>{{item.ordinaryName}}</td>
+                            <td>{{item.productName}}</td>
+                            <td>{{item.specifications}}</td>
+                            <td>{{item.model}}</td>
+                            <td>{{item.manufactor}}</td>
+                            <td>{{item.unit}}</td>
+                            <td>{{item.maxConversionRatio}}</td>
                             <td>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="showDetails(item)">明细</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="showDetails(item,$index)">明细</a>
                             </td>
                         </tr>                        
                     </tbody>
@@ -107,8 +108,8 @@
                 药材明细信息
                 <div class=" pull-right">
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="backToQuery()">返回查询</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="modifyDetail()" ng-show="!addMode">{{editMode?'修改':'取消'}}</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveDetail()">保存</a>
                 </div>
             </div>
         </div>
@@ -125,7 +126,10 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">类型</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm">
+                                    <!--<input type="text" class="form-control input-sm" ng-model="midware.herbsType" ng-disabled="editMode">-->
+                                    <select ng-model="midware.herbsType" class="form-control input-sm" ng-disabled="editMode"
+                                    			ng-options="a for a in medTypeList">
+  									</select>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +151,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">标识码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.productCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -155,7 +159,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">对照码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.controlCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -163,7 +167,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">统一商品编码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.unityProductCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -171,7 +175,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">拼音码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.pinyinCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -193,7 +197,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">通用名</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.ordinaryName" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -201,7 +205,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">规格</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.specifications" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -209,7 +213,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">剂型</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.formulations" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -217,7 +221,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">计量单位</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.unit" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -239,7 +243,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">商品名</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.productName" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -247,7 +251,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">厂家</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.manufactor" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -255,7 +259,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">厂家标识码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.manufactorCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -263,7 +267,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">型号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.model" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -273,7 +277,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">批准文号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.approvalNumber" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -281,7 +285,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">零售包装计量单位</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.minUnit" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -289,7 +293,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">零售包装转换比</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.minConversionRatio" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -297,7 +301,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">零售包装价格</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.minPrice" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -307,7 +311,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">零售包装重量</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.minWeight" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -315,7 +319,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">零售包装体积</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.minVolume" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -323,7 +327,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">零售包装材料</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.minMaterial" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -345,7 +349,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">一级类</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.firstLevel" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -353,7 +357,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">二级类</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.secondLevel" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -361,7 +365,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">三级类</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.thirdLevel" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -369,7 +373,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">管理分类</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.managementClassification" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -390,7 +394,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">用量单位</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.unitDose" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -398,7 +402,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">次平均用量</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.averageDose" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -406,7 +410,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">日平均用量</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.averageNumber" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -414,7 +418,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">日最大用量</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.maxNumber" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -436,7 +440,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">大包装计量单位</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.maxUnit" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -444,7 +448,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">打包零包转换比</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.maxConversionRatio" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -452,7 +456,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">大包装重量</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.weight" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -460,7 +464,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">大包装体积</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.volume" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -470,7 +474,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">大包装长</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.maxLength" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -478,7 +482,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">大包装宽</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.maxWidth" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -486,7 +490,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">大包装高</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.maxHeigth" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -494,7 +498,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">大包装材料</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.material" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -515,7 +519,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">贮存条件</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.storageCoditions" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -523,7 +527,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">有效期</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.validity" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -544,7 +548,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">库存下限</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.storageMin" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -552,7 +556,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">库存上限</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.storageMax" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -560,7 +564,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">货位码</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.locatorCode" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -581,7 +585,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">标准1</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.standard1" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -589,7 +593,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">标准2</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.standard2" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -597,7 +601,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">标准3</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.standard3" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -605,7 +609,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">标准4</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.standard4" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -615,7 +619,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">标准5</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.standard5" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -637,7 +641,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">成套品规数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.specificationSets" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -645,7 +649,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">成套箱类型</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="text" class="form-control input-sm" ng-model="midware.caseType" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -653,7 +657,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">成套箱数</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.caseNumber" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -661,7 +665,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">单箱体积</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.singleBoxVolume" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -671,7 +675,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">成套体积</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.setVolume" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -679,7 +683,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">成套价格</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.setPrice" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>
@@ -687,7 +691,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">成套重量</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control input-sm" ng-model="midware.barCode">
+                                    <input type="number" class="form-control input-sm" ng-model="midware.setWeight" ng-disabled="editMode">
                                 </div>
                             </div>
                         </div>

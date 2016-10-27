@@ -155,6 +155,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('home.goodsMulti', {
 			url: '/goods/multi'
 		})
+		// 运输管理
+		.state('home.transVehicle', {
+			url: '/trans/vehicle',
+			templateUrl: paths.part + 'trans.vehicle.html',
+			controller: 'TransVehicleCtrl'
+		})
+		.state('home.transLine', {
+			url: '/trans/line',
+			templateUrl: paths.part + 'trans.line.html',
+			controller: 'TransLineCtrl'
+		})
+		.state('home.transDispatch', {
+			url: '/trans/dispatch',
+			templateUrl: paths.part + 'trans.dispatch.html',
+			controller: 'TransDispatchCtrl'
+		})
 		// 配送管理
 		.state('home.distrLoad', {
 			url: '/distr/load',

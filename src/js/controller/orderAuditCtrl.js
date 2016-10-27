@@ -130,7 +130,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				alert(respone);
+				// alert(respone);
 	});
 	
 	//过滤订单 只显示未审核和有疑问的订单
@@ -161,7 +161,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				alert(respone);
+				// alert(respone);
 		});
 	}
 	
@@ -175,7 +175,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				alert(respone);
+				// alert(respone);
 		});
 	};
 	
@@ -192,7 +192,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("queryProduct failed!" + JSON.stringify(respone));
-					alert(respone);
+					// alert(respone);
 			});
 		}
 		queryProduct();
@@ -234,7 +234,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 					alert(status=="1" ? "订单已确认":"已转至疑问订单");
 				},
 				function(respone) {
-					alert(respone);
+					// alert(respone);
 			});
 		}
 		

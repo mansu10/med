@@ -65,7 +65,7 @@ app.controller('OrderAddCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("submitOrder failed!" + JSON.stringify(respone));
-					alert(respone);
+					// alert(respone);
 			});
 		}
 		
@@ -80,7 +80,7 @@ app.controller('OrderAddCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("queryProduct failed!" + JSON.stringify(respone));
-					alert(respone);
+					// alert(respone);
 			});
 		}
 		queryProduct();

@@ -8,7 +8,7 @@ app.controller('DicSingleCtrl', function($scope,http){
 	$scope.midware = {
 	}
 	
-	$scope.medTypeList = ['单一','成套','组合'];
+	$scope.medTypeList = ['单品','成套'];
 	
 	function setMidware(item){
 		$scope.midware = angular.copy(item);

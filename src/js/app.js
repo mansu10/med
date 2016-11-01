@@ -43,6 +43,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'mode.html',
 			controller:'ModeCtrl'
 		})
+		.state('print', {
+			url: '/print',
+			templateUrl: paths.part + 'load.query.print.html'
+		})
+		.state('print.page', {
+			url: '/print/page',
+			templateUrl: paths.part + 'load.query.print.html'
+		})
 		.state('home', {
 			url: '',
 			views: {

@@ -118,11 +118,11 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"isActive":false,
 					"icon":"fa fa-briefcase",
 					"child": [{
-							"title": "订货分拣",
+							"title": "拆单拣货",
 							"url": ".allocateGoods",
 							"isActive":false
 						},{
-							"title": "复核装箱",
+							"title": "装箱核对",
 							"url": ".allocateCheck",
 							"isActive":false
 					  	}]					

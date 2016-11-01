@@ -43,13 +43,33 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'mode.html',
 			controller:'ModeCtrl'
 		})
+		// .state('print', {
+		// 	url: '/print',
+		// 	templateUrl: paths.part + 'load.query.print.html'
+		// })
 		.state('print', {
 			url: '/print',
-			templateUrl: paths.part + 'load.query.print.html'
+			views: {
+				'': {
+					templateUrl: paths.tpl + 'print.html',
+					controller: function($state){
+
+					}
+				}
+			}
 		})
 		.state('print.page', {
-			url: '/print/page',
+			url: '/page',
 			templateUrl: paths.part + 'load.query.print.html'
+		})
+		.state('print.loadquery', {
+			url: '/loadquery',
+			templateUrl: paths.part + 'load.query.print.html'
+		})
+		.state('print.allocateGoods', {
+			url: '/allocate/goods',
+			templateUrl: paths.part + 'allocate.goods.print.html',
+			controller: 'AllocateGoodsCtrl'
 		})
 		.state('home', {
 			url: '',

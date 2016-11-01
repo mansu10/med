@@ -1,4 +1,4 @@
-app.controller('AllocateGoodsCtrl', function($scope,http,$timeout){
+app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location){
 
 	$scope.stateFactory = {
 		"query": true,
@@ -123,5 +123,29 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout){
 			});
 	}
 	
+
+	/*print页使用*/
+
+	/**
+	 * 获取URL参数
+	 * @param {[type]} name [description]
+	 */
+	 function getUrlParams(name){
+	 	return $location.search()[name];
+	 }
+	 $scope.orderToPrint = [];
+
+	 if (!getUrlParams('type')) {
+	 	return;
+	 } else {
+	 	var printType = getUrlParams('type');
+
+	 	if (printType == 0) {
+	 		$scope.orderToPrint = $scope.printOrders;
+	 	}else{
+	 		var printItem = parseInt(Number(getUrlParams('item')));
+	 		$scope.orderToPrint.push($scope.printOrders[printItem]);
+	 	}
+	 }
 
 })

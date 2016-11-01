@@ -17,4 +17,28 @@ app.controller('AllocateCheckCtrl', function($scope,http){
 		}
 		$scope.stateFactory[option] = true;
 	}
+	
+	/*查询*/
+	$scope.queryItem = {
+		'orderCode':"",
+		'demandAgencyName': '',
+		'orderTimeStart':'',
+		'orderTimeEnd':''
+	}
+	$scope.queryAllOrdersWithDemandAgency = function(){
+		http.post({
+				'method': 'queryAllOrdersWithDemandAgency',
+				'orderCode': $scope.queryItem.orderCode,
+				'demandAgencyName': $scope.queryItem.demandAgencyName,
+				'orderTimeStart':$scope.queryItem.orderTimeStart,
+				'orderTimeEnd':$scope.queryItem.orderTimeEnd
+			}, URL.OrderServlet).then(
+				function(respone) {
+					alert("查询成功");
+					$scope.goods = respone.orders;
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
+	}
 })

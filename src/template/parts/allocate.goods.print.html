@@ -1,3 +1,39 @@
-<div ng-repeat="item in orderToPrint">
-{{item}}	
+
+<div>{{orderToPrint}}</div>
+<div>{{printTemp}}</div>
+<div class="noprint pull-right">
+	<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="print()">打印</a>
 </div>
+<article ng-repeat="item in orderToPrint">
+	<table class="table table-condensed table-bordered">
+		<tbody>
+			<tr>
+				<td colspan="3">{{item}}</td>
+				<td colspan="3">1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td colspan="2"></td>
+				<td></td>
+				<td></td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</article>

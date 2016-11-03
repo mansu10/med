@@ -1,4 +1,4 @@
-app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location){
+app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location,$rootScope){
 
 	$scope.stateFactory = {
 		"query": true,
@@ -62,7 +62,7 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location){
 				function(respone) {
 					alert("拣货单查询成功");
 					$scope.printOrders = respone.pickLists;
-					
+
 					$timeout(function() {
 						createbcTarget($scope.printOrders);
             		}, 1000);
@@ -93,19 +93,41 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location){
 	 function getUrlParams(name){
 	 	return $location.search()[name];
 	 }
+	 // $scope.objToString = function(obj){
+	 // 	return JSON.stringify(obj);
+	 // }
+	 // 
+	 // url 传参 ＋ localstorage
+	 // $state.go('producer', {producerId: producerId});
+	 //  var producerId = $stateParams.producerId;
+	 $scope.print = function(){
+	 	window.print();
+	 }
 	 $scope.orderToPrint = [];
 
-	 if (!getUrlParams('type')) {
-	 	return;
-	 } else {
-	 	var printType = getUrlParams('type');
+	 // if (!getUrlParams('type')) {
+	 // 	return;
+	 // } else {
+	 // 	var printType = getUrlParams('type'),
+	 // 		printCnt = JSON.parse((getUrlParams('item')));
 
-	 	if (printType == 0) {
-	 		$scope.orderToPrint = $scope.printOrders;
-	 	}else{
-	 		var printItem = parseInt(Number(getUrlParams('item')));
-	 		$scope.orderToPrint.push($scope.printOrders[printItem]);
-	 	}
-	 }
+	 // 	if (printType == 0) {
+	 // 		$scope.orderToPrint = printCnt;
+	 // 	}else{
+	 // 		$scope.orderToPrint= printCnt;
+	 // 		// $scope.orderToPrint.push($scope.printOrders[printItem]);
+	 // 	}
+	 // }
+	 // rootScope 方式
+	 // if (!getUrlParams('type')) {
+	 // 	return;
+	 // } else {
+	 // 	var printType = getUrlParams('type');
+	 // 	var printItemIndex = Number(getUrlParams('item'));
+	 // 	if (true) {
+	 // 		console.log($rootScope.printTemp);
+		//  	$scope.orderToPrint = $rootScope.printTemp;	 		
+	 // 	}
 
+	 // }
 })

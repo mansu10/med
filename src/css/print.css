@@ -1,5 +1,32 @@
 @media print {
-	.noprint {
-		display: none;
-	}
+    .noprint {
+        display: none;
+    }
+    @page {
+        size: A4 landscape;
+        margin: 2cm;
+    }
+    img {
+        max-width: 100% !important;
+    }
+    article {
+        page-break-before: always;
+    }
+    ul,
+    img {
+        page-break-inside: avoid;
+    }
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+body {
+    color: #000;
+    background-color: #fff;
+}
+table.table {
+	width: 21cm;
+	margin: 0 auto;
 }

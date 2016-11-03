@@ -18,8 +18,8 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location,$roo
 		$scope.stateFactory[option] = true;
 		if (option == 'print') {
 			printOrder(orderCode);
-		} else{
-			
+		} else if(option == 'record'){
+			OrderNote(orderCode);
 		}
 	}
 	
@@ -81,6 +81,46 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location,$roo
 			code11(item.pickListCode);
 			console.log("----------------"+item.pickListCode);
 		});
+	}
+	
+	//拣货记录
+	var OrderNote = function(orderCode){
+		http.post({
+				'method': 'findPickListByOrderCode',
+				'orderCode': orderCode
+			}, URL.PickListServlet).then(
+				function(respone) {
+					alert("拣货记录查询成功！");
+					$scope.OrderNote = respone.pickLists;
+		
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
+	};
+	
+	$scope.updateOrderNote = function(){
+		var temp = [];
+		
+		angular.forEach($scope.OrderNote.products,function(item){
+			temp.push({
+				'productCode':item.productCode,
+				'pickListRecord':item.pickListRecord
+			})
+		});
+		
+		http.post({
+				'method': 'updatePickListItem',
+				'orderCode': $scope.OrderNote.orderCode,
+				'pickListItems':JSON.stringify(temp)
+			}, URL.PickListServlet).then(
+				function(respone) {
+					alert("拣货记录保存成功！");
+					
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
 	}
 	
 

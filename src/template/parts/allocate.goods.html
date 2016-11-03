@@ -223,14 +223,14 @@
 					<div class="form-group">
 						<div class="col-md-4">
 							<label for="" class="col-md-4 control-label">订单号</label>
-							<div class="col-md-8">1234567890</div>
+							<div class="col-md-8">{{OrderNote.orderCode}}</div>
 						</div>
 						<div class="col-md-4">
 							<label for="" class="col-md-4 control-label">配货时间</label>
-							<div class="col-md-8">1234567890</div>
+							<div class="col-md-8">{{OrderNote.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
 						</div>
 						<div class="col-md-4 text-right">
-							<a href="javascript:;" class="btn btn-sm btn-primary pull-right">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="updateOrderNote()">保存</a>
 						</div>
 					</div>
 				</div>
@@ -255,19 +255,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr ng-repeat="detail in OrderNote.products">
+							<td>{{$index+1}}</td>
+							<td>{{detail.productCode}}</td>
+							<td>{{detail.ordinaryName}}</td>
+							<td>{{detail.specifications}}</td>
+							<td>{{detail.model}}</td>
+							<td>{{detail.manufactor}}</td>
+							<td>{{detail.unit}}</td>
+							<td>{{detail.locatorCode}}</td>
 							<td></td>
 							<td></td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="detail.pickListRecord">
 							</td>
 						</tr>
 					</tbody>

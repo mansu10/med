@@ -1,5 +1,4 @@
-app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location,$rootScope){
-
+app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $state,printlist){
 	$scope.stateFactory = {
 		"query": true,
 		"print": false,
@@ -62,7 +61,9 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location,$roo
 				function(respone) {
 					alert("拣货单查询成功");
 					$scope.printOrders = respone.pickLists;
-
+					// $localstorage.setObject('prints',respone.pickLists);
+					// test.test = respone.pickLists;
+					printlist.set(respone.pickLists);
 					$timeout(function() {
 						createbcTarget($scope.printOrders);
             		}, 1000);
@@ -123,51 +124,8 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location,$roo
 			});
 	}
 	
+	$scope.addPrintList = function(index){
+		$state.go('print.allocateGoods',{item:index});
+	}
 
-	/*print页使用*/
-
-	/**
-	 * 获取URL参数
-	 * @param {[type]} name [description]
-	 */
-	 function getUrlParams(name){
-	 	return $location.search()[name];
-	 }
-	 // $scope.objToString = function(obj){
-	 // 	return JSON.stringify(obj);
-	 // }
-	 // 
-	 // url 传参 ＋ localstorage
-	 // $state.go('producer', {producerId: producerId});
-	 //  var producerId = $stateParams.producerId;
-	 $scope.print = function(){
-	 	window.print();
-	 }
-	 $scope.orderToPrint = [];
-
-	 // if (!getUrlParams('type')) {
-	 // 	return;
-	 // } else {
-	 // 	var printType = getUrlParams('type'),
-	 // 		printCnt = JSON.parse((getUrlParams('item')));
-
-	 // 	if (printType == 0) {
-	 // 		$scope.orderToPrint = printCnt;
-	 // 	}else{
-	 // 		$scope.orderToPrint= printCnt;
-	 // 		// $scope.orderToPrint.push($scope.printOrders[printItem]);
-	 // 	}
-	 // }
-	 // rootScope 方式
-	 // if (!getUrlParams('type')) {
-	 // 	return;
-	 // } else {
-	 // 	var printType = getUrlParams('type');
-	 // 	var printItemIndex = Number(getUrlParams('item'));
-	 // 	if (true) {
-	 // 		console.log($rootScope.printTemp);
-		//  	$scope.orderToPrint = $rootScope.printTemp;	 		
-	 // 	}
-
-	 // }
 })

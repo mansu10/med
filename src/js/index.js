@@ -37,6 +37,8 @@ include_js("./src/js/controller/dicSingleCtrl.js");
 
 include_js("./src/js/controller/modeCtrl.js");
 
+include_js("./src/js/controller/printCtrl.js");
+
 include_js("./src/js/controller/userStudentCtrl.js");
 include_js("./src/js/controller/userTeacherCtrl.js");
 
@@ -45,3 +47,6 @@ include_js("./src/js/directives/directives.js");
 include_js("./src/js/filter/orderFilter.js");
 include_js("./src/js/filter/percentage.js");
 include_js("./src/js/filter/shelfSpecFilter.js")
+
+
+

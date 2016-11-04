@@ -25,7 +25,7 @@ var paths = {
 	tpl: './src/template/',
 	part: './src/template/parts/'
 }
-
+app.value("test",{"test":{}})
 app.config(function($stateProvider, $urlRouterProvider) {
 	//
 	// For any unmatched url, redirect to /state1
@@ -67,9 +67,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'load.query.print.html'
 		})
 		.state('print.allocateGoods', {
-			url: '/allocate/goods',
+			url: '/allocate/goods/:item',
 			templateUrl: paths.part + 'allocate.goods.print.html',
-			controller: 'AllocateGoodsCtrl'
+			controller: 'PrintCtrl'
 		})
 		.state('home', {
 			url: '',

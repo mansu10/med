@@ -183,3 +183,32 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 
 	return http;
 }]);
+
+app.factory('printlist', function(){
+
+	var itemList = {};
+
+	var _setter = function(data){
+		itemList = data;
+	}
+
+	var _getter = function(data){
+		return itemList;
+	}
+
+	return {
+		set: _setter,
+		get: _getter
+	}
+
+})
+
+
+
+
+
+
+
+
+
+

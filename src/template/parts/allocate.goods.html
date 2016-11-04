@@ -256,16 +256,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="detail in OrderNote.products">
+						<tr ng-repeat="detail in OrderNote.pickListItems">
 							<td>{{$index+1}}</td>
-							<td>{{detail.productCode}}</td>
-							<td>{{detail.ordinaryName}}</td>
-							<td>{{detail.specifications}}</td>
-							<td>{{detail.model}}</td>
-							<td>{{detail.manufactor}}</td>
-							<td>{{detail.unit}}</td>
-							<td>{{detail.locatorCode}}</td>
-							<td></td>
+							<td>{{detail.product.productCode}}</td>
+							<td>{{detail.product.ordinaryName}}</td>
+							<td>{{detail.product.specifications}}</td>
+							<td>{{detail.product.model}}</td>
+							<td>{{detail.product.manufactor}}</td>
+							<td>{{detail.product.unit}}</td>
+							<td>{{detail.product.locatorCode}}</td>
+							<td>{{detail.pickListNumber}}</td>
 							<td></td>
 							<td>
 								<input type="text" class="form-control input-sm" ng-model="detail.pickListRecord">

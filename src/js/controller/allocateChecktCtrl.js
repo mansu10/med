@@ -1,5 +1,5 @@
-app.controller('AllocateCheckCtrl', function($scope,http){
-
+app.controller('AllocateCheckCtrl', function($scope,http,$timeout){
+	
 	$scope.stateFactory = {
 		"query": true,
 		"print": false,
@@ -10,12 +10,17 @@ app.controller('AllocateCheckCtrl', function($scope,http){
 	 * @param  {[type]} option [description]
 	 * @return {[type]}        [description]
 	 */
-	$scope.changeState = function(option){
+	$scope.changeState = function(option,orderCode){
 	
 		for(o in $scope.stateFactory){
 			$scope.stateFactory[o] = false;
 		}
 		$scope.stateFactory[option] = true;
+		if (option == 'print') {
+			printOrder(orderCode);
+		} else if(option == 'record'){
+			checkNote(orderCode);
+		}
 	}
 	
 	/*查询*/
@@ -40,5 +45,58 @@ app.controller('AllocateCheckCtrl', function($scope,http){
 				function(respone) {
 					alert(JSON.stringify(respone));
 			});
-	}
+	};
+	
+	//打印拣货单
+	var printOrder = function(orderCode){
+		http.post({
+				'method': 'findOrderWithCheckByOrderCode',
+				'orderCode': orderCode
+			}, URL.OrderServlet).then(
+				function(respone) {
+					alert("打印拣货单查询成功");
+					$scope.printOrder = respone.order;
+					$timeout(function() {
+						$('#'+$scope.printOrder.orderCode).empty().barcode(""+$scope.printOrder.orderCode, "code128",{barWidth:2, barHeight:30,showHRI:false});
+            		}, 1000);
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
+	};
+	
+	//复核记录
+	$scope.checkVerify = function(orderCode){
+		http.post({
+				'method': 'checkOrder',
+				'orderCode': orderCode
+			}, URL.PickListServlet).then(
+				function(respone) {
+					alert("复核确认成功！");
+					$scope.checkNote = respone.pickLists;
+		
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
+	};
+	
+	//拣货记录
+	var checkNote = function(orderCode){
+//		http.post({
+//				'method': 'findPickListByOrderCode',
+//				'orderCode': orderCode
+//			}, URL.PickListServlet).then(
+//				function(respone) {
+//					alert("拣货记录查询成功！");
+//					$scope.OrderNote = respone.pickLists;
+//		
+//				},
+//				function(respone) {
+//					alert(JSON.stringify(respone));
+//			});
+	};
+	
+	
+	
 })

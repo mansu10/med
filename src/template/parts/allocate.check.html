@@ -105,7 +105,7 @@
 				<div class="row">
 				<div class="col-md-offset-8 col-md-4 text-right">
 					<a href="javascript:;" class="btn btn-sm btn-primary">打印</a>
-					<a href="javascript:;" class="btn btn-sm btn-primary">复核确认</a>
+					<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="checkVerify(printOrder.orderCode)">复核确认</a>
 				</div>
 				</div>
 			</div>
@@ -116,11 +116,14 @@
 							<div class="col-md-4">
 								<label class="col-md-4 control-label">订单号</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="input-sm form-control" ng-model="printOrder.orderCode">
 								</div>
 							</div>
 							<div class="col-md-offset-4 col-md-4">
-								<label class="col-md-4 control-label">条形码</label>
+								<!--<label class="col-md-4 control-label">条形码</label>-->
+								<div id="{{printOrder.orderCode}}" data-seri="" class="barcodeImg pull-right"></div>
+								<!--<label class="col-md-4 control-label">{{printOrder.orderCode}}</label>-->
+				
 							</div>
 						</div>
 					</div>
@@ -135,7 +138,7 @@
 							<div class="col-md-4">
 								<label class="col-md-4 control-label">数量</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="input-sm form-control" ng-model="printOrder.orderNumber">
 								</div>
 							</div>
 						</div>
@@ -145,7 +148,7 @@
 							<div class="col-md-4">
 								<label class="col-md-4 control-label">城市点</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="input-sm form-control" ng-model="printOrder.demandAgency.demandAgencyAddress1">
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -161,7 +164,7 @@
 							<div class="col-md-4">
 								<label class="col-md-4 control-label">交货时间</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="form-control input-sm" ng-model="printOrder.deliveryTime.time" datetime-picker date-format="yyyy-MM-dd hh:mm:ss"
 								</div>
 							</div>
 						</div>
@@ -171,7 +174,7 @@
 							<div class="col-md-8">
 								<label class="col-md-2 control-label">收货地址</label>
 								<div class="col-md-10">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="input-sm form-control" ng-model="printOrder.receiptAddress">
 								</div>
 							</div>
 						</div>
@@ -181,7 +184,7 @@
 							<div class="col-md-8">
 								<label class="col-md-2 control-label">客户单位</label>
 								<div class="col-md-10">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="input-sm form-control" ng-model="printOrder.demandAgency.demandAgencyName">
 								</div>
 							</div>
 						</div>
@@ -191,13 +194,13 @@
 							<div class="col-md-4">
 								<label class="col-md-4 control-label">收货人</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="input-sm form-control" ng-model="printOrder.receiver">
 								</div>
 							</div>
 							<div class="col-md-4">
 								<label class="col-md-4 control-label">联系电话</label>
 								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
+									<input type="text" class="input-sm form-control" ng-model="printOrder.tel">
 								</div>
 							</div>
 						</div>
@@ -221,16 +224,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
+						<tr ng-repeat="item in printOrder.orderItems">
+							<td>{{$index+1}}</td>
+							<td>{{item.productCode}}</td>
+							<td>{{item.ordinaryName}}</td>
+							<td>{{item.specifications}}</td>
+							<td>{{item.model}}</td>
+							<td>{{item.manufactor}}</td>
+							<td>{{item.unit}}</td>
+							<td>{{item.locatorCode}}</td>
+							<td></td>
+							<td></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

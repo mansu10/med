@@ -8,7 +8,7 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper" ng-if="stateFactory.query">
+<div class="wrapper" ng-show="stateFactory.query">
     <div class="row">
         <div class="panel">
             <div class="panel-body">
@@ -91,7 +91,7 @@
 </div>
 
 <!-- 打印页面 -->
-<div class="wrapper" ng-if="stateFactory.print">
+<div class="wrapper" ng-show="stateFactory.print">
 	<div class="row">
 		<div class="panel">
 			<div class="panel-heading">
@@ -164,7 +164,7 @@
 							<div class="col-md-4">
 								<label class="col-md-4 control-label">交货时间</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control input-sm" ng-model="printOrder.deliveryTime.time" datetime-picker date-format="yyyy-MM-dd hh:mm:ss"
+									<input type="text" class="form-control input-sm" ng-model="printOrder.deliveryTime.time" datetime-picker date-format="yyyy-MM-dd hh:mm:ss">
 								</div>
 							</div>
 						</div>
@@ -245,7 +245,7 @@
 <!-- 打印页面 end -->
 
 <!-- 纪录页面 -->
-<div class="wrapper" ng-if="stateFactory.record">
+<div class="wrapper" ng-show="stateFactory.record">
 	<div class="row">
 		<div class="panel">
 			<div class="panel-heading">

@@ -67,10 +67,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: paths.part + 'load.query.print.html'
 		})
 		.state('print.allocateGoods', {
-			url: '/allocate/goods/:item',
+			url: '/allocate/goods/?items',
 			templateUrl: paths.part + 'allocate.goods.print.html',
 			controller: 'PrintCtrl'
 		})
+		// .state('print.allocateGoods', {
+		// 	url: '/allocate/goods/:item',
+		// 	templateUrl: paths.part + 'allocate.goods.print.html',
+		// 	controller: 'PrintCtrl'
+		// })
 		.state('home', {
 			url: '',
 			views: {

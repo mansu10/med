@@ -127,5 +127,7 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 	$scope.addPrintList = function(index){
 		$state.go('print.allocateGoods',{item:index});
 	}
-
+	$scope.stringify = function(obj){
+		return JSON.stringify(obj);
+	}
 })

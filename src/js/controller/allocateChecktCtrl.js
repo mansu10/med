@@ -1,6 +1,6 @@
 app.controller('AllocateCheckCtrl', function($scope,http,$timeout){
 	
-	$scope.stateFactory = {
+	$scope.stateBox = {
 		"query": true,
 		"print": false,
 		"record": false
@@ -12,10 +12,11 @@ app.controller('AllocateCheckCtrl', function($scope,http,$timeout){
 	 */
 	$scope.changeState = function(option,orderCode){
 	
-		for(o in $scope.stateFactory){
-			$scope.stateFactory[o] = false;
+		for(o in $scope.stateBox){
+			$scope.stateBox[o] = false;
 		}
-		$scope.stateFactory[option] = true;
+		$scope.stateBox[option] = true;
+	
 		if (option == 'print') {
 			printOrder(orderCode);
 		} else if(option == 'record'){
@@ -83,20 +84,44 @@ app.controller('AllocateCheckCtrl', function($scope,http,$timeout){
 	
 	//拣货记录
 	var checkNote = function(orderCode){
-//		http.post({
-//				'method': 'findPickListByOrderCode',
-//				'orderCode': orderCode
-//			}, URL.PickListServlet).then(
-//				function(respone) {
-//					alert("拣货记录查询成功！");
-//					$scope.OrderNote = respone.pickLists;
-//		
-//				},
-//				function(respone) {
-//					alert(JSON.stringify(respone));
-//			});
+	
+		http.post({
+				'method': 'findPickListByOrderCode',
+				'orderCode': orderCode
+			}, URL.PickListServlet).then(
+				function(respone) {
+					alert("复核记录查询成功！");
+					$scope.OrderNote = respone.pickLists;
+		
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
 	};
 	
-	
+	$scope.updateOrderNote = function(){
+		var temp = [];
+		
+		angular.forEach($scope.OrderNote.pickListItems,function(item){
+			temp.push({
+				'productCode':item.productCode,
+				'pickListRecord':item.pickListRecord,
+				'checkRecord':item.checkRecord
+			})
+		});
+		
+		http.post({
+				'method': 'updatePickListItem',
+				'orderCode': $scope.OrderNote.orderCode,
+				'pickListItems':JSON.stringify(temp)
+			}, URL.PickListServlet).then(
+				function(respone) {
+					alert("复核记录保存成功！");
+					
+				},
+				function(respone) {
+					alert(JSON.stringify(respone));
+			});
+	}
 	
 })

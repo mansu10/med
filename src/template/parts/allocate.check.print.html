@@ -1,0 +1,78 @@
+<!-- <div>{{orderToPrint}}</div> -->
+<div class="noprint clearfix">
+	<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="print()">打印</a>
+</div>
+
+<article ng-repeat="printOrder in orderToPrint">
+	<table class="table table-condensed table-bordered">
+		<tbody>
+			<tr>
+				<td class="col-md-2">订单号</td>
+				<td>{{printOrder.orderCode}}</td>
+				<td colspan="2">
+					<div class="barcode"></div>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-2">装载区</td>
+				<td class="col-md-2"></td>
+				<td class="col-md-2">数量</td>
+				<td class="col-md-2">{{printOrder.orderNumber}}</td>
+			</tr>
+			<tr>
+				<td>城市点</td>
+				<td>{{printOrder.demandAgency.demandAgencyAddress1}}</td>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td>交货时间</td>
+				<td colspan="3">{{printOrder.deliveryTime.time}}</td>
+			</tr>
+			<tr>
+				<td>收货地址</td>
+				<td colspan="3">{{printOrder.receiptAddress}}</td>
+			</tr>
+			<tr>
+				<td>客户单位</td>
+				<td colspan="3">{{printOrder.demandAgency.demandAgencyName}}</td>
+			</tr>
+			<tr>
+				<td class="col-md-2">收货人</td>
+				<td class="col-md-2">{{printOrder.receiver}}</td>
+				<td class="col-md-2">联系电话</td>
+				<td class="col-md-2">{{}}</td>
+			</tr>
+		</tbody>
+
+	</table>
+	<table class="table table-bordered table-condensed">
+		<tbody>
+			<tr>
+				<th>序号</th>
+				<th>药材编码</th>
+				<th>通用名</th>
+				<th>规格</th>
+				<th>型号</th>
+				<th>厂家</th>
+				<th>计量单位</th>
+				<th>货位码</th>
+				<th>拣货数量</th>
+				<th>备注</th>
+			</tr>
+		</tbody>
+		<tbody>
+			<tr ng-repeat="item in printOrder.orderItems">
+				<td>{{$index+1}}</td>
+				<td>{{item.productCode}}</td>
+				<td>{{item.ordinaryName}}</td>
+				<td>{{item.specifications}}</td>
+				<td>{{item.model}}</td>
+				<td>{{item.manufactor}}</td>
+				<td>{{item.unit}}</td>
+				<td>{{item.locatorCode}}</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</article>

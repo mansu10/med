@@ -30,3 +30,10 @@ table.table {
 	width: 21cm;
 	margin: 0 auto;
 }
+
+article {
+	margin-bottom: 30px;
+}
+.col-md-2 {
+	width: 16.66666667%
+}

@@ -1,7 +1,6 @@
 
 <!-- <div>{{orderToPrint}}</div> -->
 <div class="noprint clearfix">
-	<a href="javascript:history.go(-1);" class="btn btn-sm btn-primary pull-left">返回</a>
 	<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="print()">打印</a>
 </div>
 <article ng-repeat="item in orderToPrint">
@@ -9,8 +8,11 @@
 		<tbody>
 			<tr>
 				<td colspan="3">共拆分为{{orderToPrint.length}}个拣货单，本单为第{{$index+1}}单</td>
-				<td colspan="3">1</td>
+				<td colspan="3">
+					<div data-code="{{item.pickListCode}}" class="barcode" id="code"></div>
+				</td>
 			</tr>
+
 			<tr>
 				<td>订单号</td>
 				<td colspan="3">{{item.orderCode}}</td>
@@ -36,7 +38,7 @@
 		</tbody>
 	</table>
 	<table class="table table-bordered table-condensed">
-		<thead>
+		<tbody>
 			<tr>
 				<th>序号</th>
 				<th>药材编码</th>
@@ -49,7 +51,7 @@
 				<th>拣货数量</th>
 				<th>备注</th>
 			</tr>
-		</thead>
+		</tbody>
 		<tbody ng-repeat="detail in item.products">
 			<tr>
 				<td>{{$index+1}}</td>

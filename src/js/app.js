@@ -29,7 +29,7 @@ app.value("test",{"test":{}})
 app.config(function($stateProvider, $urlRouterProvider) {
 	//
 	// For any unmatched url, redirect to /state1
-	$urlRouterProvider.otherwise('/login');
+	// $urlRouterProvider.otherwise('/login');
 	//
 	// Now set up the states
 	$stateProvider
@@ -62,13 +62,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/page',
 			templateUrl: paths.part + 'load.query.print.html'
 		})
-		.state('print.loadquery', {
-			url: '/loadquery',
-			templateUrl: paths.part + 'load.query.print.html'
-		})
 		.state('print.allocateGoods', {
 			url: '/allocate/goods/?items',
 			templateUrl: paths.part + 'allocate.goods.print.html',
+			controller: 'PrintCtrl'
+		})
+		.state('print.allocateCheck', {
+			url: '/allocate/check/?items',
+			templateUrl: paths.part + 'allocate.check.print.html',
+			controller: 'PrintCtrl'
+		})
+		.state('print.loadQuery', {
+			url: '/load/query/?items',
+			templateUrl: paths.part + 'load.query.print.html',
 			controller: 'PrintCtrl'
 		})
 		// .state('print.allocateGoods', {

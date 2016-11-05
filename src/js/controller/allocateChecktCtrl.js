@@ -124,4 +124,8 @@ app.controller('AllocateCheckCtrl', function($scope,http,$timeout){
 			});
 	}
 	
+	$scope.stringItemList = function(obj){
+		return JSON.stringify(obj[index]);
+
+	}
 })

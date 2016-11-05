@@ -61,9 +61,12 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 				function(respone) {
 					alert("拣货单查询成功");
 					$scope.printOrders = respone.pickLists;
+					
 					// $localstorage.setObject('prints',respone.pickLists);
-					// test.test = respone.pickLists;
-					printlist.set(respone.pickLists);
+					//stringItemList(respone.pickLists);
+
+					//printlist.set(respone.pickLists);
+
 					$timeout(function() {
 						createbcTarget($scope.printOrders);
             		}, 1000);
@@ -124,10 +127,11 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 			});
 	}
 	
-	$scope.addPrintList = function(index){
-		$state.go('print.allocateGoods',{item:index});
-	}
-	$scope.stringify = function(obj){
-		return JSON.stringify(obj);
+	// $scope.addPrintList = function(index){
+	// 	$state.go('print.allocateGoods',{item:index});
+	// }
+	$scope.stringItemList = function(obj){
+		return JSON.stringify(obj[index]);
+
 	}
 })

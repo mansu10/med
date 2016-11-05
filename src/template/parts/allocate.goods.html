@@ -96,7 +96,7 @@
 		<div class="panel">
 			<div class="panel-heading">
 				<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('query')">返回</a>
-				<a href="javascript:;" ng-click="addPrintList(-1)" class="btn btn-sm btn-primary">批量打印</a>
+				<a href="#/print/allocate/goods/?items={{printOrders}}" target="_blank" class="btn btn-sm btn-primary">批量打印</a>
 				<!-- <a href="javascript:;" ng-click="addPrintList(-1)" class="btn btn-sm btn-primary">批量打印</a> -->
 			</div>
 		</div>
@@ -112,7 +112,7 @@
 						<div id="{{item.pickListCode}}" data-seri="" class="barcodeImg pull-right"></div>
 					</div>
 					<div class="col-md-2 text-right">
-						<a ui-sref="print.allocateGoods(items:item)" target="_blank" class="btn btn-sm btn-primary">打印</a>
+						<a href="#/print/allocate/goods/?items={{item}}" target="_blank" class="btn btn-sm btn-primary">打印</a>
 						<!-- <a ui-sref="print.allocateGoods:$index" target="_blank"  ng-click="addPrintList($index)" class="btn btn-sm btn-primary">打印</a> -->
 					</div>
 				</div>

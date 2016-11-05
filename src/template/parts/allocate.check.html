@@ -8,7 +8,8 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper" ng-show="stateFactory.query">
+
+<div class="wrapper" ng-show="stateBox.query">
     <div class="row">
         <div class="panel">
             <div class="panel-body">
@@ -91,7 +92,8 @@
 </div>
 
 <!-- 打印页面 -->
-<div class="wrapper" ng-show="stateFactory.print">
+
+<div class="wrapper" ng-show="stateBox.print">
 	<div class="row">
 		<div class="panel">
 			<div class="panel-heading">
@@ -122,7 +124,7 @@
 							<div class="col-md-offset-4 col-md-4">
 								<!--<label class="col-md-4 control-label">条形码</label>-->
 								<div id="{{printOrder.orderCode}}" data-seri="" class="barcodeImg pull-right"></div>
-								<!--<label class="col-md-4 control-label">{{printOrder.orderCode}}</label>-->
+								<label class="col-md-4 control-label">{{printOrder.orderCode}}</label>
 				
 							</div>
 						</div>
@@ -245,7 +247,8 @@
 <!-- 打印页面 end -->
 
 <!-- 纪录页面 -->
-<div class="wrapper" ng-show="stateFactory.record">
+
+<div class="wrapper" ng-show="stateBox.record">
 	<div class="row">
 		<div class="panel">
 			<div class="panel-heading">
@@ -256,14 +259,14 @@
 					<div class="form-group">
 						<div class="col-md-4">
 							<label for="" class="col-md-4 control-label">订单号</label>
-							<div class="col-md-8">1234567890</div>
+							<div class="col-md-8">{{OrderNote.orderCode}}</div>
 						</div>
 						<div class="col-md-4">
 							<label for="" class="col-md-4 control-label">复核时间</label>
-							<div class="col-md-8">1234567890</div>
+							<div class="col-md-8">{{OrderNote.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
 						</div>
 						<div class="col-md-4 text-right">
-							<a href="javascript:;" class="btn btn-sm btn-primary pull-right">保存</a>
+							<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="updateOrderNote()">保存</a>
 						</div>
 					</div>
 				</div>
@@ -287,20 +290,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr ng-repeat="detail in OrderNote.pickListItems">
+							<td>{{$index+1}}</td>
+							<td>{{detail.product.productCode}}</td>
+							<td>{{detail.product.ordinaryName}}</td>
+							<td>{{detail.product.specifications}}</td>
+							<td>{{detail.product.model}}</td>
+							<td>{{detail.product.manufactor}}</td>
+							<td>{{detail.product.unit}}</td>
+							<td>{{detail.product.locatorCode}}</td>
+							<td>{{detail.pickListNumber}}</td>
 							<td></td>
 							<td>
-								<input type="text" class="form-control input-sm">
+								<input type="text" class="form-control input-sm" ng-model="detail.pickListRecord">
+							</td>
+							<td>
+								<input type="text" class="form-control input-sm" ng-model="detail.checkRecord">
 							</td>
 						</tr>
 					</tbody>

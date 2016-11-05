@@ -3,13 +3,13 @@
 <div class="noprint clearfix">
 	<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="print()">打印</a>
 </div>
-<article ng-repeat="item in orderToPrint">
+<article ng-repeat="item in orderToPrint" on-finish-render>
 	<table class="table table-condensed table-bordered">
 		<tbody>
 			<tr>
 				<td colspan="3">共拆分为{{orderToPrint.length}}个拣货单，本单为第{{$index+1}}单</td>
-				<td colspan="3">
-					<div data-code="{{item.pickListCode}}" class="barcode" id="code"></div>
+				<td colspan="3" class="text-center">
+					<div data-code="{{item.pickListCode}}" class="barcode"></div>
 				</td>
 			</tr>
 

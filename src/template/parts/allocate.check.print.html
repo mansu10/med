@@ -3,14 +3,14 @@
 	<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="print()">打印</a>
 </div>
 
-<article ng-repeat="printOrder in orderToPrint">
+<article ng-repeat="printOrder in orderToPrint" on-finish-render>
 	<table class="table table-condensed table-bordered">
 		<tbody>
 			<tr>
 				<td class="col-md-2">订单号</td>
 				<td>{{printOrder.orderCode}}</td>
-				<td colspan="2">
-					<div class="barcode"></div>
+				<td colspan="2" class="text-center">
+					<div class="barcode" data-code="{{item.pickListCode}}"></div>
 				</td>
 			</tr>
 			<tr>

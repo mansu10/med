@@ -37,3 +37,6 @@ article {
 .col-md-2 {
 	width: 16.66666667%
 }
+.barcode {
+	display: inline-block;
+}

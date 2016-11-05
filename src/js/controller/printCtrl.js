@@ -27,4 +27,13 @@ app.controller('PrintCtrl', function($scope, http, $location, printlist,$state, 
     $scope.print = function(){
     	window.print();
     }
+
+    $scope.$on('ngRepeatFinished', function() {
+    	$('.barcode').each(function(index, el) {
+    		var num = $(this).data('code');
+    		// console.log(num);
+    		$(this).barcode(''+num, "code128",{barWidth:2, barHeight:30,showHRI:false})
+    	});
+    	// $('#code').empty().barcode("567845678567", "code128",{barWidth:2, barHeight:30,showHRI:false});
+    })
 })

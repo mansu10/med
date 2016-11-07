@@ -25,17 +25,17 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>1</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>{{stowage.carCode}}</td>
+								<td>{{stowage.carVolume}}</td>
+								<td>{{stowage.maxWeight}}</td>
+								<td>{{stowage.volumePercent}}</td>
+								<td>{{stowage.weightPercent}}</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div class="col-md-2">
-					<a href="javascript:;" class="btn btn-sm btn-primary">确认</a>
+					<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="commit()">确认</a>
 					<a href="javascript:;" class="btn btn-sm btn-primary">取消</a>
 				</div>				
 			</div>
@@ -63,17 +63,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr ng-repeat="item in cars |orderBy:item.carStatus">
+							<td>{{$index+1}}</td>
+							<td>{{item.carCode}}</td>
+							<td>{{item.carNumber}}</td>
+							<td>{{item.carType}}</td>
+							<td>{{item.carVolume}}</td>
+							<td>{{item.maxWeight}}</td>
+							<td>暂时没有</td>
+							<td>{{item.carStatusStr}}</td>
 							<td class="text-center">
-								<input type="checkbox">
+								<input type="radio" ng-model="model.isChecked" value="{{$index}}" ng-click="selectCar($index)"/>
 							</td>
 						</tr>
 					</tbody>
@@ -99,18 +99,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr ng-repeat="item in invoices">
+							<td>{{$index+1}}</td>
+							<td>{{item.transportRoute}}</td>
+							<td>{{item.deliveryTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+							<td>{{item.level}}</td>
+							<td>{{item.orderCode}}</td>
+							<td>暂时空着</td>
+							<td>{{item.receiptAddress}}</td>
+							<td>{{item.volume}}</td>
+							<td>{{item.weight}}</td>
 							<td class="text-center">
-								<input type="checkbox">
+								<input type="radio" ng-model="model.isChecked2" value="{{$index}}" ng-click="selectInvoice($index)"/>
+								<!--<input type="checkbox" name="radio" 
+                                	   ng-checked="isSelected($index)"
+                                	   ng-click="updateSelection($event,$index,item)">-->
 							</td>
 						</tr>
 					</tbody>

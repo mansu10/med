@@ -45,5 +45,8 @@ var URL = {
 	GuaranteeRelationShipServlet:API_URI+"MedicineManagement/GuaranteeRelationShipServlet",//保障关系
 	ProductServlet:API_URI+"MedicineManagement/ProductServlet", //药材字典
 	OrderServlet:API_URI+"MedicineManagement/OrderServlet",
-	PickListServlet:API_URI+"MedicineManagement/PickListServlet"
+	PickListServlet:API_URI+"MedicineManagement/PickListServlet",
+	CarServlet:API_URI+"MedicineManagement/CarServlet",
+	InvoiceServlet:API_URI+"MedicineManagement/InvoiceServlet",
+	StowageServlet:API_URI+"MedicineManagement/StowageServlet"
 }

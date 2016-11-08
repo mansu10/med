@@ -151,15 +151,15 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 					"isActive":false,
 					"icon":"fa fa-truck",
 					"child": [{
-							"title": "车辆管理",
+							"title": "车辆信息",
 							"url": ".transVehicle",
 							"isActive":false
 					  	},{
-							"title": "运输路线",
+							"title": "线路分配",
 							"url": ".transLine",
 							"isActive":false
 						},{
-							"title": "途中调度",
+							"title": "车辆调度",
 							"url": ".transDispatch",
 							"isActive":false
 						},]					

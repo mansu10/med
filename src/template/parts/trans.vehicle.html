@@ -4,69 +4,12 @@
         <li>
             <a href="#">运输管理</a>
         </li>
-        <li class="active"> 车辆管理 </li>
+        <li class="active"> 车辆信息 </li>
     </ul>
 </div>
 <!-- page heading end-->
 <div class="wrapper" ng-show="stateFactory.query">
-    <div class="row">
-        <div class="panel">
-            <div class="panel-heading">
-                车辆状态显示
-            </div>
-            <div class="panel-body">
-                <table class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>序号</th>
-                            <th>车辆编号</th>
-                            <th>车牌号</th>
-                            <th>车名</th>
-                            <th colspan="3">状态</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="info"></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                            	<a href="javascript:;" ng-click="changeState('detail')">车辆信息</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="danger"></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="active"></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="panel-footer clearfix text-right">
-                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('detail')">新增车辆</a>
-            </div>
-        </div>
-    </div>
+
     <div class="row">
         <div class="panel">
             <div class="panel-heading">
@@ -89,22 +32,22 @@
                     </div>
                 </form>
             </div>
+            <div class="panel-heading clearfix text-right">
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('detail')">新增车辆</a>
+            </div>
             <div class="panel-body">
                 <table class="table table-bordered table-condensed">
                     <thead>
                         <tr>
-                            <th>序号</th>
+                            <th>ID</th>
                             <th>车辆编号</th>
+                            <th>车牌号</th>
                             <th>车名</th>
-                            <th>运输单号</th>
-                            <th>任务路线</th>
-                            <th>配送订单数</th>
-                            <th>配送完成数</th>
-                            <th>上一站点</th>
-                            <th>当前位置</th>
-                            <th>下一站点</th>
-                            <th>押运员</th>
-                            <th>联系方式</th>
+                            <th>车型号</th>
+                            <th>厂家</th>
+                            <th>净容积</th>
+                            <th>净载重</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,16 +60,18 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <a href="javascript:;"ng-click="changeState('detail')">修改</a>
+                                <a href="javascript:;">删除</a>
+                                <a href="javascript:;"ng-click="changeState('perform')">运行记录</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
 </div>
 <div class="wrapper" ng-show="stateFactory.detail">
     <div class="row">
@@ -136,9 +81,7 @@
                 车辆信息管理
             </div>
             <div class="panel-heading clearfix text-right">
-                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeMode()">{{editMode==false?'修改':'取消'}}</a>
                 <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
-                <a href="javascript:;" class="btn btn-sm btn-primary">删除车辆</a>
             </div>
         </div>
     </div>
@@ -154,7 +97,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车辆编号</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -162,15 +105,15 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车牌号</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4">车名</label>
+                                <label for="" class="control-label col-md-4">隶属单位</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -178,9 +121,17 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for="" class="control-label col-md-4">车名</label>
+                                <div class="col-md-8">
+                                    <input type="text"  class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label for="" class="control-label col-md-4">车型号</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -188,7 +139,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">厂家</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -209,7 +160,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">最大时速</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -217,7 +168,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">平均时速</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -225,7 +176,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">续航里程</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -246,7 +197,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">净容积</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -254,7 +205,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">净载重</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -264,7 +215,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车厢长</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -272,7 +223,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车厢宽</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
@@ -280,13 +231,68 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车厢高</label>
                                 <div class="col-md-8">
-                                    <input type="text" ng-disabled="!editMode" class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper" ng-show="stateFactory.perform">
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                 <a href="javascript:;" ng-click="changeState('query')" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i></a>
+                车辆状态显示
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>启运时间</th>
+                            <th>结运时间</th>
+                            <th>运输单号</th>
+                            <th>当次路线</th>
+                            <th>当次订单数</th>
+                            <th>当次里程数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>

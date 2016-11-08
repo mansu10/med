@@ -8,7 +8,7 @@
     </ul>
 </div>
 <!-- page heading end-->
-<div class="wrapper" ng-show="stateFactory.query">
+<div class="wrapper">
     <div class="row">
         <div class="panel">
             <div class="panel-body text-center">
@@ -65,13 +65,14 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="wrapper" ng-show="stateFactory.detail">
     <div class="row">
         <div class="panel">
             <div class="panel-heading">
-                <a href="javascript:;" ng-click="changeState('query')" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i></a>
+                
             </div>
             <div class="panel-body">
                 <form class="form form-horizontal">
@@ -137,18 +138,39 @@
     <div class="row">
         <div class="panel">
         <div class="panel-heading">
-            <a href="javascript:;" ng-click="changeState('query')" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i></a>
+            
         </div>
             <div class="panel-body">
                 <form class="form form-horizontal">
                     <div class="row">
-                        <div class="col-md-4">
-                            <label for="" class="control-label col-md-4">车辆编号</label>
-                            <div class="col-md-8"><label for="" class="form-control">222222</label></div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2">车辆编号</label>
+                                <div class="col-md-2"><label for="" class="form-control">222222</label></div>                                
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="" class="col-md-2 control-label">车辆状态</label>
+                                <div class="col-md-10">
+                                    <a href="javascript:;" class="btn btn-xs btn-info">休整中</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-info">休整完毕</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-success">待命中</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-warning">装载中</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-warning">装载完毕</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-success">待命中</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-danger">发车中</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-danger">发车完毕</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-default">前运中</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-primary">回程中</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-primary">回程完毕</a>
+                                </div>                                
+                            </div>
+                        </div>
+
+<!--                         <div class="col-md-4">
                             <label for="" class="control-label col-md-4">车辆状态</label>
                             <div class="col-md-8">
                                 <table class="table table-condensed table-bordered">
@@ -185,7 +207,7 @@
                                     </tbody>
                                 </table>
                             </div>                            
-                        </div>
+                        </div> -->
 
                     </div>
                 </form>                

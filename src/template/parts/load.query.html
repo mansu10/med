@@ -55,13 +55,14 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <div class="pull-right">
-                    <a href="javascript:;" class="btn btn-sm btn-primary">删除</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delStowages()">删除</a>
                 </div>
             </div>
             <div class="panel-body">
                 <table class="table table-condensed table-bordered">
                     <thead>
                         <tr>
+                        	<th class="col-md-1">选择</th>
                             <th class="col-md-1">序号</th>
                             <th class="">任务路线</th>
                             <th class="">配载单号</th>
@@ -76,6 +77,11 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in stowages">
+                        	<td class="text-center">
+								<input type="checkbox" name="radio" 
+                                	   ng-checked="isSelected($index)"
+                                	   ng-click="updateSelection($event,$index,item)">
+							</td>
                             <td>{{$index+1}}</td>
                             <td>暂时空着</td>
                             <td>{{item.stowageCode}}</td>
@@ -87,7 +93,7 @@
                             <td>{{item.weightPercent}}</td>
                             <td class="text-center">
 								<a href="javascript:;" ng-click="changeState('print',item)">打印配载单</a>
-								<a href="javascript:;">删除</a>
+								<a href="javascript:;" ng-click="deleStowageByIndex($index,item.id)">删除</a>
                             </td>
                         </tr>
                     </tbody>

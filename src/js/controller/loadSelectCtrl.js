@@ -9,11 +9,10 @@ app.controller('LoadSelectCtrl', function($scope,http){
 					function(respone) {
 //						alert("待选车辆查询成功");
 						$scope.cars = respone.cars;
-						$scope.selectCar(0);
 					},
 					function(respone) {
 						alert(JSON.stringify(respone));
-			});
+					});
 	}
 	
 	//待装载货物
@@ -24,11 +23,10 @@ app.controller('LoadSelectCtrl', function($scope,http){
 					function(respone) {
 //						alert("待装载货物查询成功");
 						$scope.invoices = respone.invoices;
-						$scope.selectInvoice(0);
 					},
 					function(respone) {
 						alert(JSON.stringify(respone));
-			});
+					});
 	}
 	
 	$scope.queryAllCarsWithStatus();
@@ -56,7 +54,7 @@ app.controller('LoadSelectCtrl', function($scope,http){
 					},
 					function(respone) {
 						alert(JSON.stringify(respone));
-			});
+				});
 	}
 	
 	var tempCar;
@@ -67,7 +65,7 @@ app.controller('LoadSelectCtrl', function($scope,http){
 		$scope.stowage.maxWeight = $scope.cars[index].maxWeight;
 		
 		if(!isEmptyValue(tempInvoice)){
-			$scope.stowage.invoiceCode = tempInvoice.invoiceCode;
+			$scope.stowage.invoiceCode = tempInvoice.invoiceCodes;
 			$scope.stowage.weightPercent = tempInvoice.weight / $scope.cars[index].maxWeight;
 			$scope.stowage.volumePercent = tempInvoice.volume / $scope.cars[index].carVolume;
 		}
@@ -86,6 +84,8 @@ app.controller('LoadSelectCtrl', function($scope,http){
 			var idx = $scope.selected.indexOf(id);
 			$scope.selected.splice(idx, 1);
 		}
+		
+		$scope.selectInvoice(index);
 		console.log("=========$scope.selected==========" + JSON.stringify($scope.selected));
 	}
 
@@ -95,8 +95,26 @@ app.controller('LoadSelectCtrl', function($scope,http){
 		updateSelected(action, index ,item);
 	}
 
-	$scope.isSelected = function(id) {
+	var isSelected = function(id) {
 		return $scope.selected.indexOf(id) >= 0;
+	}
+	
+	var getSelectInvoice = function() {
+
+			var invoiceCodes = '';
+			var invoice = {
+				'invoiceCodes':'',
+				'weight':0,
+				'volume':0
+			}
+			var tempList = angular.copy($scope.invoices);
+			angular.forEach($scope.selected, function(item) { //根据坐标批量删除选择的机构 
+				invoice.invoiceCodes = tempList[item].invoiceCode + ',' + invoice.invoiceCodes;	
+				invoice.weight = invoice.weight + tempList[item].weight;
+				invoice.volume = invoice.volume + tempList[item].volume;
+			});
+			invoice.invoiceCodes = invoice.invoiceCodes.substring(0, invoice.invoiceCodes.length - 1)
+			return invoice;
 	}
 	
 	/////////////////////单选
@@ -109,10 +127,16 @@ app.controller('LoadSelectCtrl', function($scope,http){
 			$scope.stowage.maxWeight = tempCar.maxWeight;
 		}
 		
-		$scope.stowage.invoiceCode = $scope.invoices[index].invoiceCode;
-		$scope.stowage.weightPercent = $scope.invoices[index].weight / $scope.stowage.maxWeight;
-		$scope.stowage.volumePercent = $scope.invoices[index].volume / $scope.stowage.carVolume;
-		tempInvoice = angular.copy($scope.invoices[index]);
+		$scope.stowage.invoiceCode = getSelectInvoice().invoiceCodes;
+		$scope.stowage.weightPercent = getSelectInvoice().weight / $scope.stowage.maxWeight;
+		$scope.stowage.volumePercent = getSelectInvoice().volume / $scope.stowage.carVolume;
+		tempInvoice = angular.copy(getSelectInvoice());
+	}
+	
+	$scope.cancel = function(){
+		$scope.stowage = {};
+		$scope.model={'isChecked':'0','isChecked2':'0'};
+		$scope.selected = [];
 	}
 	
 })

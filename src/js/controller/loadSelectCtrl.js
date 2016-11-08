@@ -1,6 +1,6 @@
 app.controller('LoadSelectCtrl', function($scope,http){
 
-	$scope.model={'isChecked':'0','isChecked2':'0'};
+	$scope.model={'isChecked':'0','isChecked1':'0'};
 	//待选车辆
 	$scope.queryAllCarsWithStatus = function(){
 			http.post({
@@ -135,8 +135,11 @@ app.controller('LoadSelectCtrl', function($scope,http){
 	
 	$scope.cancel = function(){
 		$scope.stowage = {};
-		$scope.model={'isChecked':'0','isChecked2':'0'};
+		$scope.model={'isChecked':'0','isChecked1':'0'};
 		$scope.selected = [];
+		angular.forEach($scope.invoices,function(item){
+			item.isChecked = "";
+		})
 	}
 	
 })

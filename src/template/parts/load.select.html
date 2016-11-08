@@ -112,7 +112,7 @@
 							<td class="text-center">
 								<!--<input type="radio" ng-model="model.isChecked2" value="{{$index+1}}" ng-click="selectInvoice($index)"/>-->
 								<input type="checkbox" name="radio" 
-                                	   ng-checked="isSelected($index)"
+                                	   ng-model="item.isChecked"                                	
                                 	   ng-click="updateSelection($event,$index,item)">
 							</td>
 						</tr>

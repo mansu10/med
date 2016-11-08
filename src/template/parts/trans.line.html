@@ -4,7 +4,7 @@
         <li>
             <a href="#">运输管理</a>
         </li>
-        <li class="active"> 运输路线 </li>
+        <li class="active"> 线路分配 </li>
     </ul>
 </div>
 <!-- page heading end-->
@@ -18,16 +18,23 @@
     </div>
     <div class="row">
         <div class="panel">
+            <div class="panel-heading text-right">
+                <a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary">确认</a>
+            </div>
     		<div class="panel-body">
     			<table class="table table-bordered table-condensed">
     				<thead>
     					<tr>
     						<th>序号</th>
-    						<th>需求单位</th>
-    						<th>所在省</th>
-    						<th>地级市</th>
-    						<th>城市点</th>
-    						<th>分配路线</th>
+                            <th>需求单位编号</th>
+    						<th>需求单位名称</th>
+    						<th>省</th>
+    						<th>地市</th>
+    						<th>区县</th>
+                            <th>收货点</th>
+                            <th>邮编</th>
+    						<th>配送线路</th>
     					</tr>
     				</thead>
     				<tbody>
@@ -37,14 +44,13 @@
     						<td></td>
     						<td></td>
     						<td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
     						<td></td>
     					</tr>
     				</tbody>
     			</table>
-    		</div>
-    		<div class="panel-footer clearfix text-right">
-    			<a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
-    			<a href="javascript:;" class="btn btn-sm btn-primary">确认</a>
     		</div>
         </div>
     </div>

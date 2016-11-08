@@ -2,7 +2,8 @@ app.controller('TransVehicleCtrl', function($scope,http){
 	
 	$scope.stateFactory = {
 		"query": true,
-		"detail": false
+		"detail": false,
+		"perform": false
 	}
 	/**
 	 * 切换页面状态
@@ -15,11 +16,5 @@ app.controller('TransVehicleCtrl', function($scope,http){
 			$scope.stateFactory[o] = false;
 		}
 		$scope.stateFactory[option] = true;
-	}
-
-	$scope.editMode = false;
-
-	$scope.changeMode = function(){
-		$scope.editMode = !$scope.editMode;
 	}
 })

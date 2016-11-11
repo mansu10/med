@@ -22,10 +22,10 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-2">车辆号/车牌号</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="input-sm form-control">
+                                    <input type="text" class="input-sm form-control" ng-model="carNumber">
                                 </div>
                                 <div class="col-md-2">
-                                    <a href="javascript:;" class="btn btn-sm btn-primary">查询</a>
+                                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="queryAllCars()">查询</a>
                                 </div>
                             </div>
                         </div>
@@ -51,19 +51,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr ng-repeat="item in cars">
+                            <td>{{item.id}}</td>
+                            <td>{{item.carCode}}</td>
+                            <td>{{item.carNumber}}</td>
+                            <td>{{item.carName}}</td>
+                            <td>{{item.carType}}</td>
+                            <td>{{item.factory}}</td>
+                            <td>{{item.carVolume}}</td>
+                            <td>{{item.maxWeight}}</td>
                             <td>
-                                <a href="javascript:;"ng-click="changeState('detail')">修改</a>
-                                <a href="javascript:;">删除</a>
-                                <a href="javascript:;"ng-click="changeState('perform')">运行记录</a>
+                                <a href="javascript:;"ng-click="changeState('detail',item)">修改</a>
+                                <a href="javascript:;" ng-click="deleteCar(item.id,index)">删除</a>
+                                <a href="javascript:;"ng-click="changeState('perform',item)">运行记录</a>
                             </td>
                         </tr>
                     </tbody>
@@ -81,7 +81,7 @@
                 车辆信息管理
             </div>
             <div class="panel-heading clearfix text-right">
-                <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="updateCar()">保存</a>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车辆编号</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carCode">
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车牌号</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carNumber">
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">隶属单位</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.agencyCode">
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车名</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carName">
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车型号</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carType">
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">厂家</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.factory">
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">最大时速</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.maxSpeed">
                                 </div>
                             </div>
                         </div>
@@ -168,7 +168,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">平均时速</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.averageSpeed">
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">续航里程</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.rechargeMileage">
                                 </div>
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">净容积</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carVolume">
                                 </div>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">净载重</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.maxWeight">
                                 </div>
                             </div>
                         </div>
@@ -215,7 +215,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车厢长</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carLength">
                                 </div>
                             </div>
                         </div>
@@ -223,7 +223,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车厢宽</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carWidth">
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
                             <div class="form-group">
                                 <label for="" class="control-label col-md-4">车厢高</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control input-sm">
+                                    <input type="text"  class="form-control input-sm" ng-model="car.carHeigth">
                                 </div>
                             </div>
                         </div>

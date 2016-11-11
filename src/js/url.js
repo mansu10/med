@@ -48,5 +48,6 @@ var URL = {
 	PickListServlet:API_URI+"MedicineManagement/PickListServlet",
 	CarServlet:API_URI+"MedicineManagement/CarServlet",
 	InvoiceServlet:API_URI+"MedicineManagement/InvoiceServlet",
-	StowageServlet:API_URI+"MedicineManagement/StowageServlet"
+	StowageServlet:API_URI+"MedicineManagement/StowageServlet",
+	CarServlet:API_URI+"MedicineManagement/CarServlet"
 }

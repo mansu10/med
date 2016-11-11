@@ -47,6 +47,10 @@ app.controller('TransVehicleCtrl', function($scope,http){
 	
 	//添加车辆
 	$scope.updateCar = function(){
+		if(method == 'updateCar' && isEmptyValue($scope.car.id)){
+			alert("更新车辆的id不能为空！");
+			return;
+		}
 			http.post({
 					'method': method,//'addCar','updateCar'
 					'car':JSON.stringify($scope.car)
@@ -59,12 +63,17 @@ app.controller('TransVehicleCtrl', function($scope,http){
 						}
 					},
 					function(respone) {
+						console.log(respone);
 						alert(JSON.stringify(respone));
 					});
 	}
 	
 	//添加车辆
 	$scope.deleteCar = function(id,index){
+		if(isEmptyValue(id)){
+			alert("被删除项id不能为空！");
+			return;
+		}
 			http.post({
 					'method': 'deleteCar',//'addCar','updateCar'
 					'ids':id

@@ -26,6 +26,8 @@ app.controller('TransVehicleCtrl', function($scope,http){
 				method = 'updateCar';
 			}
 			$scope.car = item;
+		}if('perform' == option){
+			$scope.carRecords = item.carRecords;
 		}
 	}
 	
@@ -59,7 +61,12 @@ app.controller('TransVehicleCtrl', function($scope,http){
 						alert(method+" success!");
 						$scope.changeState('query');
 						if(method == 'addCar'){
+							$scope.car.id = respone.id;
+							if (isEmptyValue($scope.cars)) {
+								$scope.cars = [];
+							} 
 							$scope.cars.push(angular.copy($scope.car));
+							console.log($scope.cars);
 						}
 					},
 					function(respone) {
@@ -68,7 +75,7 @@ app.controller('TransVehicleCtrl', function($scope,http){
 					});
 	}
 	
-	//添加车辆
+	//删除车辆
 	$scope.deleteCar = function(id,index){
 		if(isEmptyValue(id)){
 			alert("被删除项id不能为空！");

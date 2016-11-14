@@ -262,32 +262,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr ng-repeat="item in carRecords">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.startTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>{{item.endTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>{{item.stowageCode}}</td>
+                            <td>{{item.transportRoute}}</td>
+                            <td>{{item.countInvoiceCode}}</td>
+                            <td>{{item.mileage}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -18,10 +18,10 @@
     </div>
     <div class="row">
         <div class="panel">
-            <div class="panel-heading text-right">
+<!--             <div class="panel-heading text-right">
                 <a href="javascript:;" class="btn btn-sm btn-primary">修改</a>
-                <a href="javascript:;" class="btn btn-sm btn-primary">确认</a>
-            </div>
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="update()">确认</a>
+            </div> -->
     		<div class="panel-body">
     			<table class="table table-bordered table-condensed">
     				<thead>
@@ -35,20 +35,25 @@
                             <th>收货点</th>
                             <th>邮编</th>
     						<th class="col-md-2">配送线路</th>
+                            <th></th>
     					</tr>
     				</thead>
     				<tbody>
-    					<tr>
-    						<td></td>
-    						<td></td>
-    						<td></td>
-    						<td></td>
-    						<td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+    					<tr ng-repeat="item in carLines">
+    						<td>{{$index}}</td>
+    						<td>{{item.demandAgencyCode}}</td>
+    						<td>{{item.demandAgencyName}}</td>
+    						<td>{{item.demandAgency.province}}</td>
+    						<td>{{item.demandAgency.city}}</td>
+                            <td>{{item.demandAgency.district}}</td>
+                            <td>{{item.demandAgency.demandAgencyAddress2}}</td>
+                            <td>{{item.demandAgency.zipCode}}</td>
     						<td>
-                                <input type="text" class="form-control" disabled>                  
+                                <input type="text" class="form-control" ng-disabled="!item.transportRouteEdit">                  
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="edit($index)">{{item.transportRouteEdit?'取消':'修改'}}</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="update($index)">确认</a>
                             </td>
     					</tr>
     				</tbody>

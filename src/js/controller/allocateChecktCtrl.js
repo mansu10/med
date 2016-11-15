@@ -5,7 +5,6 @@ app.controller('AllocateCheckCtrl', function($scope,http,$timeout){
 		"print": false,
 		"record": false
 	}
-	
 	/**
 	 * 切换页面状态
 	 * @param  {[type]} option [description]

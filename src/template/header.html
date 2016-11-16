@@ -17,7 +17,7 @@
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                             <i class="fa fa-tasks"></i>
-                            <span class="badge">8</span>
+                            <!-- <span class="badge">8</span> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
                             <h5 class="title">You have 8 pending task</h5>
@@ -89,7 +89,7 @@
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="badge">5</span>
+                            <!-- <span class="badge">5</span> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
                             <h5 class="title">You have 5 Mails </h5>
@@ -143,22 +143,21 @@
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="badge">4</span>
+                    <li ng-class="{open:isInstruct}">
+                        <a href="javascript:;" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown" ng-click="toggleInstruct()">
+                            <i class="fa fa-question-circle"></i>
+                            <!-- <span class="badge">4</span> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
                             <h5 class="title">Notifications</h5>
                             <ul class="dropdown-list normal-list">
-                                <li class="new">
+                                <li class="new" ng-repeat="item in itemList">
                                     <a href="">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                        <span class="name">Server #1 overloaded.  </span>
-                                        <em class="small">34 mins</em>
+                                        <span class="name">{{item}}</span>
                                     </a>
                                 </li>
-                                <li class="new">
+<!--                                 <li class="new">
                                     <a href="">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">Server #3 overloaded.  </span>
@@ -179,12 +178,12 @@
                                         <em class="small">4 hrs</em>
                                     </a>
                                 </li>
-                                <li class="new"><a href="">See All Notifications</a></li>
+                                <li class="new"><a href="">See All Notifications</a></li> -->
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <li ng-class="{open:userInfo}">
+                        <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="toggleUserInfo($event)">
                             <img src="./src/images/photos/user-avatar.png" alt="" />
                             {{username}}
                             <span class="caret"></span>
@@ -192,7 +191,7 @@
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>  Profile</a></li>
                             <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                            <li><a href="javascript:;"><i class="fa fa-sign-out"></i> Log Out</a></li>
                         </ul>
                     </li>
 

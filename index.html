@@ -40,7 +40,10 @@
 	<script src="src/js/index.js"></script>
 	
 </head>
-<body class="sticky-header" ng-class="{'left-side-collapsed': collapse}">
+<body class="sticky-header" 
+		ng-class="{'left-side-collapsed': collapse}"
+		ng-controller="IndexCtrl"
+		body-click>
 	<div ui-view></div>
 </body>
 </html>

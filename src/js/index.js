@@ -41,6 +41,7 @@ include_js("./src/js/controller/printCtrl.js");
 
 include_js("./src/js/controller/userStudentCtrl.js");
 include_js("./src/js/controller/userTeacherCtrl.js");
+include_js("./src/js/controller/indexCtrl.js");
 
 include_js("./src/js/service/service.js");
 include_js("./src/js/directives/directives.js");

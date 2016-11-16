@@ -202,6 +202,25 @@ app.factory('printlist', function(){
 	}
 
 })
+app.factory('instruct', function(){
+
+	var itemList = ['333','666','999'];
+
+	var _setter = function(data){
+		itemList = data;
+		console.log(itemList);
+	}
+
+	var _getter = function(data){
+		return itemList;
+	}
+
+	return {
+		set: _setter,
+		get: _getter
+	}
+
+})
 
 
 

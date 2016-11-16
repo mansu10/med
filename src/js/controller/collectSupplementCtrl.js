@@ -1,4 +1,6 @@
-app.controller('CollectSupplementCtrl', function($scope,http){
+app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instruct){
+	instruct.set(['666']);
+	$rootScope.$broadcast('instructChange');
 	// 需ajax请求列表
 	$scope.storageList = [{
 	            "medicName": "健胃消食片",

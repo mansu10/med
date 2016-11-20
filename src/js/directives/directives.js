@@ -23,15 +23,15 @@ app.directive('onFinishRender', function ($timeout) {
     }
 });
 
-app.directive('bodyClick', function($document){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attr){
-            $document.on('click', function(){
-               // scope.$eval(attr.bodyClick)
-               scope.$broadcast('defaultState');
-               // scope.$broadcast('defaultState', 'true')
-           });
-        }
-    }
-})
+// app.directive('bodyClick', function($document){
+//     return {
+//         restrict: 'A',
+//         link: function(scope, element, attr){
+//             $document.on('click', function(){
+//                // scope.$eval(attr.bodyClick)
+//                scope.$broadcast('defaultState');
+//                // scope.$broadcast('defaultState', 'true')
+//            });
+//         }
+//     }
+// })

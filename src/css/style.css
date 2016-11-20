@@ -899,6 +899,7 @@ h5.left-nav-title {
     background: #eff0f4;
     min-height: 1000px;
     font-size: 12px;
+    position: relative;
 }
 
 .page-heading {
@@ -3531,4 +3532,12 @@ ul.activity-list .activity-desk h5 a {
 }
 .tbl-1500 {
     width: 1500px!important;
+}
+.fixtop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+
 }

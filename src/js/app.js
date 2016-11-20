@@ -2,6 +2,7 @@ var app = angular.module('app', [
 
 // 'ngRoute', 'filters', 'service', 'directives'
 	'ui.router',
+	'ui.bootstrap',
 	// 'angular-datepicker'
 	'angularjs-datetime-picker',
 	'ui.tree',

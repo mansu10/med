@@ -1,4 +1,4 @@
-app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $state,printlist){
+app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $state){
 	$scope.stateFactory = {
 		"query": true,
 		"print": false,
@@ -61,11 +61,6 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 				function(respone) {
 					alert("拣货单查询成功");
 					$scope.printOrders = respone.pickLists;
-					
-					// $localstorage.setObject('prints',respone.pickLists);
-					//stringItemList(respone.pickLists);
-
-					//printlist.set(respone.pickLists);
 
 					$timeout(function() {
 						createbcTarget($scope.printOrders);
@@ -126,10 +121,7 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 					alert(JSON.stringify(respone));
 			});
 	}
-	
-	// $scope.addPrintList = function(index){
-	// 	$state.go('print.allocateGoods',{item:index});
-	// }
+
 	$scope.stringItemList = function(obj){
 		return JSON.stringify(obj[index]);
 

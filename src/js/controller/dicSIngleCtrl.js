@@ -1,4 +1,6 @@
-app.controller('DicSingleCtrl', function($scope,http){
+app.controller('DicSingleCtrl', function($scope,http, instruct){
+	instruct.set(['']);
+	$rootScope.$broadcast('instructChange');
 
 	var currentIndex = 0;
 	$scope.medList = [];

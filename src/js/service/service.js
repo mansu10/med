@@ -208,7 +208,7 @@ app.factory('instruct', function(){
 
 	var _setter = function(data){
 		itemList = data;
-		console.log(itemList);
+		// console.log(itemList);
 	}
 
 	var _getter = function(data){

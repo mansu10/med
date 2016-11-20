@@ -9,19 +9,17 @@ app.controller('HeaderCtrl', function($rootScope, $scope,$localstorage, instruct
 	// console.log("USER2==="+JSON.stringify(user1)+"-----"+$scope.username)
 
 	$scope.userInfo = false;
-	$scope.toggleUserInfo = function($event){
+	$scope.toggleUserInfo = function(){
 		$scope.userInfo = !$scope.userInfo;
 
-		$event.stopPropagation();
 	}
 
-	$scope.$on('defaultState', function () {
-
-		console.log($scope.userInfo);
-	})
 	$scope.itemList = instruct.get();
+	// $scope.itemLists = ['llll'];
+	
 	$scope.$on('instructChange', function(){
 		$scope.itemList = instruct.get();
+		// $scope.itemLists = ['kkk'];
 	})
 	
 	$scope.isInstruct = false;

@@ -1,3 +1,7 @@
+<script type="text/ng-template" id="alert.html">
+    <div ng-transclude></div>
+</script>
+<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" class="fixtop">{{alert.msg}}</div>
 <!-- page heading start-->
 <div class="page-heading">
     <ul class="breadcrumb">
@@ -8,310 +12,304 @@
     </ul>
 </div>
 <!-- page heading end-->
-
 <div class="wrapper" ng-show="stateBox.query">
     <div class="row">
         <div class="panel">
             <div class="panel-body">
-				<form action="" class="form form-horizontal">
-					<div class="row">
-						<div class="col-md-8">
-							<div class="form-group">
-								<div class="col-md-6">
-									<label for="" class="control-label col-md-4">订单号</label>
-									<div class="col-md-8">
-										<input type="text" class="form-control input-sm" ng-model="queryItem.orderCode">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<label for="" class="control-label col-md-4">需求单位</label>
-									<div class="col-md-8">
-										<input type="text" class="form-control input-sm" ng-model="queryItem.demandAgencyName">
-									</div>
-								</div>
-							</div>							
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-8">
-							<div class="form-group">
-								<div class="col-md-12">
-									<label for="" class="control-label col-md-2">收单时间</label>
-									<div class="col-md-5">
-										<input type="text" class="form-control input-sm" placeholder="开始日期" ng-model="queryItem.orderTimeStart" datetime-picker date-format="yyyy-MM-dd hh:mm:ss">
-									</div>
-									<div class="col-md-5">
-										<input type="text" class="form-control input-sm" placeholder="结束日期"  ng-model="queryItem.orderTimeEnd" datetime-picker date-format="yyyy-MM-dd hh:mm:ss">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
+                <form action="" class="form form-horizontal">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="" class="control-label col-md-4">订单号</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control input-sm" ng-model="queryItem.orderCode">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="control-label col-md-4">需求单位</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control input-sm" ng-model="queryItem.demandAgencyName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="" class="control-label col-md-2">收单时间</label>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control input-sm" placeholder="开始日期" ng-model="queryItem.orderTimeStart" datetime-picker date-format="yyyy-MM-dd hh:mm:ss">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control input-sm" placeholder="结束日期" ng-model="queryItem.orderTimeEnd" datetime-picker date-format="yyyy-MM-dd hh:mm:ss">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="panel-footer clearfix">
-            	<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="queryAllOrdersWithDemandAgency()">查询</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="queryAllOrdersWithDemandAgency()">查询</a>
             </div>
         </div>
     </div>
     <div class="row">
-    	<div class="panel">
-    		<div class="panel-body">
-    			<table class="table table-bordered table-condensed">
-    				<thead>
-    					<tr>
-    						<th>序号</th>
-    						<th>拟交货时间</th>
-    						<th>优先级</th>
-    						<th>订单号</th>
-    						<th>需求单位</th>
-    						<th>订单摘要</th>
-    						<th>订货品规数</th>
-    						<th>操作</th>
-    					</tr>
-    				</thead>
-    				<tbody>
-    					<tr ng-repeat="item in goods|orderBy:'deliveryTime.time':true">
-    						<td>{{$index+1}}</td>
-    						<td>{{item.deliveryTime.time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-    						<td>{{item.level}}</td>
-    						<td>{{item.orderCode}}</td>
-    						<td>{{item.demandAgencyName}}</td>
-    						<td>???</td>
-    						<td>{{item.orderNumber}}</td>
-    						<td>
-    							<a href="javascript:;" ng-click="changeState('print',item.orderCode)">打印拣货单</a>
-    							<a href="javascript:;" ng-click="changeState('record',item.orderCode)">复核纪录</a>
-    						</td>
-    					</tr>
-    				</tbody>
-    			</table>
-    		</div>
-    	</div>
+        <div class="panel">
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>拟交货时间</th>
+                            <th>优先级</th>
+                            <th>订单号</th>
+                            <th>需求单位</th>
+                            <th>订单摘要</th>
+                            <th>订货品规数</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in goods|orderBy:'deliveryTime.time':true">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.deliveryTime.time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>{{item.level}}</td>
+                            <td>{{item.orderCode}}</td>
+                            <td>{{item.demandAgencyName}}</td>
+                            <td>???</td>
+                            <td>{{item.orderNumber}}</td>
+                            <td>
+                                <a href="javascript:;" ng-click="changeState('print',item.orderCode)">打印拣货单</a>
+                                <a href="javascript:;" ng-click="changeState('record',item.orderCode)">复核纪录</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-
 <!-- 打印页面 -->
-
 <div class="wrapper" ng-show="stateBox.print">
-	<div class="row">
-		<div class="panel">
-			<div class="panel-heading">
-				<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('query')">返回</a>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="panel">
-			<div class="panel-heading">
-				<div class="row">
-				<div class="col-md-offset-8 col-md-4 text-right">
-					<a href="#/print/allocate/check/?items={{printOrder}}" target="_blank" class="btn btn-sm btn-primary">打印</a>
-					<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="checkVerify(printOrder.orderCode)">复核确认</a>
-				</div>
-				</div>
-			</div>
-			<div class="panel-heading">
-				<form action="" class="form form-horizontal">
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">订单号</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control" ng-model="printOrder.orderCode">
-								</div>
-							</div>
-							<div class="col-md-offset-4 col-md-4">
-								<!--<label class="col-md-4 control-label">条形码</label>-->
-								<div id="{{printOrder.orderCode}}" data-seri="" class="barcodeImg pull-right"></div>
-								<label class="col-md-4 control-label">{{printOrder.orderCode}}</label>
-				
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">装载区</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">数量</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control" ng-model="printOrder.orderNumber">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">城市点</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control" ng-model="printOrder.demandAgency.demandAgencyAddress1">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">总件数</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">交货时间</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control input-sm" ng-model="printOrder.deliveryTime.time" datetime-picker date-format="yyyy-MM-dd hh:mm:ss">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-8">
-								<label class="col-md-2 control-label">收货地址</label>
-								<div class="col-md-10">
-									<input type="text" class="input-sm form-control" ng-model="printOrder.receiptAddress">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-8">
-								<label class="col-md-2 control-label">客户单位</label>
-								<div class="col-md-10">
-									<input type="text" class="input-sm form-control" ng-model="printOrder.demandAgency.demandAgencyName">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">收货人</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control" ng-model="printOrder.receiver">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label class="col-md-4 control-label">联系电话</label>
-								<div class="col-md-8">
-									<input type="text" class="input-sm form-control" ng-model="printOrder.tel">
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="panel-body">
-				<table class="table table-bordered table-condensed">
-					<thead>
-						<tr>
-							<th>序号</th>
-							<th>药材编码</th>
-							<th>通用名</th>
-							<th>规格</th>
-							<th>型号</th>
-							<th>厂家</th>
-							<th>计量单位</th>
-							<th>货位码</th>
-							<th>拣货数量</th>
-							<th>备注</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="item in printOrder.orderItems">
-							<td>{{$index+1}}</td>
-							<td>{{item.productCode}}</td>
-							<td>{{item.ordinaryName}}</td>
-							<td>{{item.specifications}}</td>
-							<td>{{item.model}}</td>
-							<td>{{item.manufactor}}</td>
-							<td>{{item.unit}}</td>
-							<td>{{item.locatorCode}}</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('query')">返回</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-offset-8 col-md-4 text-right">
+                        <a href="#/print/allocate/check/?items={{printOrder}}" target="_blank" class="btn btn-sm btn-primary">打印</a>
+                        <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="checkVerify(printOrder.orderCode)">复核确认</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading">
+                <form action="" class="form form-horizontal">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">订单号</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="input-sm form-control" ng-model="printOrder.orderCode">
+                                </div>
+                            </div>
+                            <div class="col-md-offset-4 col-md-4">
+                                <!--<label class="col-md-4 control-label">条形码</label>-->
+                                <div id="{{printOrder.orderCode}}" data-seri="" class="barcodeImg pull-right"></div>
+                                <label class="col-md-4 control-label">{{printOrder.orderCode}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">装载区</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="input-sm form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">数量</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="input-sm form-control" ng-model="printOrder.orderNumber">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">城市点</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="input-sm form-control" ng-model="printOrder.demandAgency.demandAgencyAddress1">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">总件数</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="input-sm form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">交货时间</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" ng-model="printOrder.deliveryTime.time" datetime-picker date-format="yyyy-MM-dd hh:mm:ss">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <label class="col-md-2 control-label">收货地址</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="input-sm form-control" ng-model="printOrder.receiptAddress">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <label class="col-md-2 control-label">客户单位</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="input-sm form-control" ng-model="printOrder.demandAgency.demandAgencyName">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">收货人</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="input-sm form-control" ng-model="printOrder.receiver">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">联系电话</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="input-sm form-control" ng-model="printOrder.tel">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>药材编码</th>
+                            <th>通用名</th>
+                            <th>规格</th>
+                            <th>型号</th>
+                            <th>厂家</th>
+                            <th>计量单位</th>
+                            <th>货位码</th>
+                            <th>拣货数量</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in printOrder.orderItems">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.productCode}}</td>
+                            <td>{{item.ordinaryName}}</td>
+                            <td>{{item.specifications}}</td>
+                            <td>{{item.model}}</td>
+                            <td>{{item.manufactor}}</td>
+                            <td>{{item.unit}}</td>
+                            <td>{{item.locatorCode}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- 打印页面 end -->
-
 <!-- 纪录页面 -->
-
 <div class="wrapper" ng-show="stateBox.record">
-	<div class="row">
-		<div class="panel">
-			<div class="panel-heading">
-				<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('query')">返回</a>
-			</div>
-			<div class="panel-heading">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-4">
-							<label for="" class="col-md-4 control-label">订单号</label>
-							<div class="col-md-8">{{OrderNote.orderCode}}</div>
-						</div>
-						<div class="col-md-4">
-							<label for="" class="col-md-4 control-label">复核时间</label>
-							<div class="col-md-8">{{OrderNote.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
-						</div>
-						<div class="col-md-4 text-right">
-							<a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="updateOrderNote()">保存</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="panel-body">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>序号</th>
-							<th>药材编码</th>
-							<th>通用名</th>
-							<th>规格</th>
-							<th>型号</th>
-							<th>厂家</th>
-							<th>计量单位</th>
-							<th>货位码</th>
-							<th>拣货数量</th>
-							<th>拣货员</th>
-							<th>拣货纪录</th>
-							<th>复核纪录</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="detail in OrderNote.pickListItems">
-							<td>{{$index+1}}</td>
-							<td>{{detail.product.productCode}}</td>
-							<td>{{detail.product.ordinaryName}}</td>
-							<td>{{detail.product.specifications}}</td>
-							<td>{{detail.product.model}}</td>
-							<td>{{detail.product.manufactor}}</td>
-							<td>{{detail.product.unit}}</td>
-							<td>{{detail.product.locatorCode}}</td>
-							<td>{{detail.pickListNumber}}</td>
-							<td></td>
-							<td>
-								<input type="text" class="form-control input-sm" ng-model="detail.pickListRecord">
-							</td>
-							<td>
-								<input type="text" class="form-control input-sm" ng-model="detail.checkRecord">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('query')">返回</a>
+            </div>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label for="" class="col-md-4 control-label">订单号</label>
+                            <div class="col-md-8">{{OrderNote.orderCode}}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="col-md-4 control-label">复核时间</label>
+                            <div class="col-md-8">{{OrderNote.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a href="javascript:;" class="btn btn-sm btn-primary pull-right" ng-click="updateOrderNote()">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>药材编码</th>
+                            <th>通用名</th>
+                            <th>规格</th>
+                            <th>型号</th>
+                            <th>厂家</th>
+                            <th>计量单位</th>
+                            <th>货位码</th>
+                            <th>拣货数量</th>
+                            <th>拣货员</th>
+                            <th>拣货纪录</th>
+                            <th>复核纪录</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="detail in OrderNote.pickListItems">
+                            <td>{{$index+1}}</td>
+                            <td>{{detail.product.productCode}}</td>
+                            <td>{{detail.product.ordinaryName}}</td>
+                            <td>{{detail.product.specifications}}</td>
+                            <td>{{detail.product.model}}</td>
+                            <td>{{detail.product.manufactor}}</td>
+                            <td>{{detail.product.unit}}</td>
+                            <td>{{detail.product.locatorCode}}</td>
+                            <td>{{detail.pickListNumber}}</td>
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control input-sm" ng-model="detail.pickListRecord">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" ng-model="detail.checkRecord">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- 纪录页面 end -->

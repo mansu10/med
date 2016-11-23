@@ -32,4 +32,70 @@ app.controller('TransDispatchCtrl', function($scope,http){
 					});
 	}
 	$scope.queryAllCarsWithCode();
+
+	/**
+	 * 查看详细运输、单号
+	 * @param  {[type]} data [description]
+	 * @return {[type]}      [description]
+	 */
+	$scope.queryTrancarDetail = function(carCode, status){
+		var data = {
+			"method": "findStowageCodesByCarCode",
+			"carCode": carCode,
+			"carStatus": status
+		}
+		http.post(data, URL.CarServlet).then(
+			function(res){
+				
+				$scope.stowageCodeList = res.stowageCode;
+				console.log($scope.stowageCodeList)
+				$scope.changeState('detail');
+			}, 
+			function(res){
+				alert(JSON.stringify(res));
+			})
+
+
+	}
+
+	$scope.queryStowageList = function(code){
+		var data = {
+			"method": "findStowageByCode",
+			"stowageCode":code
+		}
+		// console.log(code);
+		http.post(data, URL.StowageServlet).then(
+			function(res){
+				
+				$scope.stowageList = res.stowage;
+				console.log('22222222--'+JSON.stringify($scope.stowageList)+'--------')
+			}, 
+			function(res){
+				alert(JSON.stringify(res));
+			})
+	}
+	$scope.updateStowageItems = function(){
+		$scope.updateStowageList = {
+			'method':'updateStowageItems',
+			'stowageItems': $scope.stowageList
+
+		}
+	}
+	$scope.updateCarStatus = function(data){
+		data.method = 'updateCarStatusByCode'
+		http.post(data, URL.CarServlet).then(
+			function(res){
+
+			},
+			function(res){
+				alert(JSON.stringify(res));
+			}
+		)
+	}
+	$scope.updateDirectives = function(){
+
+	}
+	$scope.updateDispatchPlan = function(){
+
+	}
 })

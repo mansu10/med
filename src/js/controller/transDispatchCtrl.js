@@ -263,12 +263,15 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 	$scope.updateDispatchPlan = function(){
 		var obj = {
 			"method": "updateStowage",
-			"stowage": '20161105060419',
-			'operator':$selectedOperator.operatorName,
-			'loadTime':$scope.loadTime,
-			'departureTime':$scope.departureTime
+			"stowage": {
+				"stowageCode":'20161105060419',
+				'operator':$scope.selectedOperator.operatorName,
+				'loadTime':$scope.loadTime,
+				'departureTime':$scope.departureTime
+			}
 		}
-		http.post(data, URL.CarServlet).then(
+		var data = JSON.stringify(obj);
+		http.post(data, URL.StowageServlet).then(
 			function(res){
 				if (res.code === 0) {
 					alert("保存成功")

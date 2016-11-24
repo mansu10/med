@@ -35,8 +35,8 @@
                                 <td>{{item.operator}}</td>
                                 <td class="info">{{item.carStatus}}</td>
                                 <td>
-                                    <a href="javascript:;" ng-click="queryTrancarDetail(item.carCode, item.carStatus)">查看</a>
-                                    <a href="javascript:;" ng-click="changeState('dispatch')">调度</a>
+                                    <a href="javascript:;" ng-click="queryTrancarDetail(item.carCode, '前运中')">查看</a>
+                                    <a href="javascript:;" ng-click="queryDispatchDetail(item.carCode)">调度</a>
                                 </td>
                             </tr>
 
@@ -125,8 +125,8 @@
                             <td>{{item.sequence}}</td>
                             <td></td>
                             <td></td>
-                            <td><input type="text" class="input-sm form-control" ng-value="item.invoiceTime | date:'yyyy-MM-dd HH:mm:ss'" datetime-picker date-format="yyyy-MM-dd hh:mm:ss" ng-model="item.invoiceTime"></td>
-                            <td><input type="text" class="input-sm form-control" ng-value="item.signedTime | date:'yyyy-MM-dd HH:mm:ss'" datetime-picker date-format="yyyy-MM-dd hh:mm:ss" ng-model="item.signedTime"></td>
+                            <td><input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd hh:mm:ss" ng-model="item.invoiceTime"></td>
+                            <td><input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd hh:mm:ss" ng-model="item.signedTime"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -146,7 +146,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label for="" class="control-label col-md-2">车辆编号</label>
-                                <div class="col-md-2"><label for="" class="form-control">222222</label></div>                                
+                                <div class="col-md-2"><label for="" class="form-control">{{currentCar}}</label></div>                                
                             </div>
                         </div>
                     </div>
@@ -155,58 +155,13 @@
                             <div class="form-group">
                                 <label for="" class="col-md-2 control-label">车辆状态</label>
                                 <div class="col-md-10">
-                                    <a href="javascript:;" class="btn btn-xs btn-info" ng-repeat="item in carStatusList" ng-class="item.color">{{item.state}}</a>
-<!--                                     <a href="javascript:;" class="btn btn-xs btn-info">休整完毕</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-success">待命中</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-warning">装载中</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-warning">装载完毕</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-danger">发车中</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-danger">发车完毕</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-default">前运中</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-primary">回程中</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-primary">回程完毕</a> -->
+                                    <div class="btn-group">
+                                        
+                                    <a href="javascript:;" class="btn btn-sm" ng-repeat="item in carStatusList" ng-class="item.color" ng-click="updateCarStatus(currentCar, item.state)">{{item.state}}</a>
+                                    </div>
                                 </div>                                
                             </div>
                         </div>
-
-<!--                         <div class="col-md-4">
-                            <label for="" class="control-label col-md-4">车辆状态</label>
-                            <div class="col-md-8">
-                                <table class="table table-condensed table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <th></th>
-                                            <th class="col-md-1">进行</th>
-                                            <th class="col-md-1">完成</th>
-                                        </tr>
-                                        <tr>
-                                            <th rowspan="4">场内</th>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-info">休整中</a></td>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-info">休整完毕</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" class="text-center"><a href="javascript:;" class="btn btn-xs btn-success">待命中</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-warning">装载中</a></td>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-warning">装载完毕</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-danger">发车中</a></td>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-danger">发车完毕</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th rowspan="2">场外</th>
-                                            <td colspan="2" class="text-center"><a href="javascript:;" class="btn btn-xs btn-default">前运中</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-primary">回程中</a></td>
-                                            <td><a href="javascript:;" class="btn btn-xs btn-primary">回程完毕</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>                            
-                        </div> -->
 
                     </div>
                 </form>                
@@ -218,7 +173,7 @@
         <div class="panel">
             <div class="panel-heading">派车计划</div>
             <div class="panel-heading text-right">
-                <a href="javascript:;" class="btn btn-sm btn-primary">保存</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="updateDispatchPlan()">保存</a>
                 <a href="javascript:;" class="btn btn-sm btn-primary">发送指令</a>
             </div>
             <div class="panel-body">
@@ -228,7 +183,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">任务单号</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control">
+                                    <select class="form-control"></select>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +191,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">前送路线</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control">
+                                    <input type="text" class="input-sm form-control" disabled="true">
                                 </div>
                             </div>
                         </div>
@@ -246,7 +201,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-2 control-label">经过节点</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="input-sm form-control">
+                                    <input type="text" class="input-sm form-control" disabled="true">
                                 </div>
                             </div>
                         </div>
@@ -256,7 +211,9 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">驾驶员</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control">
+                                    <select class="form-control" 
+                                    ng-model="selectedOperator" 
+                                    ng-options="y.operatorName for (x, y) in operatorList"></select>
                                 </div>
                             </div>
                         </div>
@@ -264,7 +221,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">联系电话</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control">
+                                    <input type="text" class="input-sm form-control" disabled="true" ng-model="selectedOperator.tel">
                                 </div>
                             </div>
                         </div>
@@ -274,7 +231,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">装载时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date1">
+                                    <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="loadTime">
                                 </div>
                             </div>
                         </div>
@@ -282,7 +239,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">发车时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control"datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="date2">
+                                    <input type="text" class="input-sm form-control"datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="departureTime">
                                 </div>
                             </div>
                         </div>                    
@@ -302,12 +259,12 @@
                             <div class="form-group">
                                 <label for="" class="col-md-2 control-label">指令</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control input-sm">
+                                    <input type="text" class="form-control input-sm" ng-model="dispatchDirect">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <a href="javascript:;" class="btn btn-sm btn-primary">发送指令</a>
+                            <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="updateDirectives()">发送指令</a>
                         </div>
                     </div>
                 </form>

@@ -3534,9 +3534,9 @@ ul.activity-list .activity-desk h5 a {
     width: 1500px!important;
 }
 .fixtop {
-    position: absolute;
+    position: fixed;
+    left: 0px;
     top: 0;
-    left: 0;
     z-index: 1000;
     width: 100%;
 

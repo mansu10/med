@@ -49,5 +49,6 @@ var URL = {
 	CarServlet:API_URI+"MedicineManagement/CarServlet",
 	InvoiceServlet:API_URI+"MedicineManagement/InvoiceServlet",
 	StowageServlet:API_URI+"MedicineManagement/StowageServlet",
-	CarServlet:API_URI+"MedicineManagement/CarServlet"
+	CarServlet:API_URI+"MedicineManagement/CarServlet",
+	OperatorServlet: API_URI+"MedicineManagement/OperatorServlet"
 }

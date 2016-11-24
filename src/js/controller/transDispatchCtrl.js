@@ -93,7 +93,15 @@ app.controller('TransDispatchCtrl', function($scope,http){
 		)
 	}
 	$scope.updateDirectives = function(){
+		data.method = 'updateInstructionByCode'
+		http.post(data, URL.CarServlet).then(
+			function(res){
 
+			},
+			function(res){
+				alert(JSON.stringify(res));
+			}
+		)
 	}
 	$scope.updateDispatchPlan = function(){
 

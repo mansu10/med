@@ -1,4 +1,20 @@
 app.controller('TransDispatchCtrl', function($scope,http){
+
+    $scope.alerts = [
+        { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+        { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+    ];
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+
+    function setAlertClose(){
+    	var timer = setTimeout(function(){
+    		$scope.closeAlert(-1);
+    	},5000)
+    }
+
 	$scope.stateFactory = {
 		"query": true,
 		"detail": false,
@@ -81,9 +97,44 @@ app.controller('TransDispatchCtrl', function($scope,http){
 
 		}
 	}
-	$scope.updateCarStatus = function(data){
-		data.method = 'updateCarStatusByCode'
-		http.post(data, URL.CarServlet).then(
+	$scope.carStatusList = [{
+		'state':'休整中',
+		'color':'btn-info'
+	},{
+		'state':'休整完毕',
+		'color':'btn-info'
+	},{
+		'state':'待命中',
+		'color':'btn-success'
+	},{
+		'state':'装载中',
+		'color':'btn-warning'
+	},{
+		'state':'装载完毕',
+		'color':'btn-warning'
+	},{
+		'state':'发车中',
+		'color':'btn-danger'
+	},{
+		'state':'发车完毕',
+		'color':'btn-danger'
+	},{
+		'state':'前运中',
+		'color':'btn-default'
+	},{
+		'state':'回程中',
+		'color':'btn-primary'
+	},{
+		'state':'回程完毕',
+		'color':'btn-primary'
+	}]
+	$scope.updateCarStatus = function(carCode, status){
+		var obj = {
+			"method": "updateCarStatusByCode",
+			"carCode": carCode,
+			"carStatus": status
+		}
+		http.post(obj, URL.CarServlet).then(
 			function(res){
 
 			},
@@ -92,7 +143,12 @@ app.controller('TransDispatchCtrl', function($scope,http){
 			}
 		)
 	}
-	$scope.updateDirectives = function(){
+	$scope.updateDirectives = function(directive, carCode){
+		var obj = {
+			"method": "updateInstructionByCode",
+			"instruction": directive,
+			"carCode": carCode
+		}
 		data.method = 'updateInstructionByCode'
 		http.post(data, URL.CarServlet).then(
 			function(res){
@@ -104,6 +160,19 @@ app.controller('TransDispatchCtrl', function($scope,http){
 		)
 	}
 	$scope.updateDispatchPlan = function(){
+		var obj = {
+			"method": "updateStowage",
+			"stowage": {
+				
+			}
+		}
+		http.post(data, URL.CarServlet).then(
+			function(res){
 
+			},
+			function(res){
+				alert(JSON.stringify(res));
+			}
+		)
 	}
 })

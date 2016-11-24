@@ -1,3 +1,7 @@
+<script type="text/ng-template" id="alert.html">
+    <div ng-transclude></div>
+</script>
+<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" class="fixtop">{{alert.msg}}</div>
 <!-- page heading start-->
 <div class="page-heading">
     <ul class="breadcrumb">
@@ -151,8 +155,8 @@
                             <div class="form-group">
                                 <label for="" class="col-md-2 control-label">车辆状态</label>
                                 <div class="col-md-10">
-                                    <a href="javascript:;" class="btn btn-xs btn-info">休整中</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-info">休整完毕</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-info" ng-repeat="item in carStatusList" ng-class="item.color">{{item.state}}</a>
+<!--                                     <a href="javascript:;" class="btn btn-xs btn-info">休整完毕</a>
                                     <a href="javascript:;" class="btn btn-xs btn-success">待命中</a>
                                     <a href="javascript:;" class="btn btn-xs btn-warning">装载中</a>
                                     <a href="javascript:;" class="btn btn-xs btn-warning">装载完毕</a>
@@ -160,7 +164,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-danger">发车完毕</a>
                                     <a href="javascript:;" class="btn btn-xs btn-default">前运中</a>
                                     <a href="javascript:;" class="btn btn-xs btn-primary">回程中</a>
-                                    <a href="javascript:;" class="btn btn-xs btn-primary">回程完毕</a>
+                                    <a href="javascript:;" class="btn btn-xs btn-primary">回程完毕</a> -->
                                 </div>                                
                             </div>
                         </div>

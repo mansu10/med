@@ -170,7 +170,7 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 		$scope.getOperator();
 		$scope.changeState('dispatch');
 		$scope.currentCar = carCode;
-
+		$scope.queryDispatchPlan(carCode);
 
 	}
 
@@ -250,27 +250,48 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 			"carCode": carCode,
 			"carStatus": status	
 		}
-		http.post(data, URL.CarServlet).then(
+		http.post(obj, URL.CarServlet).then(
 			function(res){
-
+				$scope.dispatchOrders = res.stowageCode;
 			},
 			function(res){
 				alert(JSON.stringify(res));
 			}
 		)
 	}
-
-	$scope.updateDispatchPlan = function(){
+	$scope.dispatchOrdersDetail = {};
+	$scope.queryDispatchPlanDetail = function(code){
 		var obj = {
-			"method": "updateStowage",
-			"stowage": {
-				"stowageCode":'20161105060419',
-				'operator':$scope.selectedOperator.operatorName,
-				'loadTime':$scope.loadTime,
-				'departureTime':$scope.departureTime
-			}
+			"method": "findStowageByCode",
+			"stowageCode":code
 		}
-		var data = JSON.stringify(obj);
+		http.post(obj, URL.StowageServlet).then(
+			function(res){
+				if (res.code === 0) {
+					$scope.dispatchOrdersDetail = res.stowage;
+					console.log(JSON.stringify(res.stowage))
+
+				}else{
+					alert("数据返回错误");
+				}
+			},
+			function(res){
+				alert(JSON.stringify(res));
+			}
+		)
+
+	}
+	$scope.updateDispatchPlan = function(){
+		var obj = JSON.stringify({
+				"stowageCode":"20161105060419",
+				"operator":$scope.selectedOperator.operatorName,
+				"loadTime":$scope.dispatchOrdersDetail.loadTime,
+				"departureTime":$scope.dispatchOrdersDetail.departureTime
+			});
+		var data = {
+			"method": "updateStowage",
+			"stowage": obj + ''
+		}
 		http.post(data, URL.StowageServlet).then(
 			function(res){
 				if (res.code === 0) {

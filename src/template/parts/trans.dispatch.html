@@ -183,7 +183,10 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">任务单号</label>
                                 <div class="col-md-8">
-                                    <select class="form-control"></select>
+                                    <select class="form-control" 
+                                        ng-model="selectedOg"
+                                        ng-options="x for x in dispatchOrders"
+                                        ng-change="queryDispatchPlanDetail(selectedOg)"></select>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +194,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">前送路线</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control" disabled="true">
+                                    <input type="text" class="input-sm form-control" disabled="true" ng-model="dispatchOrdersDetail.transportRoute">
                                 </div>
                             </div>
                         </div>
@@ -201,7 +204,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-2 control-label">经过节点</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="input-sm form-control" disabled="true">
+                                    <input type="text" class="input-sm form-control" disabled="true" ng-model="dispatchOrdersDetail.sequence">
                                 </div>
                             </div>
                         </div>
@@ -213,7 +216,7 @@
                                 <div class="col-md-8">
                                     <select class="form-control" 
                                     ng-model="selectedOperator" 
-                                    ng-options="y.operatorName for (x, y) in operatorList"></select>
+                                    ng-options="y.operatorName for (x, y) in operatorList" required></select>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +234,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">装载时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="loadTime">
+                                    <input type="text" class="input-sm form-control" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="dispatchOrdersDetail.loadTime" required>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +242,7 @@
                             <div class="form-group">
                                 <label for="" class="col-md-4 control-label">发车时间</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control"datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="departureTime">
+                                    <input type="text" class="input-sm form-control"datetime-picker date-format="yyyy-MM-dd HH:mm:ss" ng-model="dispatchOrdersDetail.departureTime" required>
                                 </div>
                             </div>
                         </div>                    

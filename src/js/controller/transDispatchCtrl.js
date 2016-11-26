@@ -119,11 +119,12 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 		http.post(obj, URL.StowageServlet).then(
 			function(res){
 				if (res.code === 0) {
-					$scope.stowageList = res.stowage;
-					angular.forEach($scope.stowageList.stowageItems, function(item,index,array){
+					var result = res.stowage;
+					angular.forEach(result.stowageItems, function(item,index,array){
 						item.invoiceTime = $filter('date')(item.invoiceTime, 'yyyy-MM-dd HH:mm:ss');
 						item.signedTime = $filter('date')(item.signedTime, 'yyyy-MM-dd HH:mm:ss');
 					})
+					$scope.stowageList = angular.copy(result)
 				}else{
 					alert("数据返回错误");
 				}
@@ -138,6 +139,10 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 	 * @return {[type]} [description]
 	 */
 	$scope.updateStowageItems = function(){
+		angular.forEach($scope.stowageList.stowageItems, function(item,index,array){
+			item.stowageCode = $scope.stowageCode;
+		})
+
 		var obj = {
 			'method':'updateStowageItems',
 			'stowageItems': JSON.stringify($scope.stowageList.stowageItems) 
@@ -170,7 +175,7 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 		$scope.getOperator();
 		$scope.changeState('dispatch');
 		$scope.currentCar = carCode;
-		$scope.queryDispatchPlan(carCode);
+		$scope.queryDispatchPlan(carCode, '休整完毕');
 
 	}
 
@@ -253,6 +258,7 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 		http.post(obj, URL.CarServlet).then(
 			function(res){
 				$scope.dispatchOrders = res.stowageCode;
+				console.log("666666666"+JSON.stringify($scope.dispatchOrders))
 			},
 			function(res){
 				alert(JSON.stringify(res));
@@ -260,6 +266,7 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 		)
 	}
 	$scope.dispatchOrdersDetail = {};
+	$scope.dispatchOrdersItems = '';
 	$scope.queryDispatchPlanDetail = function(code){
 		var obj = {
 			"method": "findStowageByCode",
@@ -270,7 +277,11 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 				if (res.code === 0) {
 					$scope.dispatchOrdersDetail = res.stowage;
 					console.log(JSON.stringify(res.stowage))
-
+					var items = [];
+					angular.forEach($scope.dispatchOrdersDetail.stowageItems, function(item,index,array){
+						items.push(item.receiptAddress);
+					})
+					$scope.dispatchOrdersItems = items.join(',');
 				}else{
 					alert("数据返回错误");
 				}
@@ -283,7 +294,7 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 	}
 	$scope.updateDispatchPlan = function(){
 		var obj = JSON.stringify({
-				"stowageCode":"20161105060419",
+				"stowageCode":$scope.selectedOg,
 				"operator":$scope.selectedOperator.operatorName,
 				"loadTime":$scope.dispatchOrdersDetail.loadTime,
 				"departureTime":$scope.dispatchOrdersDetail.departureTime

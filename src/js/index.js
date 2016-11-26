@@ -21,7 +21,7 @@ include_js("./src/js/controller/distrLoadCtrl.js");
 
 include_js("./src/js/controller/transVehicleCtrl.js");
 include_js("./src/js/controller/transLineCtrl.js");
-include_js("./src/js/controller/transDispatchCtrl.js");
+include_js("./src/js/controller/transDispatchCtrl.js?1234");
 
 include_js("./src/js/controller/wareStorageCtrl.js");
 include_js("./src/js/controller/wareInventoryCtrl.js");

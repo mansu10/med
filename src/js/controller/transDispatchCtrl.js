@@ -1,5 +1,6 @@
-app.controller('TransDispatchCtrl', function($scope,http,$filter){
-
+app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, instruct){
+	instruct.set(['本页面是车辆调度页面<h1>a</h1>','此处放置有关页面调度的说明文字','又是一条说明']);
+	$rootScope.$broadcast('instructChange');
     $scope.alerts = [
         // { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
         // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
@@ -258,7 +259,6 @@ app.controller('TransDispatchCtrl', function($scope,http,$filter){
 		http.post(obj, URL.CarServlet).then(
 			function(res){
 				$scope.dispatchOrders = res.stowageCode;
-				console.log("666666666"+JSON.stringify($scope.dispatchOrders))
 			},
 			function(res){
 				alert(JSON.stringify(res));

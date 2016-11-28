@@ -139,12 +139,12 @@ app.controller('OrderQueryCtrl', function($scope,http){
 					console.log(JSON.stringify(respone));
 					$scope.orderList = respone.order;
 					lists = respone.order;
-//					alert("查询成功！")	
+//					popAlert("查询成功！")	
 				},
 				function(respone) {
 					console.log("Order qurey failed!" + JSON.stringify(respone));
 					$scope.orderList = lists;
-					alert(respone);
+					popAlert(respone);
 			});
 //		}
 	

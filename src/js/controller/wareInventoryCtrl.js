@@ -118,7 +118,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("queryAllDepots failed!" + JSON.stringify(respone));
-//					alert(respone);
+//					popAlert(respone);
 		});
 		
 	/**
@@ -135,11 +135,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 				function(respone) {
 					$scope.selectedList.cargoAreas = respone.depots.cargoAreas;
 					createLocatorList($scope.selectedList.cargoAreas);//生成货位表
-					alert("仓库查询完成！")
+					popAlert("仓库查询完成！")
 				},
 				function(respone) {
 					console.log("findDepotByCode failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
 	
@@ -223,7 +223,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	 */
 	$scope.addNewDepot = function(){
 		if(isEmptyValue($scope.newDepot)){
-			alert("仓库信息不能为空！");
+			popAlert("仓库信息不能为空！");
 			return;
 		}
 		$scope.newDepot.id = $scope.wareList[$scope.wareList.length-1].id + 1;
@@ -237,11 +237,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.DepotServlet).then(
 				function(respone) {
 					console.log("=========新建仓库========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("addDepot failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -269,7 +269,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	 */
 	$scope.addNewCargoArea = function(){
 		if(isEmptyValue($scope.newDepot)){
-			alert("请先输入仓库基本信息，并保存！");
+			popAlert("请先输入仓库基本信息，并保存！");
 			return;
 		}
 		$scope.newCargoArea.depotCode = angular.copy($scope.newDepot).depotCode;
@@ -296,12 +296,12 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	
 	$scope.saveNewCargoAreas = function(){
 		if(isEmptyValue($scope.newDepot)){
-			alert("请先输入仓库基本信息，并保存！");
+			popAlert("请先输入仓库基本信息，并保存！");
 			return;
 		}
 		$scope.isNewArea = false;
 		if(isEmptyValue($scope.addCargoAreas)){
-			alert('货区信息不能为空！');
+			popAlert('货区信息不能为空！');
 			return;
 		}
 		
@@ -311,13 +311,13 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========新建货区========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				//	$scope.selectCargoAreaList = angular.copy($scope.addCargoAreas);
 					createSelectCargoAreaList(angular.copy($scope.addCargoAreas));
 				},
 				function(respone) {
 					console.log("CargoAreaServlet add failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -361,12 +361,12 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	
 	$scope.addNewShelft = function(){
 		if(isEmptyValue($scope.newDepot)){
-			alert("请先输入仓库基本信息，并保存！");
+			popAlert("请先输入仓库基本信息，并保存！");
 			return;
 		}
 		
 		if(isEmptyValue($scope.newShelft)){
-			alert("请填写货架信息！");
+			popAlert("请填写货架信息！");
 			return;
 		}
 		
@@ -397,12 +397,12 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	
 	$scope.saveNewShelft = function(){
 		if(isEmptyValue($scope.newDepot)){
-			alert("请先输入仓库基本信息，并保存！");
+			popAlert("请先输入仓库基本信息，并保存！");
 			return;
 		}
 		$scope.isNewShelve= false;
 		if(isEmptyValue($scope.addShelfList)){
-			alert('货架信息为空！');
+			popAlert('货架信息为空！');
 			return;
 		}
 		
@@ -412,13 +412,13 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========新建货架========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 					//货区调整 / 分配
 					$scope.addNewShelfs = angular.copy($scope.addShelfList);
 				},
 				function(respone) {
 					console.log("addShelf add failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -442,11 +442,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 					});
 					*/
 					console.log("=========$scope.cargoAreaAssignArray========="+JSON.stringify($scope.cargoAreaAssignArray));
-					alert("findCargoAreaCodesByDepotCode success!")
+					popAlert("findCargoAreaCodesByDepotCode success!")
 				},
 				function(respone) {
 					console.log("CargoAreaServlet failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 		
@@ -467,11 +467,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========updateShelf========="+JSON.stringify(respone));
-					alert("updateShelf success!"+JSON.stringify(respone));
+					popAlert("updateShelf success!"+JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("updateShelf failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 		
@@ -528,11 +528,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.DepotServlet).then(
 				function(respone) {
 					console.log("=========调整仓库========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("调整货仓库failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	/**************************************调整货仓 end*********************************************/
@@ -579,7 +579,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		
 		$scope.isNewAreaAdjust = false;
 		if(isEmptyValue($scope.selectedList.cargoAreas)){
-			alert('货区信息不能为空！');
+			popAlert('货区信息不能为空！');
 			return;
 		}
 		
@@ -589,11 +589,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========调整货区========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("updateCargoArea failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	/**************************************调整货区  end*********************************************/
@@ -626,7 +626,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	
 	$scope.addNewAdjustShelft = function(){
 		if(isEmptyValue($scope.newAdjustShelft)){
-			alert("请填写货架信息！");
+			popAlert("请填写货架信息！");
 			return;
 		}
 		$scope.newAdjustShelft.depotCode = currentDepotCode;
@@ -658,7 +658,7 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		
 		$scope.isNewAdjustShelve= false;
 		if(isEmptyValue($scope.addAdjustShelfList)){
-			alert('货架信息为空！');
+			popAlert('货架信息为空！');
 			return;
 		}
 		
@@ -668,11 +668,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========调整货架修改提交========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("addShelf add failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -684,11 +684,11 @@ app.controller('WareInventoryCtrl', function($scope,http){
 				function(respone) {
 					console.log("=========查询货架调整========="+JSON.stringify(respone));
 					$scope.addAdjustShelfList = respone.shelfs;
-					alert("queryAllShelfsByDepotCode success!")
+					popAlert("queryAllShelfsByDepotCode success!")
 				},
 				function(respone) {
 					console.log("queryAllShelfs failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	

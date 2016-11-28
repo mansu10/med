@@ -38,11 +38,11 @@ app.controller('LoadQueryCtrl', function($scope,http,$timeout){
 					'orderCode':$scope.orderCode
 				}, URL.StowageServlet).then(
 					function(respone) {
-						alert("配载查询成功");
+						popAlert("配载查询成功");
 						$scope.stowages = respone.stowages;
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 			});
 	}
 	
@@ -85,7 +85,7 @@ app.controller('LoadQueryCtrl', function($scope,http,$timeout){
 
 			var deleteID = '';
 			if(isEmptyValue($scope.selected)) {
-				alert("请先选择删除项！！")
+				popAlert("请先选择删除项！！")
 				return;
 			}
 			$scope.selected.sort( // 数组批量删除必须降序排序  不然会出问题
@@ -102,7 +102,7 @@ app.controller('LoadQueryCtrl', function($scope,http,$timeout){
 			});
 
 			if(isEmptyValue(deleteID)) {
-				alert("提交的删除项编号为空，请检查后重新提交！！")
+				popAlert("提交的删除项编号为空，请检查后重新提交！！")
 				return;
 			}
 			deleteStowage(deleteID.substring(0, deleteID.length - 1));
@@ -116,17 +116,17 @@ app.controller('LoadQueryCtrl', function($scope,http,$timeout){
 	}
 	
 	var deleteStowage = function(ids){
-		alert(ids)
+		popAlert(ids)
 		http.post({
 				'method': 'deleteStowage',
 				'ids': ids
 			}, URL.StowageServlet).then(
 				function(respone) {
-					alert("删除成功");
+					popAlert("删除成功");
 				},
 				function(respone) {
 					console.log("delete stowages failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				});
 	}
 		/************************选择删除  end*****************************/

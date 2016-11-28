@@ -78,11 +78,11 @@ app.controller('wareMaintainCtrl', function($scope,http){
 		http.post({'method':'addStorageRecord','storageRecord':JSON.stringify(storageRecord)},URL.storageRecordServlet).then(
 				function(respone) {
 					console.log("=========保管养护========="+JSON.stringify(respone));
-					alert("已保存！")
+					popAlert("已保存！")
 				},
 				function(respone) {
 					console.log("saveStorage failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
    

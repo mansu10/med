@@ -16,7 +16,7 @@ app.controller('UserStudentCtrl', function($scope,http){
 	$scope.updateUser = function(){
 		
 		if($scope.userPassword != $scope.user.userPassword){
-			alert("两次密码输入不一致！")
+			popAlert("两次密码输入不一致！")
 			return;
 		}
 		http.post({
@@ -28,11 +28,11 @@ app.controller('UserStudentCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========密码修改成功！========="+JSON.stringify(respone));
-					alert("密码修改成功！！")
+					popAlert("密码修改成功！！")
 				},
 				function(respone) {
 					console.log("updateUser failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 				

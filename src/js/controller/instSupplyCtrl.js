@@ -76,7 +76,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 	 */
 	$scope.saveAddOrDetailInfo = function() {
 		if(isEmptyValue($scope.supplyAgency)){
-			alert("请填写内容后再进行保存！！")
+			popAlert("请填写内容后再进行保存！！")
 			return;
 		}
 		$scope.selected = [];
@@ -135,11 +135,11 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
 				$scope.supplyAgencies = respone.supplyAgencies;
-				alert("findAllSupplyAgencys success！")
+				popAlert("findAllSupplyAgencys success！")
 			},
 			function(respone) {
 				console.log("findAllSupplyAgencys failed!" + JSON.stringify(respone));
-				alert(JSON.stringify(respone));
+				popAlert(JSON.stringify(respone));
 			});
 	}
 
@@ -185,13 +185,13 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
 				
-				alert("addSupplyAgency success！");
+				popAlert("addSupplyAgency success！");
 				$scope.supplyAgency.id = respone.id;
 				$scope.supplyAgencies.push(angular.copy($scope.supplyAgency));
 			},
 			function(respone) {
 				console.log("addSupplyAgency failed!" + JSON.stringify(respone));
-				alert(JSON.stringify(respone));
+				popAlert(JSON.stringify(respone));
 			});
 	};
 
@@ -206,11 +206,11 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 			'supplyAgencyJobs':JSON.stringify($scope.supplyAgency.supplyAgencyJobs)
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
-				alert("updateSupplyAgency success!")
+				popAlert("updateSupplyAgency success!")
 			},
 			function(respone) {
 				console.log("updateSupplyAgency failed!" + JSON.stringify(respone));
-				alert(JSON.stringify(respone));
+				popAlert(JSON.stringify(respone));
 			});
 	};
 
@@ -245,7 +245,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 
 			var deleteID = '';
 			if(isEmptyValue($scope.selected)) {
-				alert("请先选择删除项！！")
+				popAlert("请先选择删除项！！")
 				return;
 			}
 			$scope.selected.sort( // 数组批量删除必须降序排序  不然会出问题
@@ -262,7 +262,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 			});
 
 			if(isEmptyValue(deleteID)) {
-				alert("提交的删除项编号为空，请检查后重新提交！！")
+				popAlert("提交的删除项编号为空，请检查后重新提交！！")
 				return;
 			}
 			http.post({
@@ -270,11 +270,11 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 				'ids': deleteID.substring(0, deleteID.length - 1)
 			}, URL.DemandAgencyServlet).then(
 				function(respone) {
-					alert("删除成功");
+					popAlert("删除成功");
 				},
 				function(respone) {
 					console.log("deleteSupplyAgency failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				});
 
 			$scope.selected = [];
@@ -293,7 +293,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		
 		$scope.addNewJob = function(){
 			if(isEmptyValue($scope.newSupplyJob)){
-				alert("请输入岗位信息后再保存！")
+				popAlert("请输入岗位信息后再保存！")
 				return;
 			}
 			$scope.supplyAgencyJobs.push(angular.copy($scope.newSupplyJob));
@@ -320,7 +320,7 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 
 		$scope.delSupplyJobs = function(){
 			if(isEmptyValue($scope.selected)) {
-				alert("请先选择删除项！！")
+				popAlert("请先选择删除项！！")
 				return;
 			}
 			$scope.selected.sort( // 数组批量删除必须降序排序  不然会出问题

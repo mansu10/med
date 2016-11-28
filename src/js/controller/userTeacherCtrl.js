@@ -18,11 +18,11 @@ app.controller('UserTeacherCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					$scope.users = respone.order;	
-					alert('queryUser success!')
+					popAlert('queryUser success!')
 				},
 				function(respone) {
 					console.log("queryUser failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
     
@@ -57,7 +57,7 @@ app.controller('UserTeacherCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========已保存========="+JSON.stringify(respone));
-					alert("已保存！");
+					popAlert("已保存！");
 					$scope.isCreateAccount = false;
 //					$scope.users.push(angular.copy($scope.newAccount));
 					$scope.newAccount = {};
@@ -72,7 +72,7 @@ app.controller('UserTeacherCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("addUser failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});	
 		
 	}
@@ -101,11 +101,11 @@ app.controller('UserTeacherCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========已删除========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone))
+					popAlert(JSON.stringify(respone))
 				},
 				function(respone) {
 					console.log("deleteUser failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 		
 		$scope.users.splice(index,1);
@@ -120,11 +120,11 @@ app.controller('UserTeacherCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========密码已重置========="+JSON.stringify(respone));
-					alert(JSON.stringify(respone))
+					popAlert(JSON.stringify(respone))
 				},
 				function(respone) {
 					console.log("resetPassword failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -135,11 +135,11 @@ app.controller('UserTeacherCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========updateUser========="+JSON.stringify(respone));
-					alert("=========updateUser success!========="+JSON.stringify(respone))
+					popAlert("=========updateUser success!========="+JSON.stringify(respone))
 				},
 				function(respone) {
 					console.log("updateUser failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	

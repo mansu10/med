@@ -18,11 +18,11 @@ app.controller('InstSafetyCtrl', function($scope,http){
 				'supplyAgencyCode': $scope.supplyAgencyCode
 			}, URL.GuaranteeRelationShipServlet).then(
 				function(respone) {
-					alert("查询成功");
+					popAlert("查询成功");
 					$scope.guaranteeRelationShips = respone.guaranteeRelationShips;
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	};
 	
@@ -71,7 +71,7 @@ app.controller('InstSafetyCtrl', function($scope,http){
 
 			var deleteID = '';
 			if(isEmptyValue($scope.selected)) {
-				alert("请先选择删除项！！")
+				popAlert("请先选择删除项！！")
 				return;
 			}
 			$scope.selected.sort( // 数组批量删除必须降序排序  不然会出问题
@@ -88,7 +88,7 @@ app.controller('InstSafetyCtrl', function($scope,http){
 			});
 
 			if(isEmptyValue(deleteID)) {
-				alert("提交的删除项编号为空，请检查后重新提交！！")
+				popAlert("提交的删除项编号为空，请检查后重新提交！！")
 				return;
 			}
 			http.post({
@@ -96,10 +96,10 @@ app.controller('InstSafetyCtrl', function($scope,http){
 				'ids': deleteID.substring(0, deleteID.length - 1)
 			}, URL.GuaranteeRelationShipServlet).then(
 				function(respone) {
-					alert("删除成功");
+					popAlert("删除成功");
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				});
 
 			$scope.selected = [];
@@ -115,7 +115,7 @@ app.controller('InstSafetyCtrl', function($scope,http){
 					$scope.addInfoFilter.demandAgencyCodes = respone.demandAgencyCodes;
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 				});
 		}		
 		$scope.addInfoFilter = {
@@ -129,22 +129,22 @@ app.controller('InstSafetyCtrl', function($scope,http){
 		$scope.createNewRelation = function(){
 			console.log("createNewRelation")
 			if(isEmptyValue($scope.newRelation.supplyAgencyCode)){
-				alert('请输入供应机构');
+				popAlert('请输入供应机构');
 				return;
 			}
 			
 			if(isEmptyValue($scope.newRelation.demandAgencyCode)){
-				alert('请输入需求机构');
+				popAlert('请输入需求机构');
 				return;
 			}
 			
 			if($scope.addInfoFilter.supplyAgencyCodes.indexOf($scope.newRelation.supplyAgencyCode) == -1){
-				alert('输入的供应机构不存在，请查证后重新输入！！！');
+				popAlert('输入的供应机构不存在，请查证后重新输入！！！');
 				return;
 			}
 			
 			if($scope.addInfoFilter.demandAgencyCodes.indexOf($scope.newRelation.demandAgencyCode) == -1){
-				alert('输入的需求机构不存在，请查证后重新输入！！！');
+				popAlert('输入的需求机构不存在，请查证后重新输入！！！');
 				return;
 			}
 			
@@ -153,10 +153,10 @@ app.controller('InstSafetyCtrl', function($scope,http){
 				'guaranteeRelationShip': JSON.stringify($scope.newRelation)
 			}, URL.GuaranteeRelationShipServlet).then(
 				function(respone) {
-					alert("建立成功！！！");
+					popAlert("建立成功！！！");
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 		}
 		

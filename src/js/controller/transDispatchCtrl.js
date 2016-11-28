@@ -79,7 +79,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 						$scope.cars = respone.carStatus;
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	}
 	$scope.queryAllCarsWithCode();
@@ -102,7 +102,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				$scope.changeState('detail');
 			}, 
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			})
 
 
@@ -127,12 +127,12 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 					})
 					$scope.stowageList = angular.copy(result)
 				}else{
-					alert("数据返回错误");
+					popAlert("数据返回错误");
 				}
 				
 			}, 
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			})
 	}
 	/**
@@ -152,14 +152,14 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 		http.post(obj, URL.StowageServlet).then(
 			function(res){
 				if (res.code === 0) {
-					alert("保存成功")
+					popAlert("保存成功")
 				}else{
-					alert("数据返回错误");
+					popAlert("数据返回错误");
 				}
 				
 			}, 
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			})
 	}
 	/**
@@ -195,7 +195,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				console.log(JSON.stringify(res.operators))
 			},
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			}
 		)
 	}
@@ -214,10 +214,10 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 		}
 		http.post(obj, URL.CarServlet).then(
 			function(res){
-				alert("状态更新成功");
+				popAlert("状态更新成功");
 			},
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			}
 		)
 	}
@@ -236,13 +236,13 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 		http.post(obj, URL.CarServlet).then(
 			function(res){
 				if (res.code === 0) {
-					alert("指令发送成功");
+					popAlert("指令发送成功");
 				}else{
-					alert("数据返回错误，请再次尝试");
+					popAlert("数据返回错误，请再次尝试");
 				}
 			},
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			}
 		)
 	}
@@ -261,7 +261,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				$scope.dispatchOrders = res.stowageCode;
 			},
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			}
 		)
 	}
@@ -283,11 +283,11 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 					})
 					$scope.dispatchOrdersItems = items.join(',');
 				}else{
-					alert("数据返回错误");
+					popAlert("数据返回错误");
 				}
 			},
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			}
 		)
 
@@ -306,13 +306,13 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 		http.post(data, URL.StowageServlet).then(
 			function(res){
 				if (res.code === 0) {
-					alert("保存成功")
+					popAlert("保存成功")
 				}else{
-					alert("保存出错："+ res)
+					popAlert("保存出错："+ res)
 				}
 			},
 			function(res){
-				alert(JSON.stringify(res));
+				popAlert(JSON.stringify(res));
 			}
 		)
 	}

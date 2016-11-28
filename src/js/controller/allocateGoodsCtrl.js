@@ -44,11 +44,11 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 				'orderTimeEnd':$scope.queryItem.orderTimeEnd
 			}, URL.OrderServlet).then(
 				function(respone) {
-					alert("查询成功");
+					popAlert("查询成功");
 					$scope.goods = respone.orders;
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	}
 	
@@ -59,7 +59,7 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 				'orderCode': orderCode
 			}, URL.PickListServlet).then(
 				function(respone) {
-					alert("拣货单查询成功");
+					popAlert("拣货单查询成功");
 					$scope.printOrders = respone.pickLists;
 
 					$timeout(function() {
@@ -67,7 +67,7 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
             		}, 1000);
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	};
 	
@@ -89,12 +89,12 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 				'orderCode': orderCode
 			}, URL.PickListServlet).then(
 				function(respone) {
-					alert("拣货记录查询成功！");
+					popAlert("拣货记录查询成功！");
 					$scope.OrderNote = respone.pickLists;
 		
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	};
 	
@@ -114,11 +114,11 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 				'pickListItems':JSON.stringify(temp)
 			}, URL.PickListServlet).then(
 				function(respone) {
-					alert("拣货记录保存成功！");
+					popAlert("拣货记录保存成功！");
 					
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	}
 

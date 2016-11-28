@@ -117,7 +117,7 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("queryCars failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
 	
@@ -129,11 +129,11 @@ app.controller('DistrVehicleCtrl', function($scope,http){
     	http.post({'method':'addCar','car': newItem},URL.carQurey).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					alert(JSON.stringify("添加成功"+JSON.stringify(respone)));
+					popAlert(JSON.stringify("添加成功"+JSON.stringify(respone)));
 				},
 				function(respone) {
 					console.log("addCars failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
     }
     
@@ -143,11 +143,11 @@ app.controller('DistrVehicleCtrl', function($scope,http){
     	http.post({'method':'updateCar','car': item},URL.carQurey).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					alert(JSON.stringify("updateCars成功"+JSON.stringify(respone)));
+					popAlert(JSON.stringify("updateCars成功"+JSON.stringify(respone)));
 				},
 				function(respone) {
 					console.log("updateCars failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
     }
     
@@ -157,11 +157,11 @@ app.controller('DistrVehicleCtrl', function($scope,http){
     	http.post({'method':'deleteCar','id':id},URL.carQurey).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					alert(JSON.stringify("deleteCars成功"+JSON.stringify(respone)));
+					popAlert(JSON.stringify("deleteCars成功"+JSON.stringify(respone)));
 				},
 				function(respone) {
 					console.log("deleteCars!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
     }
     

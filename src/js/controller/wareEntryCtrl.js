@@ -140,11 +140,11 @@ app.controller('WareEntryCtrl', function($scope,http){
 				'receiptItems':JSON.stringify($scope.items)
 			},URL.RARS).then(
 				function(respone) {
-					alert("已确认！")
+					popAlert("已确认！")
 				},
 				function(respone) {
 					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
 

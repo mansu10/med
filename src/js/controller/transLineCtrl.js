@@ -10,7 +10,7 @@ app.controller('TransLineCtrl', function($scope,http){
 						$scope.carLines = respone.guaranteeRelationShips;
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	}
 	$scope.queryAllCarLines();
@@ -27,11 +27,11 @@ app.controller('TransLineCtrl', function($scope,http){
 					'guaranteeRelationShip':getUpdateInfo($scope.carLines[index])
 				}, URL.GuaranteeRelationShipServlet).then(
 					function(respone) {
-						alert("线路已更新");
+						popAlert("线路已更新");
 						$scope.edit(index);
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	};
 

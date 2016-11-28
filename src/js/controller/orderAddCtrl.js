@@ -60,12 +60,12 @@ app.controller('OrderAddCtrl', function($scope,http){
 			http.post($scope.orderForm,URL.orderAdd).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					alert("订单添加成功！")
+					popAlert("订单添加成功！")
 					
 				},
 				function(respone) {
 					console.log("submitOrder failed!" + JSON.stringify(respone));
-					// alert(respone);
+					// popAlert(respone);
 			});
 		}
 		
@@ -80,7 +80,7 @@ app.controller('OrderAddCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("queryProduct failed!" + JSON.stringify(respone));
-					// alert(respone);
+					// popAlert(respone);
 			});
 		}
 		queryProduct();

@@ -11,11 +11,11 @@ app.controller('LoginCtrl', function($scope, http, $state,$localstorage) {
 			console.log("login info:" + JSON.stringify($scope.loginInfo));
 			
 			if (!$scope.loginInfo.name) {
-				alert("请输入用户名");
+				popAlert("请输入用户名");
 				return;
 			} 
 			if (!$scope.loginInfo.password) {
-				alert("请输入密码");
+				popAlert("请输入密码");
 				return;
 			} 
 			
@@ -34,13 +34,13 @@ app.controller('LoginCtrl', function($scope, http, $state,$localstorage) {
 						console.log("USER1==="+JSON.stringify(user1))
 						$state.go('home.dashboard');
 					} else{
-						alert("密码或用户名有误，请重新输入！！");
+						popAlert("密码或用户名有误，请重新输入！！");
 					}
 					
 				},
 				function(respone) {
 					console.log("login failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 				});
 		}
 	})

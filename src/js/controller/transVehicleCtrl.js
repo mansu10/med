@@ -39,18 +39,18 @@ app.controller('TransVehicleCtrl', function($scope,http){
 					'agencyCode':'B0004'
 				}, URL.CarServlet).then(
 					function(respone) {
-						alert("车辆查询成功");
+						popAlert("车辆查询成功");
 						$scope.cars = respone.cars;
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	}
 	
 	//添加车辆
 	$scope.updateCar = function(){
 		if(method == 'updateCar' && isEmptyValue($scope.car.id)){
-			alert("更新车辆的id不能为空！");
+			popAlert("更新车辆的id不能为空！");
 			return;
 		}
 			http.post({
@@ -58,7 +58,7 @@ app.controller('TransVehicleCtrl', function($scope,http){
 					'car':JSON.stringify($scope.car)
 				}, URL.CarServlet).then(
 					function(respone) {
-						alert(method+" success!");
+						popAlert(method+" success!");
 						$scope.changeState('query');
 						if(method == 'addCar'){
 							$scope.car.id = respone.id;
@@ -71,14 +71,14 @@ app.controller('TransVehicleCtrl', function($scope,http){
 					},
 					function(respone) {
 						console.log(respone);
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	}
 	
 	//删除车辆
 	$scope.deleteCar = function(id,index){
 		if(isEmptyValue(id)){
-			alert("被删除项id不能为空！");
+			popAlert("被删除项id不能为空！");
 			return;
 		}
 			http.post({
@@ -86,11 +86,11 @@ app.controller('TransVehicleCtrl', function($scope,http){
 					'ids':id
 				}, URL.CarServlet).then(
 					function(respone) {
-						alert("删除成功！");
+						popAlert("删除成功！");
 						$scope.cars.splice(index, 1);
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	}
 	

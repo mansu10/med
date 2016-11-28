@@ -28,12 +28,9 @@ gulp.task('libs', function(){
         .pipe(uglify())
         .pipe(gulp.dest('./dist'));
 })
+gulp.task('watch', function(){
+    gulp.watch('./js/**/*.js', function(){['libs','scripts']});
+})
 // 默认任务
-gulp.task('default', function(){
-    gulp.run('libs','scripts');
+gulp.task('default', ['libs','scripts','watch']);
 
-    // 监听文件变化
-    gulp.watch('./js/*.js', function(){
-        gulp.run('libs','scripts');
-    });
-});

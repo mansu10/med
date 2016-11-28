@@ -59,7 +59,7 @@ app.controller('WareShelvesCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("queryAllReceiptAcceptanceRecords failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
 	
@@ -76,7 +76,7 @@ app.controller('WareShelvesCtrl', function($scope,http){
 				},
 				function(respone) {
 					console.log("queryRecordAndItemByCode failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	},
 //	$scope.queryDetail();
@@ -142,11 +142,11 @@ app.controller('WareShelvesCtrl', function($scope,http){
 		http.post({'method':'addStock','stocks':JSON.stringify(stocks)},URL.stockQurey).then(
 				function(respone) {
 					console.log("=========入库提交========="+JSON.stringify(respone));
-					alert("已成功入库！");
+					popAlert("已成功入库！");
 				},
 				function(respone) {
 					console.log("=========入库失败============" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	

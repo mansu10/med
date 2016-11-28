@@ -1,8 +1,8 @@
 app.controller('AllocateCheckCtrl', function($scope, http, $timeout) {
 
     $scope.alerts = [
-        { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-        { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+        // { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+        // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
     ];
 
     $scope.closeAlert = function(index) {
@@ -56,11 +56,11 @@ app.controller('AllocateCheckCtrl', function($scope, http, $timeout) {
             'orderTimeEnd': $scope.queryItem.orderTimeEnd
         }, URL.OrderServlet).then(
             function(respone) {
-                alert("查询成功");
+                popAlert("查询成功");
                 $scope.goods = respone.orders;
             },
             function(respone) {
-                alert(JSON.stringify(respone));
+                popAlert(JSON.stringify(respone));
             });
     };
 
@@ -71,14 +71,14 @@ app.controller('AllocateCheckCtrl', function($scope, http, $timeout) {
             'orderCode': orderCode
         }, URL.OrderServlet).then(
             function(respone) {
-                alert("打印拣货单查询成功");
+                popAlert("打印拣货单查询成功");
                 $scope.printOrder = respone.order;
                 $timeout(function() {
                     $('#' + $scope.printOrder.orderCode).empty().barcode("" + $scope.printOrder.orderCode, "code128", { barWidth: 2, barHeight: 30, showHRI: false });
                 }, 1000);
             },
             function(respone) {
-                alert(JSON.stringify(respone));
+                popAlert(JSON.stringify(respone));
             });
     };
 
@@ -89,12 +89,12 @@ app.controller('AllocateCheckCtrl', function($scope, http, $timeout) {
             'orderCode': orderCode
         }, URL.PickListServlet).then(
             function(respone) {
-                alert("复核确认成功！");
+                popAlert("复核确认成功！");
                 $scope.checkNote = respone.pickLists;
 
             },
             function(respone) {
-                alert(JSON.stringify(respone));
+                popAlert(JSON.stringify(respone));
             });
     };
 
@@ -106,12 +106,12 @@ app.controller('AllocateCheckCtrl', function($scope, http, $timeout) {
             'orderCode': orderCode
         }, URL.PickListServlet).then(
             function(respone) {
-                alert("复核记录查询成功！");
+                popAlert("复核记录查询成功！");
                 $scope.OrderNote = respone.pickLists;
 
             },
             function(respone) {
-                alert(JSON.stringify(respone));
+                popAlert(JSON.stringify(respone));
             });
     };
 
@@ -132,11 +132,11 @@ app.controller('AllocateCheckCtrl', function($scope, http, $timeout) {
             'pickListItems': JSON.stringify(temp)
         }, URL.PickListServlet).then(
             function(respone) {
-                alert("复核记录保存成功！");
+                popAlert("复核记录保存成功！");
 
             },
             function(respone) {
-                alert(JSON.stringify(respone));
+                popAlert(JSON.stringify(respone));
             });
     }
 

@@ -36,11 +36,11 @@ app.controller('DicSingleCtrl', function($scope,http, instruct){
 				'herbsType': $scope.queryInfo.medType
 			}, URL.ProductServlet).then(
 				function(respone) {
-					alert("查询成功");
+					popAlert("查询成功");
 					$scope.medList = respone.products;
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	}
 
@@ -146,7 +146,7 @@ app.controller('DicSingleCtrl', function($scope,http, instruct){
 
 			var deleteID = '';
 			if(isEmptyValue($scope.selected)) {
-				alert("请先选择删除项！！")
+				popAlert("请先选择删除项！！")
 				return;
 			}
 			$scope.selected.sort( // 数组批量删除必须降序排序  不然会出问题
@@ -163,7 +163,7 @@ app.controller('DicSingleCtrl', function($scope,http, instruct){
 			});
 
 			if(isEmptyValue(deleteID)) {
-				alert("提交的删除项编号为空，请检查后重新提交！！")
+				popAlert("提交的删除项编号为空，请检查后重新提交！！")
 				return;
 			}
 			http.post({
@@ -171,11 +171,11 @@ app.controller('DicSingleCtrl', function($scope,http, instruct){
 				'ids': deleteID.substring(0, deleteID.length - 1)
 			}, URL.ProductServlet).then(
 				function(respone) {
-					alert("删除成功");
+					popAlert("删除成功");
 				},
 				function(respone) {
 					console.log("deleteSupplyAgency failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 					$scope.medList = tempList;
 				});
 
@@ -189,10 +189,10 @@ app.controller('DicSingleCtrl', function($scope,http, instruct){
 				'product': JSON.stringify(item)
 			}, URL.ProductServlet).then(
 				function(respone) {
-					alert("已更新修改！");
+					popAlert("已更新修改！");
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	}
 	
@@ -202,13 +202,13 @@ app.controller('DicSingleCtrl', function($scope,http, instruct){
 				'product': JSON.stringify(item)
 			}, URL.ProductServlet).then(
 				function(respone) {
-					alert("已添加！");
+					popAlert("已添加！");
 					$scope.midware.id = respone.id;
 					$scope.medList.push(angular.copy($scope.midware));
 					$scope.toggleDetailState(false);
 				},
 				function(respone) {
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 			});
 	}
 //	$scope.medList = [

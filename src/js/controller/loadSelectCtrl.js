@@ -7,11 +7,11 @@ app.controller('LoadSelectCtrl', function($scope,http){
 					'method': 'queryAllCarsWithStatus'
 				}, URL.CarServlet).then(
 					function(respone) {
-//						alert("待选车辆查询成功");
+//						popAlert("待选车辆查询成功");
 						$scope.cars = respone.cars;
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	}
 	
@@ -21,11 +21,11 @@ app.controller('LoadSelectCtrl', function($scope,http){
 					'method': 'findAllInvoices'
 				}, URL.InvoiceServlet).then(
 					function(respone) {
-//						alert("待装载货物查询成功");
+//						popAlert("待装载货物查询成功");
 						$scope.invoices = respone.invoices;
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 					});
 	}
 	
@@ -50,10 +50,10 @@ app.controller('LoadSelectCtrl', function($scope,http){
 					'stowage':JSON.stringify($scope.stowage)
 				}, URL.StowageServlet).then(
 					function(respone) {
-						alert("确认成功！！！");
+						popAlert("确认成功！！！");
 					},
 					function(respone) {
-						alert(JSON.stringify(respone));
+						popAlert(JSON.stringify(respone));
 				});
 	}
 	

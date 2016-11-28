@@ -54,7 +54,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 	 */
 	$scope.saveAddOrDetailInfo = function() {
 		if(isEmptyValue($scope.demandAgency)){
-			alert("请填写内容后再进行保存！！")
+			popAlert("请填写内容后再进行保存！！")
 			return;
 		}
 		$scope.editMode = false;
@@ -96,11 +96,11 @@ app.controller('InstDemandCtrl', function($scope,http){
 				function(respone) {
 					console.log("========= findAllDemandAgencys success！========="+JSON.stringify(respone));
 					$scope.demandAgencyList = respone.demandAgencies;
-					alert("findAllDemandAgencys success！")
+					popAlert("findAllDemandAgencys success！")
 				},
 				function(respone) {
 					console.log("findAllDemandAgencys failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -149,11 +149,11 @@ app.controller('InstDemandCtrl', function($scope,http){
 			
 					$scope.demandAgency.id = respone.id;
 					$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
-					alert("addDemandAgency success!")
+					popAlert("addDemandAgency success!")
 				},
 				function(respone) {
 					console.log("demandAgency failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -167,12 +167,12 @@ app.controller('InstDemandCtrl', function($scope,http){
 				'demandAgency':JSON.stringify($scope.demandAgency)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					alert("updateDemandAgency success！")
+					popAlert("updateDemandAgency success！")
 					
 				},
 				function(respone) {
 					console.log("updateDemandAgency failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	
@@ -207,7 +207,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 		
 		var deleteID = '';
 		if(isEmptyValue($scope.selected)){
-			alert("请先选择删除项！！")
+			popAlert("请先选择删除项！！")
 			return;
 		}
 		$scope.selected.sort(// 数组批量删除必须降序排序  不然会出问题
@@ -223,7 +223,7 @@ app.controller('InstDemandCtrl', function($scope,http){
 		});
 		
 		if(isEmptyValue(deleteID)){
-			alert("提交的删除项编号为空，请检查后重新提交！！")
+			popAlert("提交的删除项编号为空，请检查后重新提交！！")
 			return;
 		}
 		http.post({
@@ -231,11 +231,11 @@ app.controller('InstDemandCtrl', function($scope,http){
 				'ids':deleteID.substring(0,deleteID.length-1)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					alert("eleteDemandAgency success！")
+					popAlert("eleteDemandAgency success！")
 				},
 				function(respone) {
 					console.log("deleteDemandAgency failed!" + JSON.stringify(respone));
-					alert(JSON.stringify(respone));
+					popAlert(JSON.stringify(respone));
 		});
 		
 		$scope.selected = [];

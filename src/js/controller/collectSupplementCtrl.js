@@ -67,12 +67,12 @@ app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instru
 		http.post({'method':'queryAllStocks','productCodeOrName':$scope.qureyValue},URL.stockQurey).then(
 				function(respone) {
 					
-					alert("queryAllStocks success!");
+					popAlert("queryAllStocks success!");
 					refreshStorageList(respone.stocks);
 				},
 				function(respone) {
 					console.log("queryAllStocks failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
 	$scope.queryStorage();
@@ -196,11 +196,11 @@ app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instru
 		http.post({'method':'addRaiseInventory','inventorys':JSON.stringify(temp)},URL.raiseInventory).then(
 				function(respone) {
 		
-					alert("筹措清单提交成功！")
+					popAlert("筹措清单提交成功！")
 				},
 				function(respone) {
 					console.log("addRaiseInventory failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
 	

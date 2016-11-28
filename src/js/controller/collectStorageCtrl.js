@@ -66,12 +66,12 @@ app.controller('CollectStorageCtrl', function($scope,$rootScope, http, instruct)
 	$scope.queryStorage = function(){
 		http.post({'method':'queryAllStocks','productCodeOrName':$scope.qureyValue},URL.stockQurey).then(
 				function(respone) {
-					alert("queryAllStocks success!");
+					popAlert("queryAllStocks success!");
 					refreshStorageList(respone.stocks);
 				},
 				function(respone) {
 					console.log("queryAllStocks failed!" + JSON.stringify(respone));
-					alert(respone);
+					popAlert(respone);
 		});
 	}
 	$scope.queryStorage();

@@ -130,7 +130,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				// alert(respone);
+				// popAlert(respone);
 	});
 	
 	//过滤订单 只显示未审核和有疑问的订单
@@ -152,7 +152,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		http.post({'method':'queryOrderAndItem','orderCode':id},URL.orderQurey).then(
 			function(respone) {
 					console.log("queryOrderAndItem:"+JSON.stringify(respone));
-					alert("queryOrderAndItem success!")
+					popAlert("queryOrderAndItem success!")
 					$scope.detail = respone.order;
 					$scope.items = respone.order.orderItems;
 					$scope.detail.deliveryTime = secondsToData(respone.order.deliveryTime);
@@ -161,7 +161,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				// alert(respone);
+				// popAlert(respone);
 		});
 	}
 	
@@ -171,11 +171,11 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		http.post({},URL.orderAudit).then(
 			function(respone) {
 				console.log("queryOrderAndItem:"+JSON.stringify(respone));	
-				alert("订单确认成功！")
+				popAlert("订单确认成功！")
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				// alert(respone);
+				// popAlert(respone);
 		});
 	};
 	
@@ -187,12 +187,12 @@ app.controller('OrderAuditCtrl', function($scope,http){
 			http.post({'method':'queryProduct'},URL.productQurey).then(
 				function(respone) {
 					console.log("queryProduct info --->"+respone);
-					alert("queryProduct success!")
+					popAlert("queryProduct success!")
 					productList = respone.products;
 				},
 				function(respone) {
 					console.log("queryProduct failed!" + JSON.stringify(respone));
-					// alert(respone);
+					// popAlert(respone);
 			});
 		}
 		queryProduct();
@@ -231,10 +231,10 @@ app.controller('OrderAuditCtrl', function($scope,http){
 		$scope.updateOrder = function(status){		
 			http.post(getUpdateOrder(status),URL.orderAudit).then(
 				function(respone) {
-					alert(status=="1" ? "订单已确认":"已转至疑问订单");
+					popAlert(status=="1" ? "订单已确认":"已转至疑问订单");
 				},
 				function(respone) {
-					// alert(respone);
+					// popAlert(respone);
 			});
 		}
 		

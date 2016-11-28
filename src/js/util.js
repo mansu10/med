@@ -70,3 +70,38 @@ var isInArray=function(arr, value) {
     	console.log("===============================2"+strTime+date);
     	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getMilliseconds();
 	}
+
+
+
+/**
+ * 临时使用alert，后续更改
+ * 
+ */
+
+function popAlert(msg){
+	var tpl = ['<div id="alert" class="">',
+		    '    <div class="modal fade in" style="display: block;">',
+		    '        <div class="modal-dialog modal-sm">',
+		    '            <div class="modal-content">',
+		    '                <div class="modal-header">',
+		    '                    <button type="button" class="close J_close" data-dismiss="modal" aria-hidden="true">×</button>',
+		    '                    <h4 class="modal-title">提示</h4>',
+		    '                </div>',
+		    '                <div class="modal-body row">',
+		    '                    <p class="J_msg">'+msg+'</p>',
+		    '                </div>',
+		    '            </div>',
+		    '        </div>',
+		    '    </div>',
+		    '    <div class="modal-backdrop fade in"></div>',
+		    '</div>'].join('');
+	var $alert = $(tpl);
+	$alert.find('.J_close').on('click', function(event) {
+		$alert.remove()
+	});
+	$('body').append($alert);
+}
+
+window.popAlert = popAlert;
+
+

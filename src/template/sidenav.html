@@ -43,7 +43,7 @@
                   		<span>{{item.title}}</span>
                   	</a>
                     <ul class="sub-menu-list">
-                        <li ng-repeat="child in item.child" ng-class="{'active':child.isActive}">
+                        <li ng-repeat="child in item.child" ng-class="{'active':child.isActive}" ng-show="!child.notAdmin">
                         	<a ui-sref="{{child.url}}">{{child.title}}</a>
                         </li>
                     </ul>

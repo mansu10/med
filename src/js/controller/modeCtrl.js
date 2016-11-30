@@ -1,7 +1,7 @@
 app.controller('ModeCtrl', function($scope,http, $localstorage){
 
 	$scope.user = $localstorage.getObject('user');
-	console.log(user);
+	// console.log($scope.user);
 
 	$scope.data = [{
 		'title': '药材仓库',

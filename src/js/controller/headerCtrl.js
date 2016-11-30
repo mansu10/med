@@ -1,4 +1,4 @@
-app.controller('HeaderCtrl', function($rootScope, $scope,$localstorage, instruct){
+app.controller('HeaderCtrl', function($rootScope, $state, $scope,$localstorage, instruct){
 	$rootScope.collapse = false;
 	$scope.toggle = function(){
 		$rootScope.collapse = !$rootScope.collapse;
@@ -27,4 +27,9 @@ app.controller('HeaderCtrl', function($rootScope, $scope,$localstorage, instruct
 		$scope.isInstruct = !$scope.isInstruct;
 	}
 
+	$scope.logout = function(){
+		$rootScope.user = {};
+		$localstorage.clear("user");
+		$state.go('login');
+	}
 })

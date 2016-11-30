@@ -67,7 +67,7 @@ var isInArray=function(arr, value) {
 	
 	function secondsToData (strTime) {
     	var date = new Date(strTime);
-    	console.log("===============================2"+strTime+date);
+    	// console.log("===============================2"+strTime+date);
     	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getMilliseconds();
 	}
 
@@ -78,7 +78,7 @@ var isInArray=function(arr, value) {
  * 
  */
 
-function popAlert(msg){
+function popAlert(msg, callback){
 	var tpl = ['<div id="alert" class="">',
 		    '    <div class="modal fade in" style="display: block;">',
 		    '        <div class="modal-dialog modal-sm">',
@@ -97,7 +97,9 @@ function popAlert(msg){
 		    '</div>'].join('');
 	var $alert = $(tpl);
 	$alert.find('.J_close').on('click', function(event) {
-		$alert.remove()
+		$alert.remove();
+
+		if (callback) {callback()};
 	});
 	$('body').append($alert);
 }

@@ -1,6 +1,11 @@
 //var SideNavModule = angular.module('SideNavModule', []);
-app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$localstorage) {
+app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams, $localstorage) {
+		var user = $localstorage.getObject('user');
+		$scope.notAdmin = true;
+		if (user.role == '教员') {
+			$scope.notAdmin = false;
 
+		}
 		$scope.list = {
 			"parent": {
 						"title": "主页",
@@ -219,7 +224,8 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 						{
 							"title": "教员用户",
 							"url": ".userTeacher",
-							"isActive":false
+							"isActive":false,
+							"notAdmin": $scope.notAdmin
 						},
 						{
 							"title": "学员用户",
@@ -232,8 +238,8 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 		$scope.isActive = false;
 		$scope.listToggle = function(index){
 			$scope.list.items[index].isActive = !$scope.list.items[index].isActive;
+			console.log($scope.list.items[9])
 		}
-		var user = $localstorage.getObject('user');
 
 	})
 	

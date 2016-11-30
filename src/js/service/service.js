@@ -58,7 +58,7 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 			method: 'GET'
 		}).success(function(data, status, header, config) {
 			//响应成功
-			console.log('get请求返回：\n' + 'data:' + JSON.stringify(data) + '\nstatus:' + status)
+			// console.log('get请求返回：\n' + 'data:' + JSON.stringify(data) + '\nstatus:' + status)
 			if (data.code == 0) {
 				def.resolve(data);
 			} else {
@@ -68,7 +68,7 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 		}).error(function(data, status, header, config) {
 			//处理响应失败
 			def.reject("Failed to get");
-			console.log('get请求失败：\n' + 'date:' + data + '\nheader:' + header + '\nconfig:' + config + '\nstatus:' + status)
+			// console.log('get请求失败：\n' + 'date:' + data + '\nheader:' + header + '\nconfig:' + config + '\nstatus:' + status)
 		});
 		return def.promise;
 	};
@@ -76,15 +76,15 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 	//POST请求
 	var post = function(obj,requestUrl) {
 		
-		console.log("post请求url:" + requestUrl);
-		console.log("post请求参数:" + JSON.stringify(obj));
+		// console.log("post请求url:" + requestUrl);
+		// console.log("post请求参数:" + JSON.stringify(obj));
 		
 		var def = $q.defer();
 		
 		$.post(requestUrl, obj, function(data, textStatus, xhr) {
 			
-			console.log(data);
-			console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
+			// console.log(data);
+			// console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
 			if (data.code == 0) {
 				def.resolve(data);
 			} else {

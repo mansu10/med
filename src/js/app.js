@@ -17,19 +17,42 @@ var app = angular.module('app', [
 * @param  {[type]} $stateParams
 * @return {[type]}
 */
-app.run(function($rootScope, $state, $stateParams, $localstorage) {
+app.run(function($rootScope, $state, $stateParams, $localstorage, http) {
 	
 	$rootScope.user = $localstorage.getObject('user');
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
 	$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+
 		if(toState.name=='login' || toState.name == '404')return;// 如果是进入登录界面则允许
 		// 如果用户不存在
-		// alert($rootScope.user);
-		// if(!$rootScope.user || !$rootScope.user.token){
-		// 	event.preventDefault();// 取消默认跳转行为
-		// 	$state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
-		// }
+		
+		if(!$rootScope.user || !$rootScope.user.token){
+			event.preventDefault();// 取消默认跳转行为
+			popAlert("用户状态失效，请重新登录");
+			$state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
+		}else{
+			// console.log("-------------"+JSON.stringify($rootScope.user));
+			http.post({
+				'method': 'checkToken',
+				'id': $rootScope.user.id,
+				'token': $rootScope.user.token
+			}, URL.UserServlet).then(
+				function(res){
+					if (res.code == 0) {
+
+					}else{
+						popAlert(res.error, function(){
+							$state.go('login');
+						})
+					}
+				},
+				function(res){
+					// popAlert('something wrong')
+				}
+			)
+		}
+
 		if (toState == 'home.userTeacher') {
 			// $state.go("home.userStudent");
 		}

@@ -238,7 +238,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams, $loc
 		$scope.isActive = false;
 		$scope.listToggle = function(index){
 			$scope.list.items[index].isActive = !$scope.list.items[index].isActive;
-			console.log($scope.list.items[9])
+			// console.log($scope.list.items[9])
 		}
 
 	})

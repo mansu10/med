@@ -31,13 +31,12 @@ gulp.task('libs', function() {
 })
 gulp.task('connect', function() {
     connect.server({
-        
+
         livereload: true
     });
 });
 gulp.task('watch', function() {
-    gulp.watch('./js/**/*.js', function() {
-        ['libs', 'scripts', 'connect'] });
+    gulp.watch('./js/**/*.js',['libs', 'scripts', 'connect']);
 })
     // 默认任务
-gulp.task('default', ['libs', 'scripts', 'watch','connect']);
+gulp.task('default', ['watch','libs', 'scripts', 'connect']);

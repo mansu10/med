@@ -46,6 +46,7 @@ app.run(function($rootScope, $state, $stateParams, $localstorage, http) {
 							$state.go('login');
 						})
 					}
+					$('body').scrollTop(0);
 				},
 				function(res){
 					// popAlert('something wrong')

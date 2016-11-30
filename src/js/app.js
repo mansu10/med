@@ -17,10 +17,27 @@ var app = angular.module('app', [
 * @param  {[type]} $stateParams
 * @return {[type]}
 */
-app.run(function($rootScope, $state, $stateParams) {
+app.run(function($rootScope, $state, $stateParams, $localstorage) {
+	
+	$rootScope.user = $localstorage.getObject('user');
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
+	$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+		if(toState.name=='login' || toState.name == '404')return;// 如果是进入登录界面则允许
+		// 如果用户不存在
+		// alert($rootScope.user);
+		// if(!$rootScope.user || !$rootScope.user.token){
+		// 	event.preventDefault();// 取消默认跳转行为
+		// 	$state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
+		// }
+		if (toState == 'home.userTeacher') {
+			// $state.go("home.userStudent");
+		}
+		
+	});	
 });
+
+
 
 var paths = {
 	tpl: './src/template/',
@@ -30,11 +47,11 @@ app.value("test",{"test":{}})
 app.config(function($stateProvider, $urlRouterProvider) {
 	//
 	// For any unmatched url, redirect to /state1
-	// $urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/404');
 	//
 	// Now set up the states
 	$stateProvider
-		.state('index', {
+		.state('login', {
 			url: '/login',
 			templateUrl: paths.tpl + 'login.html',
 			controller:'LoginCtrl'
@@ -43,6 +60,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/mode',
 			templateUrl: paths.part + 'mode.html',
 			controller:'ModeCtrl'
+		})
+		.state('404', {
+			url: '/404',
+			templateUrl: paths.tpl + '404.html'
 		})
 		// .state('print', {
 		// 	url: '/print',

@@ -5,8 +5,12 @@
         <div ui-view="header"></div>
         <div ui-view></div>
         <!--footer section start-->
-        <footer>
-            2014 &copy; AdminEx 
+        <script>
+            var year = new Date().getFullYear();
+            document.getElementById('footer').innerHTML(year+' &copy; 第二军医大学');
+        </script>
+        <footer id="footer">
+            2016 &copy; 第二军医大学
         </footer>
         <!--footer section end-->           
     </div>

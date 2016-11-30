@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, http, $state,$localstorage) {
+app.controller('LoginCtrl', function($scope, $rootScope, http, $state,$localstorage) {
 
 		$scope.loginInfo = {
 			name: '',
@@ -26,13 +26,16 @@ app.controller('LoginCtrl', function($scope, http, $state,$localstorage) {
 						var user = {
 							"userCode":respone.userCode,
 							"userName":respone.userName,
-							"role":respone.role
+							"role":respone.role,
+							"token": respone.token,
+							"loginTime": respone.loginTime
 						};
 						console.log("USER==="+JSON.stringify(user))
 						$localstorage.setObject("user",user);
+						$rootScope.user = user;
 						var user1 = $localstorage.getObject("user");
 						console.log("USER1==="+JSON.stringify(user1))
-						$state.go('home.dashboard');
+						$state.go('mode');
 					} else{
 						popAlert("密码或用户名有误，请重新输入！！");
 					}

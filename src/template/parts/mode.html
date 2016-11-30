@@ -1,13 +1,13 @@
 <div class="mode-wrapper">
 	<div class="error-wrapper text-center" ng-if="mode == 1">
-		<h3>XX学员，请选择操作环境</h3>
+		<h3>{{user.userName == 'undefined' ? '': user.userName}}学员，请选择操作环境</h3>
 		<div>
 			<a href="javascript:;" class="back-btn" ng-repeat="item in modeList" ng-click="changeMode(item.nextStep,$index)">{{item.title}}</a>
 		</div>		
 	</div>
 
 	<div class="error-wrapper text-center" ng-if="mode == 2">
-		<h3>XX学员，你已经进入{{modeName}}，请选择模拟的药材保障机构</h3>
+		<h3>{{user.userName == 'undefined' ? '': user.userName}}学员，你已经进入{{modeName}}，请选择模拟的药材保障机构</h3>
 		<div class="container">
 			<div class="col-md-2 col-md-offset-2">
 				<h5>药材保障机构:</h5>
@@ -29,7 +29,7 @@
 		<div>
 			<a ui-sref="home.orderAdd" class="back-btn">订单管理</a>
 			<a ui-sref="home.wareInventory" class="back-btn">仓库管理</a>
-			<a ui-sref="home.distrLoad" class="back-btn">配送管理</a>
+			<a ui-sref="home.allocate" class="back-btn">配送管理</a>
 		</div>		
 	</div>	
 </div>

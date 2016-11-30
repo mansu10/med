@@ -233,6 +233,8 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams,$loca
 		$scope.listToggle = function(index){
 			$scope.list.items[index].isActive = !$scope.list.items[index].isActive;
 		}
+		var user = $localstorage.getObject('user');
+
 	})
 	
 	

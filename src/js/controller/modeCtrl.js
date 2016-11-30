@@ -1,4 +1,8 @@
-app.controller('ModeCtrl', function($scope,http){
+app.controller('ModeCtrl', function($scope,http, $localstorage){
+
+	$scope.user = $localstorage.getObject('user');
+	console.log(user);
+
 	$scope.data = [{
 		'title': '药材仓库',
 		'nodes': [{

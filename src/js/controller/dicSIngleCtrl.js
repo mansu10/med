@@ -1,4 +1,4 @@
-app.controller('DicSingleCtrl', function($scope,http, instruct){
+app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 	instruct.set(['']);
 	$rootScope.$broadcast('instructChange');
 

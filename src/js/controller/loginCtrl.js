@@ -1,6 +1,6 @@
 app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localstorage) {
 
-		
+
 
 		$scope.loginInfo = {
 			name: '',
@@ -33,7 +33,8 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 							"userName":respone.userName,
 							"role":respone.role,
 							"token": respone.token,
-							"loginTime": respone.loginTime
+							"loginTime": respone.loginTime,
+							"agencyCode": respone.agencyCode
 						};
 						// console.log("USER==="+JSON.stringify(user))
 						$localstorage.setObject("user",user);

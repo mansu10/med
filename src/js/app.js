@@ -20,11 +20,12 @@ var app = angular.module('app', [
 app.run(function($rootScope, $state, $stateParams, $localstorage, http) {
 	
 	$rootScope.user = $localstorage.getObject('user');
+	
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
 	$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
 
-		if(toState.name=='login' || toState.name == '404')return;// 如果是进入登录界面则允许
+		if(toState.name=='login' || toState.name == '404' || toState.name == 'index')return;// 如果是进入登录界面则允许
 		// 如果用户不存在
 		
 		if(!$rootScope.user || !$rootScope.user.token){
@@ -75,6 +76,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	//
 	// Now set up the states
 	$stateProvider
+		.state('index', {
+			url: '/',
+			controller: function($state){
+				$state.go('login')
+			}
+		})
 		.state('login', {
 			url: '/login',
 			templateUrl: paths.tpl + 'login.html',

@@ -1,4 +1,4 @@
-app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $state){
+app.controller('AllocateGoodsCtrl', function($scope,$rootScope, http,$timeout,$location, $state){
 	$scope.stateFactory = {
 		"query": true,
 		"print": false,
@@ -41,7 +41,8 @@ app.controller('AllocateGoodsCtrl', function($scope,http,$timeout,$location, $st
 				'orderCode': $scope.queryItem.orderCode,
 				'demandAgencyName': $scope.queryItem.demandAgencyName,
 				'orderTimeStart':$scope.queryItem.orderTimeStart,
-				'orderTimeEnd':$scope.queryItem.orderTimeEnd
+				'orderTimeEnd':$scope.queryItem.orderTimeEnd,
+		        'agencyCode':$rootScope.user.agencyCode
 			}, URL.OrderServlet).then(
 				function(respone) {
 					popAlert("查询成功");

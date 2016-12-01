@@ -8,6 +8,11 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var connect = require('gulp-connect');
+var browserSync = require('browser-sync').create();
+
+var paths = {
+    script: './src/js'
+}
 
 
 // 合并，压缩文件
@@ -36,7 +41,7 @@ gulp.task('connect', function() {
     });
 });
 gulp.task('watch', function() {
-    gulp.watch('./js/**/*.js',['libs', 'scripts', 'connect']);
+    gulp.watch('./js/**/*.js',['scripts']);
 })
     // 默认任务
-gulp.task('default', ['watch','libs', 'scripts', 'connect']);
+gulp.task('default', ['watch','scripts', 'connect']);

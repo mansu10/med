@@ -1,9 +1,10 @@
-app.controller('TransLineCtrl', function($scope,http){
+app.controller('TransLineCtrl', function($rootScope, $scope,http){
 	//查询线路分配
 	$scope.queryAllCarLines = function(){
 			http.post({
 					'method': 'findAllGuaranteeRelationShipsBySupplyAgencyCode',
-					'supplyAgencyCode':''
+					'supplyAgencyCode':'',
+		            'agencyCode':$rootScope.user.agencyCode
 				}, URL.GuaranteeRelationShipServlet).then(
 					function(respone) {
 						// alert("查询线路分配");

@@ -1,4 +1,4 @@
-app.controller('LoadQueryCtrl', function($scope,http,$timeout){
+app.controller('LoadQueryCtrl', function($rootScope, $scope,http,$timeout){
 
 	$scope.stateFactory = {
 		"query": true,
@@ -35,7 +35,8 @@ app.controller('LoadQueryCtrl', function($scope,http,$timeout){
 					'method': 'findAllStowages',
 					'stowageCode':$scope.stowageCode,
 					'carCode':$scope.carCode,
-					'orderCode':$scope.orderCode
+					'orderCode':$scope.orderCode,
+		            'agencyCode':$rootScope.user.agencyCode
 				}, URL.StowageServlet).then(
 					function(respone) {
 						popAlert("配载查询成功");

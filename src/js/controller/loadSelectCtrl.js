@@ -1,10 +1,11 @@
-app.controller('LoadSelectCtrl', function($scope,http){
+app.controller('LoadSelectCtrl', function($rootScope, $scope,http){
 
 	$scope.model={'isChecked':'0','isChecked1':'0'};
 	//待选车辆
 	$scope.queryAllCarsWithStatus = function(){
 			http.post({
-					'method': 'queryAllCarsWithStatus'
+					'method': 'queryAllCarsWithStatus',
+		            'agencyCode':$rootScope.user.agencyCode
 				}, URL.CarServlet).then(
 					function(respone) {
 //						popAlert("待选车辆查询成功");
@@ -18,7 +19,8 @@ app.controller('LoadSelectCtrl', function($scope,http){
 	//待装载货物
 	$scope.findAllInvoices = function(){
 			http.post({
-					'method': 'findAllInvoices'
+					'method': 'findAllInvoices',
+		            'agencyCode':$rootScope.user.agencyCode
 				}, URL.InvoiceServlet).then(
 					function(respone) {
 //						popAlert("待装载货物查询成功");

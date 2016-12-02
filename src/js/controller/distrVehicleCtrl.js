@@ -1,4 +1,4 @@
-app.controller('DistrVehicleCtrl', function($scope,http){
+app.controller('DistrVehicleCtrl', function($rootScope, $scope,http){
 	// 浮层控制
 	$scope.modalToggle = function(bool){
 		$scope.modalState = bool;
@@ -110,7 +110,7 @@ app.controller('DistrVehicleCtrl', function($scope,http){
 	//查询车辆信息
 	$scope.queryCars = function(queryItem){
 		
-		http.post({'method':'queryAllCars','numberOrType':queryItem},URL.carQurey).then(
+		http.post({'method':'queryAllCars','numberOrType':queryItem,'agencyCode':$rootScope.user.agencyCode},URL.carQurey).then(
 				function(respone) {
 					console.log("=========查询车辆信息========="+JSON.stringify(respone));
 					$scope.vehicleList = respone;

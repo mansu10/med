@@ -1,4 +1,4 @@
-app.controller('InstSafetyCtrl', function($scope,http){
+app.controller('InstSafetyCtrl', function($rootScope, $scope,http){
 
 	$scope.addNewState = false;
 
@@ -15,7 +15,8 @@ app.controller('InstSafetyCtrl', function($scope,http){
 		http.post({
 				'method': 'findAllGuaranteeRelationShips',
 				'demandAgencyName': $scope.demandAgencyName,
-				'supplyAgencyCode': $scope.supplyAgencyCode
+				'supplyAgencyCode': $scope.supplyAgencyCode,
+	            'agencyCode':$rootScope.user.agencyCode
 			}, URL.GuaranteeRelationShipServlet).then(
 				function(respone) {
 					popAlert("查询成功");
@@ -108,7 +109,8 @@ app.controller('InstSafetyCtrl', function($scope,http){
 		
 		var findAllSupplyAndDemands = function(){
 			http.post({
-				'method': 'findAllSupplyAgencyAndDemandAgencyCodes'
+				'method': 'findAllSupplyAgencyAndDemandAgencyCodes',
+	            'agencyCode':$rootScope.user.agencyCode
 			}, URL.SupplyAgencyServlet).then(
 				function(respone) {
 					$scope.addInfoFilter.supplyAgencyCodes = respone.supplyAgencyCodes;

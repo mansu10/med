@@ -1,4 +1,4 @@
-app.controller('InstDemandCtrl', function($scope,http){
+app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 	
 	$scope.detailState = false;//查看详情
 	$scope.addState = false;//新增
@@ -91,7 +91,8 @@ app.controller('InstDemandCtrl', function($scope,http){
 		http.post({
 				'method':'findAllDemandAgencys',
 				'demandAgencyType':$scope.selectedName,
-				'demandAgencyCode':$scope.demandAgencyName
+				'demandAgencyCode':$scope.demandAgencyName,
+	            'agencyCode':$rootScope.user.agencyCode
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
 					console.log("========= findAllDemandAgencys success！========="+JSON.stringify(respone));

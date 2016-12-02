@@ -1,4 +1,4 @@
-app.controller('DistrLoadCtrl', function($scope,http){
+app.controller('DistrLoadCtrl', function($rootScope, $scope,http){
 
 	/**
 	 * 切换车辆
@@ -52,7 +52,7 @@ app.controller('DistrLoadCtrl', function($scope,http){
 
 	// 获取ajax数据存放对象
 	$scope.vehicleList = {};
-	http.post({'method':'queryAllCars','numberOrType':''},URL.carQurey).then(
+	http.post({'method':'queryAllCars','numberOrType':'','agencyCode':$rootScope.user.agencyCode},URL.carQurey).then(
 			function(respone) {
 				// console.log(JSON.stringify(respone));
 				$scope.vehicleList = respone;

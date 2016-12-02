@@ -64,7 +64,11 @@ app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instru
 		
 	//查询库存信息
 	$scope.queryStorage = function(){
-		http.post({'method':'queryAllStocks','productCodeOrName':$scope.qureyValue},URL.stockQurey).then(
+		http.post({
+			'method':'queryAllStocks',
+			'productCodeOrName':$scope.qureyValue,
+            'agencyCode':$rootScope.user.agencyCode
+		},URL.stockQurey).then(
 				function(respone) {
 					
 					popAlert("queryAllStocks success!");

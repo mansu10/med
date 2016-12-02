@@ -1,4 +1,4 @@
-app.controller('TransVehicleCtrl', function($scope,http){
+app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
 	
 	$scope.stateFactory = {
 		"query": true,
@@ -36,7 +36,7 @@ app.controller('TransVehicleCtrl', function($scope,http){
 			http.post({
 					'method': 'queryAllCars',
 					'numberOrCode':$scope.carNumber,
-					'agencyCode':'B0004'
+		            'agencyCode':$rootScope.user.agencyCode
 				}, URL.CarServlet).then(
 					function(respone) {
 						popAlert("车辆查询成功");

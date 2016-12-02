@@ -1,4 +1,4 @@
-app.controller('InstSupplyCtrl', function($scope, http) {
+app.controller('InstSupplyCtrl', function($scope,$rootScope, http) {
 
 	$scope.detailState = false;//查看详情
 	$scope.addState = false;//新增
@@ -131,7 +131,8 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		http.post({
 			'method': 'findAllSupplyAgencys',
 			'supplyAgencyName': $scope.supplyAgencyName,
-			'supplyAgencyType': $scope.selectedName
+			'supplyAgencyType': $scope.selectedName,
+            'agencyCode':$rootScope.user.agencyCode
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
 				$scope.supplyAgencies = respone.supplyAgencies;
@@ -181,7 +182,8 @@ app.controller('InstSupplyCtrl', function($scope, http) {
 		http.post({
 			'method': 'addSupplyAgency',
 			'supplyAgency': JSON.stringify($scope.supplyAgency),
-			'supplyAgencyJobs':JSON.stringify($scope.supplyAgency.supplyAgencyJobs)
+			'supplyAgencyJobs':JSON.stringify($scope.supplyAgency.supplyAgencyJobs),
+            'agencyCode':$rootScope.user.agencyCode
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
 				

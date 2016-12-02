@@ -76,15 +76,15 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 	//POST请求
 	var post = function(obj,requestUrl) {
 		
-		// console.log("post请求url:" + requestUrl);
-		// console.log("post请求参数:" + JSON.stringify(obj));
+		console.log("post请求url:" + requestUrl);
+		console.log("post请求参数:" + JSON.stringify(obj));
 		
 		var def = $q.defer();
 		
 		$.post(requestUrl, obj, function(data, textStatus, xhr) {
 			
 			// console.log(data);
-			// console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
+			console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
 			if (data.code == 0) {
 				def.resolve(data);
 			} else {

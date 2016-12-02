@@ -1,4 +1,4 @@
-app.controller('OrderAddCtrl', function($scope,http){
+app.controller('OrderAddCtrl', function($scope,$rootScope, http){
 	
 	function FormatDate (strTime) {
     	var date = new Date(strTime);

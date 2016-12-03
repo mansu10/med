@@ -28,9 +28,12 @@
 	<div class="error-wrapper text-center" ng-if="mode == 3">
 		<h3>{{user.userName == 'undefined' ? '': user.userName}}学员，你已经进入{{modeName}}，请选择准备练习的模块</h3>
 		<div>
-			<a ui-sref="home.orderAdd" class="back-btn">订单管理</a>
+			<a ui-sref="home.collectStorage" class="back-btn">集货管理</a>
 			<a ui-sref="home.wareInventory" class="back-btn">仓库管理</a>
-			<a ui-sref="home.allocateCheck" class="back-btn">配送管理</a>
+			<a ui-sref="home.orderAdd" class="back-btn">订单管理</a>
+			<a ui-sref="home.wareInventory" class="back-btn">配货管理</a>
+			<a ui-sref="home.loadQuery" class="back-btn">配载管理</a>
+			<a ui-sref="home.transVehicle" class="back-btn">运输管理</a>
 		</div>		
 	</div>	
 </div>

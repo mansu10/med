@@ -81,25 +81,25 @@
 						<tr ng-show="isCreateAccount">
 							<td></td>
 							<td>
-								<input type="text" class="form-control input-sm" ng-model="newAccount.userCode">
+								<input type="text" required class="form-control input-sm" ng-model="newAccount.userCode">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm" ng-model="newAccount.userPassword">
+								<input type="text" required class="form-control input-sm" ng-model="newAccount.userPassword">
 							</td>
 							<td>
-								<select name="" id="" class="form-control input-sm" ng-model="newAccount.userType">
+								<select name="" id="" required class="form-control input-sm" ng-model="newAccount.userType">
 											<option value="学员">学员</option>
 											<option value="教员">教员</option>
 								</select>
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm" ng-model="newAccount.userName"> 
+								<input type="text" required class="form-control input-sm" ng-model="newAccount.userName"> 
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm" ng-model="newAccount.studentId">
+								<input type="text" required class="form-control input-sm" ng-model="newAccount.studentId">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm" ng-model="newAccount.className">
+								<input type="text" required class="form-control input-sm" ng-model="newAccount.className">
 							</td>
 							<td>
 								<input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="newAccount.startTime">
@@ -108,7 +108,7 @@
 								<input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="newAccount.endTime">
 							</td>
 							<td>
-								<input type="text" class="form-control input-sm" ng-model="newAccount.team">
+								<input type="text" required class="form-control input-sm" ng-model="newAccount.team">
 							</td>
 							<td>
 								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="save()">保存</a>

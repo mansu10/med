@@ -50,7 +50,7 @@
 									<!--<lable class="col-md-4 control-label">用户类型</lable>
 									<div class="col-md-8">-->
 										<lable class="col-md-4 control-label">用户类型</lable>
-										<div class="col-md-8"><input type="text" class="form-control" ng-model="user.userType" ng-disabled="true"></div>
+										<div class="col-md-8"><input type="text" class="form-control" ng-model="user.role" ng-disabled="true"></div>
 										<!--<select name="" id="" class="form-control" ng-model="user.userType" ng-disabled="true">
 											<option value="学员">学员</option>
 											<option value="教员">教员</option>
@@ -83,11 +83,11 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">启用时间</lable>
-									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.startTime" ng-disabled="true"></div>
+									<div class="col-md-8"><input type="text" class="form-control" ng-value="user.startTime | date:'yyyy-MM-dd HH:mm:ss'" ng-disabled="true"></div>
 								</div>
 								<div class="col-md-6">
 									<lable class="col-md-4 control-label">到期时间</lable>
-									<div class="col-md-8"><input type="text" class="form-control" datetime-picker date-format="yyyy-MM-dd" ng-model="user.endTime" ng-disabled="true"></div>
+									<div class="col-md-8"><input type="text" class="form-control"  ng-value="user.endTime |  date:'yyyy-MM-dd HH:mm:ss'" ng-disabled="true"></div>
 								</div>
 							</div>
 						</div>

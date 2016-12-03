@@ -87,7 +87,8 @@ app.controller('AllocateGoodsCtrl', function($scope,$rootScope, http,$timeout,$l
 	var OrderNote = function(orderCode){
 		http.post({
 				'method': 'findPickListByOrderCode',
-				'orderCode': orderCode
+				'orderCode': orderCode,
+		        'agencyCode':$rootScope.user.agencyCode
 			}, URL.PickListServlet).then(
 				function(respone) {
 					popAlert("拣货记录查询成功！");

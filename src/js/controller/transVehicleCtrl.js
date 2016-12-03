@@ -55,7 +55,8 @@ app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
 		}
 			http.post({
 					'method': method,//'addCar','updateCar'
-					'car':JSON.stringify($scope.car)
+					'car':JSON.stringify($scope.car),
+			        'agencyCode':$rootScope.user.agencyCode
 				}, URL.CarServlet).then(
 					function(respone) {
 						popAlert(method+" success!");

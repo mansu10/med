@@ -34,7 +34,12 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 							"role":respone.role,
 							"token": respone.token,
 							"loginTime": respone.loginTime,
-							"agencyCode": respone.agencyCode
+							"agencyCode": respone.agencyCode,
+							"className": respone.className,
+							"studentId": respone.studentId,
+							"startTime": respone.startTime.time,
+							"endTime": respone.endTime.time,
+							"studentId": respone.studentId
 						};
 						// console.log("USER==="+JSON.stringify(user))
 						$localstorage.setObject("user",user);

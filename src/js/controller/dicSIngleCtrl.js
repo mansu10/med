@@ -200,7 +200,8 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 	var addMedList = function(item){
 		http.post({
 				'method': 'addProduct',
-				'product': JSON.stringify(item)
+				'product': JSON.stringify(item),
+		        'agencyCode':$rootScope.user.agencyCode
 			}, URL.ProductServlet).then(
 				function(respone) {
 					popAlert("已添加！");

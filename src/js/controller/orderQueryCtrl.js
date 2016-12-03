@@ -129,7 +129,8 @@ app.controller('OrderQueryCtrl', function($scope,http){
 //	$scope.orderList = lists;
 	
 	$scope.qureyInfo = {
-	    'method':'queryAllOrders'
+	    'method':'queryAllOrders',
+        'agencyCode':$rootScope.user.agencyCode
 	}
 	
 //	$scope.orderQurey = function() {

@@ -256,7 +256,8 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 		var obj = {
 			"method": "findStowageCodesByCarCode",
 			"carCode": carCode,
-			"carStatus": status	
+			"carStatus": status	,
+	        'agencyCode':$rootScope.user.agencyCode
 		}
 		http.post(obj, URL.CarServlet).then(
 			function(res){
@@ -272,7 +273,8 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 	$scope.queryDispatchPlanDetail = function(code){
 		var obj = {
 			"method": "findStowageByCode",
-			"stowageCode":code
+			"stowageCode":code,
+	        'agencyCode':$rootScope.user.agencyCode
 		}
 		http.post(obj, URL.StowageServlet).then(
 			function(res){

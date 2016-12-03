@@ -75,7 +75,8 @@ app.controller('wareMaintainCtrl', function($scope,http){
 	
 	var submit1 = function(){
 		
-		http.post({'method':'addStorageRecord','storageRecord':JSON.stringify(storageRecord)},URL.storageRecordServlet).then(
+		http.post({'method':'addStorageRecord','storageRecord':JSON.stringify(storageRecord),
+		        'agencyCode':$rootScope.user.agencyCode},URL.storageRecordServlet).then(
 				function(respone) {
 					console.log("=========保管养护========="+JSON.stringify(respone));
 					popAlert("已保存！")

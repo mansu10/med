@@ -1,4 +1,4 @@
-app.controller('WareEntryCtrl', function($scope,http){
+app.controller('WareEntryCtrl', function($rootScope, $scope,http){
     //入库管理表
     $scope.entryInfo = {
     	"recevier":"收货人",
@@ -137,7 +137,8 @@ app.controller('WareEntryCtrl', function($scope,http){
 		http.post({
 				'method':'addReceiptAcceptanceRecord',
 				'receiptAcceptanceRecord':JSON.stringify(AcceptanceRecord),
-				'receiptItems':JSON.stringify($scope.items)
+				'receiptItems':JSON.stringify($scope.items),
+		        'agencyCode':$rootScope.user.agencyCode
 			},URL.RARS).then(
 				function(respone) {
 					popAlert("已确认！")

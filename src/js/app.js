@@ -34,25 +34,34 @@ app.run(function($rootScope, $state, $stateParams, $localstorage, http) {
 			$state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
 		}else{
 			// console.log("-------------"+JSON.stringify($rootScope.user));
-			http.post({
-				'method': 'checkToken',
-				'id': $rootScope.user.id,
-				'token': $rootScope.user.token
-			}, URL.UserServlet).then(
-				function(res){
-					if (res.code == 0) {
+			var newT = new Date().getTime();
+			var oldT = $rootScope.user.loginTime.time;
 
-					}else{
-						popAlert(res.error, function(){
-							$state.go('login');
-						})
+			if ((newT - oldT)/1000/60/60 > 6) {
+				$state.go('login');
+			}else{
+				http.post({
+					'method': 'checkToken',
+					'id': $rootScope.user.id,
+					'token': $rootScope.user.token
+				}, URL.UserServlet).then(
+					function(res){
+						if (res.code == 0) {
+
+						}else{
+							popAlert(res.error, function(){
+								$state.go('login');
+							})
+						}
+						$('body').scrollTop(0);
+					},
+					function(res){
+						// popAlert('something wrong')
 					}
-					$('body').scrollTop(0);
-				},
-				function(res){
-					// popAlert('something wrong')
-				}
-			)
+				)				
+			}
+
+
 		}
 
 		if (toState == 'home.userTeacher') {

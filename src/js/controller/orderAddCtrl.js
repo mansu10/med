@@ -74,7 +74,8 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 		//查询所有商品信息
 		var queryProduct = function() {	
 			
-			http.post({'method':'queryProduct'},URL.productQurey).then(
+			http.post({'method':'queryProduct',
+		        'agencyCode':$rootScope.user.agencyCode},URL.productQurey).then(
 				function(respone) {
 					console.log("queryProduct info --->"+respone);
 					productList = respone.products;

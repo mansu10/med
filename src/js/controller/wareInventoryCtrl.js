@@ -235,7 +235,8 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 		
 		http.post({
 				'method':'addDepot',
-				'depot':JSON.stringify($scope.newDepot)
+				'depot':JSON.stringify($scope.newDepot),
+		        'agencyCode':$rootScope.user.agencyCode
 			},URL.DepotServlet).then(
 				function(respone) {
 					console.log("=========新建仓库========="+JSON.stringify(respone));
@@ -309,7 +310,8 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 		
 		http.post({
 				'method':'addCargoArea',
-				'cargoAreas':JSON.stringify($scope.addCargoAreas)
+				'cargoAreas':JSON.stringify($scope.addCargoAreas),
+		        'agencyCode':$rootScope.user.agencyCode
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========新建货区========="+JSON.stringify(respone));
@@ -410,7 +412,8 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 		
 		http.post({
 				'method':'addShelf',
-				'shelfs':JSON.stringify($scope.addShelfList)
+				'shelfs':JSON.stringify($scope.addShelfList),
+		        'agencyCode':$rootScope.user.agencyCode
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========新建货架========="+JSON.stringify(respone));
@@ -432,7 +435,8 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 	function catCargoAreaCodesByDepotCode(depotCode){//货位查询
 		http.post({
 				'method':'findCargoAreaCodesByDepotCode',
-				'depotCode':depotCode
+				'depotCode':depotCode,
+		        'agencyCode':$rootScope.user.agencyCode
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========货区分配========="+JSON.stringify(respone));
@@ -681,7 +685,8 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 	function queryAllShelfsByDepotCode(depotCode){
 		http.post({//货架查询
 				'method':'queryAllShelfs',
-				'depotCode':depotCode
+				'depotCode':depotCode,
+		        'agencyCode':$rootScope.user.agencyCode
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========查询货架调整========="+JSON.stringify(respone));

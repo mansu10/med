@@ -1,16 +1,16 @@
-app.controller('UserStudentCtrl', function($scope,http){
+app.controller('UserStudentCtrl', function($rootScope, $scope,http){
     var id = 0;
-    $scope.user = {
-			    	'userCode':'测试用户',
-				    'userName':'测试',
-				    'userType':'学员',
-				    'userPassword':'123322',
-				    'studentId':'20131202',
-				    'className':'药理2班',
-				    'startTime':'2016-08-01',
-				    'endTime':'2016-11-01'
-				};
-				
+    // $scope.user = {
+			 //    	'userCode':'测试用户',
+				//     'userName':'测试',
+				//     'userType':'学员',
+				//     'userPassword':'123322',
+				//     'studentId':'20131202',
+				//     'className':'药理2班',
+				//     'startTime':'2016-08-01',
+				//     'endTime':'2016-11-01'
+				// };
+	$scope.user = $rootScope.user;
 	$scope.userPassword = '';
 				
 	$scope.updateUser = function(){
@@ -22,7 +22,7 @@ app.controller('UserStudentCtrl', function($scope,http){
 		http.post({
 				'method':'updateUser',
 				'user':JSON.stringify({
-					'id':id,
+					'id':$scope.user.id,
 					'userPassword':$scope.userPassword
 				})
 			},URL.UserServlet).then(

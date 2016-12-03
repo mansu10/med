@@ -126,7 +126,8 @@ app.controller('DistrVehicleCtrl', function($rootScope, $scope,http){
 	//添加车辆信息
     $scope.addCars = function(newItem){
 		console.log("===========add cars============"+newItem);
-    	http.post({'method':'addCar','car': newItem},URL.carQurey).then(
+    	http.post({'method':'addCar','car': newItem,
+		        'agencyCode':$rootScope.user.agencyCode},URL.carQurey).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
 					popAlert(JSON.stringify("添加成功"+JSON.stringify(respone)));

@@ -141,7 +141,8 @@ app.controller('WareShelvesCtrl', function($rootScope, $scope,http){
 				});
 		})
 		
-		http.post({'method':'addStock','stocks':JSON.stringify(stocks)},URL.stockQurey).then(
+		http.post({'method':'addStock','stocks':JSON.stringify(stocks),
+		        'agencyCode':$rootScope.user.agencyCode},URL.stockQurey).then(
 				function(respone) {
 					console.log("=========入库提交========="+JSON.stringify(respone));
 					popAlert("已成功入库！");

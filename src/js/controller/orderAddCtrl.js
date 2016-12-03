@@ -1,4 +1,4 @@
-app.controller('OrderAddCtrl', function($scope,$rootScope, http){
+app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 	
 	function FormatDate (strTime) {
     	var date = new Date(strTime);
@@ -57,6 +57,7 @@ app.controller('OrderAddCtrl', function($scope,$rootScope, http){
 			
 			$scope.orderForm.orderItems = JSON.stringify($scope.items);
 			console.log(JSON.stringify($scope.orderForm)+"==============="+$scope.orderForm.orderItems);
+			$scope.orderForm.agencyCode = $rootScope.user.agencyCode;
 			http.post($scope.orderForm,URL.orderAdd).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));

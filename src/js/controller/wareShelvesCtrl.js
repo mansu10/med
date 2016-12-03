@@ -1,4 +1,4 @@
-app.controller('WareShelvesCtrl', function($scope,http){
+app.controller('WareShelvesCtrl', function($rootScope, $scope,http){
 
 	$scope.items = [
 			{
@@ -52,7 +52,8 @@ app.controller('WareShelvesCtrl', function($scope,http){
 		
 		console.log("llllllllll:"+$scope.startTime+" / endTime :"+$scope.endTime);
 		
-		http.post({'method':'queryAllReceiptAcceptanceRecords','receiptTimeStartStr':$scope.startTime,'receiptTimeEndStr':$scope.endTime},URL.RARS).then(
+		http.post({'method':'queryAllReceiptAcceptanceRecords','receiptTimeStartStr':$scope.startTime,'receiptTimeEndStr':$scope.endTime,
+            'agencyCode':$rootScope.user.agencyCode},URL.RARS).then(
 				function(respone) {
 					$scope.items = respone.receiptAcceptanceRecords;
 					console.log("=========queryAllReceiptAcceptanceRecords========="+JSON.stringify(respone));
@@ -65,7 +66,8 @@ app.controller('WareShelvesCtrl', function($scope,http){
 	
 	//明细查询
 	$scope.queryDetail = function(receiptCode){
-		http.post({'method':'queryRecordAndItemByCode','receiptCode':receiptCode},URL.RARS).then(
+		http.post({'method':'queryRecordAndItemByCode','receiptCode':receiptCode,
+            'agencyCode':$rootScope.user.agencyCode},URL.RARS).then(
 				function(respone) {
 					$scope.entryInfo = respone.receiptAcceptanceRecord;
 					angular.forEach($scope.entryInfo.items,function(item){

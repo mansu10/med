@@ -1,4 +1,4 @@
-app.controller('UserTeacherCtrl', function($scope,http){
+app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
     $scope.users = [];
     var temp = [];
     $scope.queryInfo = {
@@ -9,16 +9,18 @@ app.controller('UserTeacherCtrl', function($scope,http){
     }
     
     $scope.queryUser = function(){
+    	console.log(JSON.stringify($rootScope.user.agencyCode));
 		http.post({
 				'method':'queryUser',
 				'userCode':$scope.queryInfo.userCode,
 				'userName':$scope.queryInfo.userName,
 				'userType':$scope.queryInfo.userType,
-				'className':$scope.queryInfo.className
+				'className':$scope.queryInfo.className,
+	            'agencyCode':$rootScope.user.agencyCode
 			},URL.UserServlet).then(
 				function(respone) {
 					$scope.users = respone.order;	
-					popAlert('queryUser success!')
+					// popAlert('queryUser success!')
 				},
 				function(respone) {
 					console.log("queryUser failed!" + JSON.stringify(respone));
@@ -53,7 +55,8 @@ app.controller('UserTeacherCtrl', function($scope,http){
 		
 		http.post({
 				'method':'addUser',
-				'user':getUserInfoStr($scope.newAccount)
+				'user':getUserInfoStr($scope.newAccount),
+	            'agencyCode':$rootScope.user.agencyCode
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========已保存========="+JSON.stringify(respone));
@@ -101,7 +104,12 @@ app.controller('UserTeacherCtrl', function($scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========已删除========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone))
+					if (respone.code == 0) {
+						popAlert("删除成功");
+					}else{
+						popAlert(JSON.stringify(respone));
+					}
+					
 				},
 				function(respone) {
 					console.log("deleteUser failed!" + JSON.stringify(respone));

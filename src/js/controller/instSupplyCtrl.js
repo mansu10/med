@@ -1,4 +1,5 @@
-app.controller('InstSupplyCtrl', function($scope,$rootScope, http) {
+app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
+
 
 	$scope.detailState = false;//查看详情
 	$scope.addState = false;//新增

@@ -1,4 +1,4 @@
-app.controller('InstSafetyCtrl', function($scope,$rootScope, http){
+app.controller('InstSafetyCtrl', function($rootScope, $scope,http){
 
 	$scope.addNewState = false;
 
@@ -109,7 +109,8 @@ app.controller('InstSafetyCtrl', function($scope,$rootScope, http){
 		
 		var findAllSupplyAndDemands = function(){
 			http.post({
-				'method': 'findAllSupplyAgencyAndDemandAgencyCodes'
+				'method': 'findAllSupplyAgencyAndDemandAgencyCodes',
+	            'agencyCode':$rootScope.user.agencyCode
 			}, URL.SupplyAgencyServlet).then(
 				function(respone) {
 					$scope.addInfoFilter.supplyAgencyCodes = respone.supplyAgencyCodes;

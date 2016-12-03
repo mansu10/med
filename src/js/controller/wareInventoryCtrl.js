@@ -1,4 +1,4 @@
-app.controller('WareInventoryCtrl', function($scope,http){
+app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 
 	var currentDepotCode;
 	$scope.states = {
@@ -110,7 +110,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 	 ***********************************************************************/
 	
 	http.post({
-				'method':'queryAllDepots'
+				'method':'queryAllDepots',
+	            'agencyCode':$rootScope.user.agencyCode
 			},URL.DepotServlet).then(
 				function(respone) {
 					$scope.wareList = respone.depots;
@@ -130,7 +131,8 @@ app.controller('WareInventoryCtrl', function($scope,http){
 		currentDepotCode = depotCode;
 		http.post({
 				'method':'findDepotByCode',
-				'depotCode':depotCode
+				'depotCode':depotCode,
+	            'agencyCode':$rootScope.user.agencyCode
 			},URL.DepotServlet).then(
 				function(respone) {
 					$scope.selectedList.cargoAreas = respone.depots.cargoAreas;

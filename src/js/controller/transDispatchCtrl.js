@@ -72,7 +72,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 	$scope.queryAllCarsWithCode = function(){
 			http.post({
 					'method': 'queryAllCarsWithCode',
-					'agencyCode':'B0004'
+		            'agencyCode':$rootScope.user.agencyCode
 				}, URL.CarServlet).then(
 					function(respone) {
 						// alert("查询线路分配");
@@ -93,7 +93,8 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 		var data = {
 			"method": "findStowageCodesByCarCode",
 			"carCode": carCode,
-			"carStatus": status
+			"carStatus": status,
+            'agencyCode':$rootScope.user.agencyCode
 		}
 		http.post(data, URL.CarServlet).then(
 			function(res){
@@ -115,7 +116,8 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 	$scope.queryStowageList = function(code){
 		var obj = {
 			"method": "findStowageByCode",
-			"stowageCode":code
+			"stowageCode":code,
+            'agencyCode':$rootScope.user.agencyCode
 		}
 		http.post(obj, URL.StowageServlet).then(
 			function(res){

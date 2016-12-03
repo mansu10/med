@@ -33,7 +33,8 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 		http.post({
 				'method': 'queryProduct',
 				'productName': $scope.queryInfo.medName,
-				'herbsType': $scope.queryInfo.medType
+				'herbsType': $scope.queryInfo.medType,
+	            'agencyCode':$rootScope.user.agencyCode
 			}, URL.ProductServlet).then(
 				function(respone) {
 					popAlert("查询成功");

@@ -1,4 +1,4 @@
-app.controller('OrderAuditCtrl', function($scope,http){
+app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 	
 	// 切换显示状态
 	$scope.auditState = true;
@@ -124,7 +124,7 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	/************* 组装form end    ***********/
 	
 	//每次进入审核页拉取订单信息
-	http.post({'method':'queryAllOrders'},URL.orderQurey).then(
+	http.post({'method':'queryAllOrders', 'agencyCode':$rootScope.user.agencyCode},URL.orderQurey).then(
 			function(respone) {
 				$scope.orderList.order = filterOrderByStatus(respone.order);
 			},
@@ -149,7 +149,8 @@ app.controller('OrderAuditCtrl', function($scope,http){
 	//进入审核明细时拉取
 	var queryAuditOrder = function(id){
 		
-		http.post({'method':'queryOrderAndItem','orderCode':id},URL.orderQurey).then(
+		http.post({'method':'queryOrderAndItem','orderCode':id,
+            'agencyCode':$rootScope.user.agencyCode},URL.orderQurey).then(
 			function(respone) {
 					console.log("queryOrderAndItem:"+JSON.stringify(respone));
 					popAlert("queryOrderAndItem success!")

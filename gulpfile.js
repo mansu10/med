@@ -36,7 +36,7 @@ gulp.task('libs', function() {
 })
 gulp.task('connect', function() {
     connect.server({
-
+        port: 1300,
         livereload: true
     });
 });

@@ -44,7 +44,7 @@
 	          'fa-folder-open': !collapsed
 	        }" ng-if="node.nodes && node.nodes.length > 0"></i>
         <div class="tree-folder-name">
-        	{{node.title}}
+        	<a ui-sref="home">{{node.title}}</a>
         </div>
    </div>
     <div ui-tree-nodes=""  ng-model="node.nodes" class="tree-folder-content" ng-class="{hidden: collapsed}">

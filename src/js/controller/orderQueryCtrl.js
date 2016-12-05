@@ -1,4 +1,4 @@
-app.controller('OrderQueryCtrl', function($scope,http){
+app.controller('OrderQueryCtrl', function($rootScope, $scope,http){
 	$scope.modalToggle = function(bool,item){
 		$scope.modalState = bool;
 		$scope.modalInfo = item;
@@ -137,7 +137,7 @@ app.controller('OrderQueryCtrl', function($scope,http){
 			
 			http.post($scope.qureyInfo,URL.orderQurey).then(
 				function(respone) {
-					console.log(JSON.stringify(respone));
+					// console.log(JSON.stringify(respone));
 					$scope.orderList = respone.order;
 					lists = respone.order;
 //					popAlert("查询成功！")	

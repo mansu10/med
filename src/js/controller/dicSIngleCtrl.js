@@ -37,7 +37,9 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 	            'agencyCode':$rootScope.user.agencyCode
 			}, URL.ProductServlet).then(
 				function(respone) {
-					popAlert("查询成功");
+					if (respone.code != 0) {
+						popAlert(JSON.stringify(respone));
+					}
 					$scope.medList = respone.products;
 				},
 				function(respone) {

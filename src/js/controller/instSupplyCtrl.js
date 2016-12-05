@@ -137,7 +137,10 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
 				$scope.supplyAgencies = respone.supplyAgencies;
-				popAlert("findAllSupplyAgencys success！")
+				if (respone.code != 0) {
+					popAlert(JSON.stringify(respone));
+				}
+				
 			},
 			function(respone) {
 				console.log("findAllSupplyAgencys failed!" + JSON.stringify(respone));
@@ -187,8 +190,9 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
             'agencyCode':$rootScope.user.agencyCode
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
-				
-				popAlert("addSupplyAgency success！");
+				if (respone.code != 0) {
+					popAlert(JSON.stringify(respone));
+				}
 				$scope.supplyAgency.id = respone.id;
 				$scope.supplyAgencies.push(angular.copy($scope.supplyAgency));
 			},

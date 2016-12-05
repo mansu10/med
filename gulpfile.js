@@ -17,7 +17,12 @@ var paths = {
 
 // 合并，压缩文件
 gulp.task('scripts', function() {
-    gulp.src(['./src/js/service/*.js', './src/js/directives/*.js', './src/js/filter/*.js', './src/js/controller/*.js'])
+    gulp.src([
+        './src/js/service/*.js', 
+        './src/js/directives/*.js', 
+        './src/js/filter/*.js', 
+        './src/js/controller/*.js'
+    ])
         .pipe(ngAnnotate())
         .pipe(concat('bundle.js'))
         .pipe(gulp.dest('./dist'))
@@ -41,7 +46,7 @@ gulp.task('connect', function() {
     });
 });
 gulp.task('watch', function() {
-    gulp.watch('./js/**/*.js',['scripts']);
+    gulp.watch('./src/js/**/*.js',['scripts']);
 })
     // 默认任务
 gulp.task('default', ['watch','scripts', 'connect']);

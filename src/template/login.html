@@ -9,10 +9,10 @@
 
             </div>
             <div class="login-wrap">
-                <input type="text" ng-model="loginInfo.name" class="form-control" placeholder="用户名" autofocus>
-                <input type="password" ng-model="loginInfo.password" class="form-control" placeholder="密码">
+                <input type="text" ng-model="loginInfo.name" class="form-control" placeholder="用户名" ng-keyup="doLogin($event)" autofocus>
+                <input type="password" ng-model="loginInfo.password" class="form-control" placeholder="密码" ng-keyup="doLogin($event)">
 
-                <a class="btn btn-lg btn-login btn-block" ng-click="login()">
+                <a class="btn btn-lg btn-login btn-block" ng-click="login()" >
                     <i class="fa fa-check"></i>
                 </a>
                 <label class="checkbox">

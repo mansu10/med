@@ -17,7 +17,7 @@ var app = angular.module('app', [
 * @param  {[type]} $stateParams
 * @return {[type]}
 */
-app.run(function($rootScope, $state, $stateParams, $localstorage, http) {
+app.run(function($rootScope, $state, $stateParams, $localstorage, http, $location) {
 	
 	$rootScope.user = $localstorage.getObject('user');
 	
@@ -25,13 +25,19 @@ app.run(function($rootScope, $state, $stateParams, $localstorage, http) {
 	$rootScope.$stateParams = $stateParams;
 	$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
 
-		if(toState.name=='login' || toState.name == '404' || toState.name == 'index')return;// 如果是进入登录界面则允许
+		if(toState.name=='login' || toState.name == '404' )return;// 如果是进入登录界面则允许
+		// console.log(toState);
+		if (toState.url == ''|| toState.url == '/' || $location.hash() == "") {
+			// console.log($location.hash())
+			$state.go("login");
+			return;
+		}
 		// 如果用户不存在
-		
 		if(!$rootScope.user || !$rootScope.user.token){
 			event.preventDefault();// 取消默认跳转行为
 			popAlert("用户状态失效，请重新登录");
 			$state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
+			return;
 		}else{
 			// console.log("-------------"+JSON.stringify($rootScope.user));
 			var newT = new Date().getTime();

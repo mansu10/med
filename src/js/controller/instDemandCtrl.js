@@ -97,7 +97,9 @@ app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 				function(respone) {
 					console.log("========= findAllDemandAgencys success！========="+JSON.stringify(respone));
 					$scope.demandAgencyList = respone.demandAgencies;
-					popAlert("findAllDemandAgencys success！")
+					if (respone.code != 0) {
+						popAlert(JSON.stringify(respone));
+					}
 				},
 				function(respone) {
 					console.log("findAllDemandAgencys failed!" + JSON.stringify(respone));

@@ -6,7 +6,11 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 			name: '',
 			password: ''
 		}
-
+		$scope.doLogin = function(e){
+			if (e.keyCode == 13) {
+				$scope.login();
+			}
+		}
 		$scope.login = function() {
 			
 			// console.log("login info:" + JSON.stringify($scope.loginInfo));

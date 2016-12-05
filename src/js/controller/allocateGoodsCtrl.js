@@ -102,7 +102,7 @@ app.controller('AllocateGoodsCtrl', function($scope,$rootScope, http,$timeout,$l
 	
 	$scope.updateOrderNote = function(){
 		var temp = [];
-		
+		// if (!!$scope.OrderNote.pickListItems) {return;}
 		angular.forEach($scope.OrderNote.pickListItems,function(item){
 			temp.push({
 				'productCode':item.productCode,

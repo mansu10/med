@@ -1,4 +1,4 @@
-app.controller('wareMaintainCtrl', function($scope,http){
+app.controller('wareMaintainCtrl', function($rootScope, $scope,http){
     //
     $scope.maintainInfo = {
     	"storage":"1111",

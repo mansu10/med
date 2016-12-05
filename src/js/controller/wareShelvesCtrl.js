@@ -1,32 +1,32 @@
 app.controller('WareShelvesCtrl', function($rootScope, $scope,http){
 
 	$scope.items = [
-			{
-	            "id": 1,
-	            "receiptCode": "20160906111111",
-	            "receiptTime": "2016-09-06 11:11:11",
-	            "goodsDescription": "货物描述",
-	            "receiptType": "配发收货",
-	            "supplierName": "供货商名称",
-	            "deliveryName": "送货商"
-	        },
-	        {
-	            "id": 2,
-	            "receiptCode": "20160907121212",
-	            "receiptTime": "2016-09-07 12:12:12",
-	            "goodsDescription": "货物描述",
-	            "receiptType": "外购收货",
-	            "supplierName": "供货商名称",
-	            "deliveryName": "送货商名称"
-	        },
-	        {
-	            "id": 5,
-	            "receiptCode": "20160907113740",
-	            "receiptTime": "2016-09-07 11:37:40",
-	            "goodsDescription": "11111",
-	            "receiptType": "配发收货",
-	            "supplierName": "大润发"
-	        }
+			// {
+	  //           "id": 1,
+	  //           "receiptCode": "20160906111111",
+	  //           "receiptTime": "2016-09-06 11:11:11",
+	  //           "goodsDescription": "货物描述",
+	  //           "receiptType": "配发收货",
+	  //           "supplierName": "供货商名称",
+	  //           "deliveryName": "送货商"
+	  //       },
+	  //       {
+	  //           "id": 2,
+	  //           "receiptCode": "20160907121212",
+	  //           "receiptTime": "2016-09-07 12:12:12",
+	  //           "goodsDescription": "货物描述",
+	  //           "receiptType": "外购收货",
+	  //           "supplierName": "供货商名称",
+	  //           "deliveryName": "送货商名称"
+	  //       },
+	  //       {
+	  //           "id": 5,
+	  //           "receiptCode": "20160907113740",
+	  //           "receiptTime": "2016-09-07 11:37:40",
+	  //           "goodsDescription": "11111",
+	  //           "receiptType": "配发收货",
+	  //           "supplierName": "大润发"
+	  //       }
 		];
 
 	/**

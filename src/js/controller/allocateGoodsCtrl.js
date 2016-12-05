@@ -91,8 +91,14 @@ app.controller('AllocateGoodsCtrl', function($scope,$rootScope, http,$timeout,$l
 		        'agencyCode':$rootScope.user.agencyCode
 			}, URL.PickListServlet).then(
 				function(respone) {
-					popAlert("拣货记录查询成功！");
-					$scope.OrderNote = respone.pickLists;
+
+					if (respone.code == 0 && !!respone.pickLists) {
+						popAlert("拣货记录查询成功！");
+						$scope.OrderNote = respone.pickLists;	
+					}else{
+						popAlert("无相关拣货记录");
+					}
+
 		
 				},
 				function(respone) {

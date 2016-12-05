@@ -200,7 +200,7 @@ app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instru
 		http.post({'method':'addRaiseInventory','inventorys':JSON.stringify(temp)},URL.raiseInventory).then(
 				function(respone) {
 		
-					popAlert("筹措清单提交成功！")
+					popAlert("筹措清单提交成功！",function(){window.location.reload()})
 				},
 				function(respone) {
 					console.log("addRaiseInventory failed!" + JSON.stringify(respone));

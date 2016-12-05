@@ -67,12 +67,15 @@ app.controller('CollectStorageCtrl', function($scope,$rootScope, http, instruct)
 		http.post({'method':'queryAllStocks','productCodeOrName':$scope.qureyValue,
 		            'agencyCode':$rootScope.user.agencyCode},URL.stockQurey).then(
 				function(respone) {
-					popAlert("queryAllStocks success!");
+					if (respone.code != 0) {
+						popAlert(JSON.stringify(respone));
+					}
+					popAlert("库存查询成功!");
 					refreshStorageList(respone.stocks);
 				},
 				function(respone) {
 					console.log("queryAllStocks failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert(JSON.stringify(respone));
 		});
 	}
 	$scope.queryStorage();

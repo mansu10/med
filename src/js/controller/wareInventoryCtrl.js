@@ -204,20 +204,20 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 ****************************************************************************/      
 	$scope.hasSaveDepot = false;
 	$scope.newDepot = {
-//						"id": null,
-//				        "depotCode": null,
-//				        "depotName": null,
-//				        "depotType": null,
-//				        "depotAddress": null,
-//				        "principal": null,
-//				        "depotLength": null,
-//				        "depotWidth": null,
-//				        "depotHeigth": null,
-//				        "depotVolume": null,
-//				        "cargoAreas": null,
-//				        "depotNumber": null,
-//				        "reservoirs": null,
-//				        "depotCount": null
+						"id": null,
+				        "depotCode": null,
+				        "depotName": null,
+				        "depotType": null,
+				        "depotAddress": null,
+				        "principal": null,
+				        "depotLength": null,
+				        "depotWidth": null,
+				        "depotHeigth": null,
+				        "depotVolume": null,
+				        "cargoAreas": null,
+				        "depotNumber": null,
+				        "reservoirs": null,
+				        "depotCount": null
 				};
 	/**
 	 * 新增仓库 保存
@@ -228,7 +228,13 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			popAlert("仓库信息不能为空！");
 			return;
 		}
-		$scope.newDepot.id = $scope.wareList[$scope.wareList.length-1].id + 1;
+
+		if(isEmptyValue($scope.wareList)){
+			$scope.newDepot.id = 1;
+		}else{
+			$scope.newDepot.id = $scope.wareList[$scope.wareList.length-1].id + 1;
+		}
+
 		$scope.wareList.push(angular.copy($scope.newDepot));
 		console.log($scope.wareList);
 		$scope.hasSaveDepot = true;
@@ -240,7 +246,7 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.DepotServlet).then(
 				function(respone) {
 					console.log("=========新建仓库========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("新建仓库保存成功！");
 				},
 				function(respone) {
 					console.log("addDepot failed!" + JSON.stringify(respone));

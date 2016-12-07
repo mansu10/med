@@ -417,13 +417,13 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========新建货架========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					// popAlert(JSON.stringify(respone));
 					//货区调整 / 分配
 					$scope.addNewShelfs = angular.copy($scope.addShelfList);
 				},
 				function(respone) {
 					console.log("addShelf add failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -448,11 +448,11 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 					});
 					*/
 					console.log("=========$scope.cargoAreaAssignArray========="+JSON.stringify($scope.cargoAreaAssignArray));
-					popAlert("findCargoAreaCodesByDepotCode success!")
+					// popAlert("findCargoAreaCodesByDepotCode success!")
 				},
 				function(respone) {
 					console.log("CargoAreaServlet failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 		
@@ -473,11 +473,11 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========updateShelf========="+JSON.stringify(respone));
-					popAlert("updateShelf success!"+JSON.stringify(respone));
+					popAlert('操作成功！');
 				},
 				function(respone) {
 					console.log("updateShelf failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 		
@@ -534,11 +534,11 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.DepotServlet).then(
 				function(respone) {
 					console.log("=========调整仓库========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert('操作成功');
 				},
 				function(respone) {
 					console.log("调整货仓库failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	/**************************************调整货仓 end*********************************************/
@@ -595,11 +595,11 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========调整货区========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert('操作成功');
 				},
 				function(respone) {
 					console.log("updateCargoArea failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	/**************************************调整货区  end*********************************************/
@@ -674,11 +674,11 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.ShelfServlet).then(
 				function(respone) {
 					console.log("=========调整货架修改提交========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					// popAlert(JSON.stringify(respone));
 				},
 				function(respone) {
 					console.log("addShelf add failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -691,11 +691,11 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 				function(respone) {
 					console.log("=========查询货架调整========="+JSON.stringify(respone));
 					$scope.addAdjustShelfList = respone.shelfs;
-					popAlert("queryAllShelfsByDepotCode success!")
+					// popAlert("queryAllShelfsByDepotCode success!")
 				},
 				function(respone) {
 					console.log("queryAllShelfs failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	

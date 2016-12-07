@@ -24,7 +24,7 @@ app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("queryUser failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
     
@@ -75,7 +75,7 @@ app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("addUser failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});	
 		
 	}
@@ -107,13 +107,13 @@ app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
 					if (respone.code == 0) {
 						popAlert("删除成功");
 					}else{
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					}
 					
 				},
 				function(respone) {
 					console.log("deleteUser failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 		
 		$scope.users.splice(index,1);
@@ -128,11 +128,11 @@ app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========密码已重置========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone))
+					popAlert('操作成功！')
 				},
 				function(respone) {
 					console.log("resetPassword failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -143,11 +143,11 @@ app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========updateUser========="+JSON.stringify(respone));
-					popAlert("=========updateUser success!========="+JSON.stringify(respone))
+					popAlert('操作成功！')
 				},
 				function(respone) {
 					console.log("updateUser failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	

@@ -11,7 +11,7 @@ app.controller('TransLineCtrl', function($rootScope, $scope,http){
 						$scope.carLines = respone.guaranteeRelationShips;
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	}
 	$scope.queryAllCarLines();
@@ -32,7 +32,7 @@ app.controller('TransLineCtrl', function($rootScope, $scope,http){
 						$scope.edit(index);
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	};
 

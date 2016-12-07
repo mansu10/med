@@ -64,7 +64,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams, $loc
 							"url": ".collectStorage",
 							"isActive":false
 						},{
-							"title": "药材筹措",
+							"title": "补库计划",
 							"url": ".collectSupplement",
 							"isActive":false
 					  }]					

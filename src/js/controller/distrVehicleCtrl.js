@@ -117,7 +117,7 @@ app.controller('DistrVehicleCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("queryCars failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -134,7 +134,7 @@ app.controller('DistrVehicleCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("addCars failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
     }
     
@@ -148,7 +148,7 @@ app.controller('DistrVehicleCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("updateCars failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
     }
     
@@ -158,11 +158,11 @@ app.controller('DistrVehicleCtrl', function($rootScope, $scope,http){
     	http.post({'method':'deleteCar','id':id},URL.carQurey).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					popAlert(JSON.stringify("deleteCars成功"+JSON.stringify(respone)));
+					popAlert(JSON.stringify("删除成功"+JSON.stringify(respone)));
 				},
 				function(respone) {
 					console.log("deleteCars!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
     }
     

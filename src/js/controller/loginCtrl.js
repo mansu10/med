@@ -58,7 +58,7 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 				},
 				function(respone) {
 					// console.log("login failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 				});
 		}
 	})

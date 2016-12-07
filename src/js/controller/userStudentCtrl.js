@@ -32,7 +32,7 @@ app.controller('UserStudentCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("updateUser failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 				

@@ -119,7 +119,7 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("queryAllDepots failed!" + JSON.stringify(respone));
-//					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 		
 	/**
@@ -141,7 +141,7 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("findDepotByCode failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -240,11 +240,11 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.DepotServlet).then(
 				function(respone) {
 					console.log("=========新建仓库========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert('操作成功！');
 				},
 				function(respone) {
 					console.log("addDepot failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -315,13 +315,13 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 			},URL.CargoAreaServlet).then(
 				function(respone) {
 					console.log("=========新建货区========="+JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert('操作成功！');
 				//	$scope.selectCargoAreaList = angular.copy($scope.addCargoAreas);
 					createSelectCargoAreaList(angular.copy($scope.addCargoAreas));
 				},
 				function(respone) {
 					console.log("CargoAreaServlet add failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	

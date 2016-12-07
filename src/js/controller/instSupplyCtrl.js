@@ -138,13 +138,13 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 			function(respone) {
 				$scope.supplyAgencies = respone.supplyAgencies;
 				if (respone.code != 0) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 				}
 				
 			},
 			function(respone) {
 				console.log("findAllSupplyAgencys failed!" + JSON.stringify(respone));
-				popAlert(JSON.stringify(respone));
+				popAlert("操作失败："+JSON.stringify(respone));
 			});
 	}
 
@@ -191,14 +191,14 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 		}, URL.SupplyAgencyServlet).then(
 			function(respone) {
 				if (respone.code != 0) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 				}
 				$scope.supplyAgency.id = respone.id;
 				$scope.supplyAgencies.push(angular.copy($scope.supplyAgency));
 			},
 			function(respone) {
 				console.log("addSupplyAgency failed!" + JSON.stringify(respone));
-				popAlert(JSON.stringify(respone));
+				popAlert("操作失败："+JSON.stringify(respone));
 			});
 	};
 
@@ -217,7 +217,7 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 			},
 			function(respone) {
 				console.log("updateSupplyAgency failed!" + JSON.stringify(respone));
-				popAlert(JSON.stringify(respone));
+				popAlert("操作失败："+JSON.stringify(respone));
 			});
 	};
 
@@ -281,7 +281,7 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 				},
 				function(respone) {
 					console.log("deleteSupplyAgency failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 				});
 
 			$scope.selected = [];

@@ -98,12 +98,12 @@ app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 					console.log("========= findAllDemandAgencys success！========="+JSON.stringify(respone));
 					$scope.demandAgencyList = respone.demandAgencies;
 					if (respone.code != 0) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					}
 				},
 				function(respone) {
 					console.log("findAllDemandAgencys failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -153,11 +153,11 @@ app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 			
 					$scope.demandAgency.id = respone.id;
 					$scope.demandAgencyList.push(angular.copy($scope.demandAgency));
-					popAlert("addDemandAgency success!")
+					popAlert("添加成功");
 				},
 				function(respone) {
 					console.log("demandAgency failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -171,12 +171,12 @@ app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 				'demandAgency':JSON.stringify($scope.demandAgency)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					popAlert("updateDemandAgency success！")
+					popAlert("更新成功！")
 					
 				},
 				function(respone) {
 					console.log("updateDemandAgency failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -235,11 +235,11 @@ app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 				'ids':deleteID.substring(0,deleteID.length-1)
 			},URL.DemandAgencyServlet).then(
 				function(respone) {
-					popAlert("eleteDemandAgency success！")
+					popAlert("操作成功！")
 				},
 				function(respone) {
 					console.log("deleteDemandAgency failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 		
 		$scope.selected = [];

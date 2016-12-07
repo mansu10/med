@@ -23,7 +23,7 @@ app.controller('InstSafetyCtrl', function($rootScope, $scope,http){
 					$scope.guaranteeRelationShips = respone.guaranteeRelationShips;
 				},
 				function(respone) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 	};
 	
@@ -100,7 +100,7 @@ app.controller('InstSafetyCtrl', function($rootScope, $scope,http){
 					popAlert("删除成功");
 				},
 				function(respone) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 				});
 
 			$scope.selected = [];
@@ -117,7 +117,7 @@ app.controller('InstSafetyCtrl', function($rootScope, $scope,http){
 					$scope.addInfoFilter.demandAgencyCodes = respone.demandAgencyCodes;
 				},
 				function(respone) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 				});
 		}		
 		$scope.addInfoFilter = {
@@ -158,7 +158,7 @@ app.controller('InstSafetyCtrl', function($rootScope, $scope,http){
 					popAlert("建立成功！！！");
 				},
 				function(respone) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 		}
 		

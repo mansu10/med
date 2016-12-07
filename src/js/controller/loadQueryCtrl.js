@@ -43,7 +43,7 @@ app.controller('LoadQueryCtrl', function($rootScope, $scope,http,$timeout){
 						$scope.stowages = respone.stowages;
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 			});
 	}
 	
@@ -127,7 +127,7 @@ app.controller('LoadQueryCtrl', function($rootScope, $scope,http,$timeout){
 				},
 				function(respone) {
 					console.log("delete stowages failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 				});
 	}
 		/************************选择删除  end*****************************/

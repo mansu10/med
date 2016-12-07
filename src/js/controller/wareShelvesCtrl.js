@@ -60,7 +60,7 @@ app.controller('WareShelvesCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("queryAllReceiptAcceptanceRecords failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -78,7 +78,7 @@ app.controller('WareShelvesCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("queryRecordAndItemByCode failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	},
 //	$scope.queryDetail();
@@ -149,7 +149,7 @@ app.controller('WareShelvesCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("=========入库失败============" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	

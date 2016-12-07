@@ -43,7 +43,11 @@ app.run(function($rootScope, $state, $stateParams, $localstorage, http, $locatio
 			var oldT = $rootScope.user.loginTime.time;
 
 			if ((newT - oldT)/1000/60/60 > 6) {
-				$state.go('login');
+				popAlert('用户状态失效，请重新登录', function(){
+					$localstorage.clear('user');
+					window.location.reload();
+				})
+				
 			}else{
 				http.post({
 					'method': 'checkToken',

@@ -52,11 +52,11 @@ app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
 		if(isEmptyValue($scope.newAccount)){
 			return;
 		}
-		
+		console.log(JSON.stringify($scope.newAccount));
+		$scope.newAccount.agencyCode = $rootScope.user.agencyCode;
 		http.post({
 				'method':'addUser',
-				'user':getUserInfoStr($scope.newAccount),
-	            'agencyCode':$rootScope.user.agencyCode
+				'user':getUserInfoStr($scope.newAccount)
 			},URL.UserServlet).then(
 				function(respone) {
 					console.log("=========已保存========="+JSON.stringify(respone));

@@ -70,8 +70,12 @@ app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instru
             'agencyCode':$rootScope.user.agencyCode
 		},URL.stockQurey).then(
 				function(respone) {
+					if(respone.stocks.length > 0){
+						popAlert("查询成功！");
+					}else{
+						popAlert("无相关结果");
+					}
 					
-					popAlert("queryAllStocks success!");
 					refreshStorageList(respone.stocks);
 				},
 				function(respone) {

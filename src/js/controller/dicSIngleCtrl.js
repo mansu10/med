@@ -1,6 +1,8 @@
 app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 	instruct.set(['']);
 	$rootScope.$broadcast('instructChange');
+	$scope.userType = $rootScope.user.userType;
+
 
 	var currentIndex = 0;
 	$scope.medList = [];

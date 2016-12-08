@@ -43,7 +43,8 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 							"studentId": respone.studentId,
 							"startTime": respone.startTime.time,
 							"endTime": respone.endTime.time,
-							"studentId": respone.studentId
+							"studentId": respone.studentId,
+							"userType": respone.userType
 						};
 						// console.log("USER==="+JSON.stringify(user))
 						$localstorage.setObject("user",user);

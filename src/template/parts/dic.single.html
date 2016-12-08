@@ -44,7 +44,7 @@
     <div class="row">
         <div class="panel">
             <div class="panel-heading clearfix">
-                <div class="pull-right">
+                <div class="pull-right" ng-if="userType===0">
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="openSingleDetail()">新增</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delMedListById()">删除</a>
                 </div>
@@ -108,8 +108,8 @@
                 药材明细信息
                 <div class=" pull-right">
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="backToQuery()">返回查询</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="modifyDetail()" ng-show="!addMode">{{editMode?'修改':'取消'}}</a>
-                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveDetail()">保存</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="modifyDetail()" ng-if="!addMode && userType===0">{{editMode?'修改':'取消'}}</a>
+                    <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveDetail()" ng-if="userType===0">保存</a>
                 </div>
             </div>
         </div>

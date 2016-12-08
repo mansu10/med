@@ -1,5 +1,7 @@
 app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 	
+	$scope.userType = $rootScope.userType;
+
 	$scope.detailState = false;//查看详情
 	$scope.addState = false;//新增
 	$scope.editMode = true;//编辑模式（明细）
@@ -99,6 +101,8 @@ app.controller('InstDemandCtrl', function($rootScope, $scope,http){
 					$scope.demandAgencyList = respone.demandAgencies;
 					if (respone.code != 0) {
 						popAlert("操作失败："+JSON.stringify(respone));
+					}else{
+						popAlert("查询完成")
 					}
 				},
 				function(respone) {

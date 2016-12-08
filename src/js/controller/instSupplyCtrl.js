@@ -1,5 +1,5 @@
 app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
-
+	$scope.userType = $rootScope.userType;
 
 	$scope.detailState = false;//查看详情
 	$scope.addState = false;//新增
@@ -139,6 +139,8 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 				$scope.supplyAgencies = respone.supplyAgencies;
 				if (respone.code != 0) {
 					popAlert("操作失败："+JSON.stringify(respone));
+				}else{
+					popAlert("查询完成");
 				}
 				
 			},

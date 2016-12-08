@@ -1,4 +1,4 @@
-app.controller('ModeCtrl', function($scope,http, $localstorage){
+app.controller('ModeCtrl', function($rootScope, $scope,http, $localstorage){
 
 	$scope.user = $localstorage.getObject('user');
 	// console.log($scope.user);

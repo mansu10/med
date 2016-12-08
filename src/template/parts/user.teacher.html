@@ -57,7 +57,7 @@
 	</div>
 	<div class="row">
 		<div class="panel">
-			<div class="panel-heading">
+			<div class="panel-heading"  ng-if="userType == 0">
 				<a href="javascript:;" class="btn btn-sm btn-primary" ng-click="createAccount()">新建帐号</a>
 			</div>
 			<div class="panel-body">
@@ -74,7 +74,7 @@
 							<th class="">启用时间</th>
 							<th class="">到期时间</th>
 							<th class="col-md-1">编组</th>
-							<th class="col-md-2">操作</th>
+							<th class="col-md-2" ng-if="userType == 0">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -110,7 +110,7 @@
 							<td>
 								<input type="text" required class="form-control input-sm" ng-model="newAccount.team">
 							</td>
-							<td>
+							<td ng-if="userType == 0">
 								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="save()">保存</a>
 								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="cancel()">取消</a>
 							</td>
@@ -131,7 +131,7 @@
 							<td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="item.startTime" ng-disabled="!item.editable"></td>
 							<td><input type="text" class="form-control input-sm" datetime-picker date-format="yyyy-MM-dd" ng-model="item.endTime" ng-disabled="!item.editable"></td>
 							<td><input type="text" class="form-control input-sm" ng-model="item.team" ng-disabled="!item.editable"></td>
-							<td>
+							<td ng-if="userType == 0">
 								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="edit($index)">{{item.editable ? '保存':'修改'}}</a>
 								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="del($index)">删除</a>
 								<a href="javascript:;" class="btn btn-xs btn-primary" ng-click="resetPassword($index)">密码重置</a>

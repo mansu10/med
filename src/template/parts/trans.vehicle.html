@@ -32,7 +32,7 @@
                     </div>
                 </form>
             </div>
-            <div class="panel-heading clearfix text-right">
+            <div class="panel-heading clearfix text-right" ng-if="userType == 0">
                 <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="changeState('detail')">新增车辆</a>
             </div>
             <div class="panel-body">
@@ -61,8 +61,8 @@
                             <td>{{item.carVolume}}</td>
                             <td>{{item.maxWeight}}</td>
                             <td>
-                                <a href="javascript:;"ng-click="changeState('detail',item)">修改</a>
-                                <a href="javascript:;" ng-click="deleteCar(item.id,index)">删除</a>
+                                <a href="javascript:;" ng-click="changeState('detail',item)" ng-if="userType == 0">修改</a>
+                                <a href="javascript:;" ng-click="deleteCar(item.id,index)" ng-if="userType == 0">删除</a>
                                 <a href="javascript:;"ng-click="changeState('perform',item)">运行记录</a>
                             </td>
                         </tr>

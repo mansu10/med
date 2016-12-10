@@ -76,8 +76,8 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 	//POST请求
 	var post = function(obj,requestUrl) {
 		
-		// console.log("post请求url:" + requestUrl);
-		// console.log("post请求参数:" + JSON.stringify(obj));
+		console.log("post请求url:" + requestUrl);
+		console.log("post请求参数:" + JSON.stringify(obj));
 		
 		var def = $q.defer();
 		

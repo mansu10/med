@@ -44,7 +44,8 @@
 	          'fa-folder-open': !collapsed
 	        }" ng-if="node.nodes && node.nodes.length > 0"></i>
         <div class="tree-folder-name">
-        	<a href="javascript:;">{{node.title}}</a>
+        	<a href="javascript:;" ng-if="!node.jobs || node.jobs == 0">{{node.title}}</a>
+        	<a href="javascript:;" ng-if="node.jobs == 1" ng-click="updateAgencyCode(node)">{{node.title}}</a>
         </div>
    </div>
     <div ui-tree-nodes=""  ng-model="node.nodes" class="tree-folder-content" ng-class="{hidden: collapsed}">

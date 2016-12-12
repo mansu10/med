@@ -7,8 +7,8 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 		
 		$scope.orderForm = {
 			method:'addOrder',
-			orderTime: secondsToData(new Date().getTime()) ,
-			deliveryTime: '',
+			orderTime:'2016-12-12 21:41:00',
+			deliveryTime: '2016-12-22 21:41:00',
 			customerCode: '',
 			customerName: '',
 			receiver: '',

@@ -124,7 +124,7 @@
                                     <th class="col-md-1">单位</th>
                                     <th class="col-md-1">单价</th>
                                     <th class="col-md-1">订货量</th>
-                                    <!--<th class="col-md-1">金额</th>-->
+                                    <th class="col-md-1">金额</th>
                                     <th class="col-md-2">操作</th>
                                 </tr>
                             </thead>
@@ -137,7 +137,7 @@
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.amount"></td>
-                                    <!--<td><input type="text" class="form-control input-sm" ng-model="newItem.sum" value="newItem.price*newItem.amount" disabled="disabled"></td>-->
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.sum" value="newItem.price*newItem.amount" disabled="disabled"></td>
                                     <td>
                                         <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptSave(newItem)"><i class="fa fa-check"></i></a>
                                         <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="iptToggle(false)"><i class="fa fa-times"></i></a>
@@ -153,7 +153,7 @@
                                     <td>{{item.productNum}}</td>
                                     <td>{{item.price*item.productNum}}</td>
                                     <td>
-                                        <a href="" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                        <!-- <a href="" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a> -->
                                         <a href="" class="btn btn-xs btn-danger" ng-click="rmItem($index)"><i class="fa fa-times"></i></a></td>
                                 </tr>
                             </tbody>

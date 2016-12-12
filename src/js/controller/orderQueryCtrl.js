@@ -145,7 +145,7 @@ app.controller('OrderQueryCtrl', function($rootScope, $scope,http){
 				function(respone) {
 					console.log("Order qurey failed!" + JSON.stringify(respone));
 					$scope.orderList = lists;
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 //		}
 	

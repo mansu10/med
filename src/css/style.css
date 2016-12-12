@@ -3547,3 +3547,6 @@ ul.activity-list .activity-desk h5 a {
 .input-sm {
     padding: 5px;
 }
+.tree-folder a {
+    color: #333;
+}

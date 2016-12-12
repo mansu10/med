@@ -1,6 +1,8 @@
 app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 	instruct.set(['']);
 	$rootScope.$broadcast('instructChange');
+	$scope.userType = $rootScope.user.userType;
+
 
 	var currentIndex = 0;
 	$scope.medList = [];
@@ -38,12 +40,12 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 			}, URL.ProductServlet).then(
 				function(respone) {
 					if (respone.code != 0) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					}
 					$scope.medList = respone.products;
 				},
 				function(respone) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 	}
 
@@ -178,7 +180,7 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 				},
 				function(respone) {
 					console.log("deleteSupplyAgency failed!" + JSON.stringify(respone));
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 					$scope.medList = tempList;
 				});
 
@@ -195,7 +197,7 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 					popAlert("已更新修改！");
 				},
 				function(respone) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 	}
 	
@@ -212,7 +214,7 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 					$scope.toggleDetailState(false);
 				},
 				function(respone) {
-					popAlert(JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 	}
 //	$scope.medList = [

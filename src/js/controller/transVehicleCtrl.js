@@ -1,5 +1,5 @@
 app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
-	
+	$scope.userType = $rootScope.userType;
 	$scope.stateFactory = {
 		"query": true,
 		"detail": false,
@@ -43,7 +43,7 @@ app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
 						$scope.cars = respone.cars;
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	}
 	
@@ -59,7 +59,7 @@ app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
 			        'agencyCode':$rootScope.user.agencyCode
 				}, URL.CarServlet).then(
 					function(respone) {
-						popAlert(method+" success!");
+						popAlert("操作成功!");
 						$scope.changeState('query');
 						if(method == 'addCar'){
 							$scope.car.id = respone.id;
@@ -72,7 +72,7 @@ app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
 					},
 					function(respone) {
 						console.log(respone);
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	}
 	
@@ -91,7 +91,7 @@ app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
 						$scope.cars.splice(index, 1);
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	}
 	

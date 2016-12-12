@@ -145,7 +145,7 @@ app.controller('WareEntryCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("addReceiptAcceptanceRecord failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 

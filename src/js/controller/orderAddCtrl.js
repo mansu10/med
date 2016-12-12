@@ -66,7 +66,8 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("submitOrder failed!" + JSON.stringify(respone));
-					// popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
+					
 			});
 		}
 		
@@ -82,7 +83,7 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("queryProduct failed!" + JSON.stringify(respone));
-					// popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 		}
 		queryProduct();

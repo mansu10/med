@@ -20,7 +20,13 @@ var app = angular.module('app', [
 app.run(function($rootScope, $state, $stateParams, $localstorage, http, $location) {
 	
 	$rootScope.user = $localstorage.getObject('user');
-	
+	$rootScope.currentMode = '';
+
+	if (!$rootScope.user.agencyCode) {
+		$rootScope.isBusinessMode = true;
+	}else{
+		$rootScope.isBusinessMode = false;
+	}
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
 	$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){

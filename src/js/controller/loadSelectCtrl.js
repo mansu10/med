@@ -12,7 +12,7 @@ app.controller('LoadSelectCtrl', function($rootScope, $scope,http){
 						$scope.cars = respone.cars;
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	}
 	
@@ -27,7 +27,7 @@ app.controller('LoadSelectCtrl', function($rootScope, $scope,http){
 						$scope.invoices = respone.invoices;
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	}
 	
@@ -55,7 +55,7 @@ app.controller('LoadSelectCtrl', function($rootScope, $scope,http){
 						popAlert("确认成功！！！");
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 				});
 	}
 	

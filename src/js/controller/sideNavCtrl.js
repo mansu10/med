@@ -1,8 +1,8 @@
 //var SideNavModule = angular.module('SideNavModule', []);
-app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams, $localstorage) {
+app.controller('SideNavCtrl', function($rootScope, $scope, $http, $state, $stateParams, $localstorage) {
 		var user = $localstorage.getObject('user');
 		$scope.notAdmin = true;
-		if (user.role == '教员') {
+		if ($rootScope.userType == 0) {
 			$scope.notAdmin = false;
 
 		}
@@ -64,7 +64,7 @@ app.controller('SideNavCtrl', function($scope, $http, $state, $stateParams, $loc
 							"url": ".collectStorage",
 							"isActive":false
 						},{
-							"title": "药材筹措",
+							"title": "补库计划",
 							"url": ".collectSupplement",
 							"isActive":false
 					  }]					

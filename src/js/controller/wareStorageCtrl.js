@@ -119,7 +119,7 @@ app.controller('WareStorageCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("queryAllStocks failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	$scope.queryStorage();

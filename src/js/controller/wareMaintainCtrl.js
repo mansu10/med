@@ -83,7 +83,7 @@ app.controller('wareMaintainCtrl', function($rootScope, $scope,http){
 				},
 				function(respone) {
 					console.log("saveStorage failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
    

@@ -79,7 +79,7 @@ app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instru
 					refreshStorageList(respone.stocks);
 				},
 				function(respone) {
-					console.log("queryAllStocks failed!" + JSON.stringify(respone));
+					console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
 					popAlert(respone);
 		});
 	}
@@ -207,7 +207,7 @@ app.controller('CollectSupplementCtrl', function($rootScope, $scope,http, instru
 					popAlert("筹措清单提交成功！",function(){window.location.reload()})
 				},
 				function(respone) {
-					console.log("addRaiseInventory failed!" + JSON.stringify(respone));
+					console.log("提交失败：" + JSON.stringify(respone));
 					popAlert(respone);
 		});
 	}

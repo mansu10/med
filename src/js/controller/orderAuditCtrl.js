@@ -129,8 +129,8 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 				$scope.orderList.order = filterOrderByStatus(respone.order);
 			},
 			function(respone) {
-				console.log("Order qurey failed!" + JSON.stringify(respone));
-				// popAlert(respone);
+				console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
+				popAlert("操作失败："+JSON.stringify(respone));
 	});
 	
 	//过滤订单 只显示未审核和有疑问的订单
@@ -153,7 +153,7 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
             'agencyCode':$rootScope.user.agencyCode},URL.orderQurey).then(
 			function(respone) {
 					console.log("queryOrderAndItem:"+JSON.stringify(respone));
-					popAlert("queryOrderAndItem success!")
+					popAlert("数据已刷新!")
 					$scope.detail = respone.order;
 					$scope.items = respone.order.orderItems;
 					$scope.detail.deliveryTime = secondsToData(respone.order.deliveryTime);
@@ -161,8 +161,8 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 					$scope.detail.intendDeliveryTime = secondsToData(respone.order.deliveryTime);
 			},
 			function(respone) {
-				console.log("Order qurey failed!" + JSON.stringify(respone));
-				// popAlert(respone);
+				console.log("查询失败，请稍后再试!!" + JSON.stringify(respone));
+				popAlert("操作失败："+JSON.stringify(respone));
 		});
 	}
 	
@@ -175,8 +175,8 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 				popAlert("订单确认成功！")
 			},
 			function(respone) {
-				console.log("Order qurey failed!" + JSON.stringify(respone));
-				// popAlert(respone);
+				console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
+				popAlert("操作失败："+JSON.stringify(respone));
 		});
 	};
 	
@@ -189,12 +189,12 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 		        'agencyCode':$rootScope.user.agencyCode},URL.productQurey).then(
 				function(respone) {
 					console.log("queryProduct info --->"+respone);
-					popAlert("queryProduct success!")
+					popAlert("数据已刷新!")
 					productList = respone.products;
 				},
 				function(respone) {
-					console.log("queryProduct failed!" + JSON.stringify(respone));
-					// popAlert(respone);
+					console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 		}
 		queryProduct();
@@ -236,7 +236,7 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 					popAlert(status=="1" ? "订单已确认":"已转至疑问订单");
 				},
 				function(respone) {
-					// popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 			});
 		}
 		

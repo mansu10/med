@@ -41,7 +41,7 @@
     <div class="row">
         <div class="panel">
             <div class="panel-heading clearfix">
-                <div class="pull-right">
+                <div class="pull-right" ng-if="userType == 0">
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddState()">新增</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="delSupplyAgency()">删除</a>
                 </div>
@@ -74,7 +74,7 @@
                             <td>{{item.supplyAgencyAddress1}}</td>
                             <td>{{item.supplyAgencyNumber}}</td>
                             <td>
-                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editSupplyAgency(item,$index)">修改</a>
+                                <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="editSupplyAgency(item,$index)" ng-if="userType == 0">修改</a>
                                 <a href="javascript:;"  ng-click="toggleDetailState(true,item,$index)" class="btn btn-xs btn-primary">明细</a>
                             </td>
                         </tr>
@@ -93,7 +93,7 @@
             </div>
             <div class="panel-heading clearfix">
                 <span>{{supplyAgency.supplyAgencyName || 'xxx'}}基本信息</span>
-                <div class="pull-right">
+                <div class="pull-right" ng-if="userType == 0">
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleEditMode(!editMode)" ng-show="!addState">{{editMode == false ? '取消' : '修改'}}</a>
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveAddOrDetailInfo()">保存</a>
                 </div>
@@ -186,7 +186,7 @@
         <div class="panel">
             <div class="panel-heading clearfix">
                 <span>{{supplyAgency.supplyAgencyName || 'xxx'}}岗位设置</span>
-                <div class="pull-right">
+                <div class="pull-right"  ng-if="userType == 0">
                     <a href="javascript:;" class="btn btn-primary btn-sm" ng-click="toggleDetailState(false)"><i class="fa fa-reply"></i></a>
                     <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="toggleAddPosiState(true)">新增</a>
                    <!-- <a href="javascript:;" class="btn btn-sm btn-primary" ng-click="saveSupplyJobs()">保存</a>-->
@@ -202,7 +202,7 @@
                             <th class="">编组</th>
                             <th class="">岗位角色</th>
                             <th class="">角色编号</th>
-                            <th class="col-md-2">操作</th>
+                            <th class="col-md-2" ng-if="userType == 0">操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -218,7 +218,7 @@
                             <td>
                                 <input type="text" class="form-control input-sm" ng-model="newSupplyJob.roleGroup">
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" ng-if="userType == 0">
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="addNewJob()">保存</a>
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="toggleAddPosiState(false)">取消</a>
                             </td>
@@ -233,7 +233,7 @@
                             <td><input type="text" class="form-control input-sm" ng-model="item.roleCode" ng-disabled="!item.editJobMode"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="item.roleName" ng-disabled="!item.editJobMode"></td>
                             <td><input type="text" class="form-control input-sm" ng-model="item.roleGroup" ng-disabled="!item.editJobMode"></td>
-                            <td class="text-center">
+                            <td class="text-center"  ng-if="userType == 0">
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="setSupplyJob($index,item)">{{item.editJobMode ? '取消' : '修改'}}</a>
                                 <a href="javascript:;" class="btn btn-xs btn-primary" ng-click="saveSupplyJob($index)">保存</a>
                             </td>

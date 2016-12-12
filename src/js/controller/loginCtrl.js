@@ -43,7 +43,8 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 							"studentId": respone.studentId,
 							"startTime": respone.startTime.time,
 							"endTime": respone.endTime.time,
-							"studentId": respone.studentId
+							"studentId": respone.studentId,
+							"userType": respone.userType
 						};
 						// console.log("USER==="+JSON.stringify(user))
 						$localstorage.setObject("user",user);
@@ -58,7 +59,7 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 				},
 				function(respone) {
 					// console.log("login failed!" + JSON.stringify(respone));
-					popAlert(respone);
+					popAlert("操作失败："+JSON.stringify(respone));
 				});
 		}
 	})

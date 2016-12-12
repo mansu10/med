@@ -74,7 +74,7 @@ app.controller('CollectStorageCtrl', function($scope,$rootScope, http, instruct)
 					refreshStorageList(respone.stocks);
 				},
 				function(respone) {
-					console.log("queryAllStocks failed!" + JSON.stringify(respone));
+					console.log("查询出错：" + JSON.stringify(respone));
 					popAlert(JSON.stringify(respone));
 		});
 	}

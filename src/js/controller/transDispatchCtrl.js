@@ -79,7 +79,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 						$scope.cars = respone.carStatus;
 					},
 					function(respone) {
-						popAlert(JSON.stringify(respone));
+						popAlert("操作失败："+JSON.stringify(respone));
 					});
 	}
 	$scope.queryAllCarsWithCode();
@@ -103,7 +103,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				$scope.changeState('detail');
 			}, 
 			function(res){
-				popAlert(JSON.stringify(res));
+				popAlert("操作失败："+JSON.stringify(res));
 			})
 
 
@@ -134,7 +134,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				
 			}, 
 			function(res){
-				popAlert(JSON.stringify(res));
+				popAlert("操作失败："+JSON.stringify(res));
 			})
 	}
 	/**
@@ -161,7 +161,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				
 			}, 
 			function(res){
-				popAlert(JSON.stringify(res));
+				popAlert("操作失败："+JSON.stringify(res));
 			})
 	}
 	/**
@@ -291,7 +291,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				}
 			},
 			function(res){
-				popAlert(JSON.stringify(res));
+				popAlert("操作失败："+JSON.stringify(res));
 			}
 		)
 
@@ -316,7 +316,7 @@ app.controller('TransDispatchCtrl', function($scope,$rootScope, http,$filter, in
 				}
 			},
 			function(res){
-				popAlert(JSON.stringify(res));
+				popAlert("操作失败："+JSON.stringify(res));
 			}
 		)
 	}

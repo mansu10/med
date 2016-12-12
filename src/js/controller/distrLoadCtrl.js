@@ -62,7 +62,7 @@ app.controller('DistrLoadCtrl', function($rootScope, $scope,http){
 			},
 			function(respone) {
 				console.log("Order qurey failed!" + JSON.stringify(respone));
-				popAlert(respone);
+				popAlert("操作失败："+JSON.stringify(respone));
 		});
 
 	/**

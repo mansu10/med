@@ -1,5 +1,5 @@
 app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
-	$scope.userType = $rootScope.userType;
+	$scope.userType = $rootScope.user.userType;
 
 	$scope.detailState = false;//查看详情
 	$scope.addState = false;//新增

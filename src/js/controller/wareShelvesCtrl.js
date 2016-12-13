@@ -55,7 +55,11 @@ app.controller('WareShelvesCtrl', function($rootScope, $scope,http){
 		http.post({'method':'queryAllReceiptAcceptanceRecords','receiptTimeStartStr':$scope.startTime,'receiptTimeEndStr':$scope.endTime,
             'agencyCode':$rootScope.user.agencyCode},URL.RARS).then(
 				function(respone) {
-					$scope.items = respone.receiptAcceptanceRecords;
+					if (respone.code == 0) {
+						popAlert('查询完成');
+						$scope.items = respone.receiptAcceptanceRecords;
+					}
+					
 					console.log("=========queryAllReceiptAcceptanceRecords========="+JSON.stringify(respone));
 				},
 				function(respone) {

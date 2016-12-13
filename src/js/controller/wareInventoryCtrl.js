@@ -236,13 +236,13 @@ app.controller('WareInventoryCtrl', function($rootScope, $scope,http){
 		}
 
 		$scope.wareList.push(angular.copy($scope.newDepot));
-		console.log($scope.wareList);
+	
 		$scope.hasSaveDepot = true;
 		
+		$scope.newDepot.agencyCode = $rootScope.user.agencyCode;
 		http.post({
 				'method':'addDepot',
-				'depot':JSON.stringify($scope.newDepot),
-		        'agencyCode':$rootScope.user.agencyCode
+				'depot':JSON.stringify($scope.newDepot)
 			},URL.DepotServlet).then(
 				function(respone) {
 					console.log("=========新建仓库========="+JSON.stringify(respone));

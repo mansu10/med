@@ -183,6 +183,9 @@ app.controller('OrderQueryCtrl', function($rootScope, $scope,http){
 			}
 		});
 		$scope.orderList = tempArray;
+		if(isEmptyValue(tempArray)){
+			popAlert('没有查询到相符合的订单！');
+		}
 	};
 	
 
@@ -196,12 +199,17 @@ app.controller('OrderQueryCtrl', function($rootScope, $scope,http){
 		angular.forEach(lists,function(item){
 			var timestamp2 = Date.parse(new Date(item.deliveryTime));
 			timestamp2 = timestamp2/1000;
+			console.log("timestamp is "+timestamp+ " / timestamp2:"+timestamp2);
 			var ll = parseInt((timestamp2 - timestamp) / 60 / 60);
-			if(ll < hours){
+			console.log("hours is "+ll+ " / hour:"+hours);
+			if(Math.abs(ll) < hours){
 				temp.push(item);
 			}
 		});
 		$scope.orderList = temp;
+		if(isEmptyValue(temp)){
+			popAlert(hours+'小时内没有订单！');
+		}
 	};
 	
 	//根据收单时间查询
@@ -217,6 +225,9 @@ app.controller('OrderQueryCtrl', function($rootScope, $scope,http){
 			}
 		});
 		$scope.orderList = temp;
+		if(isEmptyValue(temp)){
+			popAlert('该时间段内没有订单！');
+		}
 	}
 	
 })

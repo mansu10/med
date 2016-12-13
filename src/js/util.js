@@ -67,7 +67,7 @@ var isInArray=function(arr, value) {
 	
 	function secondsToData (strTime) {
     	var date = new Date(strTime);
-    	// console.log("===============================2"+strTime+date);
+    	console.log("================secondsToData==============="+" / strTime"+strTime+" / date："+date);
     	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getMilliseconds();
 	}
 

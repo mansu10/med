@@ -1,5 +1,5 @@
 app.controller('UserTeacherCtrl', function($rootScope, $scope,http){
-	$scope.userType = $rootScope.userType;
+	$scope.userType = $rootScope.user.userType;
     $scope.users = [];
     var temp = [];
     $scope.queryInfo = {

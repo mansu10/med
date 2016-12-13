@@ -7,7 +7,7 @@ app.controller('TransLineCtrl', function($rootScope, $scope,http){
 		            'agencyCode':$rootScope.user.agencyCode
 				}, URL.GuaranteeRelationShipServlet).then(
 					function(respone) {
-						// alert("查询线路分配");
+						popAlert("查询线路分配完成");
 						$scope.carLines = respone.guaranteeRelationShips;
 					},
 					function(respone) {

@@ -1,5 +1,5 @@
 app.controller('TransVehicleCtrl', function($rootScope, $scope,http){
-	$scope.userType = $rootScope.userType;
+	$scope.userType = $rootScope.user.userType;
 	$scope.stateFactory = {
 		"query": true,
 		"detail": false,

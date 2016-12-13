@@ -1,30 +1,30 @@
 app.controller('WareEntryCtrl', function($rootScope, $scope,http){
     //入库管理表
     $scope.entryInfo = {
-    	"recevier":"收货人",
-    	"receiveStore":"收货仓库",
-    	"recevierTime":secondsToData(new Date().getTime()),
-    	"goodsDes":"11111",
-    	"resource":"来源",
-    	"supplier":{
-    		"supply":"大润发",
-    		"linkMan":"李新雨",
-    		"tel":"1111111111"
-    	},
-    	"deliver":{
-    		"deliver":"1号店",
-    		"linkMan":"田栋炜",
-    		"tel":"22222222"
-    	},
-    	"receivingNote":"收货单",
-    	"receivingCode":"凭证号",
-    	"appearence":"外观",
-    	"direction":"说明书",
-    	"qualityReport":"质检报告",
-    	"checkRecord":"验收",
-    	"checkMan":"张益达",
-    	"conclusion":"结论",
-    	"remark":"备注"    	
+    	// "recevier":"收货人",
+    	// "receiveStore":"收货仓库",
+    	// "recevierTime":secondsToData(new Date().getTime()),
+    	// "goodsDes":"11111",
+    	// "resource":"来源",
+    	// "supplier":{
+    	// 	"supply":"大润发",
+    	// 	"linkMan":"李新雨",
+    	// 	"tel":"1111111111"
+    	// },
+    	// "deliver":{
+    	// 	"deliver":"1号店",
+    	// 	"linkMan":"田栋炜",
+    	// 	"tel":"22222222"
+    	// },
+    	// "receivingNote":"收货单",
+    	// "receivingCode":"凭证号",
+    	// "appearence":"外观",
+    	// "direction":"说明书",
+    	// "qualityReport":"质检报告",
+    	// "checkRecord":"验收",
+    	// "checkMan":"张益达",
+    	// "conclusion":"结论",
+    	// "remark":"备注"    	
     },
     
     //验收结论 option
@@ -43,24 +43,25 @@ app.controller('WareEntryCtrl', function($rootScope, $scope,http){
 		];
 		$scope.receiverSelect = $scope.receiverType[0];//默认选中
     //明细列表
-    $scope.items = [{
-	            "name": "感冒通灵",	    
-	            "productCode":"000002",
-	            "size": "规格2",
-	            "type": "型号2",
-	            "unit": "12粒/盒",
-	            "factory": "厂家2",	
-	            "productionBatch":"002",
-	            "purchasePrice": 1.00,
-	            "quantity": 200,
-	            "factoryTime":"2016-09-02",
-	            "singleAmount":2,
-	            "boxQuantity":3,
-	            "smallAmount":6,
-	            "boxMark":0,
-	            "memo":"xxx",
-	            "editDisabled":true
-	        }	     
+    $scope.items = [
+    		// {
+	     //        "name": "感冒通灵",	    
+	     //        "productCode":"000002",
+	     //        "size": "规格2",
+	     //        "type": "型号2",
+	     //        "unit": "12粒/盒",
+	     //        "factory": "厂家2",	
+	     //        "productionBatch":"002",
+	     //        "purchasePrice": 1.00,
+	     //        "quantity": 200,
+	     //        "factoryTime":"2016-09-02",
+	     //        "singleAmount":2,
+	     //        "boxQuantity":3,
+	     //        "smallAmount":6,
+	     //        "boxMark":0,
+	     //        "memo":"xxx",
+	     //        "editDisabled":true
+	     //    }	     
 	    ];
 	$scope.newItem = {};
 	$scope.addItem = function(newItem){

@@ -1,35 +1,35 @@
 app.controller('wareMaintainCtrl', function($rootScope, $scope,http){
     //
     $scope.maintainInfo = {
-    	"storage":"1111",
-    	"recordDate":secondsToData(new Date().getTime()),
-    	"storeMan":"隔壁老张",
+    	// "storage":"1111",
+    	// "recordDate":secondsToData(new Date().getTime()),
+    	// "storeMan":"隔壁老张",
     	"storeRoom":[{
     					"time":"上午",
-    					"recordTime":secondsToData(new Date().getTime()),
-    					"temperature":"25",
-    					"humidity":"12",
-    					"adjustMeasures":"xxxx"
+    					"recordTime":"",
+    					"temperature":"",
+    					"humidity":"",
+    					"adjustMeasures":""
     			},{
     					"time":"下午",
-    					"recordTime":secondsToData(new Date().getTime()),
-    					"temperature":"29",
-    					"humidity":"10",
-    					"adjustMeasures":"xxxx"
+    					"recordTime":"",
+    					"temperature":"",
+    					"humidity":"",
+    					"adjustMeasures":""
     				}
-    	],
-    	"storeDevices":"运转正常",
-    	"check":{
-    		"maintainPlace":"货区",
-    		"maintainPeople":"王小二",
-    		"specNum":10,
-    		"batchNum":20,
-    		"quality":"良好",
-    		"measures":"措施",
-    		"result":"结果",
-    		"remark":"备注1111"
+    	]
+    	// "storeDevices":"运转正常",
+    	// "check":{
+    	// 	"maintainPlace":"货区",
+    	// 	"maintainPeople":"王小二",
+    	// 	"specNum":10,
+    	// 	"batchNum":20,
+    	// 	"quality":"良好",
+    	// 	"measures":"措施",
+    	// 	"result":"结果",
+    	// 	"remark":"备注1111"
     		
-    	}
+    	// }
     	
     },
     

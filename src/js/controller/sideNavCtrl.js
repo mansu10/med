@@ -2,7 +2,7 @@
 app.controller('SideNavCtrl', function($rootScope, $scope, $http, $state, $stateParams, $localstorage) {
 		var user = $localstorage.getObject('user');
 		$scope.notAdmin = true;
-		if ($rootScope.userType == 0) {
+		if (user.userType == 0) {
 			$scope.notAdmin = false;
 
 		}

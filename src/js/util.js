@@ -101,7 +101,12 @@ function popAlert(msg, callback){
 
 		if (callback) {callback()};
 	});
-	$('body').append($alert);
+	if ($('#alert').length > 0) {
+		return;
+	}else{
+		$('body').append($alert);
+	}
+	
 }
 
 window.popAlert = popAlert;

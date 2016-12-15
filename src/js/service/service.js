@@ -83,7 +83,7 @@ app.factory('http', ['$http', '$window', '$localstorage', '$q', function($http, 
 		
 		$.post(requestUrl, obj, function(data, textStatus, xhr) {
 			
-			// console.log(data);
+			console.log(data);
 			console.log('post请求成功：\n' + 'date:' + JSON.stringify(data) + '\nstatus:' + status);
 			if (data.code == 0) {
 				def.resolve(data);

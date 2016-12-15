@@ -77,6 +77,8 @@ app.controller('ModeCtrl', function($rootScope, $scope,http, $localstorage, $sta
 										q.nodes = [];
 										q.code = jobs[i].supplyAgencyCode;
 										q.jobs = 1;
+										q.supplyAgency = t.title;
+										q.supplyType = p.title;
 										p.nodes.push(q);
 									}
 								}else{
@@ -138,7 +140,7 @@ app.controller('ModeCtrl', function($rootScope, $scope,http, $localstorage, $sta
     		default:;
     	}
 
-    	if (mode == 2 && !!agencyCode ) {
+    	if (mode == 2 && !!agencyCode && false) {
     		$state.go('home.dashboard');
     	}else{
 	    	$scope.mode = mode;
@@ -148,11 +150,19 @@ app.controller('ModeCtrl', function($rootScope, $scope,http, $localstorage, $sta
     };
 
     $scope.updateAgencyCode = function(node){
+    	$rootScope.user.roleName = node.title;
+    	$rootScope.user.sAgency = node.supplyAgency;
+    	$rootScope.user.sAgencyType = node.supplyType;
+    	$localstorage.setObject('agency', {"roleName":node.title,
+    										"sAgency":node.supplyAgency,
+	    									"sAgencyType": node.supplyType})
 		http.post({
 				'method':'updateAgencyCodeAndRole',
 				'roleName': node.title,
 				'id': $rootScope.user.id,
-	            'agencyCode': node.code
+	            'agencyCode': node.code,
+	            'supplyAgency': node.supplyAgency,
+	            'supplyType': node.supplyType
 			},URL.UserServlet).then(
 				function(res) {
 					if (res.code != 0) {

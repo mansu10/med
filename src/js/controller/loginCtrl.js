@@ -51,7 +51,12 @@ app.controller('LoginCtrl', function($scope, $rootScope, http, $state, $localsto
 						$rootScope.user = user;
 						var user1 = $localstorage.getObject("user");
 						// console.log("USER1==="+JSON.stringify(user1))
-						$state.go('mode');
+						if (user1.userType == 0 || user1.userType == 2) {
+							$state.go('home.dashboard');
+						}else{
+							$state.go('mode');
+						}
+						
 					} else{
 						popAlert("密码或用户名有误，请重新输入！！");
 					}

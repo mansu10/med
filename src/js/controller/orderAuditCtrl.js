@@ -1,5 +1,5 @@
-app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
-	
+app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage){
+	var $user = $localstorage.getObject('user');
 	// 切换显示状态
 	$scope.auditState = true;
 	$scope.auditStateToggle = function(bool){
@@ -124,7 +124,7 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 	/************* 组装form end    ***********/
 	
 	//每次进入审核页拉取订单信息
-	http.post({'method':'queryAllOrders', 'agencyCode':$rootScope.user.agencyCode},URL.orderQurey).then(
+	http.post({'method':'queryAllOrders', 'agencyCode':$user.agencyCode, 'timestamp': new Date().getTime()},URL.orderQurey).then(
 			function(respone) {
 				$scope.orderList.order = filterOrderByStatus(respone.order);
 			},
@@ -145,12 +145,12 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 		
 		return tempArray;
 	}
-	
+	var id_status;
 	//进入审核明细时拉取
 	var queryAuditOrder = function(id){
 		
 		http.post({'method':'queryOrderAndItem','orderCode':id,
-            'agencyCode':$rootScope.user.agencyCode},URL.orderQurey).then(
+            'agencyCode':$user.agencyCode},URL.orderQurey).then(
 			function(respone) {
 					console.log("queryOrderAndItem:"+JSON.stringify(respone));
 					popAlert("数据已刷新!")
@@ -159,6 +159,7 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 					$scope.detail.deliveryTime = secondsToData(respone.order.deliveryTime);
 					$scope.detail.orderTime = secondsToData(respone.order.orderTime);	
 					$scope.detail.intendDeliveryTime = secondsToData(respone.order.deliveryTime);
+					id_status = respone.order.id;
 			},
 			function(respone) {
 				console.log("查询失败，请稍后再试!!" + JSON.stringify(respone));
@@ -186,10 +187,10 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 		var queryProduct = function() {	
 			
 			http.post({'method':'queryProduct',
-		        'agencyCode':$rootScope.user.agencyCode},URL.productQurey).then(
+		        'agencyCode':$user.agencyCode},URL.productQurey).then(
 				function(respone) {
 					console.log("queryProduct info --->"+respone);
-					popAlert("数据已刷新!")
+					// popAlert("数据已刷新!")
 					productList = respone.products;
 				},
 				function(respone) {
@@ -241,26 +242,36 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http){
 		}
 		
 		var getUpdateOrder = function(status){
-			
-			updateOrderObj.oldOrderId = $scope.detail.id+'';
-			updateOrderObj.orderCode = $scope.detail.orderCode+'';
-			updateOrderObj.customerCode = $scope.detail.customerCode;
-			updateOrderObj.customerName = $scope.detail.customerName;
-			updateOrderObj.orderTime = $scope.detail.orderTime;
-			updateOrderObj.deliveryTime = $scope.detail.deliveryTime;
-			updateOrderObj.receiptAddress = $scope.detail.receiptAddress;
-			updateOrderObj.receiver = $scope.detail.receiver;
-			updateOrderObj.tel = $scope.detail.tel;
-			updateOrderObj.intendDeliveryTime = $scope.detail.intendDeliveryTime;
-			updateOrderObj.packageMethod = $scope.pmSelect.value+'';
-			updateOrderObj.shipMethod = $scope.shipSelect.value+'';
-			updateOrderObj.orderStatus = status;// 1:订单确认 2:转至疑问
-			updateOrderObj.memo = $scope.detail.memo+'';
-			updateOrderObj.orderItems = JSON.stringify($scope.items);
-			updateOrderObj.itemIds = getItemIds();
-			
-			return updateOrderObj;
-			
+
+			if(status=="1"){
+
+				updateOrderObj.oldOrderId = $scope.detail.id+'';
+				updateOrderObj.orderCode = $scope.detail.orderCode+'';
+				updateOrderObj.customerCode = $scope.detail.customerCode;
+				updateOrderObj.customerName = $scope.detail.customerName;
+				updateOrderObj.orderTime = $scope.detail.orderTime;
+				updateOrderObj.deliveryTime = $scope.detail.deliveryTime;
+				updateOrderObj.receiptAddress = $scope.detail.receiptAddress;
+				updateOrderObj.receiver = $scope.detail.receiver;
+				updateOrderObj.tel = $scope.detail.tel;
+				updateOrderObj.intendDeliveryTime = $scope.detail.intendDeliveryTime;
+				updateOrderObj.packageMethod = $scope.pmSelect.value+'';
+				updateOrderObj.shipMethod = $scope.shipSelect.value+'';
+				updateOrderObj.orderStatus = status;// 1:订单确认 2:转至疑问
+				updateOrderObj.memo = $scope.detail.memo+'';
+				updateOrderObj.orderItems = JSON.stringify($scope.items);
+				updateOrderObj.itemIds = getItemIds();
+				return updateOrderObj;
+
+			}
+
+			if(status=="2"){
+				return {
+					 'method': 'updateOrderStatus',
+			   		 'id': id_status
+				}
+
+			}	
 		}
 		
 		var getItemIds = function(){

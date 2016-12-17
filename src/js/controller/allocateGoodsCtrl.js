@@ -1,9 +1,10 @@
-app.controller('AllocateGoodsCtrl', function($scope,$rootScope, http,$timeout,$location, $state){
+app.controller('AllocateGoodsCtrl', function($localstorage,$scope,$rootScope, http,$timeout,$location, $state){
 	$scope.stateFactory = {
 		"query": true,
 		"print": false,
 		"record": false
 	}
+	var $user = $localstorage.getObject('user');
 	/**
 	 * 切换页面状态
 	 * @param  {[type]} option [description]
@@ -42,7 +43,7 @@ app.controller('AllocateGoodsCtrl', function($scope,$rootScope, http,$timeout,$l
 				'demandAgencyName': $scope.queryItem.demandAgencyName,
 				'orderTimeStart':$scope.queryItem.orderTimeStart,
 				'orderTimeEnd':$scope.queryItem.orderTimeEnd,
-		        'agencyCode':$rootScope.user.agencyCode
+		        'agencyCode':$user.agencyCode
 			}, URL.OrderServlet).then(
 				function(respone) {
 					popAlert("查询成功");
@@ -88,7 +89,7 @@ app.controller('AllocateGoodsCtrl', function($scope,$rootScope, http,$timeout,$l
 		http.post({
 				'method': 'findPickListByOrderCode',
 				'orderCode': orderCode,
-		        'agencyCode':$rootScope.user.agencyCode
+		        'agencyCode':$user.agencyCode
 			}, URL.PickListServlet).then(
 				function(respone) {
 

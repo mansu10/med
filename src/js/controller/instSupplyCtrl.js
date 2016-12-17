@@ -68,6 +68,8 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 		$scope.addState = false;
 		currentIndex = index;
 		$scope.supplyAgency = angular.copy(item);
+		console.log("====editSupplyAgency：$scope.supplyAgency====="+JSON.stringify($scope.supplyAgency));
+		$scope.supplyAgencyJobs = $scope.supplyAgency.supplyAgencyJobs;
 		$scope.selected = [];
 		
 	}
@@ -292,8 +294,8 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 		
 		/************************明细 岗位设置  start*****************************/
 		$scope.supplyAgencyJobs = [
-			{'roleCode':'101','roleName':'保障队队长','roleGroup':'保障队'},
-			{'roleCode':'102','roleName':'供应组组长','roleGroup':'供应组'}
+			// {'roleCode':'101','roleName':'保障队队长','roleGroup':'保障队'},
+			// {'roleCode':'102','roleName':'供应组组长','roleGroup':'供应组'}
 		];
 		
 		$scope.editJobMode = true;
@@ -306,6 +308,7 @@ app.controller('InstSupplyCtrl', function($rootScope, $scope, http) {
 				return;
 			}
 			$scope.supplyAgencyJobs.push(angular.copy($scope.newSupplyJob));
+			console.log("=========addNewJob：$scope.supplyAgencyJobs==========" + JSON.stringify($scope.supplyAgencyJobs));
 		};
 		var temp = {};
 		$scope.setSupplyJob = function(index,item){

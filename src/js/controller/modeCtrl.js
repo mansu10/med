@@ -140,7 +140,7 @@ app.controller('ModeCtrl', function($rootScope, $scope,http, $localstorage, $sta
     		default:;
     	}
 
-    	if (mode == 2 && !!agencyCode && false) {
+    	if ($scope.user.userType == 0) {
     		$state.go('home.dashboard');
     	}else{
 	    	$scope.mode = mode;
@@ -152,6 +152,7 @@ app.controller('ModeCtrl', function($rootScope, $scope,http, $localstorage, $sta
     $scope.updateAgencyCode = function(node){
     	$rootScope.user.roleName = node.title;
     	$rootScope.user.sAgency = node.supplyAgency;
+    	$rootScope.user.agencyCode = node.supplyAgency;
     	$rootScope.user.sAgencyType = node.supplyType;
     	$localstorage.setObject('agency', {"roleName":node.title,
     										"sAgency":node.supplyAgency,

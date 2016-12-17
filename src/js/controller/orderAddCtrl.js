@@ -1,14 +1,15 @@
-app.controller('OrderAddCtrl', function($rootScope, $scope,http){
-	
-	function FormatDate (strTime) {
+app.controller('OrderAddCtrl', function($rootScope, $scope,http, $localstorage){
+	var $user = $localstorage.getObject('user');
+	function secondsToData (strTime) {
     	var date = new Date(strTime);
-    	return date.getFullYear()+(date.getMonth()+1)+date.getDate()+date.getHours()+date.getMinutes()+date.getMilliseconds();
+    	console.log("================secondsToData==============="+" / strTime"+strTime+" / date："+date);
+    	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 	}
-		
+		var ds = new Date().getTime();
 		$scope.orderForm = {
 			method:'addOrder',
-			orderTime:'2016-12-12 21:41:00',
-			deliveryTime: '2016-12-22 21:41:00',
+			orderTime: secondsToData(ds),
+			deliveryTime: secondsToData(ds + 24*60*60*1000),
 			customerCode: '',
 			customerName: '',
 			receiver: '',
@@ -16,7 +17,7 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 			receiveMode: '',
 			receiptAddress: '',
 			memo: '',
-			orderItems:'[]'
+			orderItems:''
 		};
 		$scope.items = [];
 		$scope.newItem = {};
@@ -28,7 +29,8 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 				price:newItem.price,
 				productNum:newItem.amount,
 				size:newItem.size,
-				name:newItem.name
+				name:newItem.name,
+				agencyCode: $user.agencyCode
 			})
 		}
 		$scope.rmItem = function(index){
@@ -49,19 +51,38 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 		}
 		$scope.reset = function(){
 			$scope.items = [];
-			$scope.orderForm = {};
+			$scope.orderForm = {
+				method:'addOrder',
+				orderTime: secondsToData(ds),
+				deliveryTime: secondsToData(ds + 24*60*60*1000),
+				customerCode: '',
+				customerName: '',
+				receiver: '',
+				tel: '',
+				receiveMode: '',
+				receiptAddress: '',
+				memo: '',
+				orderItems:''
+			};
 		}
 		
 		//订单提交
 		$scope.submitOrder = function() {
+
 			
 			$scope.orderForm.orderItems = JSON.stringify($scope.items);
 			console.log(JSON.stringify($scope.orderForm)+"==============="+$scope.orderForm.orderItems);
+			if (isEmptyValue($scope.orderForm.orderItems)) {
+				popAlert('请填写完整');
+				return;
+			}
 			$scope.orderForm.agencyCode = $rootScope.user.agencyCode;
 			http.post($scope.orderForm,URL.orderAdd).then(
 				function(respone) {
 					console.log(JSON.stringify(respone));
-					popAlert("订单添加成功！")
+					popAlert("订单添加成功！", function(){
+						$scope.reset();
+					})
 					
 				},
 				function(respone) {
@@ -88,20 +109,53 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http){
 		}
 		queryProduct();
 		
-		$scope.change = function(item){
-			angular.forEach(productList,function(product){
-				if(item.code == product.productCode){
+		$scope.change = function(item,type){
+			for (var i = 0; i < productList.length; i++) {
+				if (type == 'code') {
+					$scope.newItem.name = '';
+				}else if(type == 'name') {
+					$scope.newItem.code = '';
+				}
+				
+				$scope.newItem.size = '';
+				$scope.newItem.unit = '';
+				$scope.newItem.price = '';
+				$scope.newItem.amount = '';
+				$scope.newItem.sum = '';
+				var product = productList[i];
+				if(item.code == productList[i].productCode && type == 'code'){
 					
-					$scope.newItem.name = product.productName;
+
+					$scope.newItem.name = product.ordinaryName;
 					$scope.newItem.size = product.specifications;
 					$scope.newItem.unit = product.unit;
 					$scope.newItem.price = product.price;
 					$scope.newItem.amount = product.averageNumber;
 					$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
-					
+					return;
+				}else if(productList[i].ordinaryName==item.name && type == 'name'){
+
+					$scope.newItem.code = product.productCode;
+					$scope.newItem.size = product.specifications;
+					$scope.newItem.unit = product.unit;
+					$scope.newItem.price = product.price;
+					$scope.newItem.amount = product.averageNumber;
+					$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
 					return;
 				}
-			})
+			}
+			// angular.forEach(productList,function(product){
+			// 	if(item.code == product.productCode){
+					
+			// 		$scope.newItem.name = product.productName;
+			// 		$scope.newItem.size = product.specifications;
+			// 		$scope.newItem.unit = product.unit;
+			// 		$scope.newItem.price = product.price;
+			// 		$scope.newItem.amount = product.averageNumber;
+			// 		$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
+
+			// 	}
+			// })
 		};
 		
 		//收货方式 option

@@ -1,6 +1,7 @@
-app.controller('CollectStorageCtrl', function($scope,$rootScope, http, instruct){
+app.controller('CollectStorageCtrl', function($scope,$rootScope, http, instruct, $localstorage){
 	instruct.set(['555']);
 	$rootScope.$broadcast('instructChange');
+	var $user = $localstorage.getObject('user');
 	// 需ajax请求列表
 	$scope.storageList = [{
 	            "medicName": "健胃消食片",
@@ -65,7 +66,7 @@ app.controller('CollectStorageCtrl', function($scope,$rootScope, http, instruct)
 	//查询库存信息
 	$scope.queryStorage = function(){
 		http.post({'method':'queryAllStocks','productCodeOrName':$scope.qureyValue,
-		            'agencyCode':$rootScope.user.agencyCode},URL.stockQurey).then(
+		            'agencyCode':$user.agencyCode},URL.stockQurey).then(
 				function(respone) {
 					if (respone.code != 0) {
 						popAlert(JSON.stringify(respone));

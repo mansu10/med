@@ -1,8 +1,9 @@
-app.controller('OrderQueryCtrl', function($rootScope, $scope,http){
+app.controller('OrderQueryCtrl', function($rootScope, $scope,http,$localstorage){
 	$scope.modalToggle = function(bool,item){
 		$scope.modalState = bool;
 		$scope.modalInfo = item;
 	}
+	var $user = $localstorage.getObject('user');
 	var lists = [{
 		id:1,
 		shipMethod:"专门",
@@ -130,7 +131,7 @@ app.controller('OrderQueryCtrl', function($rootScope, $scope,http){
 	
 	$scope.qureyInfo = {
 	    'method':'queryAllOrders',
-        'agencyCode':$rootScope.user.agencyCode
+        'agencyCode':$user.agencyCode
 	}
 	
 //	$scope.orderQurey = function() {

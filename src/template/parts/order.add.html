@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="col-md-4 control-label">客户代码</label>
+                                        <label for="" class="col-md-4 control-label">客户编码</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control input-sm" ng-model="orderForm.customerCode">
                                         </div>
@@ -118,8 +118,8 @@
                             <thead>
                                 <tr>
                                     <th class="col-md-1">序号</th>
-                                    <th class="col-md-1">商品编号</th>
-                                    <th class="col-md-3">商品名称</th>
+                                    <th class="col-md-1">药材编码</th>
+                                    <th class="col-md-3">药材通用名</th>
                                     <th class="col-md-1">规格型号</th>
                                     <th class="col-md-1">单位</th>
                                     <th class="col-md-1">单价</th>
@@ -131,8 +131,8 @@
                             <tbody>
                                 <tr ng-show="iptState">
                                     <td>＃</td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.code" ng-change="change(newItem)"></td>
-                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.name"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.code" ng-change="change(newItem,'code')"></td>
+                                    <td><input type="text" class="form-control input-sm" ng-model="newItem.name" ng-change="change(newItem,'name')"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.size"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.unit"></td>
                                     <td><input type="text" class="form-control input-sm" ng-model="newItem.price"></td>

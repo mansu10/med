@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="error-wrapper text-center" ng-if="mode == 3">
-		<h3>{{user.userName == 'undefined' ? '': user.userName}}学员，你已经进入{{modeName}}，请选择准备练习的模块</h3>
+		<h3>{{user.userName == 'undefined' ? '': user.userName}}学员，你已经进入{{modeName}}，请选择准备{{modeName == '练习模式' ? '练习':'考核'}}的模块</h3>
 		<div>
 			<a ui-sref="home.collectStorage" class="back-btn">集货管理</a>
 			<a ui-sref="home.wareInventory" class="back-btn">仓库管理</a>

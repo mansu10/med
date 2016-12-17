@@ -1,10 +1,10 @@
-app.controller('AllocateCheckCtrl', function($scope,$rootScope, http, $timeout) {
+app.controller('AllocateCheckCtrl', function($localstorage,$scope,$rootScope, http, $timeout) {
 
     $scope.alerts = [
         // { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
         // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
     ];
-
+    var $user = $localstorage.getObject('user');
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
     };
@@ -54,7 +54,7 @@ app.controller('AllocateCheckCtrl', function($scope,$rootScope, http, $timeout) 
             'demandAgencyName': $scope.queryItem.demandAgencyName,
             'orderTimeStart': $scope.queryItem.orderTimeStart,
             'orderTimeEnd': $scope.queryItem.orderTimeEnd,
-            'agencyCode':$rootScope.user.agencyCode
+            'agencyCode':$user.agencyCode
         }, URL.OrderServlet).then(
             function(respone) {
                 popAlert("查询成功");
@@ -70,7 +70,7 @@ app.controller('AllocateCheckCtrl', function($scope,$rootScope, http, $timeout) 
         http.post({
             'method': 'findOrderWithCheckByOrderCode',
             'orderCode': orderCode,
-            'agencyCode':$rootScope.user.agencyCode
+            'agencyCode':$user.agencyCode
         }, URL.OrderServlet).then(
             function(respone) {
                 popAlert("打印拣货单查询成功");
@@ -106,7 +106,7 @@ app.controller('AllocateCheckCtrl', function($scope,$rootScope, http, $timeout) 
         http.post({
             'method': 'findPickListByOrderCode',
             'orderCode': orderCode,
-            'agencyCode':$rootScope.user.agencyCode
+            'agencyCode':$user.agencyCode
         }, URL.PickListServlet).then(
             function(respone) {
                 popAlert("复核记录查询成功！");

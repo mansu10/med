@@ -1,7 +1,8 @@
-app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
+app.controller('DicSingleCtrl', function($scope,$rootScope,$localstorage, http, instruct){
 	instruct.set(['']);
 	$rootScope.$broadcast('instructChange');
-	$scope.userType = $rootScope.user.userType;
+	var $user = $localstorage.getObject('user');
+	$scope.userType = $user.userType;
 
 
 	var currentIndex = 0;
@@ -31,19 +32,54 @@ app.controller('DicSingleCtrl', function($scope,$rootScope, http, instruct){
 		'medName': '',
 		'medType': ''
 	}
+	$scope.pageSetting = {
+		pageNum: 1,
+		offsetPage: 0,
+		pageSize: 20,
+		pageVisible: 7,
+		maxSize: 1,
+		total: 1
+	}
+	$scope.pageModel = getPages();
+	function getPages(){
+		var arr = [];
+		for(var i = 0; i < $scope.pageSetting.pageVisible; i++){
+			arr.push(i)
+		}
+		return arr
+	};
+
+	$scope.changePage = function(page){
+		var p = Number(page);
+		if (p < 1 || p > $scope.pageSetting.maxSize) {return}
+		if (p > $scope.pageSetting.pageVisible - 3) {
+			$scope.pageSetting.offsetPage = p - 4;
+		}else if(p > 3 && (p - $scope.pageSetting.pageSize) == $scope.pageSetting.total){
+			$scope.pageSetting.offsetPage = $scope.pageSetting.maxSize - $scope.pageSetting.pageVisible;
+		}
+		$scope.pageSetting.pageNum = p;
+		$scope.queryMed();
+		console.log($scope.pageSetting)
+	}
 	$scope.queryMed = function(){
 		http.post({
 				'method': 'queryProduct',
 				'productName': $scope.queryInfo.medName,
 				'herbsType': $scope.queryInfo.medType,
-	            'agencyCode':$rootScope.user.agencyCode
+	            'agencyCode':$user.agencyCode,
+	            'pageNum': $scope.pageSetting.pageNum,
+	            'pageSize': $scope.pageSetting.pageSize
 			}, URL.ProductServlet).then(
 				function(respone) {
 					if (respone.code != 0) {
 						popAlert("操作失败："+JSON.stringify(respone));
 					}
 					$scope.medList = respone.products;
-				},
+					if (respone.count) {
+						$scope.pageSetting.total = respone.count;
+						$scope.pageSetting.maxSize = Math.ceil(Number(respone.count)/$scope.pageSetting.pageSize);
+					}
+				}, 
 				function(respone) {
 					popAlert("操作失败："+JSON.stringify(respone));
 			});

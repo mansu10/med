@@ -1,5 +1,5 @@
 
-var DEBUG = true;		//测试版本
+var DEBUG = false;		//测试版本
 
 var settings;
 

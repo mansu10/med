@@ -10,45 +10,27 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 	// 需ajax请求订单列表
 	$scope.orderList = {
 		    "code": 0,
-		    "order": [{
-	            "id": 29,
-	            "orderCode": "201601010010",
-	            "customerCode": "B0001",
-	            "customerName": "张三",
-	            "orderType": "电子订单",
-	            "orderTime": "2016-07-21 20:43:52",
-	            "deliveryTime": "2016-07-22 20:44:03",
-	            "orderStatus": "未处理",
-	            "receiver": "王建国",
-	            "receiptAddress": "浙江省湖州市",
-	            "tel": "13456780101",
-	            "receiptType": "配送",
-	            "shipMethod": "专门",
-	            "payMethod": 1,
-	            "shipTime": "",
-	            "orderProgress": "",
-	            "memo": "2222",
-	            "level": 0
-	        },{
-	            "id": 39,
-	            "orderCode": "201601010010",
-	            "customerCode": "B0001",
-	            "customerName": "张五",
-	            "orderType": "电子订单",
-	            "orderTime": "2016-07-21 20:43:52",
-	            "deliveryTime": "2016-07-22 20:44:03",
-	            "orderStatus": "未处理",
-	            "receiver": "王建国",
-	            "receiptAddress": "浙江省湖州市",
-	            "tel": "13456780101",
-	            "receiptType": "配送",
-	            "shipMethod": "专门",
-	            "payMethod": 1,
-	            "shipTime": "",
-	            "orderProgress": "",
-	            "memo": "2222",
-	            "level": 0
-	        }
+		    "order": [
+		   	 // {
+		     //        "id": 29,
+		     //        "orderCode": "201601010010",
+		     //        "customerCode": "B0001",
+		     //        "customerName": "张三",
+		     //        "orderType": "电子订单",
+		     //        "orderTime": "2016-07-21 20:43:52",
+		     //        "deliveryTime": "2016-07-22 20:44:03",
+		     //        "orderStatus": "未处理",
+		     //        "receiver": "王建国",
+		     //        "receiptAddress": "浙江省湖州市",
+		     //        "tel": "13456780101",
+		     //        "receiptType": "配送",
+		     //        "shipMethod": "专门",
+		     //        "payMethod": 1,
+		     //        "shipTime": "",
+		     //        "orderProgress": "",
+		     //        "memo": "2222",
+		     //        "level": 0
+	     //    }
 	    ]
 	};
 	// 临时详细订单
@@ -219,7 +201,7 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 			    'customerCode': 'B0002',
 			    'customerName': '1军1师2团团救护所',
 			    'orderTime': '2016-08-0310: 07: 50',
-			    'deliveryTime': '2016-08-0510: 07: 50',
+			    'deliveryTime': '2016-08-05 10: 07: 50',
 			    'receiptAddress': '上海张江',
 			    'receiver': '李四',
 			    'tel': '2212345678',
@@ -228,10 +210,16 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 			    'shipMethod': '0',
 			    'orderStatus': '1',
 			    'orderItems': "[{'orderCode':'20160804103205','productCode':10000001,'productNumber':15,'total':150}]",
-			    'memo': '备注更新'
+			    'memo': '备注更新',
+			    'outProcessing':'已有先发货',
+			    'level':'急'
 		}
 		
 		$scope.updateOrder = function(status){		
+			if (isEmptyValue($scope.items)) {
+				popAlert("请先关联订单明细后再执行此操作！");
+				return;
+			}
 			http.post(getUpdateOrder(status),URL.orderAudit).then(
 				function(respone) {
 					popAlert(status=="1" ? "订单已确认":"已转至疑问订单");
@@ -261,6 +249,8 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 				updateOrderObj.memo = $scope.detail.memo+'';
 				updateOrderObj.orderItems = JSON.stringify($scope.items);
 				updateOrderObj.itemIds = getItemIds();
+				updateOrderObj.outProcessing = $scope.outProcessingSelect.name;
+				updateOrderObj.level = $scope.levelSelect.name
 				return updateOrderObj;
 
 			}
@@ -305,6 +295,21 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 	    	{value : 1, name : "自取"}
 		];
 		$scope.receiptSelect = $scope.receiptMethod[0];//默认选中
+
+		//配送优先级 option
+		$scope.levelMethod = [
+			{name : "正常"},
+	    	{name : "急"},
+	    	{name : "特急"}
+		];
+		$scope.levelSelect = $scope.levelMethod[0];//默认选中
+
+		//缺货处理 option
+		$scope.outProcessingMethod= [
+			{name : "已有先发货"},
+	    	{ name : "备齐再发货"}
+		];
+		$scope.outProcessingSelect = $scope.outProcessingMethod[0];;//默认选中
 		
 		$scope.getValue = function(type){
 			
@@ -313,28 +318,4 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 		
 	
 })
-
-
-
-
-
-//{
-//  'method': 'updateOrderPass',
-//  'oldOrderId': '50',
-//  'orderCode': '20160804103205',
-//  'itemIds': '37,38',
-//  'customerCode': 'B0002',
-//  'customerName': '1军1师2团团救护所',
-//  'orderTime': '2016-08-0310: 07: 50',
-//  'deliveryTime': '2016-08-0510: 07: 50',
-//  'receiptAddress': '上海张江',
-//  'receiver': '李四',
-//  'tel': '2212345678',
-//  'intendDeliveryTime': '2016-08-0610: 07: 50',
-//  'packageMethod': '0',
-//  'shipMethod': '0',
-//  'orderStatus': '1',
-//  'orderItems': "[{'orderCode':'20160804103205','productCode':10000001,'productNumber':15,'total':150}]",
-//  'memo': '备注更新'
-//}
 

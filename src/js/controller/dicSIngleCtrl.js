@@ -51,11 +51,13 @@ app.controller('DicSingleCtrl', function($scope,$rootScope,$localstorage, http, 
 
 	$scope.changePage = function(page){
 		var p = Number(page);
-		if (p < 1 || p > $scope.pageSetting.maxSize) {return}
-		if (p > $scope.pageSetting.pageVisible - 3) {
-			$scope.pageSetting.offsetPage = p - 4;
-		}else if(p > 3 && (p - $scope.pageSetting.pageSize) == $scope.pageSetting.total){
-			$scope.pageSetting.offsetPage = $scope.pageSetting.maxSize - $scope.pageSetting.pageVisible;
+		var half = Math.floor(($scope.pageSetting.pageVisible)/2);
+		var max = $scope.pageSetting.maxSize
+		if (p < 1 || p > max) {return}
+		if ((p > $scope.pageSetting.pageVisible - half) && (p < max - half) ) {
+			$scope.pageSetting.offsetPage = p - half - 1;
+		}else if(p > half && p >= max - half){
+			$scope.pageSetting.offsetPage = max - $scope.pageSetting.pageVisible;
 		}
 		$scope.pageSetting.pageNum = p;
 		$scope.queryMed();

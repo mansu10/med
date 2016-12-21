@@ -91,72 +91,56 @@ app.controller('OrderAddCtrl', function($rootScope, $scope,http, $localstorage){
 					
 			});
 		}
-		
-		var productList = [];//商品列表  
-		//查询所有商品信息
-		var queryProduct = function() {	
-			
-			http.post({'method':'queryProduct',
-		        'agencyCode':$rootScope.user.agencyCode},URL.productQurey).then(
-				function(respone) {
-					console.log("queryProduct info --->"+respone);
-					productList = respone.products;
-				},
-				function(respone) {
-					console.log("queryProduct failed!" + JSON.stringify(respone));
-					popAlert("操作失败："+JSON.stringify(respone));
-			});
+
+		var temp;
+		$scope.newItem = {
+			name:'',code:'',size:'',unit:'',price:'',amount:''
 		}
-		queryProduct();
 		
 		$scope.change = function(item,type){
-			for (var i = 0; i < productList.length; i++) {
-				if (type == 'code') {
-					$scope.newItem.name = '';
-				}else if(type == 'name') {
-					$scope.newItem.code = '';
-				}
-				
-				$scope.newItem.size = '';
-				$scope.newItem.unit = '';
-				$scope.newItem.price = '';
-				$scope.newItem.amount = '';
-				$scope.newItem.sum = '';
-				var product = productList[i];
-				if(item.code == productList[i].productCode && type == 'code'){
-					
-
-					$scope.newItem.name = product.ordinaryName;
-					$scope.newItem.size = product.specifications;
-					$scope.newItem.unit = product.unit;
-					$scope.newItem.price = product.price;
-					$scope.newItem.amount = product.averageNumber;
-					$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
-					return;
-				}else if(productList[i].ordinaryName==item.name && type == 'name'){
-
-					$scope.newItem.code = product.productCode;
-					$scope.newItem.size = product.specifications;
-					$scope.newItem.unit = product.unit;
-					$scope.newItem.price = product.price;
-					$scope.newItem.amount = product.averageNumber;
-					$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
-					return;
-				}
+			
+			if(type == 'name'  && temp != item.name){
+				matchDetail('',item.name,type);
+				temp = angular.copy(item.name);
 			}
-			// angular.forEach(productList,function(product){
-			// 	if(item.code == product.productCode){
-					
-			// 		$scope.newItem.name = product.productName;
-			// 		$scope.newItem.size = product.specifications;
-			// 		$scope.newItem.unit = product.unit;
-			// 		$scope.newItem.price = product.price;
-			// 		$scope.newItem.amount = product.averageNumber;
-			// 		$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
+			if(type == 'code' && temp != item.code){
+				matchDetail(item.code,'',type);
+				temp = angular.copy(item.code);
+			}
 
-			// 	}
-			// })
 		};
+
+		var matchDetail = function(productCode,ordinaryName,type){
+
+			http.post({'method':'findProductByCodeOrName',
+				'productCode':productCode,
+				'ordinaryName':ordinaryName},
+				URL.ProductServlet).then(
+					function(respone) {
+						// console.log("!" + JSON.stringify(respone));
+						$scope.newItem.code = respone.products.productCode;
+						$scope.newItem.name = respone.products.ordinaryName;
+						$scope.newItem.size = respone.products.specifications;
+						$scope.newItem.unit = respone.products.unit;
+						$scope.newItem.price = respone.products.price;
+						$scope.newItem.amount = respone.products.averageNumber;
+						$scope.newItem.sum = $scope.newItem.price * $scope.newItem.amount;
+					},
+					function(respone) {
+						console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
+						if(type == 'name'){
+							$scope.newItem.code = '';
+						}else{
+							$scope.newItem.name = '';
+						}
+						
+						$scope.newItem.size = '';
+						$scope.newItem.unit = '';
+						$scope.newItem.price = '';
+						$scope.newItem.amount ='';
+						$scope.newItem.sum ='';
+					});
+		}
 		
 		//收货方式 option
 		$scope.receiptMethod = [

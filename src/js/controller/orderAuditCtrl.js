@@ -57,7 +57,7 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 	};
 	/************ 添加新明细 start ***************/
 	// 新增明细存储model
-	$scope.newItem = {};
+	// $scope.newItem = {};
 	$scope.addItem = function(newItem){
 		$scope.items.push({
 			productCode: newItem.productCode,
@@ -163,33 +163,77 @@ app.controller('OrderAuditCtrl', function($rootScope, $scope,http, $localstorage
 		});
 	};
 	
-	    /*****订单明细 输入商品号自动补齐   start*******/
-	    var productList = [];//商品列表  
-		//查询所有商品信息
-		var queryProduct = function() {	
+	 //    /*****订单明细 输入商品号自动补齐   start*******/
+	 //    var productList = [];//商品列表  
+		// //查询所有商品信息
+		// var queryProduct = function() {	
 			
-			http.post({'method':'queryProduct',
-		        'agencyCode':$user.agencyCode},URL.productQurey).then(
-				function(respone) {
-					console.log("queryProduct info --->"+respone);
-					// popAlert("数据已刷新!")
-					productList = respone.products;
-				},
-				function(respone) {
-					console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
-					popAlert("操作失败："+JSON.stringify(respone));
-			});
+		// 	http.post({'method':'queryProduct',
+		//         'agencyCode':$user.agencyCode},URL.productQurey).then(
+		// 		function(respone) {
+		// 			console.log("queryProduct info --->"+respone);
+		// 			// popAlert("数据已刷新!")
+		// 			productList = respone.products;
+		// 		},
+		// 		function(respone) {
+		// 			console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
+		// 			popAlert("操作失败："+JSON.stringify(respone));
+		// 	});
+		// }
+		// queryProduct();
+
+		var temp;
+		$scope.newItem = {
+			ordinaryName:'',productCode:'',specifications:'',unit:'',price:'',productNumber:''
 		}
-		queryProduct();
+	
+		$scope.change = function(item,type){
+			
+			if(type == 'name'  && temp != item.ordinaryName){
+				matchDetail('',item.ordinaryName,type);
+				temp = angular.copy(item.ordinaryName);
+			}
+			if(type == 'code' && temp != item.productCode){
+				matchDetail(item.productCode,'',type);
+				temp = angular.copy(item.productCode);
+			}
+
+		};
+
+		var matchDetail = function(productCode,ordinaryName,type){
+
+			http.post({'method':'findProductByCodeOrName',
+				'productCode':productCode,
+				'ordinaryName':ordinaryName},
+				URL.ProductServlet).then(
+					function(respone) {
+						// console.log("!" + JSON.stringify(respone));
+						$scope.newItem.productCode = respone.products.productCode;
+						$scope.newItem.ordinaryName = respone.products.ordinaryName;
+						$scope.newItem.specifications = respone.products.specifications;
+						$scope.newItem.unit = respone.products.unit;
+						$scope.newItem.price = respone.products.price;
+						$scope.newItem.productNumber = respone.products.averageNumber;
+						$scope.newItem.total = $scope.newItem.price * $scope.newItem.productNumber;
+						$scope.newItem.stockNumber = respone.products.stockNumber;
+					},
+					function(respone) {
+						console.log("查询失败，请稍后再试!" + JSON.stringify(respone));
+						if(type == 'name'){
+							$scope.newItem.productCode = '';
+						}else{
+							$scope.newItem.ordinaryName = '';
+						}
+						
+						$scope.newItem.specifications = '';
+						$scope.newItem.unit = '';
+						$scope.newItem.price = '';
+						$scope.newItem.productNumber ='';
+						$scope.newItem.total ='';
+						$scope.newItem.stockNumber = '';
+					});
+		}
 		
-		$scope.change = function(item){
-			angular.forEach(productList,function(product){
-				if(item.productCode == product.productCode){
-					$scope.newItem = product;
-					return;
-				}
-			})
-		}
 		/*****订单明细 输入商品号自动补齐   end*******/
 		
 		/*****订单状态更改*******/
